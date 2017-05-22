@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href="../public/assests/bootstrap-3.3.7-dist/css/bootstrap.min.css" type="text/css">
+	<link rel="stylesheet" type="text/css" href="../public/assests/css/signIn.css">
+	<link rel="stylesheet" type="text/css" href="../public/assests/css/signUp.css">
+
+</head>
+<body>
+	<nav class="navbar navbar-default" id="nav--header__utility">
+		<div class="container-fluid">
+			<ul class="nav navbar-nav navbar-right">
+				<li>	
+					<a href="/iSynApp/manageUserEmail!showEmailContactUsForm.action?sid=1101701">
+						Contact Us
+					</a>
+				</li>
+				<li>	
+					<a href="/iSynApp/showPage.action?sid=1101701&amp;pageName=sell">
+						Sell
+					</a>
+				</li>
+				<li>	
+					<a href="/iSynApp/appUserLogin!input.action?sid=1101701">
+						Login
+					</a>
+				</li>
+				<li>	
+					<a href="/iSynApp/appUserReg!input.action?sid=1101701">
+						Register
+					</a>
+				</li>
+			</ul>
+		</div> <!-- .container-fluid -->
+	</nav>
+
+	<div class="container-fluid" >
+
+		<div class="row" id="rowDis">
+			<div class="col-md-3"></div>
+			<div class="col-md-6">
+				<div class="panel panel-default">
+					<div class="panel-body" >
+						<div class="col-md-2"></div>
+						<div class="col-md-8">
+							<h2 id="title">Đăng ký</h2>
+							<form>
+								<div class="form-group">
+									<input type="email" class="form-control" id="txtEmail" name="txtEmail" placeholder="Số điên thoại">
+								</div>
+								<div class="form-group">
+									<input type="password" class="form-control" id="txtPassWord" name="txtPassWord" placeholder="Mật khẩu">
+								</div>
+								<div class="form-group">
+									<input type="password" class="form-control" id="txtPassWord" name="txtPassWord" placeholder="Nhập lại mật khẩu">
+								</div>
+								<div class="checkbox" id="reminder">
+									<label>
+										<input type="checkbox"> Tôi đồng ý với <!-- /react-text --><a href="https://www.chotot.com/quy-dinh/hoat-dong/">Điều khoản sử dụng của Chợ Tốt</a>
+									</label>
+								</div>
+								
+								<button type="submit" class="btn btn-primary btn_submit" >Đăng ký ngay</button>
+							</form>
+
+						</div>
+						<div class="col-md-2"></div>
+						
+					</div>
+				</div>
+				
+			</div>
+			<div class="col-md-3"></div>
+		</div>
+		<div class="row">
+			<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+  Launch demo modal
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+		</div>
+	<div class="row">
+		<div class="modal fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Modal title</h4>
+      </div>
+      <div class="modal-body">
+        <p>One fine body&hellip;</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+	</div>
+	</div>
+	<script type="text/javascript" src="../public/assests/jquery-3.2.0.min.js"></script>
+	<script type="text/javascript" src="../public/assests/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+	$('#myModal').on('shown.bs.modal', function () {
+  $('#myInput').focus()
+})
+</body>
+</html>
