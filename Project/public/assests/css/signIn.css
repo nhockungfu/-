@@ -22,3 +22,10 @@ body{
 	padding-top: 50px;
 	padding-bottom: 100px;
 }
+.errorMsg {
+    display: block;
+    color: #E82228;
+    clear: both;
+    font-size: 12px;
+    margin-top: 10px;
+}

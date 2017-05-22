@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Trang cá nhân</title>
+	<link rel="stylesheet" href="../../public/assests/bootstrap-3.3.7-dist/css/bootstrap.min.css" type="text/css">
+	<link rel="stylesheet" type="text/css" href="../../public/assests/css/signIn.css">
+	<link rel="stylesheet" type="text/css" href="../../public/assests/css/thongTinCaNhan.css">
+</head>
+<body>
+	<nav class="navbar navbar-default" id="nav--header__utility">		
+		<ul class="nav navbar-nav navbar-right">
+			<li>	
+				<a href="/iSynApp/manageUserEmail!showEmailContactUsForm.action?sid=1101701">
+					Contact Us
+				</a>
+			</li>
+			<li>	
+				<a href="/iSynApp/showPage.action?sid=1101701&amp;pageName=sell">
+					Sell
+				</a>
+			</li>
+			<li>	
+				<a href="/iSynApp/appUserLogin!input.action?sid=1101701">
+					Login
+				</a>
+			</li>
+			<li>	
+				<a href="/iSynApp/appUserReg!input.action?sid=1101701">
+					Register
+				</a>
+			</li>
+		</ul>
+	</nav>
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-1"></div>
+			<div class="col-md-7">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h3>Thông tin cá nhân</h3>
+					</div>
+
+					<div class="panel-body" id="panel-1">
+						<div class="col-md-3 row-center">
+							<img id="avt-img" src="../../public/images/avatar.png" >
+							<h3>PHUC</h3>
+						</div>
+						<div class="col-md-9">
+							<form>
+								<div class="form-group">
+									<label for="exampleInputEmail1">Họ và tên</label>
+									<input id="txtEmail" type="text" class="form-control" placeholder="Họ tên">
+								</div>
+								<div class="form-group">
+									<label for="exampleInputEmail1">Số điện thoại</label>
+									<input id="txtSdt" type="text" class="form-control" placeholder="Số điện thoại">
+								</div>
+								<div class="form-group">
+									<label for="exampleInputEmail1">Địa chỉ</label>
+									<input id="txtDiaChi" type="text" class="form-control" placeholder="Địa chỉ">
+								</div>
+								
+								<button id="btn_luuThayDoi" class="btn btn-primary" type="submit">Lưu thay đổi
+								</button>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div><!--panel thong tin ca nhan-->
+			<div class="col-md-3">
+				<div class="panel panel-default" >
+					<div class="panel-heading">
+					<div class="col-md-4">
+							<img id="vcoin-img" src="../../public/images/vcoin.png">
+						</div>
+						<div class="rol-md-8">
+							<div><h4>Tài khoản VCOIN</h4></div>
+						<div><h3>0</h3></div>
+						</div>
+						
+					</div>
+
+					<div class="panel-body" id="panel-2">
+						<div style="margin-bottom: 5px;">Các gói nạp</div>
+						<table class="table table-hover table-bordered">
+							<tr>
+								<td>500.000</td>
+								<td>500</td>
+							</tr>
+							<tr>
+								<td>200.000</td>
+								<td>200</td>
+							</tr>
+							<tr>
+								<td>100.000</td>
+								<td>100</td>
+							</tr>
+							<tr>
+								<td>50.000</td>
+								<td>50</td>
+							</tr>
+							<tr>
+								<td>200.000</td>
+								<td>20</td>
+							</tr>
+						</table>
+						<a id="btn_napNgay" href="#" class="btn btn-warning">Nạp ngay</a>
+					</div>
+				</div>
+			</div><!--panel ben phai col-md-3-->
+			<div class="col-md-1"></div>
+		</div>
+	</div>
+	<script type="text/javascript" src="../../public/assests/jquery-3.2.0.min.js"></script>
+	<script type="text/javascript" src="../../public/assests/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+</body>
+</html>

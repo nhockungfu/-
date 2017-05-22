@@ -46,17 +46,18 @@
 							<h2 id="title">Đăng nhập</h2>
 							<form>
 								<div class="form-group">
-									<input type="email" class="form-control" id="txtEmail" name="txtEmail" placeholder="Email">
+									<input id="txtEmail" type="email" class="form-control" name="txtEmail" placeholder="Email của bạn">
 								</div>
 								<div class="form-group">
-									<input type="password" class="form-control" id="txtPassWord" name="txtPassWord" placeholder="Mật khẩu">
+									<input id="txtPassWord" type="password" class="form-control" name="txtPassWord" placeholder="Mật khẩu">
 								</div>
 								<br>
-								<button type="submit" class="btn btn-primary" style="width: 100%;">Đăng nhập</button>
+								<button id="btn_signIn" type="submit" class="btn btn-primary" style="width: 100%;">Đăng nhập</button>
+								<span id="msg" class="errorMsg" style="display: none;">Đăng nhập thất bại: Email hoặc mật khẩu bị sai</span>
 
 							</form>
 							<div id="linkLine">
-								<a id="sso_login_link_register" href="javascript:;" class="sec">Đăng ký</a>
+								<a id="a_register" href="signUp.html" class="sec">Đăng ký</a>
 								<span role="separator" aria-hidden="true"> · </span>
 								<a id="forgotPassWork" name="forgotPassWork" href="javascript:;" class="sec">Quên mật khẩu</a>
 							</div>
@@ -73,5 +74,29 @@
 	</div>
 	<script type="text/javascript" src="../public/assests/jquery-3.2.0.min.js"></script>
 	<script type="text/javascript" src="../public/assests/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+	<script type="text/javascript">
+		$('#btn_signIn').click(function() {
+			var email = $('#txtEmail').val(),
+			pw = $('#txtPassWord').val();
+			if(email=='' || pw==''){
+				$('#msg').show();
+				return false;
+			}
+			else
+			{
+				window.location.href = "signUp.html";
+				return false;
+
+			}
+		});
+		$( "#txtEmail" ).focus(function() {
+			if($('#msg').show())
+				$('#msg').hide();
+		});
+		$( "#txtPassWord" ).focus(function() {
+			if($('#msg').show())
+				$('#msg').hide();
+		});
+	</script>
 </body>
 </html>
