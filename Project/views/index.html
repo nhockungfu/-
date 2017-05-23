@@ -1,10 +1,11 @@
-<!DOCTYPE html>
 <html>
-<head>
+<head>	
 	<title>Bootstrap</title>
 	<meta charset="utf-8">
 	<link rel="stylesheet" type="text/css" href="../public/assests/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="../public/assests/css/custom.css">
 	<link rel="stylesheet" type="text/css" href="../public/assests/css/stylev2.css">
+	<link rel="stylesheet" type="text/css" href="../public/assests/css/index.css">
 </head>
 <body>
 	<div class="page">
@@ -52,10 +53,10 @@
 							<span class="icon-bar"></span>
 						</button>
 						<div class="masthead__main clearfix">
-							<div class="branding">
+							<div class="branding" style="padding-left: 20px">
 								<h1 class="brand-logo">
 									<a href="#">
-										<img src="../public/images/skype-logo.png" alt="uBid">
+										<img src="../public/images/logo.png" alt="uBid">
 									</a>
 									<small>Nơi bạn có thể mua hàng với giá thấp nhất</small>
 								</h1>
@@ -89,8 +90,8 @@
 									<ul class="nav nav-justified" style="display: block;">
 										<li><a href="#">All Listings</a></li>
 
-										<li class="divider-after">
-											<a href="#">Group Buy</a>
+										<li class="divider-after"> 
+											<a href="#">Group Buy</a> 
 										</li>
 
 										<li role="separator" class="navbar-divider">
@@ -118,7 +119,7 @@
 														<div class="dropdown-banner-container">
 															<div class="dropdown-slick slick-initialized slick-slider">
 																<div aria-live="polite" class="slick-list draggable">
-																	<div class="slick-track" role="listbox" style="opacity: 1; width: 0px;">
+																	<div class="slick-track" role="listbox" style="opacity: 100; width: 0px;">
 																		<div class="slick-slide slick-current slick-active" data-slick-index="0" aria-hidden="false" tabindex="-1" role="option" style="width: 0px; position: relative; left: 0px; top: 0px; z-index: 999; opacity: 1;">
 																			<div class="dropdown-banner-slide">
 																				<a href="/iSynApp/allAuction.action?sid=1101701&amp;rc=100&amp;selectedCatId=18181&amp;sort=price_asc&amp;layout=gridview" tabindex="0">
@@ -1432,7 +1433,287 @@
 			</div>
 		</header>
 	</div>
-	<script type="text/javascript" src="../public/assests/jquery-3.2.1.min.js"></script>
+
+	<div class="banner">
+		<img src="../public/images/banner.jpg">
+	</div>
+
+	<div class="container-fluid" style="margin: auto 100px">
+		<div class="panel panel-default">
+			<div class="panel-heading" style="background-image: url('../public/images/abc.png'); background-repeat: no-repeat; color: white;"><b>Các mặt hàng công nghệ</b></div>
+			<div class="panel-body">
+				<div class="row">
+					<div class="col-sm-6 col-md-3">
+						<div class="thumbnail">
+							<img class="anh-san-pham" src="../public/images/img-iphone.png" alt="...">
+							<div class="caption">
+								<div class="ten-san-pham"><a>Tên sản phẩm</a></div>
+								
+								<p class="gia-tien">78.000đ</p>
+								<div class="thoi-gian-chay-nguoc">
+									<img class="ha-dong-ho-cat" src="../public/images/hourglass.png">
+									<p id="1" class="chuoi-thoi-gian">18:59:00</p>
+									<p class="luong-nguoi-dat"><span class="glyphicon glyphicon-user"></span> 2</p>
+								</div>
+								<p class="submit-dat-gia">
+									<a href="#" class="btn btn-primary" role="button">
+										<span class="glyphicon glyphicon-fire" aria-hidden="true"></span>
+										Đặt giá
+									</a>
+								</p>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-6 col-md-3">
+						<div class="thumbnail">
+							<img class="anh-san-pham" src="../public/images/img-iphone.png" alt="...">
+							<div class="caption">
+								<div class="ten-san-pham"><a>Tên sản phẩm</a></div>
+								
+								<p class="gia-tien">22.000đ</p>
+								<div class="thoi-gian-chay-nguoc">
+									<img class="ha-dong-ho-cat" src="../public/images/hourglass.png">
+									<p id="2" class="chuoi-thoi-gian">12:00:00</p>
+									<p class="luong-nguoi-dat"><span class="glyphicon glyphicon-user"></span> 5</p>
+								</div>
+								<p class="submit-dat-gia">
+									<a href="#" class="btn btn-primary" role="button">
+										<span class="glyphicon glyphicon-fire" aria-hidden="true"></span>
+										Đặt giá
+									</a>
+								</p>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-6 col-md-3">
+						<div class="thumbnail">
+							<img class="anh-san-pham" src="../public/images/img-iphone.png" alt="...">
+							<div class="caption">
+								<div class="ten-san-pham"><a>Tên sản phẩm</a></div>
+								
+								<p class="gia-tien">32.000đ</p>
+								<div class="thoi-gian-chay-nguoc">
+									<img class="ha-dong-ho-cat" src="../public/images/hourglass.png">
+									<p id="3" class="chuoi-thoi-gian">10:00:30</p>
+									<p class="luong-nguoi-dat"><span class="glyphicon glyphicon-user"></span> 1</p>
+								</div>
+								<p class="submit-dat-gia">
+									<a href="#" class="btn btn-primary" role="button">
+										<span class="glyphicon glyphicon-fire" aria-hidden="true"></span>
+										Đặt giá
+									</a>
+								</p>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-6 col-md-3">
+						<div class="thumbnail">
+							<img class="anh-san-pham" src="../public/images/img-iphone.png" alt="...">
+							<div class="caption">
+								<div class="ten-san-pham"><a>Tên sản phẩm</a></div>
+								
+								<p class="gia-tien">55.000đ</p>
+								<div class="thoi-gian-chay-nguoc">
+									<img class="ha-dong-ho-cat" src="../public/images/hourglass.png">
+									<p id="4" class="chuoi-thoi-gian">05:30:00</p>
+									<p class="luong-nguoi-dat"><span class="glyphicon glyphicon-user"></span> 0</p>
+								</div>
+								<p class="submit-dat-gia">
+									<a href="#" class="btn btn-primary" role="button">
+										<span class="glyphicon glyphicon-fire" aria-hidden="true"></span>
+										Đặt giá
+									</a>
+								</p>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-6 col-md-3">
+						<div class="thumbnail">
+							<img class="anh-san-pham" src="../public/images/img-iphone.png" alt="...">
+							<div class="caption">
+								<div class="ten-san-pham"><a>Tên sản phẩm</a></div>
+								
+								<p class="gia-tien">30.000đ</p>
+								<div class="thoi-gian-chay-nguoc">
+									<img class="ha-dong-ho-cat" src="../public/images/hourglass.png">
+									<p id="5" class="chuoi-thoi-gian">16:59:59</p>
+									<p class="luong-nguoi-dat"><span class="glyphicon glyphicon-user"></span> 3</p>
+								</div>
+								<p class="submit-dat-gia">
+									<a href="#" class="btn btn-primary" role="button">
+										<span class="glyphicon glyphicon-fire" aria-hidden="true"></span>
+										Đặt giá
+									</a>
+								</p>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-6 col-md-3">
+						<div class="thumbnail">
+							<img class="anh-san-pham" src="../public/images/img-iphone.png" alt="...">
+							<div class="caption">
+								<div class="ten-san-pham"><a>Tên sản phẩm</a></div>
+								
+								<p class="gia-tien">25.000đ</p>
+								<div class="thoi-gian-chay-nguoc">
+									<img class="ha-dong-ho-cat" src="../public/images/hourglass.png">
+									<p id="6" class="chuoi-thoi-gian">10:59:02</p>
+									<p class="luong-nguoi-dat"><span class="glyphicon glyphicon-user"></span> 2</p>
+								</div>
+								<p class="submit-dat-gia">
+									<a href="#" class="btn btn-primary" role="button">
+										<span class="glyphicon glyphicon-fire" aria-hidden="true"></span>
+										Đặt giá
+									</a>
+								</p>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-6 col-md-3">
+						<div class="thumbnail">
+							<img class="anh-san-pham" src="../public/images/img-iphone.png" alt="...">
+							<div class="caption">
+								<div class="ten-san-pham"><a>Tên sản phẩm</a></div>
+								
+								<p class="gia-tien">60.000đ</p>
+								<div class="thoi-gian-chay-nguoc">
+									<img class="ha-dong-ho-cat" src="../public/images/hourglass.png">
+									<p id="7" class="chuoi-thoi-gian">11:59:58</p>
+									<p class="luong-nguoi-dat"><span class="glyphicon glyphicon-user"></span> 7</p>
+								</div>
+								<p class="submit-dat-gia">
+									<a href="#" class="btn btn-primary" role="button">
+										<span class="glyphicon glyphicon-fire" aria-hidden="true"></span>
+										Đặt giá
+									</a>
+								</p>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-6 col-md-3">
+						<div class="thumbnail">
+							<img class="anh-san-pham" src="../public/images/img-iphone.png" alt="...">
+							<div class="caption">
+								<div class="ten-san-pham"><a>Tên sản phẩm</a></div>
+								
+								<p class="gia-tien">50.000đ</p>
+								<div class="thoi-gian-chay-nguoc">
+									<img class="ha-dong-ho-cat" src="../public/images/hourglass.png">
+									<p id="8" class="chuoi-thoi-gian">08:30:50</p>
+									<p class="luong-nguoi-dat"><span class="glyphicon glyphicon-user"></span> 12</p>
+								</div>
+								<p class="submit-dat-gia">
+									<a href="#" class="btn btn-primary" role="button">
+										<span class="glyphicon glyphicon-fire" aria-hidden="true"></span>
+										Đặt giá
+									</a>
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script type="text/javascript" src="../public/assests/jquery-3.2.0.min.js"></script>
+	<script language="JavaScript">
+
+		var timeString;
+		var node_string_time = [];
+
+		$(function(){
+			
+			var x = document.getElementsByClassName("chuoi-thoi-gian");
+
+			var i;
+			for (i = 0; i < x.length; i++) {
+				node_string_time.push(x[i].innerText);
+				//setInterval(function(){ chayThoiGian(node_string_time[i], i+1); }, 1000);
+
+			}
+
+			setInterval(function(){ chayThoiGian(node_string_time[0], 1); }, 1000);
+			setInterval(function(){ chayThoiGian(node_string_time[1], 2); }, 1000);
+			setInterval(function(){ chayThoiGian(node_string_time[2], 3); }, 1000);
+			setInterval(function(){ chayThoiGian(node_string_time[3], 4); }, 1000);
+			setInterval(function(){ chayThoiGian(node_string_time[4], 5); }, 1000);
+			setInterval(function(){ chayThoiGian(node_string_time[5], 6); }, 1000);
+			setInterval(function(){ chayThoiGian(node_string_time[6], 7); }, 1000);
+			setInterval(function(){ chayThoiGian(node_string_time[7], 8); }, 1000);
+
+		});
+
+		function chayThoiGian(chuoi_thoi_gian, index){
+			// console.log(chuoi_thoi_gian);
+			// console.log(index);
+
+			// tách giờ, phút, giây
+			var gio = chuoi_thoi_gian.substr(0, 2);
+			var phut = chuoi_thoi_gian.substr(3, 2);
+			var giay = chuoi_thoi_gian.substr(6, 2);
+
+			// giảm thời gian xuống 1 giây
+			node_string_time[index-1] = giamMotGiay(gio, phut, giay);
+
+			// thay đổi chuỗi thời gian
+			var newNode = document.createElement("p");
+			newNode.appendChild(document.createTextNode(node_string_time[index-1]));
+			newNode.setAttribute("id", index.toString());
+			newNode.setAttribute("class", "chuoi-thoi-gian");
+
+			var preNode = document.getElementById(index.toString());
+			var parentNode = preNode.parentNode;
+			parentNode.insertBefore(newNode, preNode);
+			parentNode.removeChild(preNode);
+
+			//console.log(parentNode);
+
+
+			// debug kết quả: chuỗi thời gian đã giảm
+			//console.log(timeString);
+		}
+
+		function giamMotGiay(gio, phut, giay){
+			if(giay > 0){
+				giay = giay - 1;
+			}
+			else{
+				if(phut > 0){
+					giay = 59;
+					phut = phut - 1;
+				}
+				else {
+					if(gio > 0){
+						phut = 59;
+						gio = gio - 1;
+					}
+				}
+			}
+
+			if(gio.toString().length < 2){
+				gio = '0' + gio;
+			}
+			if(phut.toString().length < 2){
+				phut = '0' + phut;
+			}
+			if(giay.toString().length < 2){
+				giay = '0' + giay;
+			}
+
+			return (gio + ':' + phut + ':' + giay); 
+		}
+	</script>
+	<script language="JavaScript">
+		$(function(){
+
+		});
+
+		$( ".thumbnail" ).on( "click", function() {
+			console.log('Click!');
+		});
+	</script>
 	<script type="text/javascript" src="../public/assests/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+
 </body>
 </html>

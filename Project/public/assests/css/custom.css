@@ -1,0 +1,164 @@
+.navbar-default .navbar-nav>li>a:visited{
+	color: #fff;
+}
+
+.navbar-default .navbar-nav>li>a{	/*... HOCTAP GIAITRI TINTUC -> MAU CHO THE A ...*/
+	color: #eaa502;
+}
+
+.navbar-default .navbar-nav>li>a:hover{	/*... HOCTAP GIAITRI TINTUC ...*/
+	color: #262C2C;
+	background-color: #E7E7E7;
+}
+
+.navbar-default, .navbar-default .navbar-nav>.active>a{	/*... THANH NAV NGANG ...*/
+	background-color: #000;
+}
+
+.navbar-default .navbar-brand, .navbar-default .navbar-nav>.active>a{	/*... LOGO SAYPHU! ...*/
+	color: #ffe500;
+}
+
+.navbar-default .navbar-brand:hover {	/*... LOGO SAYPHU! ...*/
+	color: #FF0000;
+}
+
+.nav.navbar-nav li{	/*... HOCTAP GIAITRI TINTUC -> KHOANG CACH CAC MUC LI ...*/
+	padding-left: 20px;
+	padding-right: 20px;
+}
+
+.panel-heading-myLeft{ /*... GIFT & Đăng ký tài khoản ...*/
+	float: left;
+}
+
+.panel-heading-myRight{	/*... glyphicon bên phải header panel ...*/
+	float: right;
+	color: #fff;
+}
+
+.panel-default>.panel-heading{	/*... CANH CHINH LAI HEADER PANEL SAU KHI FLOAT>LEFT ...*/
+	height: 41px;
+	background-color: #35AA47;
+}
+
+.text-1{	/*... Person Info - text > form ...*/
+	font-family: open sans;
+	font-size: 25px;
+	margin-bottom: 0px;
+	font-weight: lighter;
+}
+
+hr{
+	margin: 0px auto 20px auto;
+	border-width: 2px;
+}
+
+/*select {
+   -webkit-appearance: none; 
+   -moz-appearance: none;
+   appearance: none;
+   }*/
+
+   .form-group{
+   	width: 100%;
+   }
+
+   .form-inline .form-control{
+   	width: 80%;
+   }
+
+   .form-inline .form-control.cus-form-control-1{
+   	width: 80%;
+   }
+
+   .form-inline .form-control.cus-form-control-2{
+   	width: 5px;
+   	height: 34px;
+   }
+
+   .cus-text-this-help{
+   	margin-right: 57%;
+   }
+
+   .cus-text-this-error, .cus-text-select-gender{
+   	margin-right: 55%;
+   }
+
+   .form-inline{
+   	text-align: right;
+   }
+
+   .col-md-9{
+   	padding-left: 0px;
+   	padding-right: 0px;
+   }
+
+   .float-left{
+   	float: left;
+   	padding-left: 15px
+   }
+
+   .form-inline.form-control.cus-format{
+   	border: none;
+
+   }
+
+   .cus-format{
+   	width: 81%;
+   	height: 34px;
+   	float: right;
+   	padding-left: 2px;
+   }
+
+    .form-inline .form-group.cus-address{
+    	margin-bottom: 10px;
+    }
+
+    .cus-form-footer{
+		height: 70px;
+		line-height: 70px;
+    }
+
+    .div-button-sub-can{
+    	margin-left: 11%;
+    	text-align: left;
+    }
+
+    button.btn.btn-success.cus-color-cancel{
+    	background-color: #E5E5E5;
+    	border-color: #E5E5E5;
+    	color: #000;
+    }
+
+    button.btn.btn-success{
+    	padding-left: 20px;
+    	padding-right: 20px
+    }
+
+    .form-inline.cus-form-footer{
+    	background-color: #F5F5F5;
+    	border-radius: 4px;
+    }
+
+    .cus-category{
+    	margin-top: 6px;
+    	padding-top: 0px;
+    }
+
+    .myname{
+    	margin-top: 15px;
+    }
+
+    .panel-title.cus-dang-ky-tai-khoan{
+    	font-size: 19px;
+    	color: #fff;
+    }
+
+    div.panel.panel-default.cus-border-color-panel-default{
+    	border-color: #35AA47;
+    }
+
+    label{
+    	font-weight: lighter;
+    }
