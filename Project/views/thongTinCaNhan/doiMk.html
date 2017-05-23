@@ -50,19 +50,20 @@
 							<form>
 								<div class="form-group">
 									<label for="exampleInputEmail1">Mật khẩu hiện tại</label>
-									<input id="txtEmail" type="text" class="form-control" placeholder="Mật khẩu hiện tại">
+									<input id="txtMkHienTai" type="password" class="form-control" placeholder="Mật khẩu hiện tại">
 								</div>
 								<div class="form-group">
 									<label for="exampleInputEmail1">Mật khẩu</label>
-									<input id="txtSdt" type="text" class="form-control" placeholder="Mật khẩu">
+									<input id="txtMk" type="password" class="form-control" placeholder="Mật khẩu">
 								</div>
 								<div class="form-group">
 									<label for="exampleInputEmail1">Nhập lại mật khẩu</label>
-									<input id="txtDiaChi" type="text" class="form-control" placeholder="Nhập lại mật khẩu">
+									<input id="txtNhapLaiMk" type="password" class="form-control" placeholder="Nhập lại mật khẩu">
 								</div>
 								
 								<button id="btn_luuDoiMk" class="btn btn-primary" type="submit">Đổi mật khẩu
 								</button>
+								<span id="msg" class="errorMsg" style="display: none;">Thất bại: Thông tin không chính xác</span>
 							</form>
 						</div>
 					</div>
@@ -71,12 +72,12 @@
 			<div class="col-md-3">
 				<div class="panel panel-default" >
 					<div class="panel-heading">
-					<div class="col-md-4">
+						<div class="col-md-4">
 							<img id="vcoin-img" src="../../public/images/vcoin.png">
 						</div>
 						<div class="rol-md-8">
 							<div><h4>Tài khoản VCOIN</h4></div>
-						<div><h3>0</h3></div>
+							<div><h3>0</h3></div>
 						</div>
 						
 					</div>
@@ -114,5 +115,34 @@
 	</div>
 	<script type="text/javascript" src="../../public/assests/jquery-3.2.0.min.js"></script>
 	<script type="text/javascript" src="../../public/assests/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+	<script type="text/javascript">
+		$('#btn_luuDoiMk').click(function(event) {
+			var mkht = $('#txtMkHienTai').val(),
+				mk = $('#txtMk').val(),
+				nlmk = $('#txtNhapLaiMk').val();
+			if(mk==''||mkht==''||nlmk==''||mk!=nlmk){
+				$('#msg').show();
+			}
+			else{
+				alert('Cập nhật thông tin thành công');
+				window.location.href = "../quanLyTinMua.html";
+			}			
+			return false;
+		});
+
+		$( "#txtMk" ).focus(function() {
+			if($('#msg').show())
+				$('#msg').hide();
+		});
+		$( "#txtNhapLaiMk" ).focus(function() {
+			if($('#msg').show())
+				$('#msg').hide();
+		});
+		$( "#txtMkHienTai" ).focus(function() {
+			if($('#msg').show())
+				$('#msg').hide();
+		});
+
+	</script>
 </body>
 </html>
