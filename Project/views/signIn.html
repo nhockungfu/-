@@ -5,72 +5,83 @@
 	<title>Document</title>
 	<link rel="stylesheet" href="../public/assests/bootstrap-3.3.7-dist/css/bootstrap.min.css" type="text/css">
 	<link rel="stylesheet" type="text/css" href="../public/assests/css/signIn.css">
+	<!-- <link rel="stylesheet" type="text/css" href="../public/assests/css/stylev2.css"> -->
 </head>
 <body>
-	<nav class="navbar navbar-default" id="nav--header__utility">
-		<div class="container-fluid">
-			<ul class="nav navbar-nav navbar-right">
-				<li>	
-					<a href="/iSynApp/manageUserEmail!showEmailContactUsForm.action?sid=1101701">
-						Contact Us
-					</a>
-				</li>
-				<li>	
-					<a href="/iSynApp/showPage.action?sid=1101701&amp;pageName=sell">
-						Sell
-					</a>
-				</li>
-				<li>	
-					<a href="/iSynApp/appUserLogin!input.action?sid=1101701">
-						Login
-					</a>
-				</li>
-				<li>	
-					<a href="/iSynApp/appUserReg!input.action?sid=1101701">
-						Register
-					</a>
-				</li>
-			</ul>
-		</div> <!-- .container-fluid -->
-	</nav>
+	<div class="page">
 
-	<div class="container-fluid" >
-
-		<div class="row" id="rowDis">
-			<div class="col-md-3"></div>
-			<div class="col-md-6">
-				<div class="panel panel-default">
-					<div class="panel-body" >
-						<div class="col-md-2"></div>
-						<div class="col-md-8">
-							<h2 id="title">Đăng nhập</h2>
-							<form>
-								<div class="form-group">
-									<input id="txtEmail" type="email" class="form-control" name="txtEmail" placeholder="Email của bạn">
-								</div>
-								<div class="form-group">
-									<input id="txtPassWord" type="password" class="form-control" name="txtPassWord" placeholder="Mật khẩu">
-								</div>
-								<br>
-								<button id="btn_signIn" type="submit" class="btn btn-primary" style="width: 100%;">Đăng nhập</button>
-								<span id="msg" class="errorMsg" style="display: none;">Đăng nhập thất bại: Email hoặc mật khẩu bị sai</span>
-
-							</form>
-							<div id="linkLine">
-								<a id="a_register" href="signUp.html" class="sec">Đăng ký</a>
-								<span role="separator" aria-hidden="true"> · </span>
-								<a id="forgotPassWork" name="forgotPassWork" href="javascript:;" class="sec">Quên mật khẩu</a>
-							</div>
-						</div>
-						<div class="col-md-2"></div>
-						
+		<nav class="navbar navbar-default" id="nav--header__utility">
+			<div class="container-fluid">
+				<ul class="nav navbar-nav navbar-right">
+					<li>
+						<a href="#">Liên hệ với chúng tôi</a>
+					</li>
+					<li>
+						<a href="#">Đăng bán</a>
+					</li>
+					<li>
+						<a href="signIn.html">Đăng nhập</a>
+					</li>
+					<li>
+						<a href="signUp.html">Đăng ký tài khoản</a>
+					</li>
+				</ul>
+				<div class="navbar-form navbar-right form-inline">
+					<input type="hidden" name="sid" value="1101701" data-prompt-position="bottomLeft">
+					<input type="hidden" name="formatMsg" value="Y" data-prompt-position="bottomLeft">
+					<input type="hidden" name="iSynRetUrl" value="/iSynApp/showHomePage.action?sid=1101701" data-prompt-position="bottomLeft">
+					<input type="hidden" name="pgcust1" value="insider" data-prompt-position="bottomLeft">
+					<input type="hidden" name="subject" value="Auction Insider request" data-prompt-position="bottomLeft">
+					<input type="hidden" name="sendMessage" value="Auction Insider request" data-prompt-position="bottomLeft">
+					<input type="hidden" value="n/a" name="firstName" data-prompt-position="bottomLeft">
+					<input type="hidden" value="n/a" name="lastName" data-prompt-position="bottomLeft">
+					<div class="form-group">
+						<button type="button" class="btn btn-default" data-toggle="modal" data-target="#emailpop">
+							Đăng ký nhận tin từ trang web
+						</button>
 					</div>
 				</div>
-				
 			</div>
-			<div class="col-md-3"></div>
-		</div>
+		</nav>
 
+		<div class="container-fluid" >
+
+			<div class="row" id="rowDis">
+				<div class="col-md-3"></div>
+				<div class="col-md-6">
+					<div class="panel panel-default">
+						<div class="panel-body" >
+							<div class="col-md-2"></div>
+							<div class="col-md-8">
+								<h2 id="title">Đăng nhập</h2>
+								<form>
+									<div class="form-group">
+										<input id="txtEmail" type="email" class="form-control" name="txtEmail" placeholder="Email của bạn">
+									</div>
+									<div class="form-group">
+										<input id="txtPassWord" type="password" class="form-control" name="txtPassWord" placeholder="Mật khẩu">
+									</div>
+									<br>
+									<button id="btn_signIn" type="submit" class="btn btn-primary" style="width: 100%;">Đăng nhập</button>
+									<span id="msg" class="errorMsg" style="display: none;">Đăng nhập thất bại: Email hoặc mật khẩu bị sai</span>
+
+								</form>
+								<div id="linkLine">
+									<a id="a_register" href="signUp.html" class="sec">Đăng ký</a>
+									<span role="separator" aria-hidden="true"> · </span>
+									<a id="forgotPassWork" name="forgotPassWork" href="javascript:;" class="sec">Quên mật khẩu</a>
+								</div>
+							</div>
+							<div class="col-md-2"></div>
+
+						</div>
+					</div>
+
+				</div>
+				<div class="col-md-3"></div>
+			</div>
+
+		</div>
 	</div>
 	<script type="text/javascript" src="../public/assests/jquery-3.2.0.min.js"></script>
 	<script type="text/javascript" src="../public/assests/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
