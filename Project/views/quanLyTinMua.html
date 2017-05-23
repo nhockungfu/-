@@ -6,6 +6,27 @@
 	<link rel="stylesheet" href="../public/assests/bootstrap-3.3.7-dist/css/bootstrap.min.css" type="text/css">
 	<link rel="stylesheet" type="text/css" href="../public/assests/css/signIn.css">
 	<link rel="stylesheet" type="text/css" href="../public/assests/css/thongTinCaNhan.css">
+	<style type="text/css">
+		div.showBtn
+		{
+			position: relative;
+			float:left;
+			width: 100%;
+		}
+
+		div.showBtn:hover a
+		{
+			display: block;
+		}
+
+		div.showBtn a
+		{
+			position:absolute;
+			top:-8px;
+			right:0;
+			display:none;
+		}
+	</style>
 </head>
 <body>
 	<nav class="navbar navbar-default" id="nav--header__utility">		
@@ -137,15 +158,35 @@
 															<tr> 
 																<th scope="row"><a href="#">1</a></th> 
 																<td><a href="#">IPhone 6s</a></td> 
-																<td id="gia1">9.000.000</td> 
-																<td>7.000.000</td>
+																<td id="gia1">
+																	<div class="showBtn">9.000.000
+																		<a href="#" class="btn btn-warning">Mua
+																		</a>
+																	</div> 
+																</td> 
+																<td>
+																<div class="showBtn">7.000.000
+																		<a href="#" class="btn btn-danger">Đấu giá
+																		</a>
+																	</div>
+																</td>
 																<td><a href="#">akira@gmail.com</a></td>
 															</tr> 
 															<tr> 
 																<th scope="row"><a href="#">2</a></th> 
 																<td><a href="#">Tivi Sony 32inch</a></td> 
-																<td>24.000.000</td> 
-																<td>11.500.000</td>
+																<td id="gia1">
+																	<div class="showBtn">24.000.000
+																		<a href="#" class="btn btn-warning">Mua
+																		</a>
+																	</div> 
+																</td> 
+																<td>
+																<div class="showBtn">11.500.000
+																		<a href="#" class="btn btn-danger">Đấu giá
+																		</a>
+																	</div>
+																</td>
 																<td><a href="#">tonystack@gmail.com</a></td>
 															</tr> 
 															<tr> 
@@ -232,7 +273,7 @@
 
 												</div><!--sub21-->
 												<div class="tab-pane fade" id="sub22">
-													
+
 												</div>
 											</div>
 										</div>
@@ -284,6 +325,7 @@
 						<a id="btn_napNgay" href="#" class="btn btn-warning">Nạp ngay</a>
 					</div>
 				</div>
+
 			</div><!--panel ben phai col-md-3-->
 			<div class="col-md-1"></div>
 		</div>
@@ -292,10 +334,6 @@
 	<script type="text/javascript" src="../public/assests/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 	<script type="text/javascript">
 		var f=false;
-
-		// $(document).ready(function(){
-		// 	$('[data-toggle="popover"]').popover();   
-		// });
 		$("ul.nav-tabs a").click(function (e) {
 			e.preventDefault();
 			$(this).tab('show');
@@ -307,6 +345,7 @@
 		$('#myModal2').on('hidden.bs.modal', function () {
 			f=true;
 			$('#myAlert').alert('close');
+			$('#nav--header__utility').css('background-color','#75BD4F');
 			
 		});
 		$('#btn_quanLyBan').hover(function() {

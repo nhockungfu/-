@@ -10,28 +10,28 @@
 </head>
 <body>
 	<nav class="navbar navbar-default" id="nav--header__utility">
-			<ul class="nav navbar-nav navbar-right">
-				<li>	
-					<a href="/iSynApp/manageUserEmail!showEmailContactUsForm.action?sid=1101701">
-						Contact Us
-					</a>
-				</li>
-				<li>	
-					<a href="/iSynApp/showPage.action?sid=1101701&amp;pageName=sell">
-						Sell
-					</a>
-				</li>
-				<li>	
-					<a href="/iSynApp/appUserLogin!input.action?sid=1101701">
-						Login
-					</a>
-				</li>
-				<li>	
-					<a href="/iSynApp/appUserReg!input.action?sid=1101701">
-						Register
-					</a>
-				</li>
-			</ul>
+		<ul class="nav navbar-nav navbar-right">
+			<li>	
+				<a href="/iSynApp/manageUserEmail!showEmailContactUsForm.action?sid=1101701">
+					Contact Us
+				</a>
+			</li>
+			<li>	
+				<a href="/iSynApp/showPage.action?sid=1101701&amp;pageName=sell">
+					Sell
+				</a>
+			</li>
+			<li>	
+				<a href="/iSynApp/appUserLogin!input.action?sid=1101701">
+					Login
+				</a>
+			</li>
+			<li>	
+				<a href="/iSynApp/appUserReg!input.action?sid=1101701">
+					Register
+				</a>
+			</li>
+		</ul>
 	</nav>
 
 	<div class="container-fluid" >
@@ -85,7 +85,7 @@
 					<div class="modal-body">
 						<ol>
 							<li>
-							GIỚI THIỆU
+								GIỚI THIỆU
 								<ol>
 									<li>
 										Chào mừng bạn đến với trang web daugiappt.com của PPT. Vui lòng đọc kỹ các Điều Khoản Dịch Vụ sau đây trước khi sử dụng Trang Web này hoặc trước khi mở một tài khoản PPT để bạn biết được các quyền lợi và nghĩa vụ hợp pháp của mình liên quan đến PPT Interactive Holding Limited và các công ty liên kết và các công ty con PPT.
@@ -133,7 +133,12 @@
 			$('#msg').show();
 			return false;
 		}
-		return false;
+		else
+		{
+			alert('Chúc mừng bạn đã là thành viên của PPT')
+			window.location.href = "quanLyTinMua.html";
+			return false;
+		}
 	});
 	$( "#txtEmail" ).focus(function() {
 		if($('#msg').show())
