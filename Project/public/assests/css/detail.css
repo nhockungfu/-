@@ -1,0 +1,117 @@
+.anh-san-pham{
+	height: 300px;
+}
+.title-id, .id, .title-seller, .seller, .sao-danh-gia, .chuoi-diem-so, .chuoi-thoi-gian, .anh-dong-ho{
+	display: inline-block;
+	margin: 0px;
+}
+.contain-id, .contain-seller{
+	margin: 0px;
+}
+.id{
+	font-weight: bold
+}
+a.seller{
+	color: #E51C24;
+}
+.sao-danh-gia{
+	height: 15px;
+	margin-bottom: 4px;
+}
+.contain-point{
+	line-height: 21px;
+}
+.clear-margin{
+	margin: 0px;
+}
+.anh-dong-ho{
+	height: 40px;
+}
+.chuoi-thoi-gian{
+	font-size: 18px;
+	font-weight: bold;
+}
+.contain-timer{
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+.money-of-rival{
+	font-size: 22px;
+	color: red;
+}
+.name-of-rival{
+	color: #C64600;
+}
+.submit-dat-gia{
+	margin-top: 15px;
+	width: 200px;
+}
+.cus-button{
+	margin-top: 8px;
+}
+.cus-button-bid{
+	margin-top: 8px;
+}
+.cus-input-money-text{
+	margin-top: 8px;
+	width: 200px;
+}
+.cus-header-table{
+	font-size: 14px;
+	font-weight: bold;
+}
+.name-of-detail{
+	color: #06070C;
+}
+.title-detail1{
+	margin-top: 30px;
+	margin-bottom: 20px;
+	font-weight: bold;
+	font-size: 25px;
+}
+.title-detail2{
+	margin-top: 30px;
+	margin-bottom: 10px;
+	font-weight: bold;
+	font-size: 20px;
+}
+.content-detail{
+	font-size: 15px;
+}
+img{
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 15px;
+	margin-bottom: 15px;
+}
+.caption {
+       border: 1px solid #DDDDDD;
+       text-align: center;
+       background-color: #EEEEEE;
+       padding: 4px 4px 3px 4px;
+       margin-right:auto;
+       margin-left:auto;
+       -moz-border-radius: 3px;
+       -khtml-border-radius: 3px;
+       border-radius: 3px;
+       margin-top: 15px;
+       margin-bottom: 15px;
+}
+
+.caption img {
+       margin: 0px 0px 2px 0px;
+       padding: 0px;
+       border-top: 1px solid #ddd;
+       border-left: 1px solid #ddd;
+       border-bottom: 1px solid #c0c0c0;
+       border-right: 1px solid #c0c0c0;                 
+}
+
+.caption p.caption-text {
+       padding: 0px;
+       font-family: Arial, Sans-Serif;
+       font-size: 15px;
+       font-weight: normal;
+       line-height: 12px;
+}
