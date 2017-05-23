@@ -78,40 +78,44 @@ a.seller{
 .content-detail{
 	font-size: 15px;
 }
-img{
+.caption {
+	border: 1px solid #DDDDDD;
+	text-align: center;
+	background-color: #EEEEEE;
+	padding: 4px 4px 3px 4px;
+	margin-right:auto;
+	margin-left:auto;
+	-moz-border-radius: 3px;
+	-khtml-border-radius: 3px;
+	border-radius: 3px;
+	margin-top: 15px;
+	margin-bottom: 15px;
+}
+
+.caption img {
+	margin: 0px 0px 2px 0px;
+	padding: 0px;
+	border-top: 1px solid #ddd;
+	border-left: 1px solid #ddd;
+	border-bottom: 1px solid #c0c0c0;
+	border-right: 1px solid #c0c0c0;                 
+}
+
+.caption p.caption-text {
+	padding: 0px;
+	font-family: Arial, Sans-Serif;
+	font-size: 15px;
+	font-weight: normal;
+	line-height: 12px;
+}
+
+.anh-slide{
 	display: block;
 	margin-left: auto;
 	margin-right: auto;
 	margin-top: 15px;
 	margin-bottom: 15px;
 }
-.caption {
-       border: 1px solid #DDDDDD;
-       text-align: center;
-       background-color: #EEEEEE;
-       padding: 4px 4px 3px 4px;
-       margin-right:auto;
-       margin-left:auto;
-       -moz-border-radius: 3px;
-       -khtml-border-radius: 3px;
-       border-radius: 3px;
-       margin-top: 15px;
-       margin-bottom: 15px;
-}
-
-.caption img {
-       margin: 0px 0px 2px 0px;
-       padding: 0px;
-       border-top: 1px solid #ddd;
-       border-left: 1px solid #ddd;
-       border-bottom: 1px solid #c0c0c0;
-       border-right: 1px solid #c0c0c0;                 
-}
-
-.caption p.caption-text {
-       padding: 0px;
-       font-family: Arial, Sans-Serif;
-       font-size: 15px;
-       font-weight: normal;
-       line-height: 12px;
+.carousel-inner>.item>img{
+	height: 500px;
 }

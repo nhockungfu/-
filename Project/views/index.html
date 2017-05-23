@@ -1616,19 +1616,23 @@
 		</div>
 	</div>
 
-	<script type="text/javascript" src="../public/assests/jquery-3.2.0.min.js"></script>
-	<script language="JavaScript">
+</div>
 
-		var timeString;
-		var node_string_time = [];
 
-		$(function(){
-			
-			var x = document.getElementsByClassName("chuoi-thoi-gian");
 
-			var i;
-			for (i = 0; i < x.length; i++) {
-				node_string_time.push(x[i].innerText);
+<script type="text/javascript" src="../public/assests/jquery-3.2.0.min.js"></script>
+<script language="JavaScript">
+
+	var timeString;
+	var node_string_time = [];
+
+	$(function(){
+
+		var x = document.getElementsByClassName("chuoi-thoi-gian");
+
+		var i;
+		for (i = 0; i < x.length; i++) {
+			node_string_time.push(x[i].innerText);
 				//setInterval(function(){ chayThoiGian(node_string_time[i], i+1); }, 1000);
 
 			}
@@ -1644,7 +1648,7 @@
 
 		});
 
-		function chayThoiGian(chuoi_thoi_gian, index){
+	function chayThoiGian(chuoi_thoi_gian, index){
 			// console.log(chuoi_thoi_gian);
 			// console.log(index);
 
