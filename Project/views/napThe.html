@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Trang nạp thẻ</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="../public/assests/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="../public/assests/css/custom.css">
+	<link rel="stylesheet" type="text/css" href="../public/assests/css/napThe.css">
+	<script src="../public/assests/card.js?" async="true"></script>
+</head>
+<body style="background-color: #FAFAFA">
+	<div class="container-fluid" style="margin: auto 8%" >
+		
+		<h3 style="color: #000; width: 100%; padding-top: 30px; margin-top: 0px; margin-bottom: 50px; padding-bottom: 0px; display: inline-block; border-bottom: none; text-align: center; font-size: 3.25em; font-weight: 300; position: relative; ">
+			Cổng thanh toán website đấu giá
+		</h3>
+		
+		<div class="panel-body">
+		<div class="row">
+			<div class="col-sm-2 col-md-2">
+										
+			</div>
+		
+			<div class="col-sm-8 col-md-8">
+				<a href="#" target="_blank"><img src="../public/images/bank.jpg" width="50">&nbsp;<b>Thanh toán bằng thẻ ngân hàng nội địa</b></a>
+				<hr>
+				<h4 style="color: #3C5B83"><b>Thanh toán bằng thẻ điện thoại</b></h4>
+				<br>
+				<div class="emotion">
+					<input type="radio" name="RechargeCardForm[emotion]" id="card_viettel" value="viettel" disabled/>
+					<label lang="22%" for="card_viettel"
+					class="viettel" title="card_viettel"></label>
+					<div>Thẻ cào Viettel<br>
+						Thời gian hoàn thành: Ngay lập tức
+						<br>
+						Phí giao dịch: Không
+					</div>
+				</div>
+				<div class="emotion">
+					<input type="radio" name="RechargeCardForm[emotion]" id="card_mobile" value="mobifone"/>
+					<label lang="22.5%" for="card_mobile"
+					class="mobile" title="card_mobile"></label>
+
+					<div>Thẻ cào MOBIFONE<br>
+						Thời gian hoàn thành: Ngay lập tức
+						<br>
+						Phí giao dịch: Không
+					</div>
+				</div>
+				<div class="emotion">
+					<input type="radio" name="RechargeCardForm[emotion]" id="card_vina" value="vinaphone"/>
+					<label lang="22.5%" for="card_vina"
+					class="vinaphone" title="card_vina"></label>
+					<div>
+						Thẻ cào VINA<br>
+						Thời gian hoàn thành: Ngay lập tức
+						<br>
+						Phí giao dịch: Không
+					</div>
+				</div>
+				<div class="emotion">
+					<input type="radio" name="RechargeCardForm[emotion]" id="card_gate" value="gate"/>
+					<label lang="20.5%" for="card_gate"
+					class="gate" title="card_gate"></label>
+					<div>
+						Thẻ cào GATE<br>
+						Thời gian hoàn thành: Ngay lập tức
+						<br>
+						Phí giao dịch: Không
+					</div>
+				</div>
+				<div class="emotion">
+					<input type="radio" name="RechargeCardForm[emotion]" id="card_vnm" value="vnm"/>
+					<label lang="20%" for="card_vnm"
+					class="vnm" title="card_vnm"></label>
+					<div>
+						Thẻ cào Vietnamobile<br>
+						Thời gian hoàn thành: Ngay lập tức
+						<br>
+						Phí giao dịch: Không
+					</div>
+				</div>
+				<span class="help-inline" id="RechargeCardForm_Emotion_em_" style="display: none;"></span>
+
+				<td style='padding-left: 10px'>
+					<br> 
+					<form name="napthe" action="" method="post" class="form-cardbk" autocomplete="off">
+						<table id="paymentTable" style="width: 100%; height: auto; padding: 10px;" cellspacing="0" cellpadding="0">
+							<td colspan="3" style="padding-left: 20px;"> <br> 
+								<tr>
+									<td class="l"> Tài khoản </td>
+									<td> <input type="text" name="txtuser" id="txtuser" value="sieuway475" class='form-control' style="color:#f56734" readonly="true" required/> </td>
+								</tr>
+								<input type="hidden" name="ref_admin" id="ref_admin" value="anhdao1520"/> <input type="hidden" name="ref_email" id="ref_email" value="sieuway475@gmail.com"/> </td> </tr> 
+								<tr>
+									<td class="l"> Mã số thẻ </td>
+									<td> <input type="text" id="txtSoPin" name="txtSoPin" class='form-control' placeholder='Mã số thẻ sau lớp bạc' required/> 
+									</tr>		
+									<tr>
+										<td class="l"> Số serial </td>
+										<td> <input type="text" id="txtSoSeri" name="txtSoSeri" class='form-control' placeholder='Số seri của thẻ' required/> </td>
+									</tr>
+									<tr>
+										<td class="l"> Loại thẻ </td>
+										<td><br>
+											<select name="chonmang" class="btn btn-lg btn-xs dropdown-toggle" data-style="btn-primary">
+												<option value="0">Chọn loại thẻ cần nạp</option>
+												<option value="VIETTEL" id="107">Viettel</option>
+												<option value="VMS" id="92">Mobifone</option>
+												<option value="VNP" id="93">Vinaphone</option>
+												<option value="GATE" id="120">Gate</option>
+												<option value="VIETNAMOBILE" id="120">Vietnamobile</option>
+											</select>
+										</td>
+									</tr>	
+									<input type="hidden" name="token" value=""/> 
+									<td colspan="3" width="100%" style="padding: 10px 0px;"> 
+										<input class="btn btn-lg btn-block btn green btn-inverse" type="submit" id="ttNganluong" name="NLNapThe" value="THANH TOÁN" style="padding: 10px 0px; margin-top: 25px;position: relative;"/> </td>
+									</div>
+									<div class="col-sm-2 col-md-2">
+										
+									</div>
+								</div>
+							</div>
+					</div>
+				<script type="text/javascript" src="../../public/assests/jquery-3.2.0.min.js"></script>
+	</body>
+</html>
