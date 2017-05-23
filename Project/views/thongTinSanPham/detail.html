@@ -2,10 +2,10 @@
 <head>	
 	<title>Bootstrap</title>
 	<meta charset="utf-8">
-	<link rel="stylesheet" type="text/css" href="../public/assests/bootstrap-3.3.7-dist/css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="../public/assests/css/custom.css">
-	<link rel="stylesheet" type="text/css" href="../public/assests/css/stylev2.css">
-	<link rel="stylesheet" type="text/css" href="../public/assests/css/index.css">
+	<link rel="stylesheet" type="text/css" href="../../public/assests/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="../../public/assests/css/custom.css">
+	<link rel="stylesheet" type="text/css" href="../../public/assests/css/stylev2.css">
+	<link rel="stylesheet" type="text/css" href="../../public/assests/css/detail.css">
 </head>
 <body>
 	<div class="page">
@@ -56,7 +56,7 @@
 							<div class="branding" style="padding-left: 20px">
 								<h1 class="brand-logo">
 									<a href="#">
-										<img src="../public/images/logo.png" alt="uBid">
+										<img src="../../public/images/logo.png" alt="uBid">
 									</a>
 									<small>Nơi bạn có thể mua hàng với giá thấp nhất</small>
 								</h1>
@@ -1434,190 +1434,72 @@
 		</header>
 	</div>
 
-	<div class="banner">
-		<img src="../public/images/banner.jpg">
-	</div>
-
-	<div class="container-fluid" style="margin: auto 100px">
+	<div class="container-fluid" style="margin: auto 8%">
 		<div class="panel panel-default">
-			<div class="panel-heading" style="background-image: url('../public/images/abc.png'); background-repeat: no-repeat; color: white;"><b>Các mặt hàng công nghệ</b></div>
+			<div class="panel-heading"><b>Tên sản phẩm</b></div>
 			<div class="panel-body">
-				<div class="row">
+				<div class="row" >
 					<div class="col-sm-6 col-md-3">
-						<div class="thumbnail">
-							<img class="anh-san-pham" src="../public/images/img-iphone.png" alt="...">
-							<div class="caption">
-								<div class="ten-san-pham"><a>Tên sản phẩm</a></div>
-								
-								<p class="gia-tien">78.000đ</p>
-								<div class="thoi-gian-chay-nguoc">
-									<img class="ha-dong-ho-cat" src="../public/images/hourglass.png">
-									<p id="1" class="chuoi-thoi-gian">18:59:00</p>
-									<p class="luong-nguoi-dat"><span class="glyphicon glyphicon-user"></span> 2</p>
-								</div>
-								<p class="submit-dat-gia">
-									<a href="#" class="btn btn-primary" role="button">
-										<span class="glyphicon glyphicon-fire" aria-hidden="true"></span>
-										Đặt giá
-									</a>
-								</p>
-							</div>
-						</div>
+						<img class="anh-san-pham" src="../../public/images/img-iphone-lager.png" alt="...">
 					</div>
-					<div class="col-sm-6 col-md-3">
-						<div class="thumbnail">
-							<img class="anh-san-pham" src="../public/images/img-iphone.png" alt="...">
-							<div class="caption">
-								<div class="ten-san-pham"><a>Tên sản phẩm</a></div>
-								
-								<p class="gia-tien">22.000đ</p>
-								<div class="thoi-gian-chay-nguoc">
-									<img class="ha-dong-ho-cat" src="../public/images/hourglass.png">
-									<p id="2" class="chuoi-thoi-gian">12:00:00</p>
-									<p class="luong-nguoi-dat"><span class="glyphicon glyphicon-user"></span> 5</p>
-								</div>
-								<p class="submit-dat-gia">
-									<a href="#" class="btn btn-primary" role="button">
-										<span class="glyphicon glyphicon-fire" aria-hidden="true"></span>
-										Đặt giá
-									</a>
-								</p>
-							</div>
+					<div class="col-sm-6 col-md-4">
+						<div class="contain-id">
+							<p class="title-id">ID:</p>
+							<p class="id">12345</p>
 						</div>
+						<div class="contain-seller">
+							<p class="title-seller">Người bán:</p>
+							<a class="seller" src="#">vongsayphu@gmail.com</a>
+						</div>
+						<div class="contain-point">
+							<img class="sao-danh-gia" src="../../public/images/star-prize/4-star.png">
+							<p class="chuoi-diem-so" src="#">Uy tín: (4.1/19)</p>
+						</div>
+						<p class="clear-margin">Bắt đầu: 22/04/2017 lúc 13:55</p>
+						<p class="clear-margin">Kết thúc: 22/04/2017 lúc 13:55</p>
+						<div class="contain-timer">
+							<img class="anh-dong-ho" src="../../public/images/hourglass.png">
+							<p id="8" class="chuoi-thoi-gian">08:30:50</p>
+						</div>
+						<p class="money-of-rival clear-margin">50.000đ</p>
+						<p class="name-of-rival clear-margin">phucred@gmail.com</p>
+						<form>
+							<div>
+								<label class="sr-only" for="exampleInputAmount">Amount (in dollars)</label>
+								<div class="input-group cus-input-money-text">
+									<input type="text" class="form-control" id="exampleInputAmount" placeholder="Nhập giá mua">
+									<div class="input-group-addon">đồng</div>
+								</div>
+							</div>
+
+							<button type="submit" class="btn btn-primary cus-button-bid">
+								<span class="glyphicon glyphicon-fire" aria-hidden="true"></span> Đặt giá
+							</button>
+						</form>
 					</div>
-					<div class="col-sm-6 col-md-3">
-						<div class="thumbnail">
-							<img class="anh-san-pham" src="../public/images/img-iphone.png" alt="...">
-							<div class="caption">
-								<div class="ten-san-pham"><a>Tên sản phẩm</a></div>
-								
-								<p class="gia-tien">32.000đ</p>
-								<div class="thoi-gian-chay-nguoc">
-									<img class="ha-dong-ho-cat" src="../public/images/hourglass.png">
-									<p id="3" class="chuoi-thoi-gian">10:00:30</p>
-									<p class="luong-nguoi-dat"><span class="glyphicon glyphicon-user"></span> 1</p>
-								</div>
-								<p class="submit-dat-gia">
-									<a href="#" class="btn btn-primary" role="button">
-										<span class="glyphicon glyphicon-fire" aria-hidden="true"></span>
-										Đặt giá
-									</a>
-								</p>
-							</div>
-						</div>
-					</div>
-					<div class="col-sm-6 col-md-3">
-						<div class="thumbnail">
-							<img class="anh-san-pham" src="../public/images/img-iphone.png" alt="...">
-							<div class="caption">
-								<div class="ten-san-pham"><a>Tên sản phẩm</a></div>
-								
-								<p class="gia-tien">55.000đ</p>
-								<div class="thoi-gian-chay-nguoc">
-									<img class="ha-dong-ho-cat" src="../public/images/hourglass.png">
-									<p id="4" class="chuoi-thoi-gian">05:30:00</p>
-									<p class="luong-nguoi-dat"><span class="glyphicon glyphicon-user"></span> 0</p>
-								</div>
-								<p class="submit-dat-gia">
-									<a href="#" class="btn btn-primary" role="button">
-										<span class="glyphicon glyphicon-fire" aria-hidden="true"></span>
-										Đặt giá
-									</a>
-								</p>
-							</div>
-						</div>
-					</div>
-					<div class="col-sm-6 col-md-3">
-						<div class="thumbnail">
-							<img class="anh-san-pham" src="../public/images/img-iphone.png" alt="...">
-							<div class="caption">
-								<div class="ten-san-pham"><a>Tên sản phẩm</a></div>
-								
-								<p class="gia-tien">30.000đ</p>
-								<div class="thoi-gian-chay-nguoc">
-									<img class="ha-dong-ho-cat" src="../public/images/hourglass.png">
-									<p id="5" class="chuoi-thoi-gian">16:59:59</p>
-									<p class="luong-nguoi-dat"><span class="glyphicon glyphicon-user"></span> 3</p>
-								</div>
-								<p class="submit-dat-gia">
-									<a href="#" class="btn btn-primary" role="button">
-										<span class="glyphicon glyphicon-fire" aria-hidden="true"></span>
-										Đặt giá
-									</a>
-								</p>
-							</div>
-						</div>
-					</div>
-					<div class="col-sm-6 col-md-3">
-						<div class="thumbnail">
-							<img class="anh-san-pham" src="../public/images/img-iphone.png" alt="...">
-							<div class="caption">
-								<div class="ten-san-pham"><a>Tên sản phẩm</a></div>
-								
-								<p class="gia-tien">25.000đ</p>
-								<div class="thoi-gian-chay-nguoc">
-									<img class="ha-dong-ho-cat" src="../public/images/hourglass.png">
-									<p id="6" class="chuoi-thoi-gian">10:59:02</p>
-									<p class="luong-nguoi-dat"><span class="glyphicon glyphicon-user"></span> 2</p>
-								</div>
-								<p class="submit-dat-gia">
-									<a href="#" class="btn btn-primary" role="button">
-										<span class="glyphicon glyphicon-fire" aria-hidden="true"></span>
-										Đặt giá
-									</a>
-								</p>
-							</div>
-						</div>
-					</div>
-					<div class="col-sm-6 col-md-3">
-						<div class="thumbnail">
-							<img class="anh-san-pham" src="../public/images/img-iphone.png" alt="...">
-							<div class="caption">
-								<div class="ten-san-pham"><a>Tên sản phẩm</a></div>
-								
-								<p class="gia-tien">60.000đ</p>
-								<div class="thoi-gian-chay-nguoc">
-									<img class="ha-dong-ho-cat" src="../public/images/hourglass.png">
-									<p id="7" class="chuoi-thoi-gian">11:59:58</p>
-									<p class="luong-nguoi-dat"><span class="glyphicon glyphicon-user"></span> 7</p>
-								</div>
-								<p class="submit-dat-gia">
-									<a href="#" class="btn btn-primary" role="button">
-										<span class="glyphicon glyphicon-fire" aria-hidden="true"></span>
-										Đặt giá
-									</a>
-								</p>
-							</div>
-						</div>
-					</div>
-					<div class="col-sm-6 col-md-3">
-						<div class="thumbnail">
-							<img class="anh-san-pham" src="../public/images/img-iphone.png" alt="...">
-							<div class="caption">
-								<div class="ten-san-pham"><a>Tên sản phẩm</a></div>
-								
-								<p class="gia-tien">50.000đ</p>
-								<div class="thoi-gian-chay-nguoc">
-									<img class="ha-dong-ho-cat" src="../public/images/hourglass.png">
-									<p id="8" class="chuoi-thoi-gian">08:30:50</p>
-									<p class="luong-nguoi-dat"><span class="glyphicon glyphicon-user"></span> 12</p>
-								</div>
-								<p class="submit-dat-gia">
-									<a href="#" class="btn btn-primary" role="button">
-										<span class="glyphicon glyphicon-fire" aria-hidden="true"></span>
-										Đặt giá
-									</a>
-								</p>
-							</div>
-						</div>
+					<div class="col-sm-6 col-md-5">
+						<table class="table table-hover table-bordered cus-bid-table">
+							<tr class="cus-header-table">
+								<td>Số tiền</td>
+								<td>Thời gian</td>
+								<td>Người đặt</td>
+							</tr>
+							<tr class="cus-header-table">
+								<td>-</td>
+								<td>-</td>
+								<td>-</td>
+							</tr>
+						</table>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
+</div>
+</div>
 
-	<script type="text/javascript" src="../public/assests/jquery-3.2.0.min.js"></script>
-	<script language="JavaScript">
+<script type="text/javascript" src="../../public/assests/jquery-3.2.0.min.js"></script>
+<!-- 	<script language="JavaScript">
 
 		var timeString;
 		var node_string_time = [];
@@ -1703,8 +1585,8 @@
 
 			return (gio + ':' + phut + ':' + giay); 
 		}
-	</script>
-	<script language="JavaScript">
+	</script> -->
+<!-- 	<script language="JavaScript">
 		$(function(){
 
 		});
@@ -1713,8 +1595,8 @@
 			console.log('Click!');
 			window.location.href = "./thongTinSanPham/detail.html";
 		});
-	</script>
-	<script type="text/javascript" src="../public/assests/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+	</script> -->
+	<script type="text/javascript" src="../../public/assests/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 
 </body>
 </html>

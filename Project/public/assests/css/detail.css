@@ -1,0 +1,62 @@
+.anh-san-pham{
+	height: 300px;
+}
+.title-id, .id, .title-seller, .seller, .sao-danh-gia, .chuoi-diem-so, .chuoi-thoi-gian, .anh-dong-ho{
+	display: inline-block;
+	margin: 0px;
+}
+.contain-id, .contain-seller{
+	margin: 0px;
+}
+.id{
+	font-weight: bold
+}
+a.seller{
+	color: #E51C24;
+}
+.sao-danh-gia{
+	height: 15px;
+	margin-bottom: 4px;
+}
+.contain-point{
+	line-height: 21px;
+}
+.clear-margin{
+	margin: 0px;
+}
+.anh-dong-ho{
+	height: 40px;
+}
+.chuoi-thoi-gian{
+	font-size: 18px;
+	font-weight: bold;
+}
+.contain-timer{
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+.money-of-rival{
+	font-size: 22px;
+	color: red;
+}
+.name-of-rival{
+	color: #C64600;
+}
+.submit-dat-gia{
+	margin-top: 15px;
+	width: 200px;
+}
+.cus-button{
+	margin-top: 8px;
+}
+.cus-button-bid{
+	margin-top: 8px;
+}
+.cus-input-money-text{
+	margin-top: 8px;
+	width: 200px;
+}
+.cus-header-table{
+	font-size: 14px;
+	font-weight: bold;
+}
