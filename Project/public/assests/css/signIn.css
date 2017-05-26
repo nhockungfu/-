@@ -1,8 +1,12 @@
+*{
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+}
 body{
 	    background-image: url('../../images/bg.png');
-}
-#nav--header__utility{
-	background: #0071bd;
 }
 #nav--header__utility a{
 	color: white;
@@ -28,4 +32,33 @@ body{
     clear: both;
     font-size: 12px;
     margin-top: 10px;
+}
+
+/*thanh tren cung*/
+#nav--header__utility{
+	background-color: black;
+	border-radius: unset;
+	font-size: 14px;
+	margin: 0px;
+}
+.logo{
+	height: 40px;
+	padding-top: 5px;
+	padding-right: 10px;
+}
+.status-page{
+	width: 100%;
+	margin: 0px;
+	padding: 0px;
+	height: 20px;
+	font-family: 'Open sans', Arial;
+	font-weight: bold;
+	background-color: #FF3900;
+}
+.status-page a{
+	color: #212121;
+	text-decoration: none;
+}
+.status-page .glyphicon-menu-right{
+	color: #000;
 }

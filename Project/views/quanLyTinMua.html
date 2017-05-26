@@ -26,33 +26,60 @@
 			right:0;
 			display:none;
 		}
+		.navbar{
+			border: unset;
+		}
+		.status-page{
+			width: 100%;
+			margin: 0px;
+			padding: 0px;
+			height: 20px;
+			font-family: 'Open-sans', Arial;
+			font-weight: bold;
+			background-color: #FF3900;
+		}
+		.status-page a{
+			color: #212121;
+			text-decoration: none;
+		}
+		.status-page .glyphicon-menu-right{
+			color: #000;
+		}
+		.navbar.navbar-default{
+			margin: 0px;
+		}
 	</style>
 </head>
 <body>
-	<nav class="navbar navbar-default" id="nav--header__utility">		
-		<ul class="nav navbar-nav navbar-right">
-			<li>	
-				<a href="/iSynApp/manageUserEmail!showEmailContactUsForm.action?sid=1101701">
-					Contact Us
-				</a>
-			</li>
-			<li>	
-				<a href="/iSynApp/showPage.action?sid=1101701&amp;pageName=sell">
-					Sell
-				</a>
-			</li>
-			<li>	
-				<a href="/iSynApp/appUserLogin!input.action?sid=1101701">
-					Login
-				</a>
-			</li>
-			<li>	
-				<a href="/iSynApp/appUserReg!input.action?sid=1101701">
-					Register
-				</a>
-			</li>
-		</ul>
-	</nav>
+	<header>
+		<nav class="navbar navbar-default" id="nav--header__utility">
+			<div class="container-fluid">
+				<a href="index.html"><img class="logo" src="../public/images/logo.png"></a>
+				<p style="display: inline-table; color: white"><i>Nơi bạn có thể mua hàng với giá rẻ nhất</i></p>
+				<ul class="nav navbar-nav navbar-right">
+					<li>
+						<a href="#">Liên hệ với chúng tôi</a>
+					</li>
+					<li>
+						<a href="#">Đăng bán</a>
+					</li>
+					<li>
+						<a href="signIn.html">Đăng nhập</a>
+					</li>
+					<li>
+						<a href="signUp.html">Đăng ký tài khoản</a>
+					</li>
+				</ul>
+			</div>
+		</nav>
+	</header>
+	<div class="status-page">
+		<p>
+			<a href="index.html"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Trang chủ</a>
+			<span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>
+			<a href="quanLyTinMua.html">Trang cá nhân</a>
+		</p>
+	</div>
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-md-1"></div>
@@ -80,9 +107,9 @@
 														<button id="btn_huy" name="btn_huy" type="button" class="btn btn-default" data-dismiss="modal">Hủy</button>
 														<button id="btn_nangCap" name="btn_nangCap" type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal2" >Nâng cấp</button>
 													</div>
-													
+
 												</div>
-												
+
 											</div>
 
 										</div>
@@ -97,9 +124,9 @@
 													<div style="text-align: right;">
 														<button id="btn_dong" name="btn_dong" type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
 													</div>
-													
+
 												</div>
-												
+
 											</div>
 
 										</div>
@@ -157,7 +184,7 @@
 														<tbody> 
 															<tr> 
 																<th scope="row"><a href="#">1</a></th> 
-																<td><a href="#">IPhone 6s</a></td> 
+																<td><a href="thongTinSanPham/detail.html">IPhone 6s</a></td> 
 																<td id="gia1">
 																	<div class="showBtn">9.000.000
 																		<a href="#" class="btn btn-warning">Mua
@@ -165,8 +192,8 @@
 																	</div> 
 																</td> 
 																<td>
-																<div class="showBtn">7.000.000
-																		<a href="#" class="btn btn-danger">Đấu giá
+																	<div class="showBtn">7.000.000
+																		<a href="thongTinSanPham/detail.html" class="btn btn-danger">Đấu giá
 																		</a>
 																	</div>
 																</td>
@@ -174,7 +201,7 @@
 															</tr> 
 															<tr> 
 																<th scope="row"><a href="#">2</a></th> 
-																<td><a href="#">Tivi Sony 32inch</a></td> 
+																<td><a href="thongTinSanPham/detail.html">Tivi Sony 32inch</a></td> 
 																<td id="gia1">
 																	<div class="showBtn">24.000.000
 																		<a href="#" class="btn btn-warning">Mua
@@ -182,7 +209,7 @@
 																	</div> 
 																</td> 
 																<td>
-																<div class="showBtn">11.500.000
+																	<div class="showBtn">11.500.000
 																		<a href="#" class="btn btn-danger">Đấu giá
 																		</a>
 																	</div>
@@ -191,7 +218,7 @@
 															</tr> 
 															<tr> 
 																<th scope="row"><a href="#">3</a></th> 
-																<td><a href="#">OPPO F3</a></td> 
+																<td><a href="thongTinSanPham/detail.html">OPPO F3</a></td> 
 																<td>7.000.000</td> 
 																<td>5.000.000</td>
 																<td><a href="#">Bạn</a></td>
@@ -322,7 +349,7 @@
 								<td>20</td>
 							</tr>
 						</table>
-						<a id="btn_napNgay" href="#" class="btn btn-warning">Nạp ngay</a>
+						<a id="btn_napNgay" href="napThe.html" class="btn btn-warning">Nạp ngay</a>
 					</div>
 				</div>
 
@@ -346,7 +373,7 @@
 			f=true;
 			$('#myAlert').alert('close');
 			$('#nav--header__utility').css('background-color','#75BD4F');
-			
+
 		});
 		$('#btn_quanLyBan').hover(function() {
 			if(f==false){

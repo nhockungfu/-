@@ -6,15 +6,13 @@
 	<link rel="stylesheet" href="../public/assests/bootstrap-3.3.7-dist/css/bootstrap.min.css" type="text/css">
 	<link rel="stylesheet" type="text/css" href="../public/assests/css/signIn.css">
 	<link rel="stylesheet" type="text/css" href="../public/assests/css/signUp.css">
-	<!-- <link rel="stylesheet" type="text/css" href="../public/assests/css/stylev2.css"> -->
-	
-
 </head>
 <body>
-<<<<<<< HEAD
-	<div class="page">
+	<header>
 		<nav class="navbar navbar-default" id="nav--header__utility">
 			<div class="container-fluid">
+				<a href="index.html"><img class="logo" src="../public/images/logo.png"></a>
+				<p style="display: inline-table; color: white"><i>Nơi bạn có thể mua hàng với giá rẻ nhất</i></p>
 				<ul class="nav navbar-nav navbar-right">
 					<li>
 						<a href="#">Liên hệ với chúng tôi</a>
@@ -29,124 +27,57 @@
 						<a href="signUp.html">Đăng ký tài khoản</a>
 					</li>
 				</ul>
-				<div class="navbar-form navbar-right form-inline">
-					<input type="hidden" name="sid" value="1101701" data-prompt-position="bottomLeft">
-					<input type="hidden" name="formatMsg" value="Y" data-prompt-position="bottomLeft">
-					<input type="hidden" name="iSynRetUrl" value="/iSynApp/showHomePage.action?sid=1101701" data-prompt-position="bottomLeft">
-					<input type="hidden" name="pgcust1" value="insider" data-prompt-position="bottomLeft">
-					<input type="hidden" name="subject" value="Auction Insider request" data-prompt-position="bottomLeft">
-					<input type="hidden" name="sendMessage" value="Auction Insider request" data-prompt-position="bottomLeft">
-					<input type="hidden" value="n/a" name="firstName" data-prompt-position="bottomLeft">
-					<input type="hidden" value="n/a" name="lastName" data-prompt-position="bottomLeft">
-					<div class="form-group">
-						<button type="button" class="btn btn-default" data-toggle="modal" data-target="#emailpop">
-							Đăng ký nhận tin từ trang web
-						</button>
-					</div>
-				</div>
 			</div>
 		</nav>
-=======
-	<nav class="navbar navbar-default" id="nav--header__utility">
-		<ul class="nav navbar-nav navbar-right">
-			<li>	
-				<a href="/iSynApp/manageUserEmail!showEmailContactUsForm.action?sid=1101701">
-					Contact Us
-				</a>
-			</li>
-			<li>	
-				<a href="/iSynApp/showPage.action?sid=1101701&amp;pageName=sell">
-					Sell
-				</a>
-			</li>
-			<li>	
-				<a href="/iSynApp/appUserLogin!input.action?sid=1101701">
-					Login
-				</a>
-			</li>
-			<li>	
-				<a href="/iSynApp/appUserReg!input.action?sid=1101701">
-					Register
-				</a>
-			</li>
-		</ul>
-	</nav>
->>>>>>> origin/master
-
-		<div class="container-fluid" >
-
-			<div class="row" id="rowDis">
-				<div class="col-md-3"></div>
-				<div class="col-md-6">
-					<div class="panel panel-default">
-						<div class="panel-body" >
-							<div class="col-md-2"></div>
-							<div class="col-md-8">
-								<h2 id="title">Đăng ký</h2>
-								<form>
-									<div class="form-group">
-										<input type="email" class="form-control" id="txtEmail" name="txtEmail" placeholder="Email của bạn">
-									</div>
-									<div class="form-group">
-										<input type="password" class="form-control" id="txtPassWord" name="txtPassWord" placeholder="Mật khẩu">
-									</div>
-									<div class="form-group">
-										<input type="password" class="form-control" id="txtRepPassWord" name="txtRepPassWord" placeholder="Nhập lại mật khẩu">
-									</div>
-									<div class="checkbox" id="reminder">
-										<label>
-											<input id="cb_remider" name="cb_remider" type="checkbox"> Tôi đồng ý với <!-- /react-text --><a id="a_reminder" href="javascript:;">Điều khoản sử dụng của PPT</a>
-										</label>
-									</div>								
-									<button id="btn_signUp" type="submit" class="btn btn-primary btn_submit" style="width: 100%;">Đăng ký ngay</button>
-									<span id="msg" class="errorMsg" style="display: none;">Đăng ký thất bại: Email đã tồn tại hoặc mật khẩu bị sai</span>
-								</form>
-								<div style="margin-bottom: 50px;"></div>
-							</div>
-							<div class="col-md-2"></div>						
+		<div class="status-page">
+			<p>
+				<a href="index.html"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Trang chủ</a>
+				<span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>
+				<a href="#">Đăng ký</a>
+			</p>
+		</div>
+	</header>
+	<div class="container-fluid" >
+		<div class="row" id="rowDis">
+			<div class="col-md-3"></div>
+			<div class="col-md-6">
+				<div class="panel panel-default">
+					<div class="panel-body" >
+						<div class="col-md-2"></div>
+						<div class="col-md-8">
+							<h2 id="title">Đăng ký</h2>
+							<form>
+								<div class="form-group">
+									<input type="email" class="form-control" id="txtEmail" name="txtEmail" placeholder="Email của bạn">
+								</div>
+								<div class="form-group">
+									<input type="password" class="form-control" id="txtPassWord" name="txtPassWord" placeholder="Mật khẩu">
+								</div>
+								<div class="form-group">
+									<input type="password" class="form-control" id="txtRepPassWord" name="txtRepPassWord" placeholder="Nhập lại mật khẩu">
+								</div>
+								<div class="checkbox" id="reminder">
+									<label>
+										<input id="cb_remider" name="cb_remider" type="checkbox"> Tôi đồng ý với <!-- /react-text --><a id="a_reminder" href="javascript:;">Điều khoản sử dụng của PPT</a>
+									</label>
+								</div>								
+								<button id="btn_signUp" type="submit" class="btn btn-primary btn_submit" style="width: 100%;">Đăng ký ngay</button>
+								<span id="msg" class="errorMsg" style="display: none;">Đăng ký thất bại: Email đã tồn tại hoặc mật khẩu bị sai</span>
+							</form>
+							<div style="margin-bottom: 50px;"></div>
 						</div>
-					</div><!--panel-->				
-				</div>
-				<div class="col-md-3"></div>
+						<div class="col-md-2"></div>						
+					</div>
+				</div><!--panel-->				
 			</div>
+			<div class="col-md-3"></div>
+		</div>
 
 
-			<!-- Modal -->
-			<div class="modal fade" id="myModal" role="dialog">
-				<div class="modal-dialog">
+		<!-- Modal -->
+		<div class="modal fade" id="myModal" role="dialog">
+			<div class="modal-dialog">
 
-<<<<<<< HEAD
-					<!-- Modal content-->
-					<div class="modal-content">
-						<div class="modal-header">
-							<button type="button" class="close" data-dismiss="modal">&times;</button>
-							<h4 class="modal-title">ĐIỀU KHOẢN SỬ DỤNG</h4>
-						</div>
-						<div class="modal-body">
-							<ol>
-								<li>
-									GIỚI THIỆU
-									<ol>
-										<li>
-											Chào mừng bạn đến với trang web daugiappt.com của PPT. Vui lòng đọc kỹ các Điều Khoản Dịch Vụ sau đây trước khi sử dụng Trang Web này hoặc trước khi mở một tài khoản PPT để bạn biết được các quyền lợi và nghĩa vụ hợp pháp của mình liên quan đến PPT Interactive Holding Limited và các công ty liên kết và các công ty con PPT.
-										</li>
-										<li>
-											"Các Dịch Vụ" cung cấp phát hành bao gồm (a) Trang Web này, (b) các dịch vụ được cung cấp bởi Trang Web và bởi các phần mềm khách hàng của PPT được cung cấp thông qua trang web, và (c) mọi thông tin, các trang web được liên kết, các tính năng, dữ liệu, văn bản, hình ảnh, hình chụp, đồ họa, nhạc, âm thanh, video, thông báo, phần mềm, các dịch vụ ứng dụng (bao gồm nhưng không giới hạn ở bất kỳ dịch vụ ứng dụng di động nào) hoặc các tài liệu được cung cấp thông qua Trang Web hoặc các dịch vụ liên quan nào đó. Bất kỳ tính năng mới được thêm vào hoặc để tăng cường Các Dịch Vụ đều phải tuần thủ các Điều Khoản Dịch Vụ này.
-										</li>
-									</ol>
-								</li>
-								<li>
-									TÀI KHOẢN VÀ BẢO MẬT
-									<ol>
-										<li>
-											Thông tin người dùng cung cấp phải đúng sự thật. Điều này có ý nghĩa liên quan đến lợi ích của khác hàng, việc trao đổi mua bán trở nên thuận tiện hơn, quyền lợi của khách hàng được đảm bảo hơn.
-										</li>
-										<li>
-											Một số chức năng trong Các Dịch Vụ của chúng tôi yêu cầu phải đăng ký  một Tài Khoản bằng cách định danh người dùng duy nhất ("Email người dùng") và mật khẩu, và bằng cách cung cấp một số thông tin cá nhân nhất định.
-										</li>
-									</ol>
-								</li>
-=======
 				<!-- Modal content-->
 				<div class="modal-content">
 					<div class="modal-header">
@@ -177,56 +108,33 @@
 									</li>
 								</ol>
 							</li>
-							
->>>>>>> origin/master
 
 
-							</ol>
-						</div>
-						<div class="modal-footer">
-							<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-						</div>
+						</ol>
 					</div>
-
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					</div>
 				</div>
+
 			</div>
 		</div>
 	</div>
-	<script type="text/javascript" src="../public/assests/jquery-3.2.0.min.js"></script>
-	<script type="text/javascript" src="../public/assests/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
-	<script type="text/javascript">
-		$('#a_reminder').click(function(){
-			$('#myModal').modal();
-		});
-		$('#btn_signUp').click(function() {
-			var email = $('#txtEmail').val(),
-			pw = $('#txtPassWord').val(),
-			rpw = $('#txtRepPassWord').val();
-			if(email == '' || pw == '' || rpw == '' || !($('#cb_remider').prop('checked'))){
-				$('#msg').show();
-				return false;
-			}
+</div>
+
+<script type="text/javascript" src="../public/assests/jquery-3.2.0.min.js"></script>
+<script type="text/javascript" src="../public/assests/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+	$('#a_reminder').click(function(){
+		$('#myModal').modal();
+	});
+	$('#btn_signUp').click(function() {
+		var email = $('#txtEmail').val(),
+		pw = $('#txtPassWord').val(),
+		rpw = $('#txtRepPassWord').val();
+		if(email == '' || pw == '' || rpw == '' || !($('#cb_remider').prop('checked'))){
+			$('#msg').show();
 			return false;
-<<<<<<< HEAD
-		});
-		$( "#txtEmail" ).focus(function() {
-			if($('#msg').show())
-				$('#msg').hide();
-		});
-		$( "#txtPassWord" ).focus(function() {
-			if($('#msg').show())
-				$('#msg').hide();
-		});
-		$( "#txtRepPassWord" ).focus(function() {
-			if($('#msg').show())
-				$('#msg').hide();
-		});
-		$( "#cb_remider" ).click(function() {
-			if($('#msg').show())
-				$('#msg').hide();
-		});
-	</script>
-=======
 		}
 		else
 		{
@@ -252,6 +160,5 @@
 			$('#msg').hide();
 	});
 </script>
->>>>>>> origin/master
 </body>
 </html>

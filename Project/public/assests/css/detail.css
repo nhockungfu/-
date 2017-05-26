@@ -1,3 +1,16 @@
+
+*{
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+}
+a:hover{
+	text-decoration: none;
+	cursor: pointer;
+}
+
 .anh-san-pham{
 	height: 300px;
 }
@@ -51,6 +64,8 @@ a.seller{
 }
 .cus-button-bid{
 	margin-top: 8px;
+	background-color: #ED1B24;
+	border-color: #ED1B24;
 }
 .cus-input-money-text{
 	margin-top: 8px;
@@ -59,6 +74,9 @@ a.seller{
 .cus-header-table{
 	font-size: 14px;
 	font-weight: bold;
+}
+.cus-row-table{
+	font-size: 13px;
 }
 .name-of-detail{
 	color: #06070C;
@@ -86,7 +104,7 @@ a.seller{
 	margin-right:auto;
 	margin-left:auto;
 	-moz-border-radius: 3px;
-	-khtml-border-radius: 3px;
+	-webkit-border-radius: 3px;
 	border-radius: 3px;
 	margin-top: 15px;
 	margin-bottom: 15px;
@@ -126,4 +144,79 @@ a.seller{
 	margin-right: auto;
 	margin-top: 15px;
 	margin-bottom: 15px;
+}
+#nav--header__utility{
+	background-color: black;
+	border-radius: unset;
+	font-size: 14px;
+}
+.logo{
+	height: 40px;
+	padding-top: 5px;
+	padding-right: 10px;
+}
+.cus-bid-table{
+	width: 430px;
+}
+.slide-pick{
+	padding-top: 5px;
+	text-align: center;
+}
+.img-pick{
+	width: 50px;
+	display: inline-table;
+}
+.status-page{
+	width: 100%;
+	margin: 0px;
+	padding: 0px;
+	height: 20px;
+	font-family: 'Open sans', Arial;
+	font-weight: bold;
+	background-color: #FF3900;
+}
+.status-page a{
+	color: #212121;
+	text-decoration: none;
+}
+.status-page .glyphicon-menu-right{
+	color: #000;
+}
+.footer{
+	height: 120px;
+	background-color: black;
+}
+.footer ul{
+	list-style-type: none;
+	text-align: center;
+	margin-bottom: 0px;
+}
+.footer ul a{
+	display: inline-block;
+	text-align: center;
+	margin: 0px;
+}
+.footer ul a li{
+	text-decoration: none;
+	display: block;
+	color: #d5d5d5;
+	padding: 0 5px;
+	font-family: 'Open-sans', Arial;
+}
+.footer-content{
+	height: 20%;
+}
+.img-contact{
+	width: 38px;
+	display: inline-block;
+}
+.contain-image-contact{
+	margin-top: 10px;
+	text-align: center;
+}
+.content{
+	margin-top: 15px;
+}
+.img-slide{
+	text-align: center;
 }
