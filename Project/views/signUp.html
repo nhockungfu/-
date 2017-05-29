@@ -47,22 +47,26 @@
 						<div class="col-md-8">
 							<h2 id="title">Đăng ký</h2>
 							<form>
-								<div class="form-group">
+								<div class="form-group" style="margin-bottom: 0px;">
 									<input type="email" class="form-control" id="txtEmail" name="txtEmail" placeholder="Email của bạn">
+									<span id="msgEmail" class="errorMsg"></span>
 								</div>
-								<div class="form-group">
+								<div class="form-group" style="margin-bottom: 0px;">
 									<input type="password" class="form-control" id="txtPassWord" name="txtPassWord" placeholder="Mật khẩu">
+									<span id="msgMk" class="errorMsg"></span>
 								</div>
-								<div class="form-group">
+								<div class="form-group" style="margin-bottom: 0px;">
 									<input type="password" class="form-control" id="txtRepPassWord" name="txtRepPassWord" placeholder="Nhập lại mật khẩu">
+									<span id="msgNlMk" class="errorMsg"></span>
 								</div>
 								<div class="checkbox" id="reminder">
 									<label>
 										<input id="cb_remider" name="cb_remider" type="checkbox"> Tôi đồng ý với <!-- /react-text --><a id="a_reminder" href="javascript:;">Điều khoản sử dụng của PPT</a>
 									</label>
+									<span id="msgRemider" class="errorMsg"></span>
 								</div>								
 								<button id="btn_signUp" type="submit" class="btn btn-primary btn_submit" style="width: 100%;">Đăng ký ngay</button>
-								<span id="msg" class="errorMsg" style="display: none;">Đăng ký thất bại: Email đã tồn tại hoặc mật khẩu bị sai</span>
+								<!-- <span id="msg" class="errorMsg" style="display: none;">Đăng ký thất bại: Email đã tồn tại hoặc mật khẩu bị sai</span> -->
 							</form>
 							<div style="margin-bottom: 50px;"></div>
 						</div>
@@ -132,32 +136,53 @@
 		var email = $('#txtEmail').val(),
 		pw = $('#txtPassWord').val(),
 		rpw = $('#txtRepPassWord').val();
-		if(email == '' || pw == '' || rpw == '' || !($('#cb_remider').prop('checked'))){
-			$('#msg').show();
-			return false;
+		if(email==''){
+			$('#msgEmail').text('Bạn chưa nhập email');
 		}
-		else
-		{
-			alert('Chúc mừng bạn đã là thành viên của PPT')
-			window.location.href = "quanLyTinMua.html";
-			return false;
+		else{
+			if(pw==''){
+				$('#msgMk').text('Bạn chưa nhập mật khẩu');
+			}
+			else{
+				if(rpw==''){
+					$('#msgNlMk').text('Bạn chưa nhập mật khẩu');
+				}
+				else{
+					if(!($('#cb_remider').prop('checked'))){
+						$('#msgRemider').text('Bạn chưa tích chọn');
+					}
+					else{// chỗ này còn thiếu so sánh mật khẩu
+						alert('Chúc mừng bạn đã là thành viên của PPT')
+						window.location.href = "quanLyTinMua.html";
+					}
+				}
+			}
 		}
+		return false;
 	});
 	$( "#txtEmail" ).focus(function() {
-		if($('#msg').show())
-			$('#msg').hide();
+		$('#msgEmail').text('');
+		$('#msgMk').text('');
+		$('#msgNlMk').text('');
+		$('#msgRemider').text('');
 	});
 	$( "#txtPassWord" ).focus(function() {
-		if($('#msg').show())
-			$('#msg').hide();
+		$('#msgEmail').text('');
+		$('#msgMk').text('');
+		$('#msgNlMk').text('');
+		$('#msgRemider').text('');
 	});
 	$( "#txtRepPassWord" ).focus(function() {
-		if($('#msg').show())
-			$('#msg').hide();
+		$('#msgEmail').text('');
+		$('#msgMk').text('');
+		$('#msgNlMk').text('');
+		$('#msgRemider').text('');
 	});
 	$( "#cb_remider" ).click(function() {
-		if($('#msg').show())
-			$('#msg').hide();
+		$('#msgEmail').text('');
+		$('#msgMk').text('');
+		$('#msgNlMk').text('');
+		$('#msgRemider').text('');
 	});
 </script>
 </body>
