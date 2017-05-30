@@ -1,0 +1,124 @@
+*{
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+}
+body{
+	font-size: 14px;
+	font-family: Arial;
+}
+.container-fluid{
+	max-width: 1440px;
+	margin-right: auto;
+	margin-left: auto;
+	padding-left: 0px;
+	padding-right: 0px;
+/*	padding-left: 10px;
+	padding-right: 10px;*/
+}
+.slogan-header{
+	display: inline-table;
+}
+#my-nav-header{
+	background-color: #2D2D2D;
+	border-radius: unset;
+	font-size: 14px;
+	height: 80px;
+	line-height: 80px;
+	color: #ffffff;
+	padding-left: 20px;
+	padding-right: 20px;
+}
+#my-nav-header a{
+	text-decoration: none;
+}
+#my-nav-header ul a{
+	color: #7E7E7E;
+}
+#my-nav-header ul a:hover{
+	color: #EFF0F1;
+}
+#my-nav-header ul{
+	padding-top: 15px;
+	padding-bottom: 15px;
+}
+#logo-header{
+	height: 40px;
+	padding-top: 5px;
+	padding-right: 10px;
+}
+.slogan-header{
+	color: #ffffff;
+}
+#my-search-header{
+	margin: 0 20px;
+}
+.header .navbar-default{
+	margin: 0px;
+}
+.header .navbar-default{
+	border: unset;
+}
+header{
+	margin-bottom: 10px;
+}
+
+/*CSS FOR STATUS*/
+.status-page{
+	width: 100%;
+	margin: 0px;
+	padding: 0px;
+	padding-left: 20px;
+	height: 25px;
+	line-height: 25px;
+	font-weight: bold;
+	font-family: 'Open sans', Arial;
+	background-color: #0FA6C1;
+}
+.status-page a{
+	color: #212121;
+	text-decoration: none;
+	text-align: center;
+}
+.status-page .glyphicon-menu-right{
+	color: #000;
+}
+
+/*MODAL DIALOG CARD VISIT*/
+.modal-content{
+	margin: 20% auto;
+	height: 220px;
+	width: 400px;
+	background-color: #1B272E;
+	border-radius: unset;
+}
+.noi-dung-lien-he{
+	margin-top: 60px;
+	padding-top: 10px;
+	background-color: #329F95;
+}
+.noi-dung-lien-he p{
+	font-family: 'Open sans', Arial;
+	margin: 0px;
+}
+.cv-ten-cong-ty{
+	font-size: 16px;
+	font-weight: bold;
+	color: white;
+}
+.cv-mo-ta-cong-ty{
+	font-size: 13px;
+	color: white;
+	font-weight: lighter;
+}
+.cv-so-dien-thoai{
+	margin-top: 10px !important;
+	font-size: 14px;
+	color: white;
+}
+.cv-email{
+	font-size: 14px;
+	color: white;
+}

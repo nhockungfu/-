@@ -66,6 +66,7 @@ a.seller{
 	margin-top: 8px;
 	background-color: #ED1B24;
 	border-color: #ED1B24;
+	margin-bottom: 20px;
 }
 .cus-input-money-text{
 	margin-top: 8px;
@@ -165,57 +166,6 @@ a.seller{
 .img-pick{
 	width: 50px;
 	display: inline-table;
-}
-.status-page{
-	width: 100%;
-	margin: 0px;
-	padding: 0px;
-	height: 20px;
-	font-family: 'Open sans', Arial;
-	font-weight: bold;
-	background-color: #FF3900;
-}
-.status-page a{
-	color: #212121;
-	text-decoration: none;
-}
-.status-page .glyphicon-menu-right{
-	color: #000;
-}
-.footer{
-	height: 120px;
-	background-color: black;
-}
-.footer ul{
-	list-style-type: none;
-	text-align: center;
-	margin-bottom: 0px;
-}
-.footer ul a{
-	display: inline-block;
-	text-align: center;
-	margin: 0px;
-}
-.footer ul a li{
-	text-decoration: none;
-	display: block;
-	color: #d5d5d5;
-	padding: 0 5px;
-	font-family: 'Open-sans', Arial;
-}
-.footer-content{
-	height: 20%;
-}
-.img-contact{
-	width: 38px;
-	display: inline-block;
-}
-.contain-image-contact{
-	margin-top: 10px;
-	text-align: center;
-}
-.content{
-	margin-top: 15px;
 }
 .img-slide{
 	text-align: center;

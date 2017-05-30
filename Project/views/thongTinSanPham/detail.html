@@ -2,146 +2,177 @@
 <head>	
 	<title>Bootstrap</title>
 	<meta charset="utf-8">
-	<link rel="stylesheet" type="text/css" href="../../public/assests/css/stylev2.css">
 	<link rel="stylesheet" type="text/css" href="../../public/assests/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="../../public/assests/css/header.css">
+	<link rel="stylesheet" type="text/css" href="../../public/assests/css/footer.css">
 	<link rel="stylesheet" type="text/css" href="../../public/assests/css/detail.css">
 
 </head>
 <body>
-	<header>
-		<nav class="navbar navbar-default" id="nav--header__utility">
-			<div class="container-fluid">
-				<a href="../index.html"><img class="logo" src="../../public/images/logo.png"></a>
-				<p style="display: inline-table;"><i>Nơi bạn có thể mua hàng với giá rẻ nhất</i></p>
-				<ul class="nav navbar-nav navbar-right">
-					<li>
-						<a href="#">Liên hệ với chúng tôi</a>
-					</li>
-					<li>
-						<a href="#">Đăng bán</a>
-					</li>
-					<li>
-						<a href="../signIn.html">Đăng nhập</a>
-					</li>
-					<li>
-						<a href="../signUp.html">Đăng ký tài khoản</a>
-					</li>
-				</ul>
+	<div class="container-fluid">
+		<header class="header">
+			<nav class="navbar navbar-default" >
+				<div class="container-fluid" id="my-nav-header">
+					<a href="../index.html">
+						<img id="logo-header" src="../../public/images/logo.png">
+						<p class="slogan-header">
+							<i>Nơi bạn có thể mua hàng với giá rẻ nhất</i>
+						</p>
+					</a>
+					<ul class="nav navbar-nav navbar-right" id="my-menu-in-header">
+						<li><a href="#" data-toggle="modal" data-target="#myModal">Liên hệ với chúng tôi</a></li>
+						<li><a href="#">Đăng bán</a></li>
+						<li><a href="../signIn.html">Đăng nhập</a></li>
+						<li><a href="../signUp.html">Đăng ký tài khoản</a></li>
+					</ul>
+				</div>
+			</nav>
+			<div class="status-page">
+				<p>
+					<a href="index.html"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Trang chủ</a>
+				</p>
 			</div>
-		</nav>
-		<div class="status-page">
-			<p>
-				<a href="../index.html"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Trang chủ</a>
-				<span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>
-				<a href="#">Thông tin sản phẩm</a>
-			</p>
-		</div>
-	</header>
-	<div class="content">
-		<div class="container-fluid" style="margin: auto 8%">
-			<div class="panel panel-default">
-				<div class="panel-heading"><b>Thông tin đấu giá</b></div>
-				<div class="panel-body">
-					<div class="row" >
-						<div class="col-sm-6 col-md-3">
-						<div class="img-slide">
-								<img class="anh-san-pham" src="../../public/images/sp1/01.png" alt="...">
-								<div class="slide-pick">
-									<a href="#" class="thumbnail img-pick"> 
-										<img src="../../public/images/sp1/01.png" alt="...">
-									</a>
-									<a href="#" class="thumbnail img-pick">
-										<img src="../../public/images/sp1/02.png" alt="...">
-									</a>
-									<a href="#" class="thumbnail img-pick">
-										<img src="../../public/images/sp1/03.png" alt="...">
-									</a>
+
+			<!-- Modal -->
+			<div id="myModal" class="modal fade" role="dialog">
+				<div class="modal-dialog">
+					<!-- Modal content-->
+					<div class="modal-content">
+						<div class="noi-dung-lien-he">
+
+							<div class="row">
+								<div class="col-md-8" style="text-align: right;">
+									<p class="cv-ten-cong-ty">CÔNG TY BA THÀNH VIÊN</p>
+									<P class="cv-mo-ta-cong-ty">Công ty đấu giá chất lượng</P>
+								</div>
+								<div class="col-md-4">
+
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-5">
+
+								</div>
+								<div class="col-md-7" style="text-align: left;">
+									<p class="cv-so-dien-thoai">SĐT: (+84)917 645 531</p>
+									<P class="cv-email">EMAIL: vspabcd@gmail.com</P>
+									<P class="cv-email">FACEBOOK: /nhom3nguoi</P>
 								</div>
 							</div>
 						</div>
-						<div class="col-sm-6 col-md-4">
-							<div class="contain-id">
-								<p class="title-id">ID:</p>
-								<p class="id">12345</p>
-							</div>
-							<div class="contain-seller">
-								<p class="title-seller">Người bán:</p>
-								<a class="seller" src="#">vongsayphu@gmail.com</a>
-							</div>
-							<div class="contain-point">
-								<img class="sao-danh-gia" src="../../public/images/star-prize/4-star.png">
-								<p class="chuoi-diem-so" src="#">Uy tín: (4.1/19)</p>
-							</div>
-							<p class="clear-margin">Bắt đầu: 22/04/2017 lúc 13:55</p>
-							<p class="clear-margin">Kết thúc: 22/04/2017 lúc 13:55</p>
-							<div class="contain-timer">
-								<img class="anh-dong-ho" src="../../public/images/hourglass.png">
-								<p id="1" class="chuoi-thoi-gian">08:30:50</p>
-							</div>
-							<p class="money-of-rival clear-margin">50.000đ</p>
-							<p class="name-of-rival clear-margin"><a href="">phucred@gmail.com</a></p>
-							<form>
-								<div>
-									<label class="sr-only" for="exampleInputAmount">Amount (in dollars)</label>
-									<div class="input-group cus-input-money-text">
-										<input type="text" class="form-control" id="exampleInputAmount" placeholder="Nhập giá mua">
-										<div class="input-group-addon">đồng</div>
+					</div>
+				</div>
+			</div>
+		</header>
+		<div class="content">
+			<div class="container-fluid" style="margin: auto 8%">
+				<div class="panel panel-default">
+					<div class="panel-heading"><b>Thông tin đấu giá</b></div>
+					<div class="panel-body">
+						<div class="row" >
+							<div class="col-sm-6 col-md-3">
+								<div class="img-slide">
+									<img class="anh-san-pham" src="../../public/images/SanPham/CongNghe/sp1/01.png" alt="...">
+									<div class="slide-pick">
+										<a href="#" class="thumbnail img-pick"> 
+											<img src="../../public/images/SanPham/CongNghe/sp1/01.png" alt="...">
+										</a>
+										<a href="#" class="thumbnail img-pick">
+											<img src="../../public/images/SanPham/CongNghe/sp1/02.png" alt="...">
+										</a>
+										<a href="#" class="thumbnail img-pick">
+											<img src="../../public/images/SanPham/CongNghe/sp1/03.png" alt="...">
+										</a>
 									</div>
 								</div>
+							</div>
+							<div class="col-sm-6 col-md-4">
+								<div class="contain-id">
+									<p class="title-id">ID:</p>
+									<p class="id">12345</p>
+								</div>
+								<div class="contain-seller">
+									<p class="title-seller">Người bán:</p>
+									<a class="seller" src="#">vongsayphu@gmail.com</a>
+								</div>
+								<div class="contain-point">
+									<img class="sao-danh-gia" src="../../public/images/star-prize/4-star.png">
+									<p class="chuoi-diem-so" src="#">Uy tín: (4.1/19)</p>
+								</div>
+								<p class="clear-margin">Bắt đầu: 22/04/2017 lúc 13:55</p>
+								<p class="clear-margin">Kết thúc: 22/04/2017 lúc 13:55</p>
+								<div class="contain-timer">
+									<img class="anh-dong-ho" src="../../public/images/hourglass.png">
+									<p id="1" class="chuoi-thoi-gian">08:30:50</p>
+								</div>
+								<p class="money-of-rival clear-margin">50.000đ</p>
+								<p class="name-of-rival clear-margin"><a href="">phucred@gmail.com</a></p>
+								<form>
+									<div>
+										<label class="sr-only" for="exampleInputAmount">Amount (in dollars)</label>
+										<div class="input-group cus-input-money-text">
+											<input type="text" class="form-control" id="exampleInputAmount" placeholder="Nhập giá mua">
+											<div class="input-group-addon">đồng</div>
+										</div>
+									</div>
 
-								<button type="submit" class="btn btn-primary cus-button-bid">
-									<span class="glyphicon glyphicon-fire" aria-hidden="true"></span> Đặt giá
-								</button>
-							</form>
-						</div>
-						<div class="col-sm-6 col-md-5">
-							<table class="table table-hover table-bordered cus-bid-table">
-								<tr class="cus-header-table">
-									<td>Số tiền</td>
-									<td>Thời gian</td>
-									<td>Người đặt</td>
-								</tr>
-								<tr class="cus-row-table">
-									<td>55.000đ</td>
-									<td>07:05:00</td>
-									<td><a href="thongTinBanBe.html">thanhthientai@gmail.com</a></td>
-								</tr>
-								<tr class="cus-row-table">
-									<td>60.000đ</td>
-									<td>05:05:00</td>
-									<td><a href="thongTinBanBe.html">bidhero@gmail.com</a></td>
-								</tr>
-								<tr class="cus-row-table">
-									<td>100.000đ</td>
-									<td>04:30:00</td>
-									<td><a href="thongTinBanBe.html">emxinthua@gmail.com</a></td>
-								</tr>
-							</table>
+									<button type="submit" class="btn btn-primary cus-button-bid">
+										<span class="glyphicon glyphicon-fire" aria-hidden="true"></span> Đặt giá
+									</button>
+								</form>
+							</div>
+							<div class="col-sm-6 col-md-5">
+								<table class="table table-hover table-bordered cus-bid-table">
+									<tr class="cus-header-table">
+										<td>Số tiền</td>
+										<td>Thời gian</td>
+										<td>Người đặt</td>
+									</tr>
+									<tr class="cus-row-table">
+										<td>55.000đ</td>
+										<td>07:05:00</td>
+										<td><a href="#">thanhthientai@gmail.com</a></td>
+									</tr>
+									<tr class="cus-row-table">
+										<td>60.000đ</td>
+										<td>05:05:00</td>
+										<td><a href="#">bidhero@gmail.com</a></td>
+									</tr>
+									<tr class="cus-row-table">
+										<td>100.000đ</td>
+										<td>04:30:00</td>
+										<td><a href="#">emxinthua@gmail.com</a></td>
+									</tr>
+								</table>
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
+		<footer class="footer">
+			<div class="footer-content"></div>
+			<div class="contain-image-contact">
+				<a href="#">
+					<img class="img-contact" src="../../public/images/img-contact/img-facebook.png">
+				</a>
+				<a href="#">
+					<img class="img-contact" src="../../public/images/img-contact/img-twitter.png">
+				</a>
+				<a href="#">
+					<img class="img-contact" src="../../public/images/img-contact/img-google-plus.png">
+				</a>
+			</div>
+			<p style="text-align: center; color: #E7EC9A; margin: 0px">1412396-1412401-1412612</p>
+			<ul>
+				<a href="#"><li class="footer-list-item">Trang chủ</li></a>
+				<a href="#"><li class="footer-list-item">Thông tin bản quyền</li></a>
+				<a href="#"><li class="footer-list-item">Công ty</li></a>
+				<a href="#"><li class="footer-list-item">Liên hệ</li></a>
+				<a href="#"><li class="footer-list-item">Đăng quảng cáo</li></a>
+			</ul>
+		</footer>
 	</div>
-	<footer class="footer">
-		<div class="footer-content"></div>
-		<div class="contain-image-contact">
-			<a href="#">
-				<img class="img-contact" src="../../public/images/img-contact/img-facebook.png">
-			</a>
-			<a href="#">
-				<img class="img-contact" src="../../public/images/img-contact/img-twitter.png">
-			</a>
-		</div>
-		<ul>
-			<a href="#"><li class="footer-list-item">Trang chủ</li></a>
-			<a href="#"><li class="footer-list-item">Thông tin bản quyền</li></a>
-			<a href="#"><li class="footer-list-item">Công ty</li></a>
-			<a href="#"><li class="footer-list-item">Liên hệ</li></a>
-			<a href="#"><li class="footer-list-item">Đăng quảng cáo</li></a>
-		</ul>
-		<p style="text-align: center; color: #E7EC9A; margin: 0px">1412396-1412401-1412612</p>
-	</footer>
 	<script type="text/javascript" src="../../public/assests/jquery-3.2.0.min.js"></script>
 	<script language="JavaScript">
 

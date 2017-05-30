@@ -43,14 +43,14 @@ body{
 	font-family: 'Open Sans', sans-serif;
 	color: #d2092d;
 	margin: 0 auto;
+
 }
 .ten-san-pham, .luong-nguoi-dat{
 	color: #0071BD;
 }
 .ten-san-pham{
-	width: 185px;
+	width: 140px;;
 	height: 80px;
-	margin: 0 auto;
 }
 .ten-san-pham>a:hover{
 	color: red;
@@ -137,11 +137,7 @@ img.anh-san-pham{
 	background-color: unset;
 	padding-bottom: 0px;
 }
-#nav--header__utility{
-	background-color: black;
-	border-radius: unset;
-	font-size: 14px;
-}
+
 .list-group-item:first-child, .list-group-item:last-child{
 	border-radius: 0px;
 }
@@ -152,12 +148,10 @@ a.list-group-item:focus{
 	background-color: white;
 }
 .list-group{
-	margin-top: 20px;
 	margin-bottom: 15px;
 	margin-left: 20px;
 }
 .carousel{
-	margin-top: 20px;
 	margin-bottom: 15px;
 	margin-right: 20px;
 }
@@ -217,12 +211,7 @@ a .glyphicon.glyphicon-menu-right{
 html, body{
 	height: 100%;
 }
-.footer{
-	margin-top: 20px;
-	width: 100%;
-	height: 300px;
-	background-color: black;
-}
+
 .width-wrapper{
 	/* Firefox */
 	display:-moz-box;
@@ -236,105 +225,9 @@ html, body{
 	display:box;
 	box-align:center;
 }
-.footer{
-	height: 120px;
-}
-.footer ul{
-	list-style-type: none;
-	text-align: center;
-	margin-bottom: 0px;
-}
-.footer ul a{
-	display: inline-block;
-	text-align: center;
-	margin: 0px;
-}
-.footer ul a li{
-	text-decoration: none;
-	display: block;
-	color: #d5d5d5;
-	padding: 0 5px;
-	font-family: 'Open-sans', Arial;
-}
-.footer-content{
-	height: 20%;
-}
-.img-contact{
-	width: 38px;
-	display: inline-block;
-}
-.contain-image-contact{
-	margin-top: 10px;
-	text-align: center;
-}
-.logo{
-	height: 40px;
-	padding-top: 5px;
-	padding-right: 10px;
-}
-/*thanh tren cung*/
-#nav--header__utility{
-	background-color: black;
-	border-radius: unset;
-	font-size: 14px;
-}
-.logo{
-	height: 40px;
-	padding-top: 5px;
-	padding-right: 10px;
-}
+
 .submit-dat-gia .btn{
 	background-color: #ED1B24;
 	border-color: #ED1B24;
 }
 
-.modal-content{
-	margin: 20% auto;
-	height: 220px;
-	width: 400px;
-	background-color: #0A3D74;
-	border-radius: unset;
-}
-.noi-dung-lien-he{
-	margin-top: 60px;
-	background-color: #0A3D74;
-}
-.noi-dung-lien-he p{
-	font-family: 'Open sans', Arial;
-	margin: 0px;
-}
-.cv-ten-cong-ty{
-	font-size: 16px;
-	font-weight: bold;
-	color: white;
-}
-.cv-mo-ta-cong-ty{
-	font-size: 13px;
-	color: white;
-	font-weight: lighter;
-}
-.cv-so-dien-thoai{
-	margin-top: 10px !important;
-	font-size: 14px;
-	color: white;
-}
-.cv-email{
-	font-size: 14px;
-	color: white;
-}
-.status-page{
-	width: 100%;
-	margin: 0px;
-	padding: 0px;
-	height: 20px;
-	font-family: 'Open sans', Arial;
-	font-weight: bold;
-	background-color: #FF3900;
-}
-.status-page a{
-	color: #212121;
-	text-decoration: none;
-}
-.status-page .glyphicon-menu-right{
-	color: #000;
-}

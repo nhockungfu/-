@@ -4,40 +4,67 @@
 	<meta charset="UTF-8">
 	<title>Document</title>
 	<link rel="stylesheet" href="../public/assests/bootstrap-3.3.7-dist/css/bootstrap.min.css" type="text/css">
+	<link rel="stylesheet" type="text/css" href="../public/assests/css/header.css">
+	<link rel="stylesheet" type="text/css" href="../public/assests/css/footer.css">
 	<link rel="stylesheet" type="text/css" href="../public/assests/css/signIn.css">
 	<link rel="stylesheet" type="text/css" href="../public/assests/css/signUp.css">
 </head>
 <body>
-	<header>
-		<nav class="navbar navbar-default" id="nav--header__utility">
-			<div class="container-fluid">
-				<a href="index.html"><img class="logo" src="../public/images/logo.png"></a>
-				<p style="display: inline-table; color: white"><i>Nơi bạn có thể mua hàng với giá rẻ nhất</i></p>
-				<ul class="nav navbar-nav navbar-right">
-					<li>
-						<a href="#">Liên hệ với chúng tôi</a>
-					</li>
-					<li>
-						<a href="#">Đăng bán</a>
-					</li>
-					<li>
-						<a href="signIn.html">Đăng nhập</a>
-					</li>
-					<li>
-						<a href="signUp.html">Đăng ký tài khoản</a>
-					</li>
-				</ul>
-			</div>
-		</nav>
-		<div class="status-page">
-			<p>
-				<a href="index.html"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Trang chủ</a>
-				<span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>
-				<a href="#">Đăng ký</a>
-			</p>
-		</div>
-	</header>
 	<div class="container-fluid" >
+		<header class="header">
+			<nav class="navbar navbar-default" >
+				<div class="container-fluid" id="my-nav-header">
+					<a href="index.html">
+						<img id="logo-header" src="../public/images/logo.png">
+						<p class="slogan-header">
+							<i>Nơi bạn có thể mua hàng với giá rẻ nhất</i>
+						</p>
+					</a>
+					<ul class="nav navbar-nav navbar-right" id="my-menu-in-header">
+						<li><a href="#" data-toggle="modal" data-target="#myModal">Liên hệ với chúng tôi</a></li>
+						<li><a href="#">Đăng bán</a></li>
+						<li><a href="signIn.html">Đăng nhập</a></li>
+						<li><a href="signUp.html">Đăng ký tài khoản</a></li>
+					</ul>
+				</div>
+			</nav>
+			<div class="status-page">
+				<p>
+					<a href="index.html"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Trang chủ</a>
+				</p>
+			</div>
+
+			<!-- Modal -->
+			<div id="myModal" class="modal fade" role="dialog">
+				<div class="modal-dialog">
+					<!-- Modal content-->
+					<div class="modal-content">
+						<div class="noi-dung-lien-he">
+
+							<div class="row">
+								<div class="col-md-8" style="text-align: right;">
+									<p class="cv-ten-cong-ty">CÔNG TY BA THÀNH VIÊN</p>
+									<P class="cv-mo-ta-cong-ty">Công ty đấu giá chất lượng</P>
+								</div>
+								<div class="col-md-4">
+
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-5">
+
+								</div>
+								<div class="col-md-7" style="text-align: left;">
+									<p class="cv-so-dien-thoai">SĐT: (+84)917 645 531</p>
+									<P class="cv-email">EMAIL: vspabcd@gmail.com</P>
+									<P class="cv-email">FACEBOOK: /nhom3nguoi</P>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</header>
 		<div class="row" id="rowDis">
 			<div class="col-md-3"></div>
 			<div class="col-md-6">
@@ -72,53 +99,28 @@
 			</div>
 			<div class="col-md-3"></div>
 		</div>
-
-
-		<!-- Modal -->
-		<div class="modal fade" id="myModal" role="dialog">
-			<div class="modal-dialog">
-
-				<!-- Modal content-->
-				<div class="modal-content">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal">&times;</button>
-						<h4 class="modal-title">ĐIỀU KHOẢN SỬ DỤNG</h4>
-					</div>
-					<div class="modal-body">
-						<ol>
-							<li>
-								GIỚI THIỆU
-								<ol>
-									<li>
-										Chào mừng bạn đến với trang web daugiappt.com của PPT. Vui lòng đọc kỹ các Điều Khoản Dịch Vụ sau đây trước khi sử dụng Trang Web này hoặc trước khi mở một tài khoản PPT để bạn biết được các quyền lợi và nghĩa vụ hợp pháp của mình liên quan đến PPT Interactive Holding Limited và các công ty liên kết và các công ty con PPT.
-									</li>
-									<li>
-										"Các Dịch Vụ" cung cấp phát hành bao gồm (a) Trang Web này, (b) các dịch vụ được cung cấp bởi Trang Web và bởi các phần mềm khách hàng của PPT được cung cấp thông qua trang web, và (c) mọi thông tin, các trang web được liên kết, các tính năng, dữ liệu, văn bản, hình ảnh, hình chụp, đồ họa, nhạc, âm thanh, video, thông báo, phần mềm, các dịch vụ ứng dụng (bao gồm nhưng không giới hạn ở bất kỳ dịch vụ ứng dụng di động nào) hoặc các tài liệu được cung cấp thông qua Trang Web hoặc các dịch vụ liên quan nào đó. Bất kỳ tính năng mới được thêm vào hoặc để tăng cường Các Dịch Vụ đều phải tuần thủ các Điều Khoản Dịch Vụ này.
-									</li>
-								</ol>
-							</li>
-							<li>
-								TÀI KHOẢN VÀ BẢO MẬT
-								<ol>
-									<li>
-										Thông tin người dùng cung cấp phải đúng sự thật. Điều này có ý nghĩa liên quan đến lợi ích của khác hàng, việc trao đổi mua bán trở nên thuận tiện hơn, quyền lợi của khách hàng được đảm bảo hơn.
-									</li>
-									<li>
-										Một số chức năng trong Các Dịch Vụ của chúng tôi yêu cầu phải đăng ký  một Tài Khoản bằng cách định danh người dùng duy nhất ("Email người dùng") và mật khẩu, và bằng cách cung cấp một số thông tin cá nhân nhất định.
-									</li>
-								</ol>
-							</li>
-
-
-						</ol>
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-					</div>
-				</div>
-
+		<footer class="footer">
+			<div class="footer-content"></div>
+			<div class="contain-image-contact">
+				<a href="#">
+					<img class="img-contact" src="../public/images/img-contact/img-facebook.png">
+				</a>
+				<a href="#">
+					<img class="img-contact" src="../public/images/img-contact/img-twitter.png">
+				</a>
+				<a href="#">
+					<img class="img-contact" src="../public/images/img-contact/img-google-plus.png">
+				</a>
 			</div>
-		</div>
+			<p style="text-align: center; color: #E7EC9A; margin: 0px">1412396-1412401-1412612</p>
+			<ul>
+				<a href="#"><li class="footer-list-item">Trang chủ</li></a>
+				<a href="#"><li class="footer-list-item">Thông tin bản quyền</li></a>
+				<a href="#"><li class="footer-list-item">Công ty</li></a>
+				<a href="#"><li class="footer-list-item">Liên hệ</li></a>
+				<a href="#"><li class="footer-list-item">Đăng quảng cáo</li></a>
+			</ul>
+		</footer>
 	</div>
 </div>
 
