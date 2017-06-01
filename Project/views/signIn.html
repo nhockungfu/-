@@ -73,15 +73,17 @@
 						<div class="col-md-8">
 							<h2 id="title">Đăng nhập</h2>
 							<form>
-								<div class="form-group">
+								<div class="form-group" style="margin-bottom: 0px;">
 									<input id="txtEmail" type="email" class="form-control" name="txtEmail" placeholder="Email của bạn">
 								</div>
-								<div class="form-group">
+								<span id="msgEmail" class="errorMsg"></span>
+								<div class="form-group" style="margin-bottom: 0px;">
 									<input id="txtPassWord" type="password" class="form-control" name="txtPassWord" placeholder="Mật khẩu">
 								</div>
+								<span id="msgMk" class="errorMsg"></span>
 								<br>
 								<button id="btn_signIn" type="submit" class="btn btn-primary" style="width: 100%;">Đăng nhập</button>
-								<span id="msg" class="errorMsg" style="display: none;">Đăng nhập thất bại: Email hoặc mật khẩu bị sai</span>
+								<!-- <span id="msg" class="errorMsg">Đăng nhập thất bại: Email hoặc mật khẩu bị sai</span> -->
 
 							</form>
 							<div id="linkLine">
@@ -127,24 +129,27 @@
 		$('#btn_signIn').click(function() {
 			var email = $('#txtEmail').val(),
 			pw = $('#txtPassWord').val();
-			if(email=='' || pw==''){
-				$('#msg').show();
-				return false;
+			if(email==''){
+				$('#msgEmail').text('Bạn chưa nhập email');
 			}
-			else
-			{
-				window.location.href = "quanLyTinMua.html";
-				return false;
+			else{
+				if(pw==''){
+					$('#msgMk').text('Bạn chưa nhập mật khẩu');
+				}
+				else{//Chỗ này còn thiếu kiểm tra tài khoản
+					window.location.href = "quanLyTinMua.html";
+				}
+			}
+			return false;
 
-			}
 		});
 		$( "#txtEmail" ).focus(function() {
-			if($('#msg').show())
-				$('#msg').hide();
+			$('#msgEmail').text('');
+			$('#msgMk').text('');
 		});
 		$( "#txtPassWord" ).focus(function() {
-			if($('#msg').show())
-				$('#msg').hide();
+			$('#msgEmail').text('');
+			$('#msgMk').text('');
 		});
 	</script>
 </body>

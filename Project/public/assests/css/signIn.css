@@ -28,5 +28,39 @@ body{
     color: #E82228;
     clear: both;
     font-size: 12px;
+<<<<<<< HEAD
     margin-top: 10px;
+=======
+    margin-bottom: 15px;
+}
+
+
+/*thanh tren cung*/
+#nav--header__utility{
+	background-color: black;
+	border-radius: unset;
+	font-size: 14px;
+	margin: 0px;
+}
+.logo{
+	height: 40px;
+	padding-top: 5px;
+	padding-right: 10px;
+}
+.status-page{
+	width: 100%;
+	margin: 0px;
+	padding: 0px;
+	height: 20px;
+	font-family: 'Open sans', Arial;
+	font-weight: bold;
+	background-color: #FF3900;
+}
+.status-page a{
+	color: #212121;
+	text-decoration: none;
+}
+.status-page .glyphicon-menu-right{
+	color: #000;
+>>>>>>> origin/master
 }

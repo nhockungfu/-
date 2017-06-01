@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Quản trị | Hộp thư đến</title>
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+  <!-- Bootstrap 3.3.7 -->
+  <link rel="stylesheet" href="../../bootstrap/css/bootstrap.min.css">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="../../bootstrap/css/font-awesome.min.css">
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="../../bootstrap/css/ionicons.min.css">
+  <!-- fullCalendar 2.2.5-->
+  <link rel="stylesheet" href="../../plugins/fullcalendar/fullcalendar.min.css">
+  <link rel="stylesheet" href="../../plugins/fullcalendar/fullcalendar.print.css" media="print">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="../../dist/css/AdminLTE.min.css">
+  <!-- AdminLTE Skins. Choose a skin from the css/skins
+  folder instead of downloading all of them to reduce the load. -->
+  <link rel="stylesheet" href="../../dist/css/skins/_all-skins.min.css">
+  <!-- iCheck -->
+  <link rel="stylesheet" href="../../plugins/iCheck/flat/blue.css">
+
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
+  <div class="wrapper">
+
+    <header class="main-header">
+
+      <!-- Logo -->
+      <a href="#" class="logo">
+        <!-- logo for regular state and mobile devices -->
+        <span class="logo-lg">Chức năng</span>
+      </a>
+
+      <!-- Header Navbar: style can be found in header.less -->
+      <nav class="navbar navbar-static-top">
+        <!-- Sidebar toggle button-->
+        <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+          <span class="sr-only">Toggle navigation</span>
+        </a>
+        <!-- Navbar Right Menu -->
+        <div class="navbar-custom-menu">
+          <ul class="nav navbar-nav">
+            <!-- Messages: style can be found in dropdown.less-->
+            <li class="dropdown messages-menu">
+              <a href="#">
+                <i class="fa fa-envelope-o"></i>
+                <span class="label label-success">4</span>
+              </a>
+            </li>
+            <!-- Notifications: style can be found in dropdown.less -->
+            <li class="dropdown notifications-menu">
+              <a href="#">
+                <i class="fa fa-bell-o"></i>
+                <span class="label label-warning">10</span>
+              </a>
+            </li>
+            <!-- User Account: style can be found in dropdown.less -->
+            <li class="dropdown user user-menu">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                <img src="../../dist/img/av.jpg" class="user-image" alt="User Image">
+                <span class="hidden-xs">Phuc Red</span>
+              </a>
+              <ul class="dropdown-menu">
+                <!-- User image -->
+                <li class="user-header">
+                  <img src="../../dist/img/av.jpg" class="img-circle" alt="User Image">
+
+                  <p>
+                    Phuc Red   - Quản trị
+                    <small>Tham gia từ 5. 2017</small>
+                  </p>
+                </li>
+                <!-- Menu Body -->
+                <li class="user-body">
+                  <div class="row">
+                    <div class="col-xs-4 text-center">
+                      <a href="#">Thông tin</a>
+                    </div>
+                    <div class="col-xs-3 text-center">
+                    </div>
+                    <div class="col-xs-5 text-center">
+                      <a href="../dangNhap.html">Đăng xuất</a>
+                    </div>
+                  </div>
+                  <!-- /.row -->
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+
+      </nav>
+    </header>
+    <!-- Left side column. contains the logo and sidebar -->
+    <aside class="main-sidebar">
+      <!-- sidebar: style can be found in sidebar.less -->
+      <section class="sidebar">
+        <!-- sidebar menu: : style can be found in sidebar.less -->
+        <ul class="sidebar-menu" data-widget="tree">
+          <li><a href="../../index2.html"><i class="fa fa-dashboard"></i> <span>Bảng điều khiển</span></a></li>
+          <li><a href="#"><i class="fa fa-users"></i> <span>Thành viên</span></a></li>
+          <li>
+            <a href="../qlBaiDang/baiDangChoDuyet.html"><i class="fa fa-files-o"></i>
+             <span>Quản lý bài đăng</span>
+             <span class="pull-right-container">
+              <span class="label label-danger pull-right">12</span>
+            </span>
+          </a>
+        </li>
+        <li>
+          <a href="mailbox.html"><i class="fa fa-envelope"></i>
+           <span>Phản hồi</span>
+           <span class="pull-right-container">
+            <span class="label label-primary pull-right">4</span>
+          </span>
+        </a>
+      </li>
+      <li class="treeview">
+        <a href="#">
+          <i class="fa fa-cog"></i> <span>Hệ thống</span>
+          <span class="pull-right-container">
+            <i class="fa fa-angle-left pull-right"></i>
+          </span>
+        </a>
+        <ul class="treeview-menu">
+          <li><a href="#"><i class="fa fa-circle-o"></i> Website</a></li>
+        </ul>
+      </li>
+      <li><a href="../dangNhap.html"><i class="fa fa-sign-out"></i> <span>Đăng xuất</span></a></li>
+    </ul>
+  </section>
+  <!-- /.sidebar -->
+</aside>
+
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <section class="content-header">
+    <h1>
+      Read Mail
+    </h1>
+  </section>
+
+  <!-- Main content -->
+  <section class="content">
+    <div class="row">
+      <div class="col-md-3">
+      <a href="compose.html" class="btn btn-primary btn-block margin-bottom">Soạn</a>
+
+        <div class="box box-solid">
+          <div class="box-header with-border">
+            <h3 class="box-title">Hộp thư</h3>
+
+            <div class="box-tools">
+              <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+              </button>
+            </div>
+          </div>
+          <div class="box-body no-padding">
+           <ul class="nav nav-pills nav-stacked">
+            <li class="active"><a href="#"><i class="fa fa-inbox"></i> Hộp thư đến
+              <span class="label label-primary pull-right">12</span></a></li>
+              <li><a href="#"><i class="fa fa-envelope-o"></i> Tin đã gửi</a></li>
+              <li><a href="#"><i class="fa fa-file-text-o"></i> Tin nháp</a></li>
+              <li><a href="#"><i class="fa fa-trash-o"></i> Tin đã xóa</a></li>
+            </ul>
+          </div>
+          <!-- /.box-body -->
+        </div>
+
+      </div>
+      <!-- /.col -->
+      <div class="col-md-9">
+        <div class="box box-primary">
+          <div class="box-header with-border">
+            <h3 class="box-title">Read Mail</h3>
+          </div>
+          <!-- /.box-header -->
+          <div class="box-body no-padding">
+            <div class="mailbox-read-info">
+              <h3>Bài đăng chưa được duyệt</h3>
+              <h5>From: <a>sayphu@gmail.com</a>
+                <span class="mailbox-read-time pull-right">15 Feb. 2016 11:03 PM</span></h5>
+              </div>
+              <!-- /.mailbox-read-info -->
+              <div class="mailbox-controls with-border text-center">
+                <div class="btn-group">
+                  <button type="button" class="btn btn-default btn-sm" data-toggle="tooltip" data-container="body" title="Delete">
+                    <i class="fa fa-trash-o"></i></button>
+                    <button type="button" class="btn btn-default btn-sm" data-toggle="tooltip" data-container="body" title="Reply">
+                      <i class="fa fa-reply"></i></button>
+                      <button type="button" class="btn btn-default btn-sm" data-toggle="tooltip" data-container="body" title="Forward">
+                        <i class="fa fa-share"></i></button>
+                      </div>
+                      <!-- /.btn-group -->
+                      <button type="button" class="btn btn-default btn-sm" data-toggle="tooltip" title="Print">
+                        <i class="fa fa-print"></i></button>
+                      </div>
+                      <!-- /.mailbox-controls -->
+                      <div class="mailbox-read-message">
+                        <p>Hello John,</p>
+
+                        <p>Keffiyeh blog actually fashion axe vegan, irony biodiesel. Cold-pressed hoodie chillwave put a bird
+                          on it aesthetic, bitters brunch meggings vegan iPhone. Dreamcatcher vegan scenester mlkshk. Ethical
+                          master cleanse Bushwick, occupy Thundercats banjo cliche ennui farm-to-table mlkshk fanny pack
+                          gluten-free. Marfa butcher vegan quinoa, bicycle rights disrupt tofu scenester chillwave 3 wolf moon
+                          asymmetrical taxidermy pour-over. Quinoa tote bag fashion axe, Godard disrupt migas church-key tofu
+                          blog locavore. Thundercats cronut polaroid Neutra tousled, meh food truck selfies narwhal American
+                          Apparel.
+                        </p>
+
+                        <p>Skateboard artisan letterpress before they sold out High Life messenger bag. Bitters chambray
+                          leggings listicle, drinking vinegar chillwave synth. Fanny pack hoodie American Apparel twee. American
+                          Apparel PBR listicle, salvia aesthetic occupy sustainable Neutra kogi. Organic synth Tumblr viral
+                          plaid, shabby chic single-origin coffee Etsy 3 wolf moon slow-carb Schlitz roof party tousled squid
+                          vinyl. Readymade next level literally trust fund. Distillery master cleanse migas, Vice sriracha
+                          flannel chambray chia cronut.
+                        </p>
+
+                        <p>Thanks,<br>Jane</p>
+                      </div>
+                      <!-- /.mailbox-read-message -->
+                    </div>
+                  </div>
+                  <!-- /. box -->
+                </div>
+                <!-- /.col -->
+              </div>
+              <!-- /.row -->
+            </section>
+            <!-- /.content -->
+          </div>
+          <!-- /.content-wrapper -->
+          <footer class="main-footer">
+            <div class="pull-right hidden-xs">
+              <b>Version</b> 2.4.0
+            </div>
+            <strong>Copyright &copy; 2014-2016 <a href="#">PPT</a>.</strong> All rights
+            reserved.
+          </footer>
+          <div class="control-sidebar-bg"></div>
+        </div>
+        <!-- ./wrapper -->
+
+        <!-- jQuery 3.1.1 -->
+        <script src="../../plugins/jQuery/jquery-3.1.1.min.js"></script>
+        <!-- Bootstrap 3.3.7 -->
+        <script src="../../bootstrap/js/bootstrap.min.js"></script>
+        <!-- Slimscroll -->
+        <script src="../../plugins/slimScroll/jquery.slimscroll.min.js"></script>
+        <!-- FastClick -->
+        <script src="../../plugins/fastclick/fastclick.js"></script>
+        <!-- AdminLTE App -->
+        <script src="../../dist/js/adminlte.min.js"></script>
+        <!-- AdminLTE for demo purposes -->
+        <script src="../../dist/js/demo.js"></script>
+      </body>
+      </html>
