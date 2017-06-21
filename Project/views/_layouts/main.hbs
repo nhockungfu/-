@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="/assests/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/assests/css/footer.css">
+    <link rel="stylesheet" type="text/css" href="/assests/css/header.css">
+    <link rel="stylesheet" type="text/css" href="/assests/css/index.css">
+    {{{_sections.css}}}
+</head>
+<body>
+    {{> navbar }}
+    <div class="row">
+        {{{_sections.quangCao}}}
+    </div>
+    <div class="row">
+        <div class="col-md-3"><!--categories-->
+            <div class="panel panel-default">
+                <div class="list-group">
+                    <div class="list-group-item active" style="background-color: #183544">
+                        Danh mục
+                    </div>
+                </div>
+                <!--<a href="#" class="list-group-item">Dapibus ac facilisis in</a>-->
+                <!--<a href="#" class="list-group-item">Morbi leo risus</a>-->
+                <!--<a href="#" class="list-group-item">Porta ac consectetur ac</a>-->
+                <!--<a href="#" class="list-group-item">Vestibulum at eros</a>-->
+                {{{__sections.danhMuc}}}
+            </div>
+        </div><!--categories-->
+        <div class="col-md-9">
+            {{{body}}}
+        </div>
+    </div>
+    <footer class="footer">
+        <div class="footer-content"></div>
+        <div class="contain-image-contact">
+            <a href="#">
+                <img class="img-contact" src="/images/img-contact/img-facebook.png">
+            </a>
+            <a href="#">
+                <img class="img-contact" src="/images/img-contact/img-twitter.png">
+            </a>
+            <a href="#">
+                <img class="img-contact" src="/images/img-contact/img-google-plus.png">
+            </a>
+        </div>
+        <p style="text-align: center; color: #E7EC9A; margin: 0px">1412396-1412401-1412612</p>
+        <ul>
+            <a href="#">
+                <li class="footer-list-item">Trang chủ</li>
+            </a>
+            <a href="#">
+                <li class="footer-list-item">Thông tin bản quyền</li>
+            </a>
+            <a href="#">
+                <li class="footer-list-item">Công ty</li>
+            </a>
+            <a href="#">
+                <li class="footer-list-item">Liên hệ</li>
+            </a>
+            <a href="#">
+                <li class="footer-list-item">Đăng quảng cáo</li>
+            </a>
+        </ul>
+    </footer>
+    <script type="text/javascript" src="/assests/jquery-3.2.0.min.js"></script>
+    {{{_sections.js}}}
+</body>
+</html>

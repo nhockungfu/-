@@ -31,9 +31,22 @@
       <file leaf-file-name="index.hbs" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/views/index.hbs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-349">
-              <caret line="6" column="74" lean-forward="true" selection-start-line="6" selection-start-column="74" selection-end-line="6" selection-end-column="74" />
-              <folding />
+            <state relative-caret-position="418">
+              <caret line="403" column="12" lean-forward="false" selection-start-line="403" selection-start-column="12" selection-end-line="403" selection-end-column="12" />
+              <folding>
+                <element signature="e#811#841#0#HTML" expanded="true" />
+                <element signature="e#944#1001#0#HTML" expanded="true" />
+                <element signature="e#1070#1113#0#HTML" expanded="true" />
+                <element signature="e#1805#1824#0#HTML" expanded="true" />
+                <element signature="e#3616#3635#0#HTML" expanded="true" />
+                <element signature="e#4146#4179#0#HTML" expanded="true" />
+                <element signature="e#5346#5364#0#HTML" expanded="true" />
+                <element signature="e#6414#6440#0#HTML" expanded="true" />
+                <element signature="e#6721#6746#0#HTML" expanded="true" />
+                <element signature="e#7415#7470#0#HTML" expanded="true" />
+                <element signature="e#11139#11158#0#HTML" expanded="true" />
+                <element signature="e#13374#13393#0#HTML" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -42,7 +55,7 @@
         <entry file="file://$PROJECT_DIR$/models/producesRepo.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="100">
-              <caret line="5" column="2" lean-forward="true" selection-start-line="5" selection-start-column="2" selection-end-line="5" selection-end-column="2" />
+              <caret line="5" column="2" lean-forward="false" selection-start-line="5" selection-start-column="2" selection-end-line="5" selection-end-column="2" />
               <folding />
             </state>
           </provider>
@@ -62,7 +75,7 @@
         <entry file="file://$PROJECT_DIR$/models/userRepo.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="140">
-              <caret line="7" column="1" lean-forward="true" selection-start-line="7" selection-start-column="1" selection-end-line="7" selection-end-column="1" />
+              <caret line="7" column="1" lean-forward="false" selection-start-line="7" selection-start-column="1" selection-end-line="7" selection-end-column="1" />
               <folding />
             </state>
           </provider>
@@ -72,8 +85,10 @@
         <entry file="file://$PROJECT_DIR$/app.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="180">
-              <caret line="36" column="0" lean-forward="false" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="41" />
-              <folding />
+              <caret line="39" column="0" lean-forward="false" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="41" />
+              <folding>
+                <marker date="1498060795785" expanded="true" signature="705:708" ph="{&quot;extname&quot;: 'hbs'...}" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -358,12 +373,12 @@
       <updated>1498051516408</updated>
       <workItem from="1498051522659" duration="191000" />
       <workItem from="1498051729916" duration="314000" />
-      <workItem from="1498052060162" duration="7259000" />
+      <workItem from="1498052060162" duration="7934000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="7764000" />
+    <option name="totallyTimeSpent" value="8439000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -384,7 +399,7 @@
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.08675079" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.0" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -495,15 +510,17 @@
     <entry file="file://$PROJECT_DIR$/app.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
-          <caret line="36" column="0" lean-forward="false" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="41" />
-          <folding />
+          <caret line="39" column="0" lean-forward="false" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="41" />
+          <folding>
+            <marker date="1498060795785" expanded="true" signature="705:708" ph="{&quot;extname&quot;: 'hbs'...}" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/models/producesRepo.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="100">
-          <caret line="5" column="2" lean-forward="true" selection-start-line="5" selection-start-column="2" selection-end-line="5" selection-end-column="2" />
+          <caret line="5" column="2" lean-forward="false" selection-start-line="5" selection-start-column="2" selection-end-line="5" selection-end-column="2" />
           <folding />
         </state>
       </provider>
@@ -519,16 +536,29 @@
     <entry file="file://$PROJECT_DIR$/models/userRepo.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="140">
-          <caret line="7" column="1" lean-forward="true" selection-start-line="7" selection-start-column="1" selection-end-line="7" selection-end-column="1" />
+          <caret line="7" column="1" lean-forward="false" selection-start-line="7" selection-start-column="1" selection-end-line="7" selection-end-column="1" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/views/index.hbs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-349">
-          <caret line="6" column="74" lean-forward="true" selection-start-line="6" selection-start-column="74" selection-end-line="6" selection-end-column="74" />
-          <folding />
+        <state relative-caret-position="418">
+          <caret line="403" column="12" lean-forward="false" selection-start-line="403" selection-start-column="12" selection-end-line="403" selection-end-column="12" />
+          <folding>
+            <element signature="e#811#841#0#HTML" expanded="true" />
+            <element signature="e#944#1001#0#HTML" expanded="true" />
+            <element signature="e#1070#1113#0#HTML" expanded="true" />
+            <element signature="e#1805#1824#0#HTML" expanded="true" />
+            <element signature="e#3616#3635#0#HTML" expanded="true" />
+            <element signature="e#4146#4179#0#HTML" expanded="true" />
+            <element signature="e#5346#5364#0#HTML" expanded="true" />
+            <element signature="e#6414#6440#0#HTML" expanded="true" />
+            <element signature="e#6721#6746#0#HTML" expanded="true" />
+            <element signature="e#7415#7470#0#HTML" expanded="true" />
+            <element signature="e#11139#11158#0#HTML" expanded="true" />
+            <element signature="e#13374#13393#0#HTML" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
