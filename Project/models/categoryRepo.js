@@ -5,5 +5,6 @@ var mustache = require('mustache'),
 exports.loadAll = function() {
     var d = q.defer();
     var sql = 'select * from categories';
-    return db.load(sql);
+    d.resolve(db.load(sql));
+    return d.promise;
 }

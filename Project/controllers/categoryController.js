@@ -1,4 +1,6 @@
-var express = require('express');
+var express = require('express'),
+    categoryRepo = require('../models/categoryRepo'),
+    q = require('q');
 
 var r = express.Router();
 

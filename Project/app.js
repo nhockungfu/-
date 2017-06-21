@@ -6,7 +6,7 @@ var express = require('express'),
     path = require('path'),
     userController = require('./controllers/uController'),
     categoryController = require('./controllers/categoryController'),
-    producesController = require('./controllers/producesController');
+    pageController = require('./controllers/pageController');
 
 var app = express();
 
@@ -34,11 +34,9 @@ app.use(bodyParser.urlencoded({
     extended: false
 }));
 
-
-app.use('/user', userController);
 app.use('/category', categoryController);
-app.use('/produces', producesController);
-
+app.use('/user', userController);
+app.use('/home', pageController);
 
 app.listen(3000,function () {
     console.log('server running...');
