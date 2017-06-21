@@ -14,6 +14,11 @@
 	font-weight:normal;
 	font-style:normal;
 }
+.navbar{
+	margin-bottom: 0px;
+	border: unset;
+}
+
 a:hover {
 	cursor:pointer;
 	text-decoration: none;
@@ -24,6 +29,7 @@ a:hover {
 }
 body{
 	/*	background-image: url('../../images/bg-index.jpg');*/
+	font-family: sans-serif;
 	background-color: #f0f0f0
 }
 .panel-heading>a{
@@ -153,7 +159,6 @@ a.list-group-item:focus{
 }
 .carousel{
 	margin-bottom: 15px;
-	margin-right: 20px;
 }
 .list-group-item .active{
 	font-size: 40px;
@@ -231,3 +236,15 @@ html, body{
 	border-color: #ED1B24;
 }
 
+/*==Style cho menu===*/
+#menu{
+  background: #183544;
+  overflow: hidden;
+  width: 100%;
+	height: 40px;
+	margin: 0px;
+}
+.poster-quang-cao-01{
+	width: 100%;
+	height: 307px;
+}
