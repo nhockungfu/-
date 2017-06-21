@@ -1,5 +1,6 @@
 var express = require('express'),
     handlebars = require('express-handlebars'),
+    handlebars_sections = require('express-handlebars-sections'),
     bodyParser = require('body-parser'),
     morgan = require('morgan'),
     path = require('path'),
@@ -15,7 +16,9 @@ app.engine('hbs', handlebars({
     defaultLayout: 'main',
     layoutsDir: 'views/_layouts/',
     partialsDir: 'views/_partials/',
-    helpers: {}
+    helpers: {
+        section: handlebars_sections(),
+    }
 }));
 app.set('view engine', 'hbs');
 
