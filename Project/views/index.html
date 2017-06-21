@@ -1,441 +1,298 @@
 <html>
 
-	<head>
-		<title>Bootstrap</title>
-		<meta charset="utf-8">
-		<link rel="stylesheet" type="text/css" href="../public/assests/bootstrap-3.3.7-dist/css/bootstrap.min.css">
-		<link rel="stylesheet" type="text/css" href="../public/assests/css/header.css">
-		<link rel="stylesheet" type="text/css" href="../public/assests/css/footer.css">
-		<link rel="stylesheet" type="text/css" href="../public/assests/css/index.css">
-	</head>
+<head>
+	<title>Bootstrap</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="../public/assests/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="../public/assests/css/header.css">
+	<link rel="stylesheet" type="text/css" href="../public/assests/css/footer.css">
+	<link rel="stylesheet" type="text/css" href="../public/assests/css/index.css">
+</head>
 
-	<body>
-		<div class="container-fluid">
-			<div class="row">
-				<div class="col-md-12">
-					<nav class="navbar navbar-default">
-						<div class="container-fluid" id="my-nav-header">
-							<a href="index.html">
+<body>
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-12">
+				<nav class="navbar navbar-default">
+					<div class="container-fluid" id="my-nav-header">
+						<a href="index.html">
 								<img id="logo-header" src="../public/images/logo.png">
 								<p class="slogan-header">
 									<i>Nơi bạn có thể mua hàng với giá rẻ nhất</i>
 								</p>
 							</a>
-							<form class="navbar-form navbar-center" style="display: inline-table;">
-								<div class="form-group">
-									<input type="text" class="form-control" placeholder="Search" style="width: 380px; height: 35px; border-radius: unset;">
-								</div>
-								<button type="submit" class="btn btn-default" style="height: 35px; border-radius: unset;">
+						<form class="navbar-form navbar-center" style="display: inline-table;">
+							<div class="form-group">
+								<input type="text" class="form-control" placeholder="Search" style="width: 380px; height: 35px; border-radius: unset;">
+							</div>
+							<button type="submit" class="btn btn-default" style="height: 35px; border-radius: unset;">
 									<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
 								</button>
-							</form>
-							<ul class="nav navbar-nav navbar-right" id="my-menu-in-header">
-								<li>
-									<a href="#" data-toggle="modal" data-target="#myModal">Liên hệ với chúng tôi</a>
-								</li>
-								<li>
-									<a href="postProduct.html">Đăng bán</a>
-								</li>
-								<li>
-									<a href="signIn.html">Đăng nhập</a>
-								</li>
-								<li>
-									<a href="signUp.html">Đăng ký tài khoản</a>
-								</li>
-							</ul>
-						</div>
-					</nav>
-				</div>
-				<div class="col-md-12">
-					<div id="menu">
-						<!--status-page-->
+						</form>
+						<ul class="nav navbar-nav navbar-right" id="my-menu-in-header">
+							<li>
+								<a href="#" data-toggle="modal" data-target="#myModal">Liên hệ với chúng tôi</a>
+							</li>
+							<li>
+								<a href="postProduct.html">Đăng bán</a>
+							</li>
+							<li>
+								<a href="signIn.html">Đăng nhập</a>
+							</li>
+							<li>
+								<a href="signUp.html">Đăng ký tài khoản</a>
+							</li>
+						</ul>
 					</div>
-					<!-- <div class="status-page">
-					<p>
-						<a href="index.html"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Trang chủ</a>
-					</p>
-				</div> -->
+				</nav>
+			</div>
+			<div class="col-md-12">
+				<div id="menu">
+					<!--status-page-->
 				</div>
-				<div class="col-md-8 poser-quang-cao" style="padding:0px">
-					<div id="myCarousel" class="carousel slide" data-ride="carousel">
-						<!-- Indicators -->
-						<ol class="carousel-indicators">
-							<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-							<li data-target="#myCarousel" data-slide-to="1"></li>
-							<li data-target="#myCarousel" data-slide-to="2"></li>
-						</ol>
+			</div>
+			<div class="col-md-8 poser-quang-cao" style="padding:0px">
+				<div id="myCarousel" class="carousel slide" data-ride="carousel">
+					<!-- Indicators -->
+					<ol class="carousel-indicators">
+						<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+						<li data-target="#myCarousel" data-slide-to="1"></li>
+						<li data-target="#myCarousel" data-slide-to="2"></li>
+					</ol>
 
-						<!-- Wrapper for slides -->
-						<div class="carousel-inner">
-							<div class="item active">
-								<img class="anh-slide" src="../public/images/banner/one.png" alt="Detail 1">
-								<div class="carousel-caption">
-									<h3 class="name-of-detail">Tên Poster 01</h3>
-									<p class="name-of-detail">nội dung mô tả sẽ được viết ở đây</p>
-								</div>
-							</div>
-
-							<div class="item">
-								<img class="anh-slide" src="../public/images/banner/two.png" alt="Detail 2">
-								<div class="carousel-caption">
-									<h3 class="name-of-detail">Tên Poster 02</h3>
-									<p class="name-of-detail">nội dung mô tả sẽ được viết ở đây</p>
-								</div>
-							</div>
-
-							<div class="item">
-								<img class="anh-slide" src="../public/images/banner/three.png" alt="Detail 3">
-								<div class="carousel-caption">
-									<h3 class="name-of-detail">Tên Poster 03</h3>
-									<p class="name-of-detail">nội dung mô tả sẽ được viết ở đây</p>
-								</div>
+					<!-- Wrapper for slides -->
+					<div class="carousel-inner">
+						<div class="item active">
+							<img class="anh-slide" src="../public/images/banner/one.png" alt="Detail 1">
+							<div class="carousel-caption">
+								<h3 class="name-of-detail">Tên Poster 01</h3>
+								<p class="name-of-detail">nội dung mô tả sẽ được viết ở đây</p>
 							</div>
 						</div>
 
-						<!-- Left and right controls -->
-						<a class="left carousel-control" href="#myCarousel" data-slide="prev">
+						<div class="item">
+							<img class="anh-slide" src="../public/images/banner/two.png" alt="Detail 2">
+							<div class="carousel-caption">
+								<h3 class="name-of-detail">Tên Poster 02</h3>
+								<p class="name-of-detail">nội dung mô tả sẽ được viết ở đây</p>
+							</div>
+						</div>
+
+						<div class="item">
+							<img class="anh-slide" src="../public/images/banner/three.png" alt="Detail 3">
+							<div class="carousel-caption">
+								<h3 class="name-of-detail">Tên Poster 03</h3>
+								<p class="name-of-detail">nội dung mô tả sẽ được viết ở đây</p>
+							</div>
+						</div>
+					</div>
+
+					<!-- Left and right controls -->
+					<a class="left carousel-control" href="#myCarousel" data-slide="prev">
 							<span class="glyphicon glyphicon-chevron-left"></span>
 							<span class="sr-only">Previous</span>
 						</a>
-						<a class="right carousel-control" href="#myCarousel" data-slide="next">
+					<a class="right carousel-control" href="#myCarousel" data-slide="next">
 							<span class="glyphicon glyphicon-chevron-right"></span>
 							<span class="sr-only">Next</span>
 						</a>
-					</div>
-				</div>
-				<div class="col-md-4 poser-quang-cao" style="padding:0px">
-					<img class="poster-quang-cao-01" src="http://quangcaohieuqua.net/wp-content/uploads/2014/12/tvcn-ads.png" alt="">
 				</div>
 			</div>
+			<div class="col-md-4 poser-quang-cao" style="padding:0px">
+				<img class="poster-quang-cao-01" src="http://quangcaohieuqua.net/wp-content/uploads/2014/12/tvcn-ads.png" alt="">
+			</div>
+		</div>
+		<div class="row">
 			<div class="col-md-12">
 				<div class="content-area container-fluid">
 					<div class="vertical-tab">
-						<div class="panel-heading">
-							<a>Các mặt hàng công nghệ</a>
-						</div>
 						<div class="panel-body">
+
 							<div class="row">
 								<div class="col-sm-6 col-md-3">
-									<div class="thumbnail">
-										<div class="row">
-											<div class="col-md-6">
-												<div class="contain-avatar-with-timer">
-													<img class="anh-san-pham" src="../public/images/SanPham/CongNghe/sp1/01.png" alt="...">
-													<div class="thoi-gian-chay-nguoc">
-														<!-- <img class="ha-dong-ho-cat" src="../public/images/hourglass.png"> -->
-														<p id="1" class="chuoi-thoi-gian">18:59:00</p>
-													</div>
-												</div>
-											</div>
-											<div class="col-md-6" style="padding: 0px">
-												<div class="caption">
-													<div class="ten-san-pham">
-														<a>Điện thoại iPhone 7</a>
-													</div>
-													<p class="gia-tien">78.000đ</p>
-													<p class="submit-dat-gia">
-														<a href="#" class="btn btn-primary" role="button">
-															<span class="glyphicon glyphicon-fire" aria-hidden="true"></span>
-															Đấu giá
-														</a>
-													</p>
-												</div>
+									<!--để menu-->
+									<div class="panel panel-default">
+										<div class="list-group">
+											<div class="list-group-item active" style="background-color: #183544">
+												Category
 											</div>
 										</div>
-									</div>
-								</div>
-								<div class="col-sm-6 col-md-3">
-									<div class="thumbnail">
-										<div class="row">
-											<div class="col-md-6">
-												<div class="contain-avatar-with-timer">
-													<img class="anh-san-pham" src="../public/images/SanPham/CongNghe/sp2/01.png" alt="...">
-													<div class="thoi-gian-chay-nguoc">
-														<!-- <img class="ha-dong-ho-cat" src="../public/images/hourglass.png"> -->
-														<p id="2" class="chuoi-thoi-gian">18:59:00</p>
-													</div>
-												</div>
-
-											</div>
-											<div class="col-md-6" style="padding: 0px">
-												<div class="caption">
-													<div class="ten-san-pham">
-														<a>Điện thoại Xiaomi Mi MIX</a>
-													</div>
-													<p class="gia-tien">78.000đ</p>
-													<p class="submit-dat-gia">
-														<a href="#" class="btn btn-primary" role="button">
-															<span class="glyphicon glyphicon-fire" aria-hidden="true"></span>
-															Đấu giá
-														</a>
-													</p>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="col-sm-6 col-md-3">
-									<div class="thumbnail">
-										<div class="row">
-											<div class="col-md-6">
-												<div class="contain-avatar-with-timer">
-													<img class="anh-san-pham" src="../public/images/SanPham/CongNghe/sp3/01.png" alt="...">
-													<div class="thoi-gian-chay-nguoc">
-														<!-- <img class="ha-dong-ho-cat" src="../public/images/hourglass.png"> -->
-														<p id="3" class="chuoi-thoi-gian">18:59:00</p>
-													</div>
-												</div>
-											</div>
-											<div class="col-md-6" style="padding: 0px">
-												<div class="caption">
-													<div class="ten-san-pham">
-														<a>Điện thoại Sony Xperia XZs</a>
-													</div>
-													<p class="gia-tien">78.000đ</p>
-													<p class="submit-dat-gia">
-														<a href="#" class="btn btn-primary" role="button">
-															<span class="glyphicon glyphicon-fire" aria-hidden="true"></span>
-															Đấu giá
-														</a>
-													</p>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="col-sm-6 col-md-3">
-									<div class="thumbnail">
-										<div class="row">
-											<div class="col-md-6">
-												<div class="contain-avatar-with-timer">
-													<img class="anh-san-pham" src="../public/images/SanPham/CongNghe/sp4/01.png" alt="...">
-													<div class="thoi-gian-chay-nguoc">
-														<!-- <img class="ha-dong-ho-cat" src="../public/images/hourglass.png"> -->
-														<p id="4" class="chuoi-thoi-gian">18:59:00</p>
-													</div>
-												</div>
-
-											</div>
-											<div class="col-md-6" style="padding: 0px">
-												<div class="caption">
-													<div class="ten-san-pham">
-														<a>Điện thoại HTC Desire 10</a>
-													</div>
-													<p class="gia-tien">78.000đ</p>
-													<p class="submit-dat-gia">
-														<a href="#" class="btn btn-primary" role="button">
-															<span class="glyphicon glyphicon-fire" aria-hidden="true"></span>
-															Đấu giá
-														</a>
-													</p>
-												</div>
-											</div>
-										</div>
+										<a href="#" class="list-group-item">Dapibus ac facilisis in</a>
+										<a href="#" class="list-group-item">Morbi leo risus</a>
+										<a href="#" class="list-group-item">Porta ac consectetur ac</a>
+										<a href="#" class="list-group-item">Vestibulum at eros</a>
 									</div>
 								</div>
 							</div>
+							<div class="col-ms-6 col-md-9">
+								<div class="row">
+									<div class="panel-heading">
+										<a>Các mặt hàng công nghệ</a>
+									</div>
+									<div class="col-sm-6 col-md-4">
+										<div class="thumbnail">
+											<div class="row">
+												<div class="col-md-6">
+													<div class="contain-avatar-with-timer">
+														<img class="anh-san-pham" src="../public/images/SanPham/CongNghe/sp2/01.png" alt="...">
+														<div class="thoi-gian-chay-nguoc">
+															<!-- <img class="ha-dong-ho-cat" src="../public/images/hourglass.png"> -->
+															<p id="2" class="chuoi-thoi-gian">18:59:00</p>
+														</div>
+													</div>
+
+												</div>
+												<div class="col-md-6" style="padding: 0px">
+													<div class="caption">
+														<div class="ten-san-pham">
+															<a>Điện thoại Xiaomi Mi MIX</a>
+														</div>
+														<p class="gia-tien">78.000đ</p>
+														<p class="submit-dat-gia">
+															<a href="#" class="btn btn-primary" role="button">
+																		<span class="glyphicon glyphicon-fire" aria-hidden="true"></span>
+																		Đấu giá
+																	</a>
+														</p>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="col-sm-6 col-md-4">
+										<div class="thumbnail">
+											<div class="row">
+												<div class="col-md-6">
+													<div class="contain-avatar-with-timer">
+														<img class="anh-san-pham" src="../public/images/SanPham/CongNghe/sp3/01.png" alt="...">
+														<div class="thoi-gian-chay-nguoc">
+															<!-- <img class="ha-dong-ho-cat" src="../public/images/hourglass.png"> -->
+															<p id="3" class="chuoi-thoi-gian">18:59:00</p>
+														</div>
+													</div>
+												</div>
+												<div class="col-md-6" style="padding: 0px">
+													<div class="caption">
+														<div class="ten-san-pham">
+															<a>Điện thoại Sony Xperia XZs</a>
+														</div>
+														<p class="gia-tien">78.000đ</p>
+														<p class="submit-dat-gia">
+															<a href="#" class="btn btn-primary" role="button">
+																		<span class="glyphicon glyphicon-fire" aria-hidden="true"></span>
+																		Đấu giá
+																	</a>
+														</p>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="col-sm-6 col-md-4">
+										<div class="thumbnail">
+											<div class="row">
+												<div class="col-md-6">
+													<div class="contain-avatar-with-timer">
+														<img class="anh-san-pham" src="../public/images/SanPham/CongNghe/sp4/01.png" alt="...">
+														<div class="thoi-gian-chay-nguoc">
+															<!-- <img class="ha-dong-ho-cat" src="../public/images/hourglass.png"> -->
+															<p id="4" class="chuoi-thoi-gian">18:59:00</p>
+														</div>
+													</div>
+
+												</div>
+												<div class="col-md-6" style="padding: 0px">
+													<div class="caption">
+														<div class="ten-san-pham">
+															<a>Điện thoại HTC Desire 10</a>
+														</div>
+														<p class="gia-tien">78.000đ</p>
+														<p class="submit-dat-gia">
+															<a href="#" class="btn btn-primary" role="button">
+																		<span class="glyphicon glyphicon-fire" aria-hidden="true"></span>
+																		Đấu giá
+																	</a>
+														</p>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<!--row-->
+							</div>
+							<!--(col-md-9)-->
 						</div>
+						<!--row-->
 					</div>
-					<div class="vertical-tab">
-						<div class="panel-heading">
-							<a>Các mặt hàng gia dụng</a>
+				</div>
+
+			</div>
+		</div>
+
+	</div>
+	</div>
+	<header class="header">
+		<!-- Modal -->
+		<div id="myModal" class="modal fade" role="dialog">
+			<div class="modal-dialog">
+				<!-- Modal content-->
+				<div class="modal-content">
+					<div class="noi-dung-lien-he">
+
+						<div class="row">
+							<div class="col-md-8" style="text-align: right;">
+								<p class="cv-ten-cong-ty">CÔNG TY BA THÀNH VIÊN</p>
+								<P class="cv-mo-ta-cong-ty">Công ty đấu giá chất lượng</P>
+							</div>
+							<div class="col-md-4"></div>
 						</div>
-						<div class="panel-body">
-							<div class="row">
-								<div class="col-sm-6 col-md-3">
-									<div class="thumbnail">
-										<div class="row">
-											<div class="col-md-6">
-												<div class="contain-avatar-with-timer">
-													<img class="anh-san-pham" src="../public/images/img-tivi.png" alt="...">
-													<div class="thoi-gian-chay-nguoc">
-														<!-- <img class="ha-dong-ho-cat" src="../public/images/hourglass.png"> -->
-														<p id="5" class="chuoi-thoi-gian">18:59:00</p>
-													</div>
-												</div>
-											</div>
-											<div class="col-md-6" style="padding: 0px">
-												<div class="caption">
-													<div class="ten-san-pham">
-														<a>
-															Tên sản phẩm
-														</a>
-													</div>
-													<p class="gia-tien">78.000đ</p>
-													<p class="submit-dat-gia">
-														<a href="#" class="btn btn-primary" role="button">
-															<span class="glyphicon glyphicon-fire" aria-hidden="true"></span>
-															Đấu giá
-														</a>
-													</p>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="col-sm-6 col-md-3">
-									<div class="thumbnail">
-										<div class="row">
-											<div class="col-md-6">
-												<div class="contain-avatar-with-timer">
-													<img class="anh-san-pham" src="../public/images/img-tivi.png" alt="...">
-													<div class="thoi-gian-chay-nguoc">
-														<!-- <img class="ha-dong-ho-cat" src="../public/images/hourglass.png"> -->
-														<p id="6" class="chuoi-thoi-gian">18:59:00</p>
-													</div>
-												</div>
-
-											</div>
-											<div class="col-md-6" style="padding: 0px">
-												<div class="caption">
-													<div class="ten-san-pham">
-														<a>
-															Tên sản phẩm
-														</a>
-													</div>
-													<p class="gia-tien">78.000đ</p>
-													<p class="submit-dat-gia">
-														<a href="#" class="btn btn-primary" role="button">
-															<span class="glyphicon glyphicon-fire" aria-hidden="true"></span>
-															Đấu giá
-														</a>
-													</p>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="col-sm-6 col-md-3">
-									<div class="thumbnail">
-										<div class="row">
-											<div class="col-md-6">
-												<div class="contain-avatar-with-timer">
-													<img class="anh-san-pham" src="../public/images/img-tivi.png" alt="...">
-													<div class="thoi-gian-chay-nguoc">
-														<!-- <img class="ha-dong-ho-cat" src="../public/images/hourglass.png"> -->
-														<p id="7" class="chuoi-thoi-gian">18:59:00</p>
-													</div>
-												</div>
-
-											</div>
-											<div class="col-md-6" style="padding: 0px">
-												<div class="caption">
-													<div class="ten-san-pham">
-														<a>
-															Tên sản phẩm
-														</a>
-													</div>
-													<p class="gia-tien">78.000đ</p>
-													<p class="submit-dat-gia">
-														<a href="#" class="btn btn-primary" role="button">
-															<span class="glyphicon glyphicon-fire" aria-hidden="true"></span>
-															Đấu giá
-														</a>
-													</p>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="col-sm-6 col-md-3">
-									<div class="thumbnail">
-										<div class="row">
-											<div class="col-md-6">
-												<div class="contain-avatar-with-timer">
-													<img class="anh-san-pham" src="../public/images/img-tivi.png" alt="...">
-													<div class="thoi-gian-chay-nguoc">
-														<!-- <img class="ha-dong-ho-cat" src="../public/images/hourglass.png"> -->
-														<p id="8" class="chuoi-thoi-gian">18:59:00</p>
-													</div>
-												</div>
-
-											</div>
-											<div class="col-md-6" style="padding: 0px">
-												<div class="caption">
-													<div class="ten-san-pham">
-														<a>
-															Tên sản phẩm
-														</a>
-													</div>
-													<p class="gia-tien">78.000đ</p>
-													<p class="submit-dat-gia">
-														<a href="#" class="btn btn-primary" role="button">
-															<span class="glyphicon glyphicon-fire" aria-hidden="true"></span>
-															Đấu giá
-														</a>
-													</p>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
+						<div class="row">
+							<div class="col-md-5"></div>
+							<div class="col-md-7" style="text-align: left;">
+								<p class="cv-so-dien-thoai">SĐT: (+84)917 645 531</p>
+								<P class="cv-email">EMAIL: vspabcd@gmail.com</P>
+								<P class="cv-email">FACEBOOK: /nhom3nguoi</P>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-		<header class="header">
-			<!-- Modal -->
-			<div id="myModal" class="modal fade" role="dialog">
-				<div class="modal-dialog">
-					<!-- Modal content-->
-					<div class="modal-content">
-						<div class="noi-dung-lien-he">
+	</header>
 
-							<div class="row">
-								<div class="col-md-8" style="text-align: right;">
-									<p class="cv-ten-cong-ty">CÔNG TY BA THÀNH VIÊN</p>
-									<P class="cv-mo-ta-cong-ty">Công ty đấu giá chất lượng</P>
-								</div>
-								<div class="col-md-4"></div>
-							</div>
-							<div class="row">
-								<div class="col-md-5"></div>
-								<div class="col-md-7" style="text-align: left;">
-									<p class="cv-so-dien-thoai">SĐT: (+84)917 645 531</p>
-									<P class="cv-email">EMAIL: vspabcd@gmail.com</P>
-									<P class="cv-email">FACEBOOK: /nhom3nguoi</P>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</header>
-
-		<footer class="footer">
-			<div class="footer-content"></div>
-			<div class="contain-image-contact">
-				<a href="#">
+	<footer class="footer">
+		<div class="footer-content"></div>
+		<div class="contain-image-contact">
+			<a href="#">
 					<img class="img-contact" src="../public/images/img-contact/img-facebook.png">
 				</a>
-				<a href="#">
+			<a href="#">
 					<img class="img-contact" src="../public/images/img-contact/img-twitter.png">
 				</a>
-				<a href="#">
+			<a href="#">
 					<img class="img-contact" src="../public/images/img-contact/img-google-plus.png">
 				</a>
-			</div>
-			<p style="text-align: center; color: #E7EC9A; margin: 0px">1412396-1412401-1412612</p>
-			<ul>
-				<a href="#">
-					<li class="footer-list-item">Trang chủ</li>
-				</a>
-				<a href="#">
-					<li class="footer-list-item">Thông tin bản quyền</li>
-				</a>
-				<a href="#">
-					<li class="footer-list-item">Công ty</li>
-				</a>
-				<a href="#">
-					<li class="footer-list-item">Liên hệ</li>
-				</a>
-				<a href="#">
-					<li class="footer-list-item">Đăng quảng cáo</li>
-				</a>
-			</ul>
-		</footer>
+		</div>
+		<p style="text-align: center; color: #E7EC9A; margin: 0px">1412396-1412401-1412612</p>
+		<ul>
+			<a href="#">
+				<li class="footer-list-item">Trang chủ</li>
+			</a>
+			<a href="#">
+				<li class="footer-list-item">Thông tin bản quyền</li>
+			</a>
+			<a href="#">
+				<li class="footer-list-item">Công ty</li>
+			</a>
+			<a href="#">
+				<li class="footer-list-item">Liên hệ</li>
+			</a>
+			<a href="#">
+				<li class="footer-list-item">Đăng quảng cáo</li>
+			</a>
+		</ul>
+	</footer>
 	</div>
 
 	<script type="text/javascript" src="../public/assests/jquery-3.2.0.min.js"></script>
@@ -443,7 +300,7 @@
 		var timeString;
 		var node_string_time = [];
 
-		$(function () {
+		$(function() {
 
 			var x = document.getElementsByClassName("chuoi-thoi-gian");
 
@@ -454,28 +311,28 @@
 
 			}
 
-			setInterval(function () {
+			setInterval(function() {
 				chayThoiGian(node_string_time[0], 1);
 			}, 1000);
-			setInterval(function () {
+			setInterval(function() {
 				chayThoiGian(node_string_time[1], 2);
 			}, 1000);
-			setInterval(function () {
+			setInterval(function() {
 				chayThoiGian(node_string_time[2], 3);
 			}, 1000);
-			setInterval(function () {
+			setInterval(function() {
 				chayThoiGian(node_string_time[3], 4);
 			}, 1000);
-			setInterval(function () {
+			setInterval(function() {
 				chayThoiGian(node_string_time[4], 5);
 			}, 1000);
-			setInterval(function () {
+			setInterval(function() {
 				chayThoiGian(node_string_time[5], 6);
 			}, 1000);
-			setInterval(function () {
+			setInterval(function() {
 				chayThoiGian(node_string_time[5], 7);
 			}, 1000);
-			setInterval(function () {
+			setInterval(function() {
 				chayThoiGian(node_string_time[5], 8);
 			}, 1000);
 
@@ -533,18 +390,18 @@
 		}
 	</script>
 	<script language="JavaScript">
-		$(function () {});
+		$(function() {});
 
-		$(".thumbnail").on("click", function () {
+		$(".thumbnail").on("click", function() {
 			console.log('Click!');
 			window.location.href = "./thongTinSanPham/detail.html";
 		});
 
-		$(".thumbnail").hover(function () {
+		$(".thumbnail").hover(function() {
 			// $(this).find('.gia-tien').css("font-size", "35px"); $(this).find('.gia-tien').css("transition", "0.2s");
 			$(this).css("transition", "0.1s");
 			$(this).css("box-shadow", "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)");
-		}, function () {
+		}, function() {
 			// $(this).find('.gia-tien').css("font-size", "30px");
 			$(this).css("box-shadow", "unset");
 

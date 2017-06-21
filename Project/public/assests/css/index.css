@@ -155,7 +155,7 @@ a.list-group-item:focus{
 }
 .list-group{
 	margin-bottom: 15px;
-	margin-left: 20px;
+	margin-left: 10px;
 }
 .carousel{
 	margin-bottom: 15px;
@@ -164,11 +164,12 @@ a.list-group-item:focus{
 	font-size: 40px;
 }
 .list-group-item.active{
-	background-color: black;
-	border-color: black;
+	background-color: #183544
+	border-color: #183544;
 	color: white;
-	font-weight: bold;
 	height: 55px;
+	line-height: 35px;
+	font-size: 35px;
 }
 .cus-list-header{
 	font-size: 18px;
@@ -211,7 +212,6 @@ a .glyphicon.glyphicon-menu-right{
 .panel-body{
 	overflow-x: hidden;
 	background-color: white;
-	margin: auto 20px
 }
 html, body{
 	height: 100%;
