@@ -4,7 +4,8 @@ var express = require('express'),
     morgan = require('morgan'),
     path = require('path'),
     userController = require('./controllers/uController'),
-    categoryController = require('./controllers/categoryController');
+    categoryController = require('./controllers/categoryController'),
+    producesController = require('./controllers/producesController');
 
 var app = express();
 
@@ -30,8 +31,11 @@ app.use(bodyParser.urlencoded({
     extended: false
 }));
 
-app.use('/category', categoryController);
+
 app.use('/user', userController);
+app.use('/category', categoryController);
+app.use('/produces', producesController);
+
 
 app.listen(3000,function () {
     console.log('server running...');
