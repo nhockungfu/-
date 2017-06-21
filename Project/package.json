@@ -1,12 +1,20 @@
 {
-  "name": "project",
+  "name": "do_an_nhom",
   "version": "1.0.0",
-  "description": "do an nhom",
-  "main": "server.js",
+  "description": "ptudw-th14 learn node",
+  "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "node index.js"
   },
-  "author": "1412396_1412401_1412612",
-  "license": "ISC"
+  "author": "ngaoteam",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.17.1",
+    "express": "^4.15.2",
+    "express-handlebars": "^3.0.0",
+    "morgan": "^1.8.1",
+    "mustache": "^2.3.0",
+    "mysql": "^2.13.0",
+    "q": "^1.5.0"
+  }
 }
