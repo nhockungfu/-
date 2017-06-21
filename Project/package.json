@@ -2,9 +2,9 @@
   "name": "do_an_nhom",
   "version": "1.0.0",
   "description": "ptudw-th14 learn node",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "node app.js"
   },
   "author": "ngaoteam",
   "license": "ISC",

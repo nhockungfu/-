@@ -3,6 +3,7 @@ var express = require('express'),
     bodyParser = require('body-parser'),
     morgan = require('morgan'),
     path = require('path'),
+    userController = require('./controllers/uController'),
     categoryController = require('./controllers/categoryController');
 
 var app = express();
@@ -21,13 +22,16 @@ app.set('view engine', 'hbs');
 app.use(express.static(
     path.resolve(__dirname, 'public')
 ));
-
+app.use(express.static(
+    path.resolve(__dirname, 'data')
+));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
     extended: false
 }));
 
 app.use('/category', categoryController);
+app.use('/user', userController);
 
 app.listen(3000,function () {
     console.log('server running...');
