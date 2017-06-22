@@ -22,16 +22,14 @@ r.get('/',function (req,res) {
     // });
     // console.log(u);
 
-    // q.all([userRepo.loadDetail(1),userRepo.loadDetail2(1)]).spread(function (a,b) {
-    //         var vm = {
-    //             layout: false,
-    //             user: a,
-    //             v:b
-    //         };
-    //         res.render('thongTinCaNhan',vm);
-    // })
-    var vm={};
-    res.render('index',vm);
+    q.all([userRepo.loadDetail(1),userRepo.loadDetail2(1)]).spread(function (a,b) {
+            var vm = {
+                layout: false,
+                user: a,
+                v:b
+            };
+            res.render('thongTinCaNhan',vm);
+    })
 });
 
 module.exports = r;
