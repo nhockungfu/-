@@ -1,35 +1,44 @@
 var express = require('express'),
     q = require('q'),
+    multer = require('multer'),
+    fs = require('fs'),
     userRepo = require('../models/userRepo');
 
 var r = express.Router();
 
 r.get('/',function (req,res) {
-    // userRepo.loadDetail(1).then(function (us) {
-    //     var vm = {
-    //         layout: false,
-    //         user: us
-    //     };
-    //     res.render('thongTinCaNhan',vm);
-    // });
-    // var u,vt
-    // userRepo.loadDetail(1).then(function (us) {
-    //     u:us;
-    //
-    // });
-    // userRepo.loadDetail2(1).then(function (v) {
-    //     console.log(v);
-    // });
-    // console.log(u);
 
-    q.all([userRepo.loadDetail(1),userRepo.loadDetail2(1)]).spread(function (a,b) {
-            var vm = {
-                layout: false,
-                user: a,
-                v:b
-            };
-            res.render('thongTinCaNhan',vm);
-    })
+            res.render('dangBai',{
+                path:'/images/postImgBg.png'
+            });
 });
+
+
+var storage = multer.diskStorage({
+    //duong dan luu file
+    destination: function (req,file,cb) {
+        try{
+            fs.mkdirSync('./data/users/'+req.body.txt_tenSp);
+            console.log('tao thanh cong')
+        }catch(err) {
+            if(err.code == 'EEXIST'){
+                console.log('thu muc da ton tai');
+            }else{
+                console.log('Loi nhieu vl');
+            }
+        }
+        cb(null,'./data/users/'+req.body.txt_tenSp+'/')
+    },
+    //ten file luu
+    filename: function (req,file,cb) {
+        cb(null,file.originalname)
+    }
+})
+
+var upload = multer({storage:storage})
+
+r.post('/',upload.single('file1'),function (req,res) {
+    console.log(req.file.destination);
+})
 
 module.exports = r;
