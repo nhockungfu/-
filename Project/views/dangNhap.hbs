@@ -1,156 +1,52 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Document</title>
-    <link rel="stylesheet" href="/assests/bootstrap-3.3.7-dist/css/bootstrap.min.css" type="text/css">
-    <link rel="stylesheet" type="text/css" href="/assests/css/header.css">
-    <link rel="stylesheet" type="text/css" href="/assests/css/footer.css">
-    <link rel="stylesheet" type="text/css" href="/assests/css/signIn.css">
-</head>
-<body>
-<div class="container-fluid" >
-    <header class="header">
-        <nav class="navbar navbar-default" >
-            <div class="container-fluid" id="my-nav-header">
-                <a href="index.html">
-                    <img id="logo-header" src="/images/logo.png">
-                    <p class="slogan-header">
-                        <i>Nơi bạn có thể mua hàng với giá rẻ nhất</i>
-                    </p>
-                </a>
-                <ul class="nav navbar-nav navbar-right" id="my-menu-in-header">
-                    <li><a href="#" data-toggle="modal" data-target="#myModal">Liên hệ với chúng tôi</a></li>
-                    <li><a href="post.html">Đăng bán</a></li>
-                    <li><a href="signIn.html">Đăng nhập</a></li>
-                    <li><a href="signUp.html">Đăng ký tài khoản</a></li>
-                </ul>
-            </div>
-        </nav>
-        <div class="status-page">
-            <p>
-                <a href="index.html"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Trang chủ</a>
-            </p>
-        </div>
+{{#section 'css'}}
 
-        <!-- Modal -->
-        <div id="myModal" class="modal fade" role="dialog">
-            <div class="modal-dialog">
-                <!-- Modal content-->
-                <div class="modal-content">
-                    <div class="noi-dung-lien-he">
-
-                        <div class="row">
-                            <div class="col-md-8" style="text-align: right;">
-                                <p class="cv-ten-cong-ty">CÔNG TY BA THÀNH VIÊN</p>
-                                <P class="cv-mo-ta-cong-ty">Công ty đấu giá chất lượng</P>
-                            </div>
-                            <div class="col-md-4">
-
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-5">
-
-                            </div>
-                            <div class="col-md-7" style="text-align: left;">
-                                <p class="cv-so-dien-thoai">SĐT: (+84)917 645 531</p>
-                                <P class="cv-email">EMAIL: vspabcd@gmail.com</P>
-                                <P class="cv-email">FACEBOOK: /nhom3nguoi</P>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </header>
-    <div class="row" id="rowDis">
-        <div class="col-md-3"></div>
-        <div class="col-md-6">
-            <div class="panel panel-default">
-                <div class="panel-body" >
-                    <div class="col-md-2"></div>
-                    <div class="col-md-8">
-                        <h2 id="title">Đăng nhập</h2>
-                        <form>
-                            <div class="form-group" style="margin-bottom: 0px;">
-                                <input id="txtEmail" type="email" class="form-control" name="txtEmail" placeholder="Email của bạn">
-                            </div>
-                            <span id="msgEmail" class="errorMsg"></span>
-                            <div class="form-group" style="margin-bottom: 0px;">
-                                <input id="txtPassWord" type="password" class="form-control" name="txtPassWord" placeholder="Mật khẩu">
-                            </div>
-                            <span id="msgMk" class="errorMsg"></span>
-                            <br>
-                            <button id="btn_signIn" type="submit" class="btn btn-primary" style="width: 100%;">Đăng nhập</button>
-                            <!-- <span id="msg" class="errorMsg">Đăng nhập thất bại: Email hoặc mật khẩu bị sai</span> -->
-
-                        </form>
-                        <div id="linkLine">
-                            <a id="a_register" href="signUp.html" class="sec">Đăng ký</a>
-                            <span role="separator" aria-hidden="true"> · </span>
-                            <a id="forgotPassWork" name="forgotPassWork" href="javascript:;" class="sec">Quên mật khẩu</a>
-                        </div>
-                    </div>
-                    <div class="col-md-2"></div>
-
-                </div>
-            </div>
-
-        </div>
-        <div class="col-md-3"></div>
-    </div>
-    <footer class="footer">
-        <div class="footer-content"></div>
-        <div class="contain-image-contact">
-            <a href="#">
-                <img class="img-contact" src="/images/img-contact/img-facebook.png">
-            </a>
-            <a href="#">
-                <img class="img-contact" src="/images/img-contact/img-twitter.png">
-            </a>
-            <a href="#">
-                <img class="img-contact" src="/images/img-contact/img-google-plus.png">
-            </a>
-        </div>
-        <p style="text-align: center; color: #E7EC9A; margin: 0px">1412396-1412401-1412612</p>
-        <ul>
-            <a href="#"><li class="footer-list-item">Trang chủ</li></a>
-            <a href="#"><li class="footer-list-item">Thông tin bản quyền</li></a>
-            <a href="#"><li class="footer-list-item">Công ty</li></a>
-            <a href="#"><li class="footer-list-item">Liên hệ</li></a>
-            <a href="#"><li class="footer-list-item">Đăng quảng cáo</li></a>
-        </ul>
-    </footer>
+{{/section}}
+<div class="status-page">
+    <p>
+        <a href="index.html"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Trang chủ</a>
+    </p>
 </div>
-<script type="text/javascript" src="/assests/jquery-3.2.0.min.js"></script>
-<script type="text/javascript" src="/assests/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
-<script type="text/javascript">
-    $('#btn_signIn').click(function() {
-        var email = $('#txtEmail').val(),
-                pw = $('#txtPassWord').val();
-        if(email==''){
-            $('#msgEmail').text('Bạn chưa nhập email');
-        }
-        else{
-            if(pw==''){
-                $('#msgMk').text('Bạn chưa nhập mật khẩu');
-            }
-            else{//Chỗ này còn thiếu kiểm tra tài khoản
-                window.location.href = "quanLyTinMua.html";
-            }
-        }
-        return false;
+<div class="row" id="rowDis">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+        <div class="panel panel-default">
+            <div class="panel-body" >
+                <div class="col-md-2"></div>
+                <div class="col-md-8">
+                    <h2 id="title">Đăng ký</h2>
+                    <form>
+                        <div class="form-group" style="margin-bottom: 0px;">
+                            <input type="email" class="form-control" id="txtEmail" name="txtEmail" placeholder="Email của bạn">
+                            <span id="msgEmail" class="errorMsg"></span>
+                        </div>
+                        <div class="form-group" style="margin-bottom: 0px;">
+                            <input type="password" class="form-control" id="txtPassWord" name="txtPassWord" placeholder="Mật khẩu">
+                            <span id="msgMk" class="errorMsg"></span>
+                        </div>
+                        <div class="form-group" style="margin-bottom: 0px;">
+                            <input type="password" class="form-control" id="txtRepPassWord" name="txtRepPassWord" placeholder="Nhập lại mật khẩu">
+                            <span id="msgNlMk" class="errorMsg"></span>
+                        </div>
+                        <div class="checkbox" id="reminder">
+                            <label>
+                                <input id="cb_remider" name="cb_remider" type="checkbox"> Tôi đồng ý với <!-- /react-text --><a id="a_reminder" href="javascript:;">Điều khoản sử dụng của PPT</a>
+                            </label>
+                            <span id="msgRemider" class="errorMsg"></span>
+                        </div>
+                        <button id="btn_signUp" type="submit" class="btn btn-primary btn_submit" style="width: 100%;">Đăng ký ngay</button>
+                        <!-- <span id="msg" class="errorMsg" style="display: none;">Đăng ký thất bại: Email đã tồn tại hoặc mật khẩu bị sai</span> -->
+                    </form>
+                    <div style="margin-bottom: 50px;"></div>
+                </div>
+                <div class="col-md-2"></div>
+            </div>
+        </div><!--panel-->
+    </div>
+    <div class="col-md-3"></div>
+</div>
 
-    });
-    $( "#txtEmail" ).focus(function() {
-        $('#msgEmail').text('');
-        $('#msgMk').text('');
-    });
-    $( "#txtPassWord" ).focus(function() {
-        $('#msgEmail').text('');
-        $('#msgMk').text('');
-    });
-</script>
-</body>
-</html>
+{{#section 'js'}}
+    <script>
+
+    </script>
+{{/section}}
