@@ -7,4 +7,4 @@ exports.loadAll = function() {
     var sql = 'select * from categories';
     d.resolve(db.load(sql));
     return d.promise;
-}
+};

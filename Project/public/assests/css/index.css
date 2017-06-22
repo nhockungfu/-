@@ -8,9 +8,6 @@
 
 @font-face {
 	font-family: HelveticaWorld-Regular;
-	src:url('../fonts/HelveticaWorld-Regular.ttf') format(‘truetype’),
-	url(‘../fonts/Captureit.eot#iefix’) format(’embedded-opentype’),
-	url(‘../fonts/Captureit.woff’) format(‘woff’);
 	font-weight:normal;
 	font-style:normal;
 }
@@ -30,13 +27,11 @@ a:hover {
 body{
 	/*	background-image: url('../../images/bg-index.jpg');*/
 	font-family: sans-serif;
-	background-color: #f0f0f0
+	background-color: #fff
 }
 .panel-heading>a{
 	font-size: 20px;
-	font-family: Arial;
 	color: black;
-
 }
 .contain-avatar-with-timer{
 	margin: 8px auto;
@@ -90,9 +85,9 @@ body{
 	padding-left: 7px;
 }
 .gia-tien{
-	font-size: 30px;
+	font-size: 20px;
 	color: #008A97;
-	margin-bottom: 0px;
+	margin-bottom: 0;
 	margin-top: 55px;
 	padding-left: 7px;
 
@@ -131,13 +126,14 @@ img.anh-san-pham{
 }
 .panel.panel-default{
 	border: none;
+	margin-left: 30px;
+	background-color: #fff;
 }
 .panel-heading{
 	padding-bottom: 0px;
 	padding-top: 0px;
 	padding-left: 20px;
 	text-shadow: 0 0 3px #FDFF06;
-}
 }
 .panel-body{
 	background-color: unset;
@@ -155,7 +151,6 @@ a.list-group-item:focus{
 }
 .list-group{
 	margin-bottom: 15px;
-	margin-left: 10px;
 }
 .carousel{
 	margin-bottom: 15px;
@@ -163,10 +158,10 @@ a.list-group-item:focus{
 .list-group-item .active{
 	font-size: 40px;
 }
-.list-group-item.active{
-	background-color: #183544
+.list-group-item.active, .list-group-item.active:hover{
+	background-color: #fff;
 	border-color: #183544;
-	color: white;
+	color: #000;
 	height: 55px;
 	line-height: 35px;
 	font-size: 35px;
@@ -197,10 +192,6 @@ a.list-group-item:focus{
 a.list-group-item:hover{
 	background-color: white;
 	color: #87B6E0;
-}
-.list-group-item.active:hover{
-	background-color: black;
-	color: white;
 }
 a.list-group-item:active{
 	background-color: white;

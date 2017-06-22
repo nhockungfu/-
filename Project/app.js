@@ -4,9 +4,11 @@ var express = require('express'),
     bodyParser = require('body-parser'),
     morgan = require('morgan'),
     path = require('path'),
+    wnumb = require('wnumb'),
     userController = require('./controllers/uController'),
     categoryController = require('./controllers/categoryController'),
-    pageController = require('./controllers/pageController');
+    pageController = require('./controllers/pageController'),
+    producesController = require('./controllers/producesController');
 
 var app = express();
 
@@ -19,6 +21,12 @@ app.engine('hbs', handlebars({
     partialsDir: 'views/_partials/',
     helpers: {
         section: handlebars_sections(),
+        number_format: function (n) {
+            var nf = wnumb({
+                thousand: ','
+            });
+            return nf.to(n);
+        }
     }
 }));
 app.set('view engine', 'hbs');
@@ -34,6 +42,7 @@ app.use(bodyParser.urlencoded({
     extended: false
 }));
 
+app.use('/produces', producesController);
 app.use('/category', categoryController);
 app.use('/user', userController);
 app.use('/home', pageController);
