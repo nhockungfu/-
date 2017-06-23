@@ -1,44 +1,48 @@
 {{#section 'css'}}
-
+    <link rel="stylesheet" type="text/css" href="/assests/css/signUp.css">
 {{/section}}
+
 <div class="status-page">
     <p>
         <a href="index.html"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Trang chủ</a>
     </p>
 </div>
-<div class="row" id="rowDis">
+<div class="row" id="rowDis" style="background-color: #F0F0F0">
     <div class="col-md-3"></div>
     <div class="col-md-6">
         <div class="panel panel-default">
-            <div class="panel-body" >
-                <div class="col-md-2"></div>
-                <div class="col-md-8">
-                    <h2 id="title">{{id}}</h2>
-                    <form>
-                        <div class="form-group" style="margin-bottom: 0px;">
+            <div class="panel-body"  >
+                <div class="col-md-1"></div>
+                <div class="col-md-10">
+                    <h2 style="text-align: center; margin-top: 50px; margin-bottom: 40px">Đăng ký</h2>
+                    <form id="register-form" method="post" action="">
+                        <div class="form-group" style="margin-bottom: 20px;">
                             <input type="email" class="form-control" id="txtEmail" name="txtEmail" placeholder="Email của bạn">
-                            <span id="msgEmail" class="errorMsg"></span>
                         </div>
-                        <div class="form-group" style="margin-bottom: 0px;">
+                        <div class="form-group" style="margin-bottom: 20px;">
                             <input type="password" class="form-control" id="txtPassWord" name="txtPassWord" placeholder="Mật khẩu">
-                            <span id="msgMk" class="errorMsg"></span>
                         </div>
-                        <div class="form-group" style="margin-bottom: 0px;">
+                        <div class="form-group" style="margin-bottom: 20px;">
                             <input type="password" class="form-control" id="txtRepPassWord" name="txtRepPassWord" placeholder="Nhập lại mật khẩu">
-                            <span id="msgNlMk" class="errorMsg"></span>
                         </div>
-                        <div class="checkbox" id="reminder">
-                            <label>
-                                <input id="cb_remider" name="cb_remider" type="checkbox"> Tôi đồng ý với <!-- /react-text --><a id="a_reminder" href="javascript:;">Điều khoản sử dụng của PPT</a>
-                            </label>
-                            <span id="msgRemider" class="errorMsg"></span>
+                        <div class="form-group" id="capt">
+                            <input type="text" class="form-control" id="mainCaptcha" name="mainCaptcha" disabled/>
+                            <p><input type="button" id="refresh" onclick="Captcha();"/></p>
+                            <input type="text" class="form-control" id="txtCaptcha" name="txtCaptcha" placeholder="Xác nhận chuỗi trên"/>
+                        </div>
+                        <div class="form-group" style="margin-top: 100px">
+                            <div class="checkbox">
+                                <label>
+                                    <input id="cb_remider" name="cb_remider" type="checkbox">
+                                    Tôi đồng ý với Điều khoản sử dụng của PPT
+                                </label>
+                            </div>
                         </div>
                         <button id="btn_signUp" type="submit" class="btn btn-primary btn_submit" style="width: 100%;">Đăng ký ngay</button>
-                        <!-- <span id="msg" class="errorMsg" style="display: none;">Đăng ký thất bại: Email đã tồn tại hoặc mật khẩu bị sai</span> -->
                     </form>
                     <div style="margin-bottom: 50px;"></div>
                 </div>
-                <div class="col-md-2"></div>
+                <div class="col-md-1"></div>
             </div>
         </div><!--panel-->
     </div>
@@ -46,7 +50,6 @@
 </div>
 
 {{#section 'js'}}
-    <script>
-
-    </script>
+    <script src="/assests/jquery.validate.min.js"></script>
+    <script src="/assests/validation.js"></script>
 {{/section}}

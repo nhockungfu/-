@@ -1,0 +1,33 @@
+{{#section 'css'}}
+    <link rel="stylesheet" type="text/css" href="/assests/css/signUp.css">
+{{/section}}
+
+<div class="status-page">
+    <p>
+        <a href="index.html"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Trang chủ</a>
+    </p>
+</div>
+<div class="row" id="rowDis" style="background-color: #F0F0F0">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+        <div class="panel panel-default">
+            <div class="panel-body"  >
+                <div class="col-md-1"></div>
+                <div class="col-md-10">
+                    <form id="successSignUp-form" method="post" action="">
+                        <h3 style="text-align: center; margin-top: 100px; margin-bottom: 100px">Đăng ký thành công. <br>Chọn
+                            <a href="/signIn/"> Đăng nhập </a> hoặc <a href="/home/"> Trang chủ</a> để tiếp tục. </h3>
+                    </form>
+                    <div style="margin-bottom: 50px;"></div>
+                </div>
+                <div class="col-md-1"></div>
+            </div>
+        </div><!--panel-->
+    </div>
+    <div class="col-md-3"></div>
+</div>
+
+{{#section 'js'}}
+    <script src="/assests/jquery.validate.min.js"></script>
+    <script src="/assests/validation.js"></script>
+{{/section}}
