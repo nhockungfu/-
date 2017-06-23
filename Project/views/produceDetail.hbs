@@ -1,0 +1,99 @@
+{{#section 'css'}}
+    <link rel="stylesheet" type="text/css" href="/assests/css/produceDetail.css">
+{{/section}}
+
+{{#section 'js'}}
+    <script language="JavaScript">
+        $('.thumbnail.img-pick img').click(function () {
+            $(".anh-san-pham").attr('src', $(this).attr('src'));
+        })
+    </script>
+{{/section}}
+
+<div class="row">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6 col-md-4">
+                <div class="img-slide">
+                    <img class="anh-san-pham" src="../public/images/SanPham/CongNghe/sp1/01.png" alt="...">
+                    <div class="slide-pick">
+                        <a href="#" class="thumbnail img-pick">
+                            <img src="../public/images/SanPham/CongNghe/sp1/01.png" alt="...">
+                        </a>
+                        <a href="#" class="thumbnail img-pick">
+                            <img src="../public/images/SanPham/CongNghe/sp1/02.png" alt="...">
+                        </a>
+                        <a href="#" class="thumbnail img-pick">
+                            <img src="../public/images/SanPham/CongNghe/sp1/03.png" alt="...">
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-3">
+                <div class="">
+                    <p class="title-id">Iphone 6 16gb màu vàng bản quốc tế</p>
+                </div>
+                <div class="contain-seller">
+                    <p class="title-seller">Người bán:</p>
+                    <p class="seller" src="#">***p@gmail.com <a class="title-seller">(7.5/10)</a></p>
+
+                </div>
+                <p class="clear-margin">Thời điểm đăng: 22/04/2017 lúc 13:55</p>
+                <p class="clear-margin">Thời điểm kết thúc: 22/04/2017 lúc 13:55</p>
+                <p class="clear-margin">Giá hiện tại: 50.000đ</p>
+                <p class="clear-margin">Giá mua ngay: --</p>
+                <p class="clear-margin">Người giữ giá: ***s@gmail.com <a class="title-seller">(7.5/10)</a></p>
+                <div class="contain-timer">
+                    <img class="anh-dong-ho" src="../public/images/hourglass.png">
+                    <p id="1" class="chuoi-thoi-gian">08:30:50</p>
+                </div>
+                <p class="money-of-rival clear-margin"></p>
+                <p class="name-of-rival clear-margin"><a href="">phucred@gmail.com</a></p>
+                <form>
+                    <div>
+                        <label class="sr-only" for="exampleInputAmount">Amount (in dollars)</label>
+                        <div class="input-group cus-input-money-text">
+                            <input type="text" class="form-control" id="exampleInputAmount"
+                                   placeholder="Nhập giá mua">
+                            <div class="input-group-addon">đồng</div>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary cus-button-bid">
+                        <span class="glyphicon glyphicon-fire" aria-hidden="true"></span> Đặt giá
+                    </button>
+                </form>
+            </div>
+            <div class="col-sm-6 col-md-5">
+                <table class="table table-bordered" style="margin-bottom: 0;">
+                    <thead>
+                        <tr class="cus-header-table">
+                            <td style="width:121px; height: 20px;">Số tiền</td>
+                            <td style="width:100px;">Thời gian</td>
+                            <td>Người đặt</td>
+                        </tr>
+                    </thead>
+                </table>
+                    <table class="table table-hover table-bordered cus-bid-table">
+                        <tr class="cus-row-table">
+                            <td style="width:120px;">100.000.000.000đ</td>
+                            <td style="width:100px;">07:05:00</td>
+                            <td style="width:217px; max-width:217px;"><a href="#">thanhthientai@gmail.com sdfsdfsdfsdfsfsdfdsfsdfsdfsdfsdfsdfthanhthientai@gmail.com sdfsdfsdfsdfsfsdfdsfsdfsdfsdfsdfsdf</a></td>
+                        </tr>
+                        <tr class="cus-row-table">
+                            <td>60.000đ</td>
+                            <td>05:05:00</td>
+                            <td><a href="#">bidhero@gmail.com</a></td>
+                        </tr>
+                        <tr class="cus-row-table">
+                            <td>100.000đ</td>
+                            <td>04:30:00</td>
+                            <td><a href="#">emxinthua@gmail.com</a></td>
+                        </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+

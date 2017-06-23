@@ -126,7 +126,7 @@ img.anh-san-pham{
 }
 .panel.panel-default{
 	border: none;
-	margin-left: 30px;
+	margin-left: 60px;
 	background-color: #fff;
 }
 .panel-heading{
@@ -164,7 +164,7 @@ a.list-group-item:focus{
 	color: #000;
 	height: 55px;
 	line-height: 35px;
-	font-size: 35px;
+	font-size: 30px;
 }
 .cus-list-header{
 	font-size: 18px;
@@ -185,9 +185,6 @@ a.list-group-item:focus{
 }
 .list-group-item>p{
 	margin-left: 10px
-}
-.list-group-item:last-child{
-	border-bottom: #fff solid 2px;
 }
 a.list-group-item:hover{
 	background-color: white;

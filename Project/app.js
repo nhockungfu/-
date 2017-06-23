@@ -8,7 +8,8 @@ var express = require('express'),
     userController = require('./controllers/uController'),
     categoryController = require('./controllers/categoryController'),
     pageController = require('./controllers/pageController'),
-    producesController = require('./controllers/producesController');
+    producesController = require('./controllers/producesController'),
+    produceDetailController = require('./controllers/produceDetailController');
 
 var app = express();
 
@@ -46,6 +47,7 @@ app.use('/produces', producesController);
 app.use('/category', categoryController);
 app.use('/user', userController);
 app.use('/home', pageController);
+app.use('/detail', produceDetailController);
 
 app.listen(3000,function () {
     console.log('server running...');

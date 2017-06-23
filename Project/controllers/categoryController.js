@@ -10,4 +10,8 @@ r.get('/', function(req, res) {
     };
     res.render('dangNhap', vm);
 });
+
+
+
+
 module.exports = r;

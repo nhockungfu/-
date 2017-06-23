@@ -12,7 +12,11 @@ a:hover{
 }
 
 .anh-san-pham{
+	width: 300px;
 	height: 300px;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
 }
 .title-id, .id, .title-seller, .seller, .sao-danh-gia, .chuoi-diem-so, .chuoi-thoi-gian, .anh-dong-ho{
 	display: inline-block;
@@ -157,16 +161,32 @@ a.seller{
 	padding-right: 10px;
 }
 .cus-bid-table{
-	width: 430px;
+	display: block;
+	width: 457px;
+	height: 100px;
+	overflow-y: auto;
+	overflow-x: hidden;
+	table-layout: fixed;
+}
+table{
+	table-layout: fixed;
+}
+td{
+	word-wrap:break-word;
+	border: none;
 }
 .slide-pick{
 	padding-top: 5px;
 	text-align: center;
 }
 .img-pick{
-	width: 50px;
+	width: 97px;
+	height: 57px;
 	display: inline-table;
 }
 .img-slide{
 	text-align: center;
+}
+.panel.panel-default{
+	margin-left: 0;
 }
