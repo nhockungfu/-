@@ -18,6 +18,10 @@ r.get('/', function(req, res) {
     });
 });
 
+r.post('/sldfkjsdlfjsdlfj', function(req, res) {
+sdfsadfsdfsf
+});
+
 r.post('/detail', function(req, res) {
     var vm = {
         id: req.body.proID

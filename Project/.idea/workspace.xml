@@ -21,9 +21,15 @@
       <file leaf-file-name="dangNhap.hbs" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/views/dangNhap.hbs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
-              <caret line="74" column="17" lean-forward="true" selection-start-line="74" selection-start-column="17" selection-end-line="74" selection-end-column="17" />
-              <folding />
+            <state relative-caret-position="321">
+              <caret line="47" column="17" lean-forward="true" selection-start-line="47" selection-start-column="17" selection-end-line="47" selection-end-column="17" />
+              <folding>
+                <element signature="e#568#595#0#HTML" expanded="true" />
+                <element signature="e#877#904#0#HTML" expanded="true" />
+                <element signature="e#1187#1214#0#HTML" expanded="true" />
+                <element signature="e#1998#2018#0#HTML" expanded="true" />
+                <element signature="e#2245#2273#0#HTML" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -67,12 +73,12 @@
         <option value="$PROJECT_DIR$/app.js" />
         <option value="$PROJECT_DIR$/controllers/categoryController.js" />
         <option value="$PROJECT_DIR$/public/assests/js/produceItem.js" />
-        <option value="$PROJECT_DIR$/controllers/producesController.js" />
         <option value="$PROJECT_DIR$/views/_layouts/main.hbs" />
         <option value="$PROJECT_DIR$/views/index.hbs" />
         <option value="$PROJECT_DIR$/public/assests/css/produceDetail.css" />
         <option value="$PROJECT_DIR$/views/produceDetail.hbs" />
         <option value="$PROJECT_DIR$/views/dangNhap.hbs" />
+        <option value="$PROJECT_DIR$/controllers/producesController.js" />
       </list>
     </option>
   </component>
@@ -450,7 +456,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="40308000" />
+    <option name="totallyTimeSpent" value="40567000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -915,14 +921,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/controllers/producesController.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="24" column="36" lean-forward="false" selection-start-line="24" selection-start-column="36" selection-end-line="24" selection-end-column="36" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/views/produceDetail.hbs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="285">
@@ -945,11 +943,25 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/controllers/producesController.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="14" column="31" lean-forward="true" selection-start-line="14" selection-start-column="31" selection-end-line="14" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/views/dangNhap.hbs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="74" column="17" lean-forward="true" selection-start-line="74" selection-start-column="17" selection-end-line="74" selection-end-column="17" />
-          <folding />
+        <state relative-caret-position="321">
+          <caret line="47" column="17" lean-forward="true" selection-start-line="47" selection-start-column="17" selection-end-line="47" selection-end-column="17" />
+          <folding>
+            <element signature="e#568#595#0#HTML" expanded="true" />
+            <element signature="e#877#904#0#HTML" expanded="true" />
+            <element signature="e#1187#1214#0#HTML" expanded="true" />
+            <element signature="e#1998#2018#0#HTML" expanded="true" />
+            <element signature="e#2245#2273#0#HTML" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
