@@ -1,6 +1,6 @@
 {{#section 'css'}}
     <style>
-        #mceu_22,#mceu_17,#mceu_15,#mceu_14,#mceu_13{
+        #mceu_22,#mceu_17,#mceu_15,#mceu_14,#mceu_13,.mce-branding-powered-by{
             display: none; !important;
         }
     </style>
@@ -64,13 +64,13 @@
                         <label for="inputPassword3" class="col-sm-2 control-label">Hình ảnh</label>
                         <div class="col-sm-10">
                             <div class="col-md-4">
-                                <input type="file" name="file1" id="file1" style="display: none;"/>
+                                <input type="file" name="file1" id="file1" style="display: none;" accept="image/*"/>
                                 <a class="thumbnail" onclick="document.getElementById('file1').click();">
-                                        <img id="img1" src="/images/postImgBg.png" alt="Chọn hình 1">
+                                        <img id="img1" src="/images/postImgBg.png" alt="Chọn hình 1" >
                                 </a>
                             </div>
                             <div class="col-md-4">
-                                <input type="file" id="file2" style="display: none;" />
+                                <input type="file" name="file2" id="file2" style="display: none;" accept="image/*"/>
                                 <a class="thumbnail" onclick="document.getElementById('file2').click();" >
 
                                     <img id="img2" src="/images/postImgBg.png" alt="your image"/>
@@ -78,7 +78,7 @@
                                 </a>
                             </div>
                             <div class="col-md-4">
-                                <input type="file" id="file3" style="display: none;" />
+                                <input type="file" name="file3" id="file3" style="display: none;" accept="image/*"/>
                                 <a class="thumbnail" onclick="document.getElementById('file3').click();">
                                     <img id="img3" src="/images/postImgBg.png" alt="Chọn hình 3">
                                 </a>
@@ -88,9 +88,8 @@
                     <div class="form-group">
                         <label for="inputPassword3" class="col-sm-2 control-label"></label>
                         <div class="col-sm-10" style="text-align: center;" >
-                            <label for="inputPassword3" class="control-label">Vui lòng chọn đủ 3 hình ảnh</label>
+                            <label for="inputPassword3" class="control-label">Chọn đủ 3 hình ảnh để hiển thị đẹp hơn</label>
                         </div>
-
                     </div>
                     <div class="form-group">
                         <div class="col-sm-2"></div>

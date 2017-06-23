@@ -5,3 +5,33 @@
 .navbar{
 	border: unset;
 }
+
+#capt{
+	background-color: skyblue;
+	width: 200px;
+	height:45px;
+	margin-bottom: 60px;
+}
+
+#mainCaptcha{
+	text-align: center;
+	position: relative;
+	/*left : 60px;*/
+	top: 5px;
+	font-size: 25px;
+}
+
+#refresh{
+	position: relative;
+	left:200px;
+	width:30px;
+	height:30px;
+	bottom:25px;
+	background-image: url("../../images/captchaRefresh.png");
+}
+
+#txtCaptcha, #Button1{
+	position: relative;
+	bottom: 10px;
+	width: 200px;
+}
