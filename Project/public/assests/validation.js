@@ -28,6 +28,7 @@ $(function() {
 
 
   $("#register-form").validate({
+      ignore: ".ignore",
     rules: {
       txtEmail: {
         required: true,
@@ -47,6 +48,15 @@ $(function() {
         txtCaptcha:{
           required: true,
             equalTo: '#mainCaptcha'
+        },
+        hiddenRecaptcha: {
+            required: function () {
+                if (grecaptcha.getResponse() == '') {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
         }
     },
       messages: {
@@ -66,7 +76,10 @@ $(function() {
               equalTo: 'Mã xác nhận sai'
           },
           cb_remider: {
-            required: 'Bạn chưa đồng ý điều khoản sử dụng'
+              required: 'Bạn chưa đồng ý điều khoản sử dụng'
+          },
+          hiddenRecaptcha:{
+              required: 'Vui lòng xác nhận Bạn không phải là robot'
           }
       }
   });

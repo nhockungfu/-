@@ -42,29 +42,53 @@ r.post('/dangky',function (req,res) {
         pass: pass,
         point:0
     }
-    var check = false;
     emailExistence.check(email, function(err,res){
         if(res){
             userRepo.loadDetail2(email).then(function (rows) {
                 if(rows != null){
-                    check = true;
                     console.log('co trong csdl roi')
+                }else{
+                    console.log('chua co trong csdl')
+                    userRepo.insert(user).then(function (insertId) {
+                        console.log('them thanh cong ' + insertId);
+                    }).fail(function(err) {
+                        console.log(err);;
+                        res.end('fail');
+                    });
                 }
             })
+            console.log('co thuc');
         }else{
-            check=true;
             console.log('Khong co thuc');
         }
     });
-    if(!check){
-        userRepo.insert(user).then(function (insertId) {
-            console.log('them thanh cong' + insertId);
-            res.send('them thanh cong');
-        }).fail(function(err) {
-            console.log(err);;
-            res.end('fail');
-        });
-    }
 })
 
+r.get('/dangnhap',function (req,res) {
+    res.render('dangNhap2',{});
+});
+
+r.post('/dangnhap',function (req,res) {
+    var email = req.body.txt_email,
+        pass = crypto.createHash('md5').update(req.body.txt_pass).digest('hex');
+
+    var entity={
+        email:email,
+        pass:pass
+    };
+
+    userRepo.checkAccount(entity).then(function (row) {
+        if(row!=null){
+            res.send('dang nhap thanh cong');
+            console.log('dang nhap thanh cong');
+        }else{
+            res.send('dang nhap that bai');
+            console.log('dang nhap that bai');
+        }
+    }).fail(function(err) {
+        console.log(err);;
+        res.end('fail');
+    });
+})
 module.exports = r;
+

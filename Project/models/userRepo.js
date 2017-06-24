@@ -51,3 +51,15 @@ exports.insert = function (entity) {
     });
     return d.promise;
 }
+
+exports.checkAccount = function (entity) {
+    var d = q.defer();
+    var sql = mustache.render(
+        'select * from user where email = "{{email}}" and pass="{{pass}}"',entity
+    );
+    db.load(sql).then(function(rows) {
+        d.resolve(rows[0]);
+    });
+
+    return d.promise;
+}

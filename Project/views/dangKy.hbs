@@ -1,36 +1,40 @@
 <div class="row">
-    <div class="col-md-3"></div>
-    <div class="col-md-6" style="margin-top: 20px;">
+    <div class="col-md-4"></div>
+    <div class="col-md-4" style="margin-top: 20px;">
         <div class="panel panel-success">
             <div class="panel-heading" >
-                <form id="register-form" method="post" action="/home/dangky" class="form-horizontal" style="padding: 20px 20px 40px 20px;">
-                    <h2 style="text-align: center; margin-bottom: 30px">Đăng ký tài khoản</h2>
+                <form id="register-form" method="post" action="/home/dangky" class="form-horizontal" style="padding: 20px 20px 40px 20px; margin-left: 25px;">
+                    <h2 style="margin-bottom: 30px;margin-left: 30px;">Đăng ký tài khoản</h2>
                     <div class="form-group">
-                        <div class="col-sm-12">
-                            <input type="email" class="form-control" id="txtEmail" name="txtEmail" placeholder="Email của bạn">
+                        <div class="col-sm-10">
+                            <input type="email" class="form-control" id="txtEmail" name="txtEmail" placeholder="Email của bạn" style="width: 302px;">
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="col-sm-12">
-                            <input type="password" class="form-control" id="txtPassWord" name="txtPassWord" placeholder="Mật khẩu">
+                            <input type="password" class="form-control" id="txtPassWord" name="txtPassWord" placeholder="Mật khẩu" style="width: 302px;">
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="col-sm-12">
-                            <input type="password" class="form-control" id="txtRepPassWord" name="txtRepPassWord" placeholder="Nhập lại mật khẩu">
+                            <input type="password" class="form-control" id="txtRepPassWord" name="txtRepPassWord" placeholder="Nhập lại mật khẩu" style="width: 302px;">
                         </div>
                     </div>
                     <div class="form-group">
-                        <div class="col-sm-6">
-                            <input type="text" class="form-control" id="txtCaptcha" name="txtCaptcha" placeholder="Xác nhận chuỗi kế bên"/>
-                        </div>
-                        <div class="col-sm-3" style="background-image: url('/images/captchar_bg.png'); height: 34px; text-align: center;line-height: 34px;">
-                            <label for="inputPassword3" id="mainCaptcha" name="mainCaptcha" >Tên sản phẩm</label>
-                        </div>
-                        <div class="col-sm-3">
-                            <button type="button" class="btn btn-info" id="refresh" onclick="Captcha();">
-                                <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>
-                            </button>
+                        <!--<div class="col-sm-6">-->
+                            <!--<input type="text" class="form-control" id="txtCaptcha" name="txtCaptcha" placeholder="Xác nhận chuỗi kế bên"/>-->
+                        <!--</div>-->
+                        <!--<div class="col-sm-3" style="background-image: url('/images/captchar_bg.png'); height: 34px; text-align: center;line-height: 34px;">-->
+                            <!--<label for="inputPassword3" id="mainCaptcha" name="mainCaptcha" >Tên sản phẩm</label>-->
+                        <!--</div>-->
+                        <!--<div class="col-sm-3">-->
+                            <!--<button type="button" class="btn btn-info" id="refresh" onclick="Captcha();">-->
+                                <!--<span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>-->
+                            <!--</button>-->
+                        <!--</div>-->
+                        <div class="col-sm-12">
+                            <div class="g-recaptcha" data-sitekey="6LfKSSYUAAAAAOQ9TnsaITNhwkmn88pDUarxNgBb" data-callback="recaptchaCallback" style="width: 100%;"></div>
+                            <input type="hidden" class="hiddenRecaptcha required" name="hiddenRecaptcha" id="hiddenRecaptcha">
                         </div>
                     </div>
                     <div class="form-group">
@@ -41,16 +45,34 @@
                             </label>
                         </div>
                     </div>
-                    <div id="status"></div>
-                    <button id="btn_signUp" type="submit" class="btn btn-success btn_submit" style="width: 100%;">Đăng ký ngay</button>
+                    <div class="form-group">
+                        <div class="col-ms-12">
+                            <button id="btn_signUp" type="submit" class="btn btn-success btn_submit" style="width: 302px;margin-left: 13px;">Đăng ký ngay</button>
+                        </div>
+                    </div>
+
                 </form>
             </div>
         </div><!--panel-->
     </div>
-    <div class="col-md-3"></div>
+    <div class="col-md-4"></div>
 </div>
 
 {{#section 'js'}}
     <script src="/assests/jquery.validate.min.js"></script>
     <script src="/assests/validation.js"></script>
+    <script src='https://www.google.com/recaptcha/api.js'></script>
+    <script>
+//        $('form').on('submit', function(e) {
+//            if(grecaptcha.getResponse() == "") {
+//                e.preventDefault();
+//                $('#hiddenRecaptcha').val('You cant proceed!');
+//            } else {
+//                $('#hiddenRecaptcha').val('You proceed!');
+//            }
+//        });
+function recaptchaCallback() {
+    $('#hiddenRecaptcha').valid();
+};
+    </script>
 {{/section}}
