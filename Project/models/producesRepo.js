@@ -36,3 +36,33 @@ exports.loadTopNDesc = function(assert, n) {
     d.resolve(db.load(sql));
     return d.promise;
 };
+
+//phan nay chuyen qua produce
+exports.insert = function (entity) {
+    var d = q.defer();
+
+    var sql = mustache.render(
+        'insert into produces ' +
+        '(name,start_price,purchase_price,highest_price,price_step,start_time,end_time,' +
+        'cate_id,seller_id,num_bid,auto) values ' +
+        '("{{name}}","{{start_price}}","{{purchase_price}}","{{highest_price}}","{{price_step}}","{{start_time}}","{{end_time}}",' +
+        '"{{cate_id}}","{{seller_id}}","{{num_bid}}","{{auto}}")',entity
+    );
+    db.insert(sql).then(function(insertId) {
+        d.resolve(insertId);
+    });
+    return d.promise;
+}
+
+exports.updatePath=function (entity) {
+    var d = q.defer();
+    var sql = mustache.render(
+        'update produces ' +
+        'set describe_path = "{{describe_path}}",bid_detail_path = "{{bid_detail_path}}",cmt_pro_path = "{{cmt_pro_path}}" ' +
+        'where pro_id ="{{pro_id}}"',entity
+    );
+    db.insert(sql).then(function() {
+        d.resolve(1);
+    });
+    return d.promise;
+}

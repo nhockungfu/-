@@ -9,19 +9,17 @@
 
 <div class="row">
     <div class="col-md-2"></div>
-    <div class="col-md-8">
-        <div class="panel panel-default" style="margin-top: 20px;">
-            <div class="panel-body">
-                <form class="form-horizontal" action="" method="post" enctype="multipart/form-data" style="margin: 40px 20px 40px 20px;"><!--Form-->
+    <div class="col-md-8" style="margin-top: 20px;">
+        <div class="panel panel-success" >
+            <div class="panel-heading" style="margin-top: 0px;">
+                <form id="frm_dangBai" class="form-horizontal" action="" method="post" enctype="multipart/form-data" style="padding: 40px 20px 40px 20px;"><!--Form-->
                     <div class="form-group">
                         <label for="inputEmail3" class="col-sm-2 control-label">Danh mục</label>
                         <div class="col-sm-10">
-                            <select class="form-control">
-                                <option>Điện thoại</option>
-                                <option>Ti Vi</option>
-                                <option>Laptop</option>
-                                <option>Điện lạnh</option>
-                                <option>Xe cộ</option>
+                            <select name="cbb_select" id="cbb_select" class="form-control">
+                                {{#each categories}}
+                                    <option value="{{cate_id}}">{{name}}</option>
+                                {{/each}}
                             </select>
                         </div>
                     </div>
@@ -35,30 +33,31 @@
                         <div class="form-group">
                             <label for="inputPassword3" class="col-sm-2 control-label">Giá bán</label>
                             <div class="col-sm-4">
-                                <input type="text" class="form-control" placeholder="Khởi điểm">
+                                <input name="txt_giaKd" id="txt_giaKd" type="text" class="form-control" placeholder="Khởi điểm">
                             </div>
                             <div class="col-sm-3">
-                                <input type="text" class="form-control" placeholder="Mua ngay">
+                                <input name="txt_giaMn" id="txt_giaMn" type="text" class="form-control" placeholder="Mua ngay">
                             </div>
                             <div class="col-sm-3">
-                                <input type="text" class="form-control" placeholder="Bước giá">
+                                <input name="txt_bg" id="txt_bg" type="text" class="form-control" placeholder="Bước giá">
                             </div>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="inputPassword3" class="col-sm-2 control-label">Thời gian bán</label>
                         <div class="col-sm-5">
-                            <input type="text" class="form-control" placeholder="Bắt đầu">
+                            <input name="txt_tgbd" id="txt_tgbd" type="text" class="datepicker form-control" readonly placeholder="Bắt đầu">
                         </div>
                         <div class="col-sm-5">
-                            <input class="datepicker form-control" type="text" placeholder="Kết thúc">
+                            <input name="txt_tgkt" id="txt_tgkt" class="datepicker form-control" type="text" readonly placeholder="Kết thúc">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="inputPassword3" class="col-sm-2 control-label">Mô tả</label>
                         <div class="col-sm-10">
-                            <textarea class="tinymce"></textarea>
+                            <textarea name="txt_moTa" id="txt_moTa" class="tinymce"></textarea>
                         </div>
+
                     </div>
                     <div class="form-group">
                         <label for="inputPassword3" class="col-sm-2 control-label">Hình ảnh</label>
@@ -67,6 +66,7 @@
                                 <input type="file" name="file1" id="file1" style="display: none;" accept="image/*"/>
                                 <a class="thumbnail" onclick="document.getElementById('file1').click();">
                                         <img id="img1" src="/images/postImgBg.png" alt="Chọn hình 1" >
+
                                 </a>
                             </div>
                             <div class="col-md-4">
@@ -92,6 +92,15 @@
                         </div>
                     </div>
                     <div class="form-group">
+                        <label for="inputPassword3" class="col-sm-2 control-label"></label>
+                        <div class="col-sm-10">
+                            <label>
+                                <input name="cb_tdgh" id="cb_tdgh" type="checkbox"> Tự động gia hạn
+                                <a href="#">xem thêm</a>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group">
                         <div class="col-sm-2"></div>
                         <div class="col-sm-10">
                             <button type="submit" class="btn btn-success" style="width: 100%;">Đăng bài</button>
@@ -110,9 +119,28 @@
     <script type="text/javascript" src="/assests/plugin/tinymce/tinymce.min.js"></script>
     <script type="text/javascript" src="/assests/plugin/tinymce/init-tinymce.js"></script>
     <script type="text/javascript" src="/assests/plugin/datepicker/js/bootstrap-datepicker.js"></script>
+    <script type="text/javascript" src="/assests/jquery.validate.min.js"></script>
     <script>
-        $('.datepicker').datepicker();
-
+        var nowTemp = new Date();
+        var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth()+1, nowTemp.getDate(), 0, 0, 0, 0);
+        var now2 = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
+        $(document).ready(function () {
+            $('#txt_tgbd').val(now.getDate()+'/'+now.getMonth()+'/'+now.getFullYear());
+        })
+        $('#txt_tgbd').datepicker({
+            format: 'd/m/yyyy',
+            autoclose: true,
+            onRender: function(date) {
+                return (date.valueOf() > now2.valueOf()||date.valueOf() < now2.valueOf()) ? 'disabled' : '';
+            }
+        });
+        $('#txt_tgkt').datepicker({
+            format: 'd/m/yyyy',
+            autoclose: true,
+            onRender: function(date) {
+                return date.valueOf() < now2.valueOf() ? 'disabled' : '';
+            }
+        });
         function readURL(input,img) {
 
             if (input.files && input.files[0]) {
@@ -135,5 +163,68 @@
         $("#file3").change(function(){
             readURL(this,'#img3');
         });
+
+        $('#frm_dangBai').validate({
+            rules:{
+                txt_tenSp:{
+                    required:true
+                },
+                txt_giaKd:{
+                    required:true,
+                    min:1
+                },
+                txt_giaMn:{
+                    required:true,
+                    min:function () { return $('#txt_giaKd').val() },
+                    number:true
+                },
+                txt_bg:{
+                    required:true,
+                    min:1
+                },
+                txt_tgkt:{
+                    required:true
+                }
+
+            },
+            messages:{
+                txt_tenSp:{
+                    required:'Bạn chưa nhập tên sản phẩm'
+                },
+                txt_giaKd:{
+                    required:'Nhập giá khởi điểm',
+                    min:'Giá khởi điểm phải lớn hơn 1'
+                },
+                txt_giaMn:{
+                    required:'Nhập giá mua ngay',
+                    min:'Giá phải lớn hơn giá khởi điểm',
+                    number:'Nhập kiểu dữ liệu số'
+                },
+                txt_bg:{
+                    required:'Nhập bước giá',
+                    min:'Bước giá phải lớn hơn 1'
+                },
+                txt_tgkt:{
+                    required:'Bạn chưa chọn thời gian kết thúc'
+                }
+            },
+            errorElement: 'span',
+            errorClass: 'help-block',
+
+            highlight: function (element) {
+                $(element)
+                        .closest('.form-group')
+                        .addClass('has-error');
+            },
+
+            success: function (label) {
+                $(label)
+                        .closest('.form-group')
+                        .removeClass('has-error');
+
+                label.remove();
+            },
+        });
+
     </script>
 {{/section}}

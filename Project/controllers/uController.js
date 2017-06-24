@@ -3,30 +3,33 @@ var express = require('express'),
     multer = require('multer'),
     fs = require('fs'),
     path = require('path'),
-    userRepo = require('../models/userRepo');
+    randomstring = require("randomstring"),
+    userRepo = require('../models/userRepo'),
+    categoryRepo = require('../models/categoryRepo');
 
 var r = express.Router();
 
 r.get('/',function (req,res) {
-
-            res.render('dangBai',{});
+    categoryRepo.loadAll().then(function (rows) {
+        res.render('dangBai',{categories:rows});
+    })
 });
 
-
+var proId = randomstring.generate();
 var storage = multer.diskStorage({
     //duong dan luu file
     destination: function (req,file,cb) {
         try{
-            fs.mkdirSync('./data/users/6');
-            console.log('tao thanh cong')
+            fs.mkdirSync('./data/users/'+proId);
         }catch(err) {
             if(err.code == 'EEXIST'){
                 console.log('thu muc da ton tai');
             }else{
-                console.log('Loi nhieu vl');
+                console.log('Loi');
             }
         }
-        cb(null,'./data/users/6/')
+
+        cb(null,'./data/users/'+proId+'/')
     },
     //ten file luu
     filename: function (req,file,cb) {
@@ -46,11 +49,36 @@ var storage = multer.diskStorage({
 
 
 
-r.post('/',function (req,res) {
-    var upload = multer({storage:storage}).any()
-    upload(req, res, function(err) {
-        console.log('Thanh coong ahihi');
-    })
+r.post('/',multer({storage:storage}).any(),function (req,res) {
+
+    // var entity = {
+    //     name:req.body.txt_tenSp,
+    //     start_price:req.body.txt_giaKd,
+    //     purchase_price:req.body.txt_giaKd,
+    //     highest_price:req.body.txt_giaMn,
+    //     price_step:req.body.txt_giaKd,
+    //     start_time:
+    //
+    // }
+    // proId=req.body.txt_tenSp;
+    // try{
+    //     var str = './data/users/'+proId;
+    //     fs.mkdirSync('./data/users/'+proId);
+    //     var upload = multer({storage:storage}).any()
+    //     upload(req, res, function(err) {
+    //         if(!err)
+    //             console.log('Thanh coong');
+    //
+    //     })
+    // }catch(err) {
+    //     if(err.code == 'EEXIST'){
+    //         console.log('thu muc da ton tai');
+    //     }else{
+    //         console.log('Loi');
+    //     }
+    // }
+
+    console.log(proId);
 
 })
 
