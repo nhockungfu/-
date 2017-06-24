@@ -24,3 +24,30 @@ exports.loadDetail = function (id) {
 
     return d.promise;
 }
+exports.loadDetail2 = function (email) {
+    var d = q.defer();
+    var obj = {
+        email: email
+    };
+
+    var sql = mustache.render(
+        'select * from user where email = "{{email}}"',
+        obj
+    );
+
+    db.load(sql).then(function(rows) {
+        d.resolve(rows[0]);
+    });
+
+    return d.promise;
+}
+exports.insert = function (entity) {
+    var d = q.defer();
+    var sql = mustache.render(
+        'insert into user (email,pass,point) values ("{{email}}","{{pass}}","{{point}}")',entity
+    );
+    db.insert(sql).then(function(insertId) {
+        d.resolve(insertId);
+    });
+    return d.promise;
+}
