@@ -1,85 +1,97 @@
 var express = require('express'),
-    q = require('q'),
-    multer = require('multer'),
-    fs = require('fs'),
-    path = require('path'),
-    randomstring = require("randomstring"),
+    crypto = require('crypto'),
+    emailExistence = require('email-existence'),
     userRepo = require('../models/userRepo'),
+    restrict = require('../middle-wares/restrict'),
     categoryRepo = require('../models/categoryRepo');
 
 var r = express.Router();
 
-r.get('/',function (req,res) {
-    categoryRepo.loadAll().then(function (rows) {
-        res.render('dangBai',{categories:rows});
-    })
+r.get('/dangky',function (req,res) {
+    res.render('user/dangKy',{layout:'main',});
 });
 
-var proId = randomstring.generate();
-var storage = multer.diskStorage({
-    //duong dan luu file
-    destination: function (req,file,cb) {
-        try{
-            fs.mkdirSync('./data/users/'+proId);
-        }catch(err) {
-            if(err.code == 'EEXIST'){
-                console.log('thu muc da ton tai');
-            }else{
-                console.log('Loi');
-            }
-        }
-
-        cb(null,'./data/users/'+proId+'/')
-    },
-    //ten file luu
-    filename: function (req,file,cb) {
-        var ext = path.extname(file.originalname)
-        console.log(file.fieldname)
-        if(file.fieldname.toString().trim() === 'file1'){
-            cb(null,'1'+ext)
-        }else{
-            if(file.fieldname.toString().trim() === 'file2'){
-                cb(null,'2'+ext)
-            }else{
-                cb(null,'3'+ext)
-            }
-        }
+r.post('/dangky',function (req,res) {
+    var email = req.body.txtEmail,
+        pass = crypto.createHash('md5').update(req.body.txtPassWord).digest('hex');
+    var user={
+        email: email,
+        pass: pass,
+        point:0
     }
-})
+    emailExistence.check(email, function(err,res){
+        if(res){
+            userRepo.loadDetail2(email).then(function (rows) {
+                if(rows != null){
+                    console.log('co trong csdl roi')
+                }else{
+                    console.log('chua co trong csdl')
+                    userRepo.insert(user).then(function (insertId) {
+                        console.log('them thanh cong ' + insertId);
+                    }).fail(function(err) {
+                        console.log(err);;
+                        res.end('fail');
+                    });
+                }
+            })
+            console.log('co thuc');
+        }else{
+            console.log('Khong co thuc');
+        }
+    });
+});
 
+r.get('/dangnhap',function (req,res) {
+    if (req.session.isLogged === true) {
+        res.redirect('/home');
+    } else {
+        res.render('user/dangNhap2', {
+            layout:'main',
+            layoutModels: res.locals.layoutModels,
+            showError: false,
+            errorMsg: ''
+        });
+    }
+});
 
+r.post('/dangnhap',function (req,res) {
+    var email = req.body.txt_email,
+        pass = crypto.createHash('md5').update(req.body.txt_pass).digest('hex');
 
-r.post('/',multer({storage:storage}).any(),function (req,res) {
+    var entity={
+        email:email,
+        pass:pass
+    };
 
-    // var entity = {
-    //     name:req.body.txt_tenSp,
-    //     start_price:req.body.txt_giaKd,
-    //     purchase_price:req.body.txt_giaKd,
-    //     highest_price:req.body.txt_giaMn,
-    //     price_step:req.body.txt_giaKd,
-    //     start_time:
-    //
-    // }
-    // proId=req.body.txt_tenSp;
-    // try{
-    //     var str = './data/users/'+proId;
-    //     fs.mkdirSync('./data/users/'+proId);
-    //     var upload = multer({storage:storage}).any()
-    //     upload(req, res, function(err) {
-    //         if(!err)
-    //             console.log('Thanh coong');
-    //
-    //     })
-    // }catch(err) {
-    //     if(err.code == 'EEXIST'){
-    //         console.log('thu muc da ton tai');
-    //     }else{
-    //         console.log('Loi');
-    //     }
-    // }
+    userRepo.checkAccount(entity).then(function (user) {
+        if (user === null) {
+            console.log('dang nhap that bai')
+            res.render('account/login', {
+                layoutModels: res.locals.layoutModels,
+                showError: true,
+                errorMsg: 'Thông tin đăng nhập không đúng.'
+            });
+        } else {
+            console.log('dang nhap thanh cong')
+            req.session.isLogged = true;
+            req.session.user = user;
 
-    console.log(proId);
+            var url = '/home';
+            if (req.query.retUrl) {
+                url = req.query.retUrl;
+            }
+            res.redirect(url);
+        }
+    }).fail(function(err) {
+        console.log(err);;
+        res.end('fail');
+    });
+});
 
-})
-
+r.post('/dangxuat', restrict, function(req, res) {
+    req.session.isLogged = false;
+    req.session.user = null;
+    req.session.cookie.expires = new Date(Date.now() - 1000);
+    res.redirect(req.headers.referer);
+});
 module.exports = r;

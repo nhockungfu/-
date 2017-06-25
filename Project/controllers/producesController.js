@@ -17,6 +17,7 @@ r.get('/', function(req, res) {
     producesRepo.loadAll()
         .then(function(rows) {
             var vm = {
+
                 produces: rows
             };
             res.render('index', vm);
@@ -35,7 +36,9 @@ r.post('/detail', function(req, res) {
 //----------------------------phan post bai dang----------------------------
 r.get('/add',function (req,res) {
     categoryRepo.loadAll().then(function (rows) {
-        res.render('dangBai',{categories:rows});
+        res.render('produce/dangBai',{
+            layout:'main',
+            categories:rows});
     }).fail(function(err) {
         console.log(err);
         res.end('fail');

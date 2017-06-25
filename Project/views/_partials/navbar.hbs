@@ -1,4 +1,4 @@
-<div class="container-fluid">
+<div class="container-fluid" style="">
     <div class="row">
         <nav class="navbar navbar-default" >
             <div class="container-fluid" id="my-nav-header" style="width: 100%;">
@@ -18,17 +18,35 @@
                 </form>
                 <ul class="nav navbar-nav navbar-right" id="my-menu-in-header">
                     <li>
-                        <a href="#" data-toggle="modal" data-target="#myModal">Liên hệ với chúng tôi</a>
+                        <a href="#" data-toggle="modal" data-target="#myModal">Liên hệ chúng tôi</a>
                     </li>
-                    <li>
-                        <a href="postProduct.html">Đăng bán</a>
-                    </li>
-                    <li>
-                        <a href="signIn.html">Đăng nhập</a>
-                    </li>
-                    <li>
-                        <a href="signUp.html">Đăng ký tài khoản</a>
-                    </li>
+                    {{#if layoutModels.isLogged }}
+                        <li><a href="/produces/add">Đăng bán</a></li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                Quản lý<span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="/account/profile">SP đang đấu giá</a></li>
+                                <li><a href="/account/profile">SP yêu thích</a></li>
+                                <li><a href="javascript:;">SP đấu giá thành công</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                Hi,&nbsp; <b>{{ layoutModels.curUser.name }}</b> <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="/account/profile">Thông tin cá nhân</a></li>
+                                <li><a href="/account/profile">Đổi mật khẩu</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a id="logoutLink" href="javascript:;">Đăng xuất</a></li>
+                            </ul>
+                        </li>
+                    {{else}}
+                        <li><a href="/user/dangnhap">Đăng nhập</a></li>
+                        <li><a href="/user/dangky">Đăng ký</a></li>
+                    {{/if}}
                 </ul>
             </div>
         </nav>
