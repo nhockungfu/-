@@ -13,24 +13,24 @@
                 <div class="item active">
                     <img class="anh-slide" src="/images/banner/one.png" alt="Detail 1">
                     <div class="carousel-caption">
-                        <h3 class="name-of-detail">Tên Poster 01</h3>
-                        <p class="name-of-detail">nội dung mô tả sẽ được viết ở đây</p>
+                        <!--<h3 class="name-of-detail">Tên Poster 01</h3>-->
+                        <!--<p class="name-of-detail">nội dung mô tả sẽ được viết ở đây</p>-->
                     </div>
                 </div>
 
                 <div class="item">
                     <img class="anh-slide" src="/images/banner/two.png" alt="Detail 2">
                     <div class="carousel-caption">
-                        <h3 class="name-of-detail">Tên Poster 02</h3>
-                        <p class="name-of-detail">nội dung mô tả sẽ được viết ở đây</p>
+                        <!--<h3 class="name-of-detail">Tên Poster 02</h3>-->
+                        <!--<p class="name-of-detail">nội dung mô tả sẽ được viết ở đây</p>-->
                     </div>
                 </div>
 
                 <div class="item">
                     <img class="anh-slide" src="/images/banner/three.png" alt="Detail 3">
                     <div class="carousel-caption">
-                        <h3 class="name-of-detail">Tên Poster 03</h3>
-                        <p class="name-of-detail">nội dung mô tả sẽ được viết ở đây</p>
+                        <!--<h3 class="name-of-detail">Tên Poster 03</h3>-->
+                        <!--<p class="name-of-detail">nội dung mô tả sẽ được viết ở đây</p>-->
                     </div>
                 </div>
             </div>
@@ -47,7 +47,8 @@
         </div>
     </div>
     <div class="col-md-4 poser-quang-cao" style="padding:0px">
-        <img class="poster-quang-cao-01" src="http://quangcaohieuqua.net/wp-content/uploads/2014/12/tvcn-ads.png" alt="">
+        <img class="poster-quang-cao-01" src="http://quangcaohieuqua.net/wp-content/uploads/2014/12/tvcn-ads.png"
+             alt="">
     </div>
 {{/section}}
 {{#section 'css'}}
@@ -57,116 +58,116 @@
     <script type="text/javascript" src="/assests/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="/assests/js/produceItem.js"></script>
 {{/section}}
-    <!--Form dùng để gửi id sản phẩm-->
+<!--Form dùng để gửi id sản phẩm-->
 <form method="post" action="" id="frmProduceDetail">
-    <input id="txtProduceDetail" type="hidden" name="txtProduceDetail" />
+    <input id="txtProduceDetail" type="hidden" name="txtProduceDetail"/>
 </form>
 <!---->
-    <div class="row">
+<div class="row">
 
-        <div class="panel-heading">
-            <a>SẢN PHẨM ĐƯỢC NHIỀU NGƯỜI ĐẤU NHẤT</a>
-        </div>
-        {{#each numBidTop }}
-            <div class="col-sm-6 col-md-4">
-                <div class="thumbnail" >
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="contain-avatar-with-timer">
-                                <img class="anh-san-pham" src="{{img_path}}" alt="...">
-                                <div class="thoi-gian-chay-nguoc">
-                                    <!-- <img class="ha-dong-ho-cat" src="../public/images/hourglass.png"> -->
-                                    <p id="{{pro_id}}" class="chuoi-thoi-gian">{{total_time}}</p>
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="col-md-6" style="padding: 0">
-                            <div class="caption">
-                                <div class="ten-san-pham">
-                                    <a>{{name}}</a>
-                                </div>
-                                <p class="tien">{{number_format highest_price}}</p>
-                                <p class="gia-tien">Giá mua ngay: {{number_format purchase_price}}</p>
-                                    <a href="/produces/detail/{{pro_id}}" class="btn btn-primary " role="button">
-                                        <span class="glyphicon glyphicon-fire " aria-hidden="true"></span>
-                                        Đấu giá
-                                    </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        {{/each}}
-        <div class="panel-heading">
-            <a>SẢN PHẨM ĐANG GIỮ GIÁ CAO NHẤT</a>
-        </div>
-        {{#each priceTop }}
-            <div class="col-sm-6 col-md-4">
-                <div class="thumbnail">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="contain-avatar-with-timer">
-                                <img class="anh-san-pham" src="{{img_path}}" alt="...">
-                                <div class="thoi-gian-chay-nguoc">
-                                    <!-- <img class="ha-dong-ho-cat" src="../public/images/hourglass.png"> -->
-                                    <p id="{{pro_id}}" class="chuoi-thoi-gian">{{total_time}}</p>
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="col-md-6" style="padding: 0">
-                            <div class="caption">
-                                <div class="ten-san-pham">
-                                    <a>{{name}}</a>
-                                </div>
-                                <p class="tien">{{number_format highest_price}}</p>
-                                <p class="gia-tien">Giá mua ngay: {{number_format purchase_price}}</p>
-                                    <a href="/produces/detail/{{pro_id}}" class="btn btn-primary" role="button">
-                                        <span class="glyphicon glyphicon-fire" aria-hidden="true"></span>
-                                        Đấu giá
-                                    </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        {{/each}}
-        <div class="panel-heading">
-            <a>SẢN PHẨM SẮP HẾT THỜI GIAN ĐẤU</a>
-        </div>
-        {{#each poorTimeTop }}
-            <div class="col-sm-6 col-md-4">
-                <div class="thumbnail">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="contain-avatar-with-timer">
-                                <img class="anh-san-pham" src="{{img_path}}" alt="...">
-                                <div class="thoi-gian-chay-nguoc">
-                                    <!-- <img class="ha-dong-ho-cat" src="../public/images/hourglass.png"> -->
-                                    <p id="{{pro_id}}" class="chuoi-thoi-gian">{{total_time}}</p>
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="col-md-6" style="padding: 0">
-                            <div class="caption">
-                                <div class="ten-san-pham">
-                                    <a>{{name}}</a>
-                                </div>
-                                <p class="tien">{{number_format highest_price}}</p>
-                                <p class="gia-tien">Giá mua ngay: {{number_format purchase_price}}</p>
-
-                                <a href="/produces/detail/{{pro_id}}" class="btn btn-primary" role="button">
-                                    <span class="glyphicon glyphicon-fire " aria-hidden="true"></span>
-                                    Đấu giá
-                                </a>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        {{/each}}
+    <div class="panel-heading">
+        <a>SẢN PHẨM ĐƯỢC NHIỀU NGƯỜI ĐẤU NHẤT</a>
     </div>
+    {{#each numBidTop }}
+        <div class="col-sm-6 col-md-4">
+            <div class="thumbnail">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="contain-avatar-with-timer">
+                            <img class="anh-san-pham" src="{{img_path}}" alt="...">
+                            <div class="thoi-gian-chay-nguoc">
+                                <!-- <img class="ha-dong-ho-cat" src="../public/images/hourglass.png"> -->
+                                <p id="{{pro_id}}" class="chuoi-thoi-gian">{{total_time}}</p>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-md-6" style="padding: 0">
+                        <div class="caption">
+                            <div class="ten-san-pham">
+                                <a>{{name}}</a>
+                            </div>
+                            <p class="tien">{{number_format highest_price}}</p>
+                            <p class="gia-tien">Giá mua ngay: {{number_format purchase_price}}</p>
+                            <a href="/produces/detail/{{pro_id}}" class="btn btn-primary " role="button">
+                                <span class="glyphicon glyphicon-fire " aria-hidden="true"></span>
+                                Đấu giá
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {{/each}}
+    <div class="panel-heading">
+        <a>SẢN PHẨM ĐANG GIỮ GIÁ CAO NHẤT</a>
+    </div>
+    {{#each priceTop }}
+        <div class="col-sm-6 col-md-4">
+            <div class="thumbnail">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="contain-avatar-with-timer">
+                            <img class="anh-san-pham" src="{{img_path}}" alt="...">
+                            <div class="thoi-gian-chay-nguoc">
+                                <!-- <img class="ha-dong-ho-cat" src="../public/images/hourglass.png"> -->
+                                <p id="{{pro_id}}" class="chuoi-thoi-gian">{{total_time}}</p>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-md-6" style="padding: 0">
+                        <div class="caption">
+                            <div class="ten-san-pham">
+                                <a>{{name}}</a>
+                            </div>
+                            <p class="tien">{{number_format highest_price}}</p>
+                            <p class="gia-tien">Giá mua ngay: {{number_format purchase_price}}</p>
+                            <a href="/produces/detail/{{pro_id}}" class="btn btn-primary" role="button">
+                                <span class="glyphicon glyphicon-fire" aria-hidden="true"></span>
+                                Đấu giá
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {{/each}}
+    <div class="panel-heading">
+        <a>SẢN PHẨM SẮP HẾT THỜI GIAN ĐẤU</a>
+    </div>
+    {{#each poorTimeTop }}
+        <div class="col-sm-6 col-md-4">
+            <div class="thumbnail">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="contain-avatar-with-timer">
+                            <img class="anh-san-pham" src="{{img_path}}" alt="...">
+                            <div class="thoi-gian-chay-nguoc">
+                                <!-- <img class="ha-dong-ho-cat" src="../public/images/hourglass.png"> -->
+                                <p id="{{pro_id}}" class="chuoi-thoi-gian">{{total_time}}</p>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-md-6" style="padding: 0">
+                        <div class="caption">
+                            <div class="ten-san-pham">
+                                <a>{{name}}</a>
+                            </div>
+                            <p class="tien">{{number_format highest_price}}</p>
+                            <p class="gia-tien">Giá mua ngay: {{number_format purchase_price}}</p>
+
+                            <a href="/produces/detail/{{pro_id}}" class="btn btn-primary" role="button">
+                                <span class="glyphicon glyphicon-fire " aria-hidden="true"></span>
+                                Đấu giá
+                            </a>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {{/each}}
+</div>
 

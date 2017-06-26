@@ -6,10 +6,15 @@
     <span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>
     <a href="#" id="a_a">{{cateName}}</a>
 {{/section}}
-{{#section 'js'}}
-    <script type="text/javascript" src="/assests/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="/assests/js/produceItem.js"></script>
+{{#section 'select'}}
+    <select name="cbb_sx" id="cbb_sx" >
+        <option value="0">Sắp xếp</option>
+        <option value="1">TG Kết thúc giảm dần</option>
+        <option value="2">Giá tăng dần</option>
+    </select>
 {{/section}}
+
+
 <!--Form dùng để gửi id sản phẩm-->
 <form method="post" action="" id="frmProduceDetail">
     <input id="txtProduceDetail" type="hidden" name="txtProduceDetail" />
@@ -85,4 +90,20 @@
     </nav>
 
 </div>
+
+{{#section 'js'}}
+    <script type="text/javascript" src="/assests/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/assests/js/produceItem.js"></script>
+    <script>
+        $('#cbb_sx').change(function () {
+            if($(this).val()=='1'){
+
+                {{produces}}.forEach(function (item) {
+                    console.log('dfdfdfdf')
+                });
+                //window.location.reload(true);
+            }
+        })
+    </script>
+{{/section}}
 

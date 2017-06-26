@@ -162,5 +162,11 @@ exports.loadTopNDesc = function(assert, n) {
 
         d.resolve(db.load(sql));
 
+<<<<<<< HEAD
+    return d.promise;
+}
+
+=======
         return d.promise;
     }
+>>>>>>> origin/master

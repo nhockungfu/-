@@ -1,13 +1,10 @@
 {{#section 'css'}}
     <link rel="stylesheet" type="text/css" href="/assests/css/produceDetail.css">
+    <script type="text/javascript" src="/assests/js/chitiet.js"></script>
 {{/section}}
 
 {{#section 'js'}}
-    <script language="JavaScript">
-        $('.thumbnail.img-pick img').click(function () {
-            $(".anh-san-pham").attr('src', $(this).attr('src'));
-        })
-    </script>
+    <script type="text/javascript" src="/assests/js/chitiet.js"></script>
 {{/section}}
 
 <div class="row">
@@ -32,14 +29,18 @@
             {{#each product}}
                 <div class="col-sm-6 col-md-3">
                     <p class="title-id">{{pro_name}}</p>
-                    <p class="seller" src="#">Người bán: {{seller_email}} <a class="title-seller">{{seller_point}}</a>
-                    </p>
+                    <p id="" src="#" style="display: inline-block">Người bán:</p>
+                    <p id="seller_email" src="#" style="display: inline-block">{{seller_email}}</p>
+                    <a class="title-seller" style="display: inline-block">{{seller_point}}</a>
+
                     <p class="clear-margin">Thời điểm đăng: {{start_time}}</p>
                     <p class="clear-margin">Thời điểm kết thúc: {{end_time}}</p>
                     <p class="clear-margin">Giá hiện tại: {{highest_price}}</p>
                     <p class="clear-margin">Giá mua ngay: {{purchase_price}}</p>
-                    <p class="clear-margin">Người giữ giá: {{bidder_email}} <a class="title-seller">{{bidder_point}}</a>
-                    </p>
+                    <p class="clear-margin" style="display: inline-block">Người giữ giá:</p>
+                    <p id="bidder_email" style="display: inline-block">{{bidder_email}}</p>
+                    <a class="title-seller" style="display: inline-block">{{bidder_point}}</a>
+
                     <p id="1" class="chuoi-thoi-gian">{{total_time}}</p>
                     <p class="money-of-rival clear-margin"></p>
                     <form>
@@ -72,9 +73,7 @@
                     <tr class="cus-row-table">
                         <td style="width:120px;">100.000.000.000đ</td>
                         <td style="width:100px;">07:05:00</td>
-                        <td style="width:217px; max-width:217px;"><a href="#">thanhthientai@gmail.com
-                            sdfsdfsdfsdfsfsdfdsfsdfsdfsdfsdfsdfthanhthientai@gmail.com
-                            sdfsdfsdfsdfsfsdfdsfsdfsdfsdfsdfsdf</a></td>
+                        <td style="width:217px; max-width:217px;"><a href="#">thanhthientai@gmail.com</a></td>
                     </tr>
                     <tr class="cus-row-table">
                         <td>60.000đ</td>
