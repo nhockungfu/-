@@ -1,20 +1,22 @@
 <div class="container-fluid" style="">
     <div class="row">
         <nav class="navbar navbar-default" >
-            <div class="container-fluid" id="my-nav-header" style="width: 100%;">
+            <div id="my-nav-header" style="width: 100%;">
                 <a href="index.html">
                     <img id="logo-header" src="/images/logo.png">
                     <p class="slogan-header">
                         <i>Nơi bạn có thể mua hàng với giá rẻ nhất</i>
                     </p>
                 </a>
-                <form class="navbar-form navbar-center" style="display: inline-table;">
-                    <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Search" style="width: 380px; height: 35px; border-radius: unset;">
+                <form class="form-inline"
+                      style="display: inline-table;">
+                    <div class="form-group ">
+                        <input type="text" id="search-box" class="form-control" placeholder="Search">
+                        <button type="submit" id="search-button" class="btn btn-default">
+                            <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                        </button>
                     </div>
-                    <button type="submit" class="btn btn-default" style="height: 35px; border-radius: unset;">
-                        <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-                    </button>
+
                 </form>
                 <ul class="nav navbar-nav navbar-right" id="my-menu-in-header">
                     <li>
