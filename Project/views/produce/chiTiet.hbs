@@ -29,41 +29,35 @@
                     </div>
                 </div>
             </div>
-            <div class="col-sm-6 col-md-3">
-                <div class="">
-                    <p class="title-id">Iphone 6 16gb màu vàng bản quốc tế</p>
-                </div>
-                <div class="contain-seller">
-                    <p class="title-seller">Người bán:</p>
-                    <p class="seller" src="#">***p@gmail.com <a class="title-seller">(7.5/10)</a></p>
-
-                </div>
-                <p class="clear-margin">Thời điểm đăng: 22/04/2017 lúc 13:55</p>
-                <p class="clear-margin">Thời điểm kết thúc: 22/04/2017 lúc 13:55</p>
-                <p class="clear-margin">Giá hiện tại: 50.000đ</p>
-                <p class="clear-margin">Giá mua ngay: --</p>
-                <p class="clear-margin">Người giữ giá: ***s@gmail.com <a class="title-seller">(7.5/10)</a></p>
-                <div class="contain-timer">
-                    <img class="anh-dong-ho" src="../../public/images/hourglass.png">
-                    <p id="1" class="chuoi-thoi-gian">08:30:50</p>
-                </div>
-                <p class="money-of-rival clear-margin"></p>
-                <p class="name-of-rival clear-margin"><a href="">phucred@gmail.com</a></p>
-                <form>
-                    <div>
-                        <label class="sr-only" for="exampleInputAmount">Amount (in dollars)</label>
-                        <div class="input-group cus-input-money-text">
-                            <input type="text" class="form-control" id="exampleInputAmount"
-                                   placeholder="Nhập giá mua">
-                            <div class="input-group-addon">đồng</div>
+            {{#each product}}
+                <div class="col-sm-6 col-md-3">
+                    <p class="title-id">{{pro_name}}</p>
+                    <p class="seller" src="#">Người bán: {{seller_email}} <a class="title-seller">{{seller_point}}</a>
+                    </p>
+                    <p class="clear-margin">Thời điểm đăng: {{start_time}}</p>
+                    <p class="clear-margin">Thời điểm kết thúc: {{end_time}}</p>
+                    <p class="clear-margin">Giá hiện tại: {{highest_price}}</p>
+                    <p class="clear-margin">Giá mua ngay: {{purchase_price}}</p>
+                    <p class="clear-margin">Người giữ giá: {{bidder_email}} <a class="title-seller">{{bidder_point}}</a>
+                    </p>
+                    <p id="1" class="chuoi-thoi-gian">{{total_time}}</p>
+                    <p class="money-of-rival clear-margin"></p>
+                    <form>
+                        <div>
+                            <label class="sr-only" for="exampleInputAmount">Amount (in dollars)</label>
+                            <div class="input-group cus-input-money-text">
+                                <input type="text" class="form-control" id="exampleInputAmount"
+                                       placeholder="Nhập giá mua">
+                                <div class="input-group-addon">đồng</div>
+                            </div>
                         </div>
-                    </div>
 
-                    <button type="submit" class="btn btn-primary cus-button-bid">
-                        <span class="glyphicon glyphicon-fire" aria-hidden="true"></span> Đặt giá
-                    </button>
-                </form>
-            </div>
+                        <button type="submit" class="btn btn-primary cus-button-bid">
+                            <span class="glyphicon glyphicon-fire" aria-hidden="true"></span> Đặt giá
+                        </button>
+                    </form>
+                </div>
+            {{/each}}
             <div class="col-sm-6 col-md-5">
                 <table class="table table-bordered" style="margin-bottom: 0;">
                     <thead>
@@ -78,7 +72,9 @@
                     <tr class="cus-row-table">
                         <td style="width:120px;">100.000.000.000đ</td>
                         <td style="width:100px;">07:05:00</td>
-                        <td style="width:217px; max-width:217px;"><a href="#">thanhthientai@gmail.com sdfsdfsdfsdfsfsdfdsfsdfsdfsdfsdfsdfthanhthientai@gmail.com sdfsdfsdfsdfsfsdfdsfsdfsdfsdfsdfsdf</a></td>
+                        <td style="width:217px; max-width:217px;"><a href="#">thanhthientai@gmail.com
+                            sdfsdfsdfsdfsfsdfdsfsdfsdfsdfsdfsdfthanhthientai@gmail.com
+                            sdfsdfsdfsdfsfsdfdsfsdfsdfsdfsdfsdf</a></td>
                     </tr>
                     <tr class="cus-row-table">
                         <td>60.000đ</td>

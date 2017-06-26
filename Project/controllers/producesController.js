@@ -28,7 +28,30 @@ r.get('/', function(req, res) {
 });
 
 r.get('/detail/:id', function(req, res) {
-    res.render('produce/chiTiet', {});
+    var proId = req.params.id;
+
+    if (!proId) {
+        res.redirect('Lỗi không có dữ liệu');
+    }
+
+    producesRepo.getProInfoById(proId)
+        .then(function(rows) {
+
+            console.log(rows);
+            console.log(rows[0].pro_id);
+
+            var vm = {
+                layoutModels: res.locals.layoutModels,
+                product: rows
+            };
+
+            res.render('produce/chiTiet', vm);
+
+        }).fail(function(err) {
+        console.log(err);
+        res.end('fail');
+    });
+
 });
 //----------------------------phan post bai dang----------------------------
 r.get('/add',function (req,res) {
