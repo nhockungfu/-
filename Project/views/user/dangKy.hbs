@@ -46,6 +46,13 @@
                         </div>
                     </div>
                     <div class="form-group">
+                        <div class="col-sm-12">
+                            {{#if showError }}
+                                <span id="err" style="color: #ff0000;">Email không hợp lệ, vui lòng kiểm tra lại...</span>
+                            {{/if}}
+                        </div>
+                    </div>
+                    <div class="form-group">
                         <div class="col-ms-12">
                             <button id="btn_signUp" type="submit" class="btn btn-success btn_submit" style="width: 302px;margin-left: 13px;">Đăng ký ngay</button>
                         </div>

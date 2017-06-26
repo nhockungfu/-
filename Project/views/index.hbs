@@ -50,21 +50,18 @@
         <img class="poster-quang-cao-01" src="http://quangcaohieuqua.net/wp-content/uploads/2014/12/tvcn-ads.png" alt="">
     </div>
 {{/section}}
-
+{{#section 'css'}}
+    <link rel="stylesheet" type="text/css" href="/assests/css/index.css">
+{{/section}}
 {{#section 'js'}}
     <script type="text/javascript" src="/assests/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="/assests/js/produceItem.js"></script>
 {{/section}}
-
-{{#section 'css'}}
-    <link rel="stylesheet" type="text/css" href="/assests/css/index.css">
-{{/section}}
-
     <!--Form dùng để gửi id sản phẩm-->
-    <form method="post" action="/produces/detail" id="frmProduceDetail">
-        <input type="hidden" name="proID" id="txtProduceDetail">
-    </form>
-    <!---->
+<form method="post" action="" id="frmProduceDetail">
+    <input id="txtProduceDetail" type="hidden" name="txtProduceDetail" />
+</form>
+<!---->
     <div class="row">
 
         <div class="panel-heading">
@@ -91,12 +88,10 @@
                                 </div>
                                 <p class="tien">{{number_format highest_price}}</p>
                                 <p class="gia-tien">Giá mua ngay: {{number_format purchase_price}}</p>
-                                <p class="submit-dat-gia">
-                                    <a href="#" class="btn btn-primary" role="button" data-id = "{{pro_id}}">
-                                        <span class="glyphicon glyphicon-fire" aria-hidden="true"></span>
+                                    <a href="/produces/detail/{{pro_id}}" class="btn btn-primary " role="button">
+                                        <span class="glyphicon glyphicon-fire " aria-hidden="true"></span>
                                         Đấu giá
                                     </a>
-                                </p>
                             </div>
                         </div>
                     </div>
@@ -127,12 +122,10 @@
                                 </div>
                                 <p class="tien">{{number_format highest_price}}</p>
                                 <p class="gia-tien">Giá mua ngay: {{number_format purchase_price}}</p>
-                                <p class="submit-dat-gia">
-                                    <a href="#" class="btn btn-primary" role="button">
+                                    <a href="/produces/detail/{{pro_id}}" class="btn btn-primary" role="button">
                                         <span class="glyphicon glyphicon-fire" aria-hidden="true"></span>
                                         Đấu giá
                                     </a>
-                                </p>
                             </div>
                         </div>
                     </div>
@@ -163,12 +156,12 @@
                                 </div>
                                 <p class="tien">{{number_format highest_price}}</p>
                                 <p class="gia-tien">Giá mua ngay: {{number_format purchase_price}}</p>
-                                <p class="submit-dat-gia">
-                                    <a href="#" class="btn btn-primary" role="button">
-                                        <span class="glyphicon glyphicon-fire" aria-hidden="true"></span>
-                                        Đấu giá
-                                    </a>
-                                </p>
+
+                                <a href="/produces/detail/{{pro_id}}" class="btn btn-primary" role="button">
+                                    <span class="glyphicon glyphicon-fire " aria-hidden="true"></span>
+                                    Đấu giá
+                                </a>
+
                             </div>
                         </div>
                     </div>

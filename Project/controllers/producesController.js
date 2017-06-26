@@ -17,7 +17,7 @@ r.get('/', function(req, res) {
     producesRepo.loadAll()
         .then(function(rows) {
             var vm = {
-
+                layoutModels: res.locals.layoutModels,
                 produces: rows
             };
             res.render('index', vm);
@@ -27,22 +27,12 @@ r.get('/', function(req, res) {
     });
 });
 
-r.post('/detail', function(req, res) {
-    var vm = {
-        id: req.body.proID
-    }
-    res.render('produceDetail', vm);
+r.get('/detail/:id', function(req, res) {
+    res.render('produce/chiTiet', {});
 });
 //----------------------------phan post bai dang----------------------------
 r.get('/add',function (req,res) {
-    categoryRepo.loadAll().then(function (rows) {
-        res.render('produce/dangBai',{
-            layout:'main',
-            categories:rows});
-    }).fail(function(err) {
-        console.log(err);
-        res.end('fail');
-    });
+    res.render('produce/dangBai',{categories:res.locals.layoutModels});
 });
 
 var proId = randomstring.generate();

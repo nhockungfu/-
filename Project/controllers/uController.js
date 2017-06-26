@@ -8,7 +8,7 @@ var express = require('express'),
 var r = express.Router();
 
 r.get('/dangky',function (req,res) {
-    res.render('user/dangKy',{layout:'main',});
+    res.render('user/dangKy',{layout:'main',layoutModels: res.locals.layoutModels,showError:false});
 });
 
 r.post('/dangky',function (req,res) {
@@ -19,14 +19,24 @@ r.post('/dangky',function (req,res) {
         pass: pass,
         point:0
     }
+    var _res=res;
+    var layoutModels= res.locals.layoutModels;
     emailExistence.check(email, function(err,res){
         if(res){
             userRepo.loadDetail2(email).then(function (rows) {
                 if(rows != null){
                     console.log('co trong csdl roi')
+                    _res.render('user/dangKy',
+                        {layoutModels: layoutModels,
+                            layout:'main',
+                            showError:true});
                 }else{
                     console.log('chua co trong csdl')
                     userRepo.insert(user).then(function (insertId) {
+                        _res.render('user/dangKyThanhCong',
+                                {layoutModels: layoutModels,
+                                email:email,
+                                layout:false});
                         console.log('them thanh cong ' + insertId);
                     }).fail(function(err) {
                         console.log(err);;
@@ -37,6 +47,10 @@ r.post('/dangky',function (req,res) {
             console.log('co thuc');
         }else{
             console.log('Khong co thuc');
+            _res.render('user/dangKy',
+                {layoutModels: layoutModels,
+                    layout:'main',
+                    showError:true});
         }
     });
 });
@@ -49,7 +63,6 @@ r.get('/dangnhap',function (req,res) {
             layout:'main',
             layoutModels: res.locals.layoutModels,
             showError: false,
-            errorMsg: ''
         });
     }
 });
@@ -64,12 +77,12 @@ r.post('/dangnhap',function (req,res) {
     };
 
     userRepo.checkAccount(entity).then(function (user) {
-        if (user === null) {
+        if (user == null) {
             console.log('dang nhap that bai')
-            res.render('account/login', {
+            res.render('user/dangNhap2', {
                 layoutModels: res.locals.layoutModels,
-                showError: true,
-                errorMsg: 'Thông tin đăng nhập không đúng.'
+                layout:'main',
+                showError: true
             });
         } else {
             console.log('dang nhap thanh cong')
@@ -94,4 +107,7 @@ r.post('/dangxuat', restrict, function(req, res) {
     req.session.cookie.expires = new Date(Date.now() - 1000);
     res.redirect(req.headers.referer);
 });
+r.get('/a',function (req,res) {
+    res.render('user/dangKyThanhCong',{layout:false})
+})
 module.exports = r;

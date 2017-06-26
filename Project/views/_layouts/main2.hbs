@@ -14,69 +14,70 @@
     {{{_sections.css}}}
 </head>
 <body>
-{{> navbar }}
-<form id="frmLogout" method="post" action="/home/dangxuat"></form>
-<div class="row">
-    {{{_sections.quangCao}}}
-</div>
-<div class="row">
-    <div class="col-md-3">
-        <div class="panel panel-default">
-            <div class="list-group">
-                <div class="list-group-item active">
-                    Danh mục
+    {{> navbar }}
+    <form id="frmLogout" method="post" action="/home/dangxuat"></form>
+    <div class="row">
+        {{{_sections.quangCao}}}
+    </div>
+    <div class="row">
+        <div class="col-md-3">
+            <div class="panel panel-default">
+                <div class="list-group">
+                    <div class="list-group-item active">
+                        Danh mục
+                    </div>
                 </div>
+                {{> categories }}
             </div>
-            {{> categories }}
+        </div>
+        <div class="col-md-9">
+            <br>
+            <p>
+                <a href="/home"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Trang chủ</a>
+                {{{_sections.a}}}
+            </p>
+            {{{body}}}
         </div>
     </div>
-    <div class="col-md-9">
-        <p>
-            <a href="index.html"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Trang chủ</a>
-            {{{_sections.a}}}
-        </p>
-        {{{body}}}
-    </div>
-</div>
-<footer class="footer">
-    <div class="footer-content"></div>
-    <div class="contain-image-contact">
-        <a href="#">
-            <img class="img-contact" src="/images/img-contact/img-facebook.png">
-        </a>
-        <a href="#">
-            <img class="img-contact" src="/images/img-contact/img-twitter.png">
-        </a>
-        <a href="#">
-            <img class="img-contact" src="/images/img-contact/img-google-plus.png">
-        </a>
-    </div>
-    <p style="text-align: center; color: #E7EC9A; margin: 0px">1412396-1412401-1412612</p>
-    <ul>
-        <a href="#">
-            <li class="footer-list-item">Trang chủ</li>
-        </a>
-        <a href="#">
-            <li class="footer-list-item">Thông tin bản quyền</li>
-        </a>
-        <a href="#">
-            <li class="footer-list-item">Công ty</li>
-        </a>
-        <a href="#">
-            <li class="footer-list-item">Liên hệ</li>
-        </a>
-        <a href="#">
-            <li class="footer-list-item">Đăng quảng cáo</li>
-        </a>
-    </ul>
-</footer>
-<script type="text/javascript" src="/assests/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="/assests/jquery-3.2.0.min.js"></script>
-<script type="text/javascript">
-    $('#logoutLink').on('click', function () {
-        $('#frmLogout').submit();
-    });
-</script>
-{{{_sections.js}}}
+    <footer class="footer">
+        <div class="footer-content"></div>
+        <div class="contain-image-contact">
+            <a href="#">
+                <img class="img-contact" src="/images/img-contact/img-facebook.png">
+            </a>
+            <a href="#">
+                <img class="img-contact" src="/images/img-contact/img-twitter.png">
+            </a>
+            <a href="#">
+                <img class="img-contact" src="/images/img-contact/img-google-plus.png">
+            </a>
+        </div>
+        <p style="text-align: center; color: #E7EC9A; margin: 0px">1412396-1412401-1412612</p>
+        <ul>
+            <a href="#">
+                <li class="footer-list-item">Trang chủ</li>
+            </a>
+            <a href="#">
+                <li class="footer-list-item">Thông tin bản quyền</li>
+            </a>
+            <a href="#">
+                <li class="footer-list-item">Công ty</li>
+            </a>
+            <a href="#">
+                <li class="footer-list-item">Liên hệ</li>
+            </a>
+            <a href="#">
+                <li class="footer-list-item">Đăng quảng cáo</li>
+            </a>
+        </ul>
+    </footer>
+    <script type="text/javascript" src="/assests/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/assests/jquery-3.2.0.min.js"></script>
+    <script type="text/javascript">
+        $('#logoutLink').on('click', function () {
+            $('#frmLogout').submit();
+        });
+    </script>
+    {{{_sections.js}}}
 </body>
 </html>
