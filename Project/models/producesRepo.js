@@ -2,10 +2,31 @@ var db = require('../fn/db'),
     mustache = require('mustache'),
     q = require('q');
 
-exports.loadAll = function() {
+exports.loadAllByCate = function(cate_id,limit, offset) {
     var d = q.defer();
-    var sql = 'select * from produces, produce_imgs where produces.pro_id = produce_imgs.pro_id';
-    d.resolve(db.load(sql)) ;
+    var promises = [];
+
+    var view = {
+        cate_id: cate_id,
+        limit: limit,
+        offset: offset
+    };
+    var sqlCount = mustache.render('select  count(*) as total '+
+        'from produces, produce_imgs ' +
+        'where produces.pro_id = produce_imgs.pro_id and produces.cate_id={{cate_id}}',view)
+    promises.push(db.load(sqlCount));
+    var sql = mustache.render('select *,(TIMESTAMPDIFF(SECOND,NOW(), produces.end_time)) AS total_time ' +
+        'from produces, produce_imgs ' +
+        'where produces.cate_id={{cate_id}} and produces.pro_id = produce_imgs.pro_id limit {{limit}} offset {{offset}}',view);
+
+    promises.push(db.load(sql));
+    q.all(promises).spread(function(totalRow, rows) {
+        var data = {
+            total: totalRow[0].total,
+            list: rows
+        }
+        d.resolve(data);
+    });
     return d.promise;
 };
 
@@ -20,11 +41,11 @@ exports.loadTopNDesc = function(assert, n) {
 
     var sql;
     if(assert == 'num_bid'){
-        sql = mustache.render('select *, SEC_TO_TIME(TIMESTAMPDIFF(SECOND,NOW(), p.end_time)) AS total_time from produces p, produce_imgs pi where p.pro_id = pi.pro_id and TIMESTAMPDIFF(SECOND,NOW(), p.end_time) > 0 GROUP BY p.pro_id ORDER BY {{As}} DESC LIMIT {{N}}', ref);
+        sql = mustache.render('select *, (TIMESTAMPDIFF(SECOND,NOW(), p.end_time)) AS total_time from produces p, produce_imgs pi where p.pro_id = pi.pro_id and TIMESTAMPDIFF(SECOND,NOW(), p.end_time) > 0 GROUP BY p.pro_id ORDER BY {{As}} DESC LIMIT {{N}}', ref);
     }
     else{
         if(assert == 'highest_price'){
-            sql = mustache.render('select *, SEC_TO_TIME(TIMESTAMPDIFF(SECOND,NOW(), p.end_time)) AS total_time from produces p, produce_imgs pi where p.pro_id = pi.pro_id and TIMESTAMPDIFF(SECOND,NOW(), p.end_time) > 0 GROUP BY p.pro_id ORDER BY {{As}} DESC LIMIT {{N}}', ref);
+            sql = mustache.render('select *, (TIMESTAMPDIFF(SECOND,NOW(), p.end_time)) AS total_time from produces p, produce_imgs pi where p.pro_id = pi.pro_id and TIMESTAMPDIFF(SECOND,NOW(), p.end_time) > 0 GROUP BY p.pro_id ORDER BY {{As}} DESC LIMIT {{N}}', ref);
         }
         else{
             if(assert == 'poor_time'){
