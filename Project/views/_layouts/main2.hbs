@@ -15,7 +15,7 @@
 </head>
 <body>
     {{> navbar }}
-    <form id="frmLogout" method="post" action="/home/dangxuat"></form>
+    <form id="frmLogout" method="post" action="/user/dangxuat"></form>
     <div class="row">
         {{{_sections.quangCao}}}
     </div>
@@ -32,10 +32,22 @@
         </div>
         <div class="col-md-9">
             <br>
-            <p>
-                <a href="/home"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Trang chủ</a>
-                {{{_sections.a}}}
-            </p>
+            <div class="row">
+                <div class="col-md-9">
+                    <p>
+                        <a href="/home"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Trang chủ</a>
+                        {{{_sections.a}}}
+                    </p>
+                </div>
+                <div class="col-md-3" style="text-align: right;">
+                    <select name="cbb_select" id="cbb_select" >
+                        <option value="0">Sắp xếp</option>
+                        <option value="1">TG Kết thúc giảm dần</option>
+                        <option value="2">Giá tăng dần</option>
+                    </select>
+                </div>
+            </div>
+
             {{{body}}}
         </div>
     </div>
