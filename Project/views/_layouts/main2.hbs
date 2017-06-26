@@ -14,76 +14,114 @@
     {{{_sections.css}}}
 </head>
 <body>
-    <div style="max-width: 1440px; margin: auto" class="container-fluid">
-        {{> navbar }}
-        <form id="frmLogout" method="post" action="/home/dangxuat"></form>
-        <div class="row">
-            {{{_sections.quangCao}}}
-        </div>
-        <div class="row">
-            <div class="col-md-3">
-                <div class="panel panel-default panel-categories">
-                    <div class="list-group">
-                        <div class="list-group-item active">
+<div style="max-width: 1440px; margin: auto" class="container-fluid">
+    {{> navbar }}
+    <form id="frmLogout" method="post" action="/home/dangxuat"></form>
+    <div class="row">
+        {{{_sections.quangCao}}}
+    </div>
+    <div class="row">
+        <div class="col-md-3">
+            <div class="panel panel-default panel-categories">
+                <div class="list-group">
+                    <div class="list-group-item active">
                             <span class="glyphicon glyphicon-list" aria-hidden="true"
                                   style="font-size: 28px; margin: 0"></span>
-                            Danh mục
+                        Danh mục
+                    </div>
+                    {{> navbar }}
+                    <form id="frmLogout" method="post" action="/user/dangxuat"></form>
+                    <div class="row">
+                        {{{_sections.quangCao}}}
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="panel panel-default">
+                                <div class="list-group">
+                                    <div class="list-group-item active">
+                                        Danh mục
+                                    </div>
+                                    {{> categories }}
+                                </div>
+                            </div>
+                            <div class="col-md-9 my-body">
+                                <br>
+                                <p>
+                                    <a href="/home"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>
+                                        Trang chủ</a>
+                                    {{{_sections.a}}}
+                                </p>
+                                {{{body}}}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <footer class="footer">
+                                <div class="footer-content"></div>
+                                <div class="contain-image-contact">
+                                    <a href="#">
+                                        <img class="img-contact" src="/images/img-contact/img-facebook.png">
+                                    </a>
+                                    <a href="#">
+                                        <img class="img-contact" src="/images/img-contact/img-twitter.png">
+                                    </a>
+                                    <a href="#">
+                                        <img class="img-contact" src="/images/img-contact/img-google-plus.png">
+                                    </a>
+                                </div>
+                                <p style="text-align: center; color: #E7EC9A; margin: 0px">1412396-1412401-1412612</p>
+                                <ul>
+                                    <a href="#">
+                                        <li class="footer-list-item">Trang chủ</li>
+                                    </a>
+                                    <a href="#">
+                                        <li class="footer-list-item">Thông tin bản quyền</li>
+                                    </a>
+                                    <a href="#">
+                                        <li class="footer-list-item">Công ty</li>
+                                    </a>
+                                    <a href="#">
+                                        <li class="footer-list-item">Liên hệ</li>
+                                    </a>
+                                    <a href="#">
+                                        <li class="footer-list-item">Đăng quảng cáo</li>
+                                    </a>
+                                </ul>
+                            </footer>
+                            <div class="col-md-9">
+                                <br>
+                                <div class="row">
+                                    <div class="col-md-9">
+                                        <p>
+                                            <a href="/home"><span class="glyphicon glyphicon-home"
+                                                                  aria-hidden="true"></span> Trang chủ</a>
+                                            {{{_sections.a}}}
+                                        </p>
+                                    </div>
+                                    <div class="col-md-3" style="text-align: right;">
+                                        <select name="cbb_select" id="cbb_select">
+                                            <option value="0">Sắp xếp</option>
+                                            <option value="1">TG Kết thúc giảm dần</option>
+                                            <option value="2">Giá tăng dần</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                {{{body}}}
+                            </div>
                         </div>
                     </div>
-                    {{> categories }}
                 </div>
             </div>
-            <div class="col-md-9 my-body">
-                <br>
-                <p>
-                    <a href="/home"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Trang chủ</a>
-                    {{{_sections.a}}}
-                </p>
-                {{{body}}}
-            </div>
-        </div>
-        <div class="row">
-            <footer class="footer">
-                <div class="footer-content"></div>
-                <div class="contain-image-contact">
-                    <a href="#">
-                        <img class="img-contact" src="/images/img-contact/img-facebook.png">
-                    </a>
-                    <a href="#">
-                        <img class="img-contact" src="/images/img-contact/img-twitter.png">
-                    </a>
-                    <a href="#">
-                        <img class="img-contact" src="/images/img-contact/img-google-plus.png">
-                    </a>
-                </div>
-                <p style="text-align: center; color: #E7EC9A; margin: 0px">1412396-1412401-1412612</p>
-                <ul>
-                    <a href="#">
-                        <li class="footer-list-item">Trang chủ</li>
-                    </a>
-                    <a href="#">
-                        <li class="footer-list-item">Thông tin bản quyền</li>
-                    </a>
-                    <a href="#">
-                        <li class="footer-list-item">Công ty</li>
-                    </a>
-                    <a href="#">
-                        <li class="footer-list-item">Liên hệ</li>
-                    </a>
-                    <a href="#">
-                        <li class="footer-list-item">Đăng quảng cáo</li>
-                    </a>
-                </ul>
-            </footer>
         </div>
     </div>
-    <script type="text/javascript" src="/assests/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="/assests/jquery-3.2.0.min.js"></script>
-    <script type="text/javascript">
-        $('#logoutLink').on('click', function () {
-            $('#frmLogout').submit();
-        });
-    </script>
-    {{{_sections.js}}}
+</div>
+<script type="text/javascript" src="/assests/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/assests/jquery-3.2.0.min.js"></script>
+<script type="text/javascript">
+    $('#logoutLink').on('click', function () {
+        $('#frmLogout').submit();
+    });
+</script>
+{{{_sections.js}}}
 </body>
 </html>

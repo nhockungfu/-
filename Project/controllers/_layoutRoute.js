@@ -12,6 +12,7 @@ module.exports = function(req, res, next) {
         res.locals.layoutModels = {
             categories: catList,
             isLogged: req.session.isLogged,
+            cateName:req.session.cateName,
             curUser: req.session.user,
         };
         next();
