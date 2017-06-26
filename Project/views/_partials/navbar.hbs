@@ -9,19 +9,13 @@
                     </p>
                 </a>
                 <form class="form-inline"
-                      style="display: inline-table;">
+                      style="display: inline-table;" action="/category/timkiem" method="post" >
                     <div class="form-group ">
-                        <input type="text" id="search-box" class="form-control" placeholder="Search">
+                        <input name="txt_timKiem" id="txt_timKiem" type="text" class="form-control" placeholder="Search" style="width: 380px; height: 35px; border-radius: unset;">
                         <button type="submit" id="search-button" class="btn btn-default">
                             <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
                         </button>
                     </div>
-                </form>
-                <form action="/category/timkiem" method="post" class="navbar-form navbar-center" style="display: inline-table;">
-                    <div class="form-group">
-                        <input name="txt_timKiem" id="txt_timKiem" type="text" class="form-control" placeholder="Search" style="width: 380px; height: 35px; border-radius: unset;">
-                    </div>
-
                 </form>
                 <ul class="nav navbar-nav navbar-right" id="my-menu-in-header">
                     <li>
