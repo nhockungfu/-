@@ -153,11 +153,15 @@ exports.loadTopNDesc = function(assert, n) {
             'bidder.user_id as bidder_id,'+
             'bidder.email as bidder_email,'+
             'bidder.point as bidder_point,'+
+            'pi.img_path,'+
+            'p.describe_path,'+
             'TIMESTAMPDIFF(SECOND,NOW(), p.end_time) AS total_time '+
             'from produces p, produce_imgs pi, user seller, user bidder '+
-            'where p.pro_id = pi.pro_id and p.pro_id = {{pro_id}} and p.seller_id = seller.user_id and p.user_highest_price = bidder.user_id '+
-            'GROUP BY p.pro_id', entity);
+            'where p.pro_id = pi.pro_id and p.pro_id = {{pro_id}} and p.seller_id = seller.user_id and p.user_highest_price = bidder.user_id '
+            , entity);
 
+
+        console.log('Câu truy vấn (place: producesRepo.js):');
         console.log(sql);
 
         d.resolve(db.load(sql));

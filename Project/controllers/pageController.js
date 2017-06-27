@@ -12,6 +12,8 @@ r.get('/',function (req,res) {
         producesRepo.loadTopNDesc('highest_price', 3),
         producesRepo.loadTopNDesc('poor_time', 3)
     ]).spread(function (topDesc_numBids, topDesc_price, topDesc_poorTime) {
+
+        console.log(topDesc_numBids);
         var now = new Date();
         dateFormat(now, "HH:MM:ss");
             var vm = {

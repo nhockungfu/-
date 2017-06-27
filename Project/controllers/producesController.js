@@ -29,16 +29,17 @@ r.get('/', function (req, res) {
 
 r.get('/detail/:id', function (req, res) {
     var proId = req.params.id;
-
     if (!proId) {
         res.redirect('Lỗi không có dữ liệu');
     }
-
     producesRepo.getProInfoById(proId)
         .then(function (rows) {
+            var describe_path = rows[0].describe_path;
+
+            console.log(rows);
+
 
             var data = {
-
                 dataInView: {
                     pro_id: rows[0].pro_id,
                     pro_name: rows[0].pro_name,
@@ -52,13 +53,23 @@ r.get('/detail/:id', function (req, res) {
                     bidder_id: rows[0].bidder_id,
                     bidder_email: maHoaEmail(rows[0].bidder_email),
                     bidder_point: rows[0].bidder_point,
-                    total_time: rows[0].total_time,
+                    days: tinhThoiGian(rows[0].total_time, 'd'),
+                    hours: tinhThoiGian(rows[0].total_time, 'h'),
+                    minutes: tinhThoiGian(rows[0].total_time, 'm'),
+                    seconds: tinhThoiGian(rows[0].total_time, 's'),
+                    img01: rows[0].img_path,
+                    img02: rows[1].img_path,
+                    img03: rows[2].img_path,
                 }
             }
 
+
+
             var vm = {
                 layoutModels: res.locals.layoutModels,
-                product: data
+                layout:'main',
+                product: data,
+                status_name: 'Chi tiết sản phẩm'
             };
 
             res.render('produce/chiTiet', vm);
@@ -68,8 +79,39 @@ r.get('/detail/:id', function (req, res) {
         res.end('fail');
     });
 
+    var noi_dung = fs.readFileSync('\produces\40\desctibe.txt', 'utf-8')
+    console.log('nội dung file:');
+    console.log(noi_dung);
 });
 
+
+tinhThoiGian = function (sum_s, type){
+
+    // 1 ngày = 86400 giây
+    // 1 giờ = 3600 giây
+    // 1 phút = 60 giây
+
+    var result = 0;
+
+    if(type == 'd'){
+        result = sum_s/86400;
+    }else if(type == 'h'){
+        result = (sum_s % 86400)/3600;
+    }else if(type == 'm'){
+        result = ((sum_s % 86400)%3600)/60;
+    }else if(type == 's'){
+        result = (((sum_s % 86400)%3600)%60);
+    }
+
+    return checkTime(Math.floor(result));
+}
+
+checkTime = function (i){
+    if (i < 10) {
+        i = "0" + i;
+    }
+    return i;
+}
 
 maHoaEmail = function (email) {
 

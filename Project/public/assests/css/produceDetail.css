@@ -6,6 +6,9 @@
 	-moz-box-sizing: border-box;
 	-webkit-box-sizing: border-box;
 }
+p{
+	margin: 0;
+}
 a:hover{
 	text-decoration: none;
 	cursor: pointer;
@@ -17,8 +20,9 @@ a:hover{
 	-webkit-border-radius: 3px;
 	-moz-border-radius: 3px;
 	border-radius: 3px;
+	border: 1px solid #ddd;
 }
-.title-id, .id, .title-seller, .seller, .sao-danh-gia, .chuoi-diem-so, .chuoi-thoi-gian, .anh-dong-ho{
+.id, .seller, .sao-danh-gia, .chuoi-diem-so, .chuoi-thoi-gian, .anh-dong-ho{
 	display: inline-block;
 	margin: 0px;
 }
@@ -45,7 +49,7 @@ a.seller{
 	height: 40px;
 }
 .chuoi-thoi-gian{
-	font-size: 18px;
+	font-size: 25px;
 	font-weight: bold;
 }
 .contain-timer{
@@ -68,9 +72,8 @@ a.seller{
 }
 .cus-button-bid{
 	margin-top: 8px;
-	background-color: #ED1B24;
-	border-color: #ED1B24;
 	margin-bottom: 20px;
+	width: 120px;
 }
 .cus-input-money-text{
 	margin-top: 8px;
@@ -184,9 +187,54 @@ td{
 	height: 57px;
 	display: inline-table;
 }
+
+.img-pick>img{
+	width: 97px;
+	height: 57px;
+}
 .img-slide{
 	text-align: center;
 }
-.panel.panel-default{
-	margin-left: 0;
+
+#seller_email{
+	display: inline-block;
+	color: #ff850c;
+	font-size: 14px;
+}
+
+div#product_name{
+	margin-top: 30px;
+	font-size: 25px;
+}
+
+/*.thong-tin-sp{*/
+	/*height: 392px;*/
+/*}*/
+
+.display-inline-block{
+	display: inline-block;
+}
+
+.thoi-gian-con-lai{
+	width: 100%;
+	height: 45px;
+	background-color: #d42f37;
+	text-align: left;
+	line-height: 45px;
+	padding-left: 10px;
+	color: #ddd;
+	margin-bottom: 10px;
+}
+
+.title-info{
+	color: #717171;
+	font-weight: bold;
+}
+
+.value-info{
+	font-weight: 700;
+}
+
+.info-inline{
+	margin-bottom: 10px;
 }

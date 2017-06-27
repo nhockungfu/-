@@ -8,15 +8,35 @@ $('.thumbnail.img-pick img').click(function () {
 });
 
 $(function(){
-    // MaHoaEmail($('#seller_email'));
-    // MaHoaEmail($('#bidder_email'));
+    DinhDangNgay(sum_s);
 });
 
-// function MaHoaEmail(email) {
-//     var index_of_At = email.text().indexOf("@");
-//
-//     if(index_of_At > 3){
-//         var email_string = 'xxx'+ email.text().substring(index_of_At-3);
-//     }
-//     email.text(email_string);
-// }
+function DinhDangNgay(sum_s, type){
+
+    // 1 ngày = 86400 giây
+    if(type = 'd'){
+
+    }else if(type = 'h'){
+
+    }else if(type = 'm'){
+
+    }else if(type = 's'){
+
+    }
+    var d = sum_s/86400;
+    var h = (sum_s % 86400)/3600;
+    var m = ((sum_s % 86400)%3600)/60;
+    var s = (((sum_s % 86400)%3600)%60);
+
+    d = checkTime(d);
+    h = checkTime(h);
+    m = checkTime(m);
+    s = checkTime(s);
+}
+
+function checkTime(i){
+    if (i < 10) {
+        i = "0" + i;
+    }
+    return i;
+}

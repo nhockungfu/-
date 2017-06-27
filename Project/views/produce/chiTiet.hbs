@@ -4,90 +4,137 @@
 {{/section}}
 
 {{#section 'js'}}
+    <script type="text/javascript" src="/assests/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="/assests/js/chitiet.js"></script>
+{{/section}}
+
+{{#section 'a'}}
+    <span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>
+    <a href="#" id="a_a">{{status_name}}</a>
 {{/section}}
 
 <div class="row">
     <div class="container">
         <div class="row">
-            <div class="col-sm-6 col-md-4">
-                <div class="img-slide">
-                    <img class="anh-san-pham" src="../../public/images/SanPham/CongNghe/sp1/01.png" alt="...">
-                    <div class="slide-pick">
-                        <a href="#" class="thumbnail img-pick">
-                            <img src="../../public/images/SanPham/CongNghe/sp1/01.png" alt="...">
-                        </a>
-                        <a href="#" class="thumbnail img-pick">
-                            <img src="../../public/images/SanPham/CongNghe/sp1/02.png" alt="...">
-                        </a>
-                        <a href="#" class="thumbnail img-pick">
-                            <img src="../../public/images/SanPham/CongNghe/sp1/03.png" alt="...">
-                        </a>
-                    </div>
-                </div>
-            </div>
             {{#each product}}
-                <div class="col-sm-6 col-md-3">
-                    <p class="title-id">{{pro_name}}</p>
-                    <p id="" src="#" style="display: inline-block">Người bán:</p>
-                    <p id="seller_email" src="#" style="display: inline-block">{{seller_email}}</p>
-                    <a class="title-seller" style="display: inline-block">{{seller_point}}</a>
-
-                    <p class="clear-margin">Thời điểm đăng: {{start_time}}</p>
-                    <p class="clear-margin">Thời điểm kết thúc: {{end_time}}</p>
-                    <p class="clear-margin">Giá hiện tại: {{highest_price}}</p>
-                    <p class="clear-margin">Giá mua ngay: {{purchase_price}}</p>
-                    <p class="clear-margin" style="display: inline-block">Người giữ giá:</p>
-                    <p id="bidder_email" style="display: inline-block">{{bidder_email}}</p>
-                    <a class="title-seller" style="display: inline-block">{{bidder_point}}</a>
-
-                    <p id="1" class="chuoi-thoi-gian">{{total_time}}</p>
-                    <p class="money-of-rival clear-margin"></p>
-                    <form>
-                        <div>
-                            <label class="sr-only" for="exampleInputAmount">Amount (in dollars)</label>
-                            <div class="input-group cus-input-money-text">
-                                <input type="text" class="form-control" id="exampleInputAmount"
-                                       placeholder="Nhập giá mua">
-                                <div class="input-group-addon">đồng</div>
+                <div class="col-md-12" id="product_name" style="display: inline-block">
+                    <p style="display: inline-block; margin-bottom: 0;">Sản phẩm: </p>
+                    {{pro_name}}
+                    <br>
+                    <p style="display: inline-block; font-size: 14px;">Người đăng: </p>
+                    <p id="seller_email">{{seller_email}} | <a class="seller_point" >Điểm đánh giá: {{seller_point}}</a></p>
+                    <hr style="margin-top: 5px">
+                </div>
+                <div class="col-sm-6 col-md-4">
+                    <div class="img-slide">
+                        <img class="anh-san-pham" src="{{img01}}" alt="...">
+                        <div class="slide-pick">
+                            <div class="thumbnail img-pick">
+                                <img src="{{img01}}" alt="...">
+                            </div>
+                            <div class="thumbnail img-pick">
+                                <img src="{{img02}}" alt="...">
+                            </div>
+                            <div class="thumbnail img-pick">
+                                <img src="{{img03}}" alt="...">
                             </div>
                         </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-3">
+                    <div class="thoi-gian-con-lai">
+                        <div id="1" class="chuoi-thoi-gian">
+                            <p class="clear-margin display-inline-block">{{days}} ngày</p>
+                            <p class="clear-margin display-inline-block">{{hours}} :</p>
+                            <p class="clear-margin display-inline-block">{{minutes}} :</p>
+                            <p class="clear-margin display-inline-block">{{seconds}}</p>
+                        </div>
+                    </div>
+                    <div class="thong-tin-sp">
+                        <div class="info-inline">
+                            <p class="clear-margin display-inline-block title-info">Đăng lúc: </p>
+                            <p class="clear-margin display-inline-block value-info">{{start_time}}</p>
+                        </div>
+                        <div class="info-inline">
+                            <p class="clear-margin display-inline-block title-info">Kết thúc vào: </p>
+                            <p class="clear-margin display-inline-block value-info">{{end_time}}</p>
+                        </div>
+                        <div class="info-inline">
+                            <p class="clear-margin display-inline-block title-info">Giá hiện tại: </p>
+                            <p class="clear-margin display-inline-block value-info">{{highest_price}}</p>
+                        </div>
+                        <div class="info-inline">
+                            <p class="clear-margin display-inline-block title-info">Giá mua ngay: </p>
+                            <p class="clear-margin display-inline-block value-info">{{purchase_price}}</p>
+                        </div>
+                        <div class="info-inline">
+                            <p class="clear-margin display-inline-block title-info">Người giữ giá:</p>
+                            <p id="bidder_email" class="display-inline-block value-info" style="display: inline-block">{{bidder_email}}</p>
+                            <br>
+                            <a class="bidder_point display-inline-block">{{bidder_point}}</a>
+                        </div>
+                        <p class="money-of-rival clear-margin"></p>
+                        <form>
+                            <div>
+                                <label class="sr-only" for="exampleInputAmount">Amount (in dollars)</label>
+                                <div class="input-group cus-input-money-text">
+                                    <input type="text" class="form-control" id="exampleInputAmount"
+                                           placeholder="Nhập giá mua">
+                                    <div class="input-group-addon">đồng</div>
+                                </div>
+                            </div>
 
-                        <button type="submit" class="btn btn-primary cus-button-bid">
-                            <span class="glyphicon glyphicon-fire" aria-hidden="true"></span> Đặt giá
-                        </button>
-                    </form>
+                            <button type="submit" class="btn btn-primary cus-button-bid">
+                                <span class="glyphicon glyphicon-fire" aria-hidden="true"></span> Đặt giá
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="col-sm-6 col-md-5">
+                    <table class="table table-bordered" style="margin-bottom: 0;">
+                        <thead>
+                        <tr class="cus-header-table">
+                            <td style="width:121px; height: 20px;">Số tiền</td>
+                            <td style="width:100px;">Thời gian</td>
+                            <td>Người đặt</td>
+                        </tr>
+                        </thead>
+                    </table>
+                    <table class="table table-hover table-bordered cus-bid-table">
+                        <tr class="cus-row-table">
+                            <td style="width:120px;">100.000.000.000đ</td>
+                            <td style="width:100px;">07:05:00</td>
+                            <td style="width:217px; max-width:217px;"><a href="#">thanhthientai@gmail.com</a></td>
+                        </tr>
+                        <tr class="cus-row-table">
+                            <td>60.000đ</td>
+                            <td>05:05:00</td>
+                            <td><a href="#">bidhero@gmail.com</a></td>
+                        </tr>
+                        <tr class="cus-row-table">
+                            <td>100.000đ</td>
+                            <td>04:30:00</td>
+                            <td><a href="#">emxinthua@gmail.com</a></td>
+                        </tr>
+                    </table>
                 </div>
             {{/each}}
-            <div class="col-sm-6 col-md-5">
-                <table class="table table-bordered" style="margin-bottom: 0;">
-                    <thead>
-                    <tr class="cus-header-table">
-                        <td style="width:121px; height: 20px;">Số tiền</td>
-                        <td style="width:100px;">Thời gian</td>
-                        <td>Người đặt</td>
-                    </tr>
-                    </thead>
-                </table>
-                <table class="table table-hover table-bordered cus-bid-table">
-                    <tr class="cus-row-table">
-                        <td style="width:120px;">100.000.000.000đ</td>
-                        <td style="width:100px;">07:05:00</td>
-                        <td style="width:217px; max-width:217px;"><a href="#">thanhthientai@gmail.com</a></td>
-                    </tr>
-                    <tr class="cus-row-table">
-                        <td>60.000đ</td>
-                        <td>05:05:00</td>
-                        <td><a href="#">bidhero@gmail.com</a></td>
-                    </tr>
-                    <tr class="cus-row-table">
-                        <td>100.000đ</td>
-                        <td>04:30:00</td>
-                        <td><a href="#">emxinthua@gmail.com</a></td>
-                    </tr>
-                </table>
+        </div>
+        <div class="row">
+            <hr style="margin-top: 0;">
+            <p style="font-size: 25px">Thông tin sản phẩm</p>
+            <div class="product-info">
+                <p><strong>anh phu đẹp trai&nbsp;</strong></p>
+                <p><span style="background-color: #ff6600;"><strong>anh phu đẹp trai&nbsp;</strong></span></p>
+                <p style="text-align: center;"><strong>anh phu đẹp trai&nbsp;</strong></p>
+                <p><span style="color: #00ffff;">anh phu đẹp trai&nbsp;</span></p>
+                <p>anh phu đẹp trai&nbsp;</p>
+                <p style="text-align: right;">anh phu đẹp trai&nbsp;</p>
+                <p style="text-align: right;">anh phu đẹp trai&nbsp;</p>
             </div>
         </div>
+
     </div>
 </div>
 
