@@ -4,7 +4,7 @@
 {{/section}}
 {{#section 'a'}}
     <span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>
-    <a href="#" id="a_a">{{cateName}}</a>
+    <a href="#" id="a_a">{{cate_name}}</a>
 {{/section}}
 {{#section 'select'}}
     <select name="cbb_sx" id="cbb_sx" >
@@ -50,7 +50,6 @@
                                 <span class="glyphicon glyphicon-fire " aria-hidden="true"></span>
                                 Đấu giá
                             </a>
-
                         </div>
                     </div>
                 </div>
@@ -90,19 +89,40 @@
     </nav>
 
 </div>
-
+<a href="/category/danhmuc/sapxepgiam/{{cateId}}" class="btn btn-primary " role="button" id="btn_sxgiam" style="display: none" ></a>
+<a href="/category/danhmuc/sapxeptang/{{cateId}}" class="btn btn-primary " role="button" id="btn_sxtang" style="display: none"></a>
+<a href="/category/timkiem/sapxepgiam/{{cateName}}" class="btn btn-primary " role="button" id="btn_sxgiam2" style="display: none" ></a>
+<a href="/category/timkiem/sapxeptang/{{cateName}}" class="btn btn-primary " role="button" id="btn_sxtang2" style="display: none"></a>
 {{#section 'js'}}
     <script type="text/javascript" src="/assests/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="/assests/js/produceItem.js"></script>
     <script>
+        $(function () {
+            $("#cbb_sx").val({{sx}});
+        })
         $('#cbb_sx').change(function () {
-            if($(this).val()=='1'){
 
-                {{produces}}.forEach(function (item) {
-                    console.log('dfdfdfdf')
-                });
-                //window.location.reload(true);
+            var i={{type}};
+            if(i==0){
+                if($(this).val()=='1'){
+                    var href = $('#btn_sxgiam').attr('href');
+                    window.location.href = href;
+                }
+                if($(this).val()=='2'){
+                    var href = $('#btn_sxtang').attr('href');
+                    window.location.href = href;
+                }
+            }else{
+                if($(this).val()=='1'){
+                    var href = $('#btn_sxgiam2').attr('href');
+                    window.location.href = href;
+                }
+                if($(this).val()=='2'){
+                    var href = $('#btn_sxtang2').attr('href');
+                    window.location.href = href;
+                }
             }
+
         })
     </script>
 {{/section}}

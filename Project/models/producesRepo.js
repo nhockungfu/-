@@ -2,7 +2,7 @@ var db = require('../fn/db'),
     mustache = require('mustache'),
     q = require('q');
 
-exports.loadAllByCate = function(cate_id,limit, offset) {
+exports.loadAllByCate = function(cate_id,limit, offset,type) {
     var d = q.defer();
     var promises = [];
 
@@ -15,9 +15,24 @@ exports.loadAllByCate = function(cate_id,limit, offset) {
         'from produces, produce_imgs ' +
         'where produces.pro_id = produce_imgs.pro_id and produces.cate_id={{cate_id}}',view)
     promises.push(db.load(sqlCount));
-    var sql = mustache.render('select *,(TIMESTAMPDIFF(SECOND,NOW(), produces.end_time)) AS total_time ' +
-        'from produces, produce_imgs ' +
-        'where produces.cate_id={{cate_id}} and produces.pro_id = produce_imgs.pro_id limit {{limit}} offset {{offset}}',view);
+    var sql;
+    if(type == 0){
+        sql = mustache.render('select *,(TIMESTAMPDIFF(SECOND,NOW(), produces.end_time)) AS total_time ' +
+            'from produces, produce_imgs ' +
+            'where produces.cate_id={{cate_id}} and produces.pro_id = produce_imgs.pro_id limit {{limit}} offset {{offset}}',view);
+    }else{
+        if(type == 1){
+            sql = mustache.render('select *,(TIMESTAMPDIFF(SECOND,NOW(), produces.end_time)) AS total_time ' +
+                'from produces, produce_imgs ' +
+                'where produces.cate_id={{cate_id}} and produces.pro_id = produce_imgs.pro_id ORDER BY produces.highest_price ASC limit {{limit}} offset {{offset}}',view);
+        }else{
+            sql = mustache.render('select *,(TIMESTAMPDIFF(SECOND,NOW(), produces.end_time)) AS total_time ' +
+                'from produces, produce_imgs ' +
+                'where produces.cate_id={{cate_id}} and produces.pro_id = produce_imgs.pro_id ORDER BY (TIMESTAMPDIFF(SECOND,NOW(), produces.end_time)) DESC limit {{limit}} offset {{offset}}',view);
+        }
+
+    }
+
 
     promises.push(db.load(sql));
     q.all(promises).spread(function(totalRow, rows) {
@@ -30,7 +45,7 @@ exports.loadAllByCate = function(cate_id,limit, offset) {
     return d.promise;
 };
 
-exports.searchPro = function(name,limit, offset) {
+exports.searchPro = function(name,limit, offset,type) {
     var d = q.defer();
     var promises = [];
 
@@ -43,10 +58,23 @@ exports.searchPro = function(name,limit, offset) {
         'from produces, produce_imgs ' +
         'where produces.pro_id = produce_imgs.pro_id and produces.name like \'%{{name}}%\'',view)
     promises.push(db.load(sqlCount));
-    var sql = mustache.render('select *,(TIMESTAMPDIFF(SECOND,NOW(), produces.end_time)) AS total_time ' +
-        'from produces, produce_imgs ' +
-        'where produces.name like \'%{{name}}%\' and produces.pro_id = produce_imgs.pro_id limit {{limit}} offset {{offset}}',view);
-
+    var sql;
+    if(type == 0){
+        sql = mustache.render('select *,(TIMESTAMPDIFF(SECOND,NOW(), produces.end_time)) AS total_time ' +
+            'from produces, produce_imgs ' +
+            'where produces.name like \'%{{name}}%\' and produces.pro_id = produce_imgs.pro_id limit {{limit}} offset {{offset}}',view);
+    }else{
+        if(type == 1){
+            sql = mustache.render('select *,(TIMESTAMPDIFF(SECOND,NOW(), produces.end_time)) AS total_time ' +
+                'from produces, produce_imgs ' +
+                'where produces.name like \'%{{name}}%\' and produces.pro_id = produce_imgs.pro_id ORDER BY produces.highest_price ASC limit {{limit}} offset {{offset}}',view);
+        }
+        else{
+            sql = mustache.render('select *,(TIMESTAMPDIFF(SECOND,NOW(), produces.end_time)) AS total_time ' +
+                'from produces, produce_imgs ' +
+                'where produces.name like \'%{{name}}%\' and produces.pro_id = produce_imgs.pro_id ORDER BY (TIMESTAMPDIFF(SECOND,NOW(), produces.end_time)) DESC limit {{limit}} offset {{offset}}',view);
+        }
+    }
     promises.push(db.load(sql));
     q.all(promises).spread(function(totalRow, rows) {
         var data = {
