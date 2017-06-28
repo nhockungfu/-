@@ -64,13 +64,30 @@ exports.checkAccount = function (entity) {
     return d.promise;
 }
 
-exports.update = function (entity) {
+exports.updateFull = function (entity) {
     if(entity){
         var d = q.defer();
 
         var sql =
             mustache.render(
                 'UPDATE user SET pass = "{{passwordNew}}",name = "{{name}}",email = "{{email}}" WHERE user_id = "{{user_id}}"', entity
+            );
+
+        db.update(sql).then(function(changedRows) {
+            d.resolve(changedRows);
+        });
+        return d.promise;
+    }
+    return false;
+}
+
+exports.update = function (entity) {
+    if(entity){
+        var d = q.defer();
+
+        var sql =
+            mustache.render(
+                'UPDATE user SET name = "{{name}}",email = "{{email}}",phone = "{{sdt}}",address = "{{diaChi}}" WHERE user_id = "{{user_id}}"', entity
             );
 
         db.update(sql).then(function(changedRows) {

@@ -94,14 +94,6 @@ $(function() {
           },
           txt_password: {
               required: true
-          },
-          txt_passwordNew: {
-              required: true,
-              strongPassword: true
-          },
-          txt_passwordNew2: {
-              required: true,
-              equalTo: '#txt_passwordNew'
           }
       },
       messages: {
@@ -114,13 +106,6 @@ $(function() {
           },
           txt_password:{
               required: 'Bạn chưa nhập mật khẩu.'
-          },
-          txt_passwordNew: {
-              required: 'Bạn chưa nhập mật khẩu.'
-          },
-          txt_passwordNew2: {
-              required: 'Vui lòng xác nhận mật khẩu',
-              equalTo: 'Mật khẩu xác nhận không đúng.'
           }
       }
   });

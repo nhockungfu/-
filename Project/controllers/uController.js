@@ -112,23 +112,30 @@ r.get('/a',function (req,res) {
 })
 
 r.get('/chinhsua', function (req,res) {
-    res.render('user/suaThongTinCaNhan', {layout: 'main', layoutModels: res.locals.layoutModels}) ;
+    if (req.session.isLogged === true) {
+        res.render('user/suaThongTinCaNhan', {layout: 'main', layoutModels: res.locals.layoutModels}) ;
+    } else {
+        res.redirect('/user/dangnhap')
+    }
+
 });
 
 r.post('/chinhsua', function(req, res) {
     var pass = crypto.createHash('md5').update(req.body.txt_password).digest('hex'),
-        passNew = crypto.createHash('md5').update(req.body.txt_passwordNew).digest('hex'),
-        passNew2 = crypto.createHash('md5').update(req.body.txt_passwordNew2).digest('hex'),
         email = req.body.txt_email,
-        mailGoc = req.body.txt_mailTam;
+        mailGoc = res.locals.layoutModels.curUser.email,
+        user_id = res.locals.layoutModels.curUser.user_id,
+        diaChi = req.body.txt_diaChi,
+        sdt = req.body.txt_sdt;
     var entity = {
         email: req.body.txt_email,
         name: req.body.txt_hoTen,
         password: pass,
-        passwordNew: passNew,
-        passwordNew2: passNew2,
-        user_id: req.body.txt_id
+        user_id: user_id,
+        diaChi: diaChi,
+        sdt: sdt
     };
+
     var _res=res;
     var layoutModels= res.locals.layoutModels;
     userRepo.checkAccountUpdate(entity).then(function (user) {
@@ -148,12 +155,12 @@ r.post('/chinhsua', function(req, res) {
                                     layout:'main',
                                     showError2: true});
                         } else {
-                            userRepo.update(entity).then(function (changedRows) {
+                                userRepo.update(entity).then(function (changedRows) {
                                 _res.render('user/suaThongTinCaNhan',
-                                    {layoutModels: layoutModels,
-                                        layout:'main',
-                                        showSuccess: true});
-                            })
+                                {layoutModels: layoutModels,
+                                layout:'main',
+                                showSuccess: true});
+                                })
                         }
                     })
                 } else {
