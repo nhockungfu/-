@@ -1,0 +1,75 @@
+{{#section 'css'}}
+    <link rel="stylesheet" type="text/css" href="/assests/css/signUp.css">
+{{/section}}
+
+<div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-6" style="margin-top: 20px;">
+        <div class="panel panel-success">
+            <div class="panel-heading" >
+                <form id="infor-form" method="post" action="/user/chinhsua" class="form-horizontal" style="padding: 20px 20px 40px 20px;">
+                    <h2 style="text-align: center; margin-bottom: 30px">Chỉnh sửa thông tin cá nhân</h2>
+                    <div class="form-group">
+                        <div class="col-sm-1"></div>
+                        <div class="col-sm-10">
+                            <input id="txt_email" name="txt_email" type="email" class="form-control" placeholder="Email của bạn" value="{{ layoutModels.curUser.email}}">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-1"></div>
+                        <div class="col-sm-10">
+                            <input id="txt_hoTen" name="txt_hoTen" type="text" class="form-control" placeholder="Họ và tên" value="{{ layoutModels.curUser.name}}">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-1"></div>
+                        <div class="col-sm-10">
+                            <input id="txt_sdt" name="txt_sdt" type="text" class="form-control" placeholder="Số điện thoại" value="{{ layoutModels.curUser.phone}}">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-1"></div>
+                        <div class="col-sm-10">
+                            <input id="txt_diaChi" name="txt_diaChi" type="text" class="form-control" placeholder="Địa chỉ" value="{{ layoutModels.curUser.address}}">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-1"></div>
+                        <div class="col-sm-10">
+                            <input id="txt_password" name="txt_password" type="password" class="form-control" placeholder="Xác nhận mật khẩu">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-1"></div>
+                        <div class="col-sm-10">
+                            {{#if showError }}
+                                <span id="err" style="color: #ff0000;">Mật khẩu không chính xác</span>
+                            {{/if}}
+                            {{#if showError2 }}
+                                <span id="err" style="color: #ff0000;">Email đã tồn tại trên tài khoản khác</span>
+                            {{/if}}
+                            {{#if showSuccess }}
+                                <span id="err" style="color: #00acd6;">Thông tin thay đổi thành công. Đăng nhập lại để hoàn tất thay đổi.</span>
+                            {{/if}}
+                            {{#if showError4 }}
+                                <span id="err" style="color: #ff0000;">Email không hợp lệ</span>
+                            {{/if}}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-1"></div>
+                        <div class="col-sm-10">
+                            <button type="submit" class="btn btn-primary" style="width: 100%;">Lưu thay đổi</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div><!--panel-->
+    </div>
+    <div class="col-md-4"></div>
+</div>
+
+{{#section 'js'}}
+    <script src="/assests/jquery.validate.min.js"></script>
+    <script src="/assests/validation.js"></script>
+{{/section}}

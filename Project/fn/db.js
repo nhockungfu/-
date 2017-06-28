@@ -3,7 +3,7 @@ var mysql = require('mysql'),
 
 var _HOST = '127.0.0.1',
     _USER = 'root',
-    _PWD = '1234',
+    _PWD = '',
     _DB = 'bid_management';
 
 exports.load = function(sql) {
@@ -50,6 +50,29 @@ exports.insert = function(sql) {
             throw error;
 
         d.resolve(value.insertId);
+    });
+
+    connection.end();
+
+    return d.promise;
+}
+
+exports.update = function(sql) {
+
+    var d = q.defer();
+
+    var connection = mysql.createConnection({
+        host: _HOST,
+        user: _USER,
+        password: _PWD,
+        database: _DB
+    });
+
+    connection.connect();
+    connection.query(sql, function(err, res) {
+            if (err)
+                throw err;
+            d.resolve(res.changedRows);
     });
 
     connection.end();

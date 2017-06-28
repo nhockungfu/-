@@ -221,4 +221,69 @@ r.get('/reset-pass/:user_email', function (req, res) {
 
 
 
+r.get('/chinhsua', function (req,res) {
+    if (req.session.isLogged === true) {
+        res.render('user/suaThongTinCaNhan', {layout: 'main', layoutModels: res.locals.layoutModels}) ;
+    } else {
+        res.redirect('/user/dangnhap')
+    }
+
+});
+
+r.post('/chinhsua', function(req, res) {
+    var pass = crypto.createHash('md5').update(req.body.txt_password).digest('hex'),
+        email = req.body.txt_email,
+        mailGoc = res.locals.layoutModels.curUser.email,
+        user_id = res.locals.layoutModels.curUser.user_id,
+        diaChi = req.body.txt_diaChi,
+        sdt = req.body.txt_sdt;
+    var entity = {
+        email: req.body.txt_email,
+        name: req.body.txt_hoTen,
+        password: pass,
+        user_id: user_id,
+        diaChi: diaChi,
+        sdt: sdt
+    };
+
+    var _res=res;
+    var layoutModels= res.locals.layoutModels;
+    userRepo.checkAccountUpdate(entity).then(function (user) {
+        if(user == null){
+            _res.render('user/suaThongTinCaNhan', {
+                layoutModels: layoutModels,
+                layout:'main',
+                showError: true
+            });
+        } else {
+            emailExistence.check(email, function(err,res){
+                if(res){
+                    userRepo.loadDetail2(email).then(function (rows) {
+                        if(rows != null && email != mailGoc){
+                            _res.render('user/suaThongTinCaNhan',
+                                {layoutModels: layoutModels,
+                                    layout:'main',
+                                    showError2: true});
+                        } else {
+                                userRepo.update(entity).then(function (changedRows) {
+                                _res.render('user/suaThongTinCaNhan',
+                                {layoutModels: layoutModels,
+                                layout:'main',
+                                showSuccess: true});
+                                })
+                        }
+                    })
+                } else {
+                    _res.render('user/suaThongTinCaNhan',
+                        {layoutModels: layoutModels,
+                            layout:'main',
+                            showError4: true});
+                }
+            });
+        }
+    }).fail(function(err) {
+        console.log(err);
+        res.end('fail');
+    });
+});
 module.exports = r;
