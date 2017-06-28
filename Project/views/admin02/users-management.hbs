@@ -1,0 +1,54 @@
+
+{{#section 'css'}}
+    <link rel="stylesheet" type="text/css" href="/assests/css/admin.css">
+{{/section}}
+
+
+{{#section 'js'}}
+    <script type="text/javascript" src="/assests/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/assests/js/admin_user_list.js"></script>
+    <script type="text/javascript">
+        $("#quan-ly-nguoi-dung").css('color','#B8E73F')
+        $("#quan-ly-nguoi-dung").css('font-weight','bold')
+    </script>
+{{/section}}
+
+
+<div class="scrollable">
+    <form method="post" action="/admin/action-user" id="frmInfoUser">
+        <input type="hidden" id="user-id"  name="txtUserId"/>
+        <input type="hidden" id="action-type"  name="txtAction"/>
+    </form>
+    <table class="table table-bordered text-center table-hover">
+        <thead>
+        <tr class="tr-users-table">
+            <td>Mã số</td>
+            <td>Ảnh đại diện</td>
+            <td>Tên người dùng</td>
+            <td>Địa chỉ mail</td>
+            <td>số điện thoại</td>
+            <td>Số điểm</td>
+            <td>Thao tác</td>
+        </tr>
+        </thead>
+        <tbody>
+        {{#each users}}
+            <tr>
+                <td>{{user_id}}</td>
+                <td>
+                    <img class="avatar-user" src="{{avt_path}}" alt="">
+                </td>
+                <td>{{name}}</td>
+                <td>{{email}}</td>
+                <td>{{phone}}</td>
+                <td>{{point}}</td>
+                <td>
+                    <a class="user-delete" id="{{user_id}}" href="#">Xóa bỏ</a> |
+                    <a class="user-reset-pass" id="{{user_id}}" href="#">Đặt lại mật khẩu</a>
+                </td>
+            </tr>
+        {{/each}}
+        </tbody>
+    </table>
+
+</div>

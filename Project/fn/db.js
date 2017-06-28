@@ -56,3 +56,26 @@ exports.insert = function(sql) {
 
     return d.promise;
 }
+
+exports.update = function(sql) {
+
+    var d = q.defer();
+
+    var connection = mysql.createConnection({
+        host: _HOST,
+        user: _USER,
+        password: _PWD,
+        database: _DB
+    });
+
+    connection.connect();
+    connection.query(sql, function(err, res) {
+            if (err)
+                throw err;
+            d.resolve(res.changedRows);
+    });
+
+    connection.end();
+
+    return d.promise;
+}
