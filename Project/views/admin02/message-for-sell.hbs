@@ -6,10 +6,19 @@
 
 {{#section 'js'}}
     <script type="text/javascript" src="/assests/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/assests/js/admin_msg_for_sell.js"></script>
+    <script type="text/javascript">
+        $("#yeu-cau-ban").css('color','#B8E73F')
+        $("#yeu-cau-ban").css('font-weight','bold')
+    </script>
 {{/section}}
 
 
 <div class="scrollable">
+    <form method="post" action="/admin/action-message-for-sell" id="frmInfoUser">
+        <input type="hidden" id="user-id"  name="txtUserId"/>
+        <input type="hidden" id="action-type"  name="txtAction"/>
+    </form>
     <table class="table table-bordered text-center table-hover">
         <thead>
         <tr>
@@ -30,8 +39,8 @@
                 <td>{{reason_for_sell}}</td>
                 <td>{{send_time}}</td>
                 <td>
-                    <a href="#">Đồng ý</a> |
-                    <a href="#">Hủy bỏ</a>
+                    <a class="btn-agree" id="{{user_id}}" href="#">Đồng ý</a> |
+                    <a class="btn-cancel" id="{{user_id}}" href="#">Hủy bỏ</a>
                 </td>
             </tr>
         {{/each}}

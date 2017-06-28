@@ -1,3 +1,11 @@
+table{
+    background-color: #eee;
+}
+
+tbody tr:hover{
+    background-color: #fff4b0 !important;
+}
+
 .header-for-admin{
     background-color: #343339;
     height: 50px;
@@ -145,7 +153,7 @@ tr td:first-child{
 .tools-for-cate{
     width: 30%;
     height: 90vh;
-    background-color: #b8cab9;
+    background-color: rgba(93, 93, 93, 0.91);
     display: inline-block;
     vertical-align: top;
     margin-right: -4px;
@@ -217,4 +225,10 @@ tr td:first-child{
 
 .closebtn:hover {
     color: black;
+}
+
+/*định dạng trang home của admin*/
+#image_welcome{
+    width: 100%;
+    height: 90vh;
 }

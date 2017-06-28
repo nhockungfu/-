@@ -5,7 +5,7 @@ var db = require('../fn/db'),
 exports.getListMessage = function () {
     var d = q.defer();
 
-    var sql = 'SELECT u.user_id, u.`name`, u.email, req.reason_for_sell, DATE_FORMAT(req.send_time, \'%m/%d/%Y\') as send_time FROM `user` u, sell_request_list req where u.user_id = req.user_id and (u.`status` <> 0 AND u.`status` <> 3)';
+    var sql = 'SELECT u.user_id, u.`name`, u.email, req.reason_for_sell, DATE_FORMAT(req.send_time, \'%m/%d/%Y\') as send_time FROM `user` u, sell_request_list req where u.user_id = req.user_id and (u.`status` <> 0 AND u.`status` <> 3) ORDER BY send_time ASC';
     console.log(sql);
 
     d.resolve(db.load(sql));
@@ -118,6 +118,57 @@ exports.setWaitingChangePass = function (user_id) {
     console.log(sql);
 
     d.resolve(db.load(sql));
+
+    return d.promise;
+}
+
+//sửa quyền của user
+exports.updateUserStatus = function (user_id, status_val) {
+    var d = q.defer();
+
+    var entity = {
+        status: status_val,
+        user_id: user_id
+    }
+
+    var sql = mustache.render('UPDATE `user` SET status = {{status}} where user_id = \'{{user_id}}\'', entity);
+    console.log(sql);
+
+    d.resolve(db.load(sql));
+
+    return d.promise;
+}
+
+// xóa dòng dữ liệu trong bảng xin được bán
+exports.deleteMessageForSell = function (user_id) {
+    var d = q.defer();
+
+    var entity = {
+        user_id: user_id
+    }
+
+    var sql = mustache.render('DELETE FROM sell_request_list WHERE user_id = {{user_id}}', entity);
+    console.log(sql);
+
+    d.resolve(db.load(sql));
+
+    return d.promise;
+}
+
+//đếm số lượng sản phẩm đã sử dụng category này
+exports.countNumCateUsed = function (cate_id) {
+    var d = q.defer();
+
+    var entity = {
+        cate_id: cate_id
+    }
+
+    var sql = mustache.render('SELECT COUNT(*) AS num_used FROM produces where cate_id = {{cate_id}}', entity);
+    console.log(sql);
+
+    db.load(sql).then(function(rows){
+        d.resolve(rows[0]);
+    })
 
     return d.promise;
 }
