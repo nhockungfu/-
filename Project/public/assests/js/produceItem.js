@@ -4,7 +4,6 @@ $('.submit-dat-gia>a').on('click', function() {
     var id = $(this).data('id');
     $('#txtProduceDetail').val(id);
     $('#frmProduceDetail').submit();
-    console.log(id);
 });
 
 //--------------------------------------------------------------------------------
@@ -45,9 +44,9 @@ $(".thumbnail").hover(function() {
        //
        //     }
        //
-       //     setInterval(function() {
-       //         chayThoiGian(node_string_time[0], 1);
-       //     }, 1000);
+           //     setInterval(function() {
+           //         chayThoiGian(node_string_time[0], 1);
+           //     }, 1000);
        //     setInterval(function() {
        //         chayThoiGian(node_string_time[1], 2);
        //     }, 1000);

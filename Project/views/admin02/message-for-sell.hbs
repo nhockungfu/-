@@ -1,0 +1,41 @@
+
+{{#section 'css'}}
+    <link rel="stylesheet" type="text/css" href="/assests/css/admin.css">
+{{/section}}
+
+
+{{#section 'js'}}
+    <script type="text/javascript" src="/assests/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+{{/section}}
+
+
+<div class="scrollable">
+    <table class="table table-bordered text-center table-hover">
+        <thead>
+        <tr>
+            <td>Mã số</td>
+            <td>Tên người dùng</td>
+            <td>Địa chỉ mail</td>
+            <td>Lý do</td>
+            <td>Thời gian gửi</td>
+            <td>Thao tác</td>
+        </tr>
+        </thead>
+        <tbody>
+        {{#each listMessage}}
+            <tr>
+                <td>{{user_id}}</td>
+                <td>{{name}}</td>
+                <td>{{email}}</td>
+                <td>{{reason_for_sell}}</td>
+                <td>{{send_time}}</td>
+                <td>
+                    <a href="#">Đồng ý</a> |
+                    <a href="#">Hủy bỏ</a>
+                </td>
+            </tr>
+        {{/each}}
+        </tbody>
+    </table>
+
+</div>

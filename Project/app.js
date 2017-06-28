@@ -14,7 +14,8 @@ var express = require('express'),
     produceDetailController = require('./controllers/produceDetailController');
     producesController = require('./controllers/producesController'),
     layoutRoute = require('./controllers/_layoutRoute'),
-    tController = require('./controllers/tuan');
+    tController = require('./controllers/tuan'),
+    adminController = require('./controllers/adminController');
 
 var app = express();
 
@@ -69,6 +70,7 @@ app.use(session({
         }
     }),
 }));
+
 app.use(layoutRoute);
 app.use('/produces', producesController);
 app.use('/category', categoryController);
@@ -76,6 +78,7 @@ app.use('/user', userController);
 app.use('/home', pageController);
 app.use('/detail', produceDetailController);
 app.use('/tuan', tController);
+app.use('/admin', adminController);
 
 app.listen(3000,function () {
     console.log('server running...');

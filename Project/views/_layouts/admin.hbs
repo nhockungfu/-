@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="/assests/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/assests/css/footer.css">
+    <link rel="stylesheet" type="text/css" href="/assests/css/header.css">
+    <link rel="stylesheet" type="text/css" href="/assests/css/categories.css">
+    <link rel="shortcut icon" href="https://image.flaticon.com/icons/png/128/12/12195.png" type="image/x-icon"/>
+    {{{_sections.css}}}
+</head>
+<body>
+<div style="max-width: 1440px; margin: auto" class="container-fluid">
+    <div class="row">
+        <div class="col-md-12" style="padding: 0; margin: 0;">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="header-for-admin">
+                        <img class="logo-website" src="/images/logo.png" alt="">
+                        <div class="contain-account">
+                            <img id="avatar" src="/produces/1/1.jpg" alt="">
+                            <p id="admin-name">vòng say phu</p>
+                            <p id="admin-email">vsp1308@gmail.com</p>
+                        </div>
+                    </div>
+                    <div class="underline-for-header"></div>
+                </div>
+                <div class="row">
+                    <div class="col-md-2" id="cot-danh-muc">
+                        <div id="danh-muc">
+                            <ul>
+                                <li>
+                                    <span class="glyphicon glyphicon-home icon-danh-muc inline-block" aria-hidden="true"></span>
+                                    <a href="/admin" class="inline-block ten-danh-muc">Trang chủ</a>
+                                </li>
+                                <li>
+                                    <span class="glyphicon glyphicon-list-alt icon-danh-muc inline-block" aria-hidden="true"></span>
+                                    <a href="/admin/mgs-for-sell" class="inline-block ten-danh-muc">Danh sách yêu cầu bán</a>
+                                </li>
+                                <li>
+                                    <span class="glyphicon glyphicon-user icon-danh-muc inline-block" aria-hidden="true"></span>
+                                    <a href="/admin/users-mngt" class="inline-block ten-danh-muc">Quản lý người dùng</a>
+                                </li>
+                                <li><span class="glyphicon glyphicon-menu-hamburger icon-danh-muc inline-block"
+                                          aria-hidden="true"></span>
+                                    <a href="/admin/cate-list" class="inline-block ten-danh-muc">Thao tác danh mục</a>
+                                </li>
+                            </ul>
+                        </div>
+
+                    </div>
+                    <div class="col-md-10" style="padding: 0;margin: 0;">
+                        {{{body}}}
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="/assests/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/assests/jquery-3.2.0.min.js"></script>
+{{{_sections.js}}}
+</body>
+</html>

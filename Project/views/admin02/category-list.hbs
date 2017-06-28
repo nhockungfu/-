@@ -1,0 +1,75 @@
+
+{{#section 'css'}}
+    <link rel="stylesheet" type="text/css" href="/assests/css/admin.css">
+{{/section}}
+
+
+{{#section 'js'}}
+    <script type="text/javascript" src="/assests/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/assests/js/admin_category_list.js"></script>
+{{/section}}
+
+
+
+<div class="scrollable category-list">
+    <table class="table table-bordered text-center table-hover">
+        <thead>
+        <tr class="tr-cate-table">
+            <td>Mã số</td>
+            <td>Tên danh mục</td>
+        </tr>
+        </thead>
+        <tbody>
+        {{#each categories}}
+            <tr class="cate-row">
+                <td class="id">{{cate_id}}</td>
+                <td class="name">{{name}}</td>
+            </tr>
+        {{/each}}
+        </tbody>
+    </table>
+</div>
+<div class="tools-for-cate">
+    <div class="text-center header-tool-cate">
+        Thông tin danh mục
+    </div>
+    <div class="tool-icons">
+        <div class="contain-cate-icon text-center">
+            <img id="add-icon" class="cate-icon" src="/images/admin/icon/add-ico.png" alt="">
+        </div>
+        <div class="contain-cate-icon text-center">
+            <img id="del-icon" class="cate-icon" src="/images/admin/icon/delete-ico.png" alt="">
+        </div>
+        <div class="contain-cate-icon text-center">
+            <img id="edit-icon" class="cate-icon" src="/images/admin/icon/edit-ico.png" alt="">
+        </div>
+    </div>
+    <div class="cate-form-info">
+        <form method="post" action="/admin/action-categories" id="frmInfoCate">
+            <input type="hidden" id="action-type"  name="txtAction"/>
+            <div>
+                <div class="form-group">
+                    <label for="cate-id">Mã số</label>
+                    <input type="text" class="form-control" id="cate-id" name="txtCateId" placeholder="Mã số danh mục">
+                </div>
+            </div>
+            <div>
+                <div class="form-group">
+                    <label for="cate-name">Tên danh mục</label>
+                    <input type="text" class="form-control" id="cate-name" name="txtCateName" placeholder="Tên danh mục">
+                </div>
+            </div>
+        </form>
+        <div class="text-center">
+            <button id="btn-submit" type="submit" class="btn btn-success">Xác nhận</button>
+        </div>
+        <div class="alert">
+            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+            <strong class="caption-alert"></strong>
+            <p class="text-alert"></p>
+        </div>
+    </div>
+</div>
+
+
+

@@ -78,10 +78,6 @@ r.get('/detail/:id', function (req, res) {
         console.log(err);
         res.end('fail');
     });
-
-    var noi_dung = fs.readFileSync('\produces\40\desctibe.txt', 'utf-8')
-    console.log('nội dung file:');
-    console.log(noi_dung);
 });
 
 
