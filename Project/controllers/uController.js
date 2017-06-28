@@ -311,4 +311,45 @@ r.post('/chinhsua', multer({storage: storage}).single("avatar"), function (req, 
         res.end('fail');
     });
 });
+
+r.get('/doimatkhau', function (req,res) {
+    if (req.session.isLogged === true) {
+        res.render('user/doiMatKhau', {layout: 'main', layoutModels: res.locals.layoutModels}) ;
+    } else {
+        res.redirect('/user/dangnhap')
+    }
+});
+
+r.post('/doimatkhau', function (req,res) {
+    var pass = crypto.createHash('md5').update(req.body.txt_password).digest('hex'),
+        user_id = res.locals.layoutModels.curUser.user_id,
+        passNew = crypto.createHash('md5').update(req.body.txt_passwordNew).digest('hex');
+    var entity = {
+        passNew: passNew,
+        password: pass,
+        user_id: user_id
+    };
+
+    var _res=res;
+    var layoutModels= res.locals.layoutModels;
+    userRepo.checkAccountUpdate(entity).then(function (user) {
+        if(user == null){
+            _res.render('user/doimatkhau', {
+                layoutModels: layoutModels,
+                layout:'main',
+                showError: true
+            });
+        } else {
+            userRepo.updatePass(entity).then(function (changedRows) {
+                _res.render('user/doimatkhau',
+                    {layoutModels: layoutModels,
+                        layout:'main',
+                        showSuccess: true});
+            })
+        }
+    }).fail(function(err) {
+        console.log(err);
+        res.end('fail');
+    });
+});
 module.exports = r;

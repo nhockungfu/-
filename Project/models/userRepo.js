@@ -111,23 +111,6 @@ exports.setNoneWaitingChangePass = function (user_email) {
     var sql = mustache.render('UPDATE `user` SET waiting_for_change_pass = 0 where email = \'{{user_email}}\'', entity);
 
     d.resolve(db.load(sql));
-
-    exports.updateFull = function (entity) {
-        if (entity) {
-            var d = q.defer();
-
-            var sql =
-                mustache.render(
-                    'UPDATE user SET pass = "{{passwordNew}}",name = "{{name}}",email = "{{email}}" WHERE user_id = "{{user_id}}"', entity
-                );
-
-            db.update(sql).then(function (changedRows) {
-                d.resolve(changedRows);
-            });
-            return d.promise;
-        }
-        return false;
-    }
 }
 
 exports.update = function (entity) {
@@ -137,6 +120,23 @@ exports.update = function (entity) {
         var sql =
             mustache.render(
                 'UPDATE user SET avt_path = "{{{avt}}}", name = "{{name}}",phone = "{{sdt}}",address = "{{{diaChi}}}" WHERE user_id = "{{user_id}}"', entity
+            );
+
+        db.update(sql).then(function (changedRows) {
+            d.resolve(changedRows);
+        });
+        return d.promise;
+    }
+    return false;
+}
+
+exports.updatePass = function (entity) {
+    if (entity) {
+        var d = q.defer();
+
+        var sql =
+            mustache.render(
+                'UPDATE user SET pass = "{{passNew}}" WHERE user_id = "{{user_id}}"', entity
             );
 
         db.update(sql).then(function (changedRows) {

@@ -109,6 +109,32 @@ $(function() {
           }
       }
   });
+
+    $("#changePass-form").validate({
+        rules: {
+            txt_password: {
+                required: true
+            },
+            txt_passwordNew: {
+                required: true,
+                strongPassword: true
+            },
+            txt_passwordNew2: {
+                equalTo: '#txt_passwordNew'
+            }
+        },
+        messages: {
+            txt_password: {
+                required: 'Vui lòng nhập mật khẩu hiện tại.'
+            },
+            txt_passwordNew: {
+                required: 'Vui lòng nhập mật khẩu mới.'
+            },
+            txt_passwordNew2:{
+                equalTo: 'Mật khẩu xác nhận không trùng khớp.'
+            }
+        }
+    });
 });
 
 
