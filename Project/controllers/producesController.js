@@ -1,5 +1,6 @@
 var express = require('express'),
     multer = require('multer'),
+    mustache = require('mustache'),
     fs = require('fs'),
     q = require('q'),
     moment = require('moment'),
@@ -34,25 +35,25 @@ r.get('/detail/:id', function (req, res) {
     }
     producesRepo.getProInfoById(proId)
         .then(function (rows) {
-            var describe_path = rows[0].describe_path;
-
             console.log(rows);
-
-
             var data = {
                 dataInView: {
                     pro_id: rows[0].pro_id,
                     pro_name: rows[0].pro_name,
                     seller_id: rows[0].seller_id,
-                    seller_email: maHoaEmail(rows[0].seller_email),
+                    seller_email: (rows[0].seller_email),
                     seller_point: rows[0].seller_point,
                     start_time: rows[0].start_time,
                     end_time: rows[0].end_time,
                     highest_price: rows[0].highest_price,
                     purchase_price: rows[0].purchase_price,
                     bidder_id: rows[0].bidder_id,
-                    bidder_email: maHoaEmail(rows[0].bidder_email),
-                    bidder_point: rows[0].bidder_point,
+                    bidder_email: function () {
+                        return rows[0].bidder_email==rows[0].seller_email?'':maHoaEmail(rows[0].bidder_email);
+                    },
+                    bidder_point: function () {
+                        return rows[0].bidder_email==rows[0].seller_email?'':rows[0].bidder_point;
+                    },
                     days: tinhThoiGian(rows[0].total_time, 'd'),
                     hours: tinhThoiGian(rows[0].total_time, 'h'),
                     minutes: tinhThoiGian(rows[0].total_time, 'm'),
@@ -62,9 +63,6 @@ r.get('/detail/:id', function (req, res) {
                     img03: rows[2].img_path,
                 }
             }
-
-
-
             var vm = {
                 layoutModels: res.locals.layoutModels,
                 layout:'main',
@@ -78,10 +76,6 @@ r.get('/detail/:id', function (req, res) {
         console.log(err);
         res.end('fail');
     });
-
-    var noi_dung = fs.readFileSync('\produces\40\desctibe.txt', 'utf-8')
-    console.log('nội dung file:');
-    console.log(noi_dung);
 });
 
 
@@ -171,11 +165,12 @@ r.post('/add', multer({storage: storage}).any(), function (req, res, next) {
         start_price: req.body.txt_giaKd,
         purchase_price: req.body.txt_giaMn,
         highest_price: req.body.txt_giaKd,
+        user_highest_price:res.locals.layoutModels.curUser.user_id,
         price_step: req.body.txt_bg,
         start_time: moment(req.body.txt_tgbd, 'D/M/YYYY').format('YYYY-MM-DDTHH:mm'),
         end_time: moment(req.body.txt_tgkt, 'D/M/YYYY').format('YYYY-MM-DDTHH:mm'),
         cate_id: req.body.cbb_select,
-        seller_id: '1',
+        seller_id: res.locals.layoutModels.curUser.user_id,
         num_bid: '0',
         auto: req.body.cb_tdgh ? 1 : 0
     }
@@ -186,7 +181,6 @@ r.post('/add', multer({storage: storage}).any(), function (req, res, next) {
     producesRepo.insert(entity).then(function (insertId) {
         if (fs.existsSync('./data/produces/' + proId)) {// kiem tra folder co ton tai hay khong
             fs.rename('./data/produces/' + proId, './data/produces/' + insertId, function (err) {
-                if (err) throw err;
                 console.log('Doi ten thanh cong');
             });
         } else {
@@ -200,14 +194,14 @@ r.post('/add', multer({storage: storage}).any(), function (req, res, next) {
             addMuiltyDataToProImg(files, insertId),
             producesRepo.updatePath({
                 pro_id: insertId,
-                describe_path: '/produces/' + insertId + '/desctibe.txt',
-                bid_detail_path: '/produces/' + insertId + '/bid_detail.txt',
-                cmt_pro_path: '/produces/' + insertId + '/cmt.txt'
+                describe_path: "./data/produces/" + insertId + "/desctibe.txt",
+                bid_detail_path: './data/produces/' + insertId + '/bid_detail.txt',
+                cmt_pro_path: './data/produces/' + insertId + '/cmt.txt'
             })
         ]).spread(function (rs1, rs2, rs3) {
             if (rs1 == 1 && rs2 == 1 && rs3 == 1)
-                res.send('them thanh cong');
-            res.send('khong them thanh cong');
+                //res.render('welcome', {username: req.body.unm, password: req.body.pwd});
+                res.redirect(mustache.render('/produces/detail/{{insertId}}',{insertId:insertId}));
         })
     }).fail(function (err) {
         console.log(err);
@@ -220,16 +214,16 @@ r.post('/add', multer({storage: storage}).any(), function (req, res, next) {
 //ham tao 3 file desctibe, bid_detail,cmt
 function createMuiltyFile(insertId, str) {
     var d = q.defer();
-    fs.writeFile('./data/produces/' + insertId + '/desctibe.txt', str, 'utf8', function (err, data) {
-        if (err) throw err;
-    });
-    fs.writeFile('./data/produces/' + insertId + '/bid_detail.txt', '', 'utf8', function (err, data) {
-        if (err) throw err;
-    });
-    fs.writeFile('./data/produces/' + insertId + '/cmt.txt', '', 'utf8', function (err, data) {
-        if (err) throw err;
-    });
-    d.resolve(1);
+        fs.writeFile('./data/produces/' + insertId + '/desctibe.txt', str, 'utf8', function (err, data) {
+            if (err) throw err;
+        });
+        fs.writeFile('./data/produces/' + insertId + '/bid_detail.txt', '', 'utf8', function (err, data) {
+            if (err) throw err;
+        });
+        fs.writeFile('./data/produces/' + insertId + '/cmt.txt', '', 'utf8', function (err, data) {
+            if (err) throw err;
+        });
+        d.resolve(1);
     return d.promise;
 }
 

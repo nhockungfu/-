@@ -188,6 +188,7 @@ r.get('/timkiem',function (req,res) {
     var curPage = req.query.page ? req.query.page : 1;
     var offset = (curPage - 1) * rec_per_page;
     var name=res.locals.layoutModels.cateName;
+    console.log(name +'--------------------------');
 
     producesRepo.searchPro(name,rec_per_page, offset,0)
         .then(function(data) {

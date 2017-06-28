@@ -1,1 +1,0 @@
-<p><img src="../assests/plugin/tinymce/plugins/emoticons/img/smiley-embarassed.gif" alt="embarassed" />&nbsp;anh nhớ rồi</p>

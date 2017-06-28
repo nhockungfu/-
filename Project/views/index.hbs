@@ -57,6 +57,83 @@
 {{#section 'js'}}
     <script type="text/javascript" src="/assests/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="/assests/js/produceItem.js"></script>
+    <script>
+        var ns=[],hs=[],ps=[],gs=[];
+
+        var f=0,f1=0;
+        $(function () {
+
+            start();
+            var x = document.getElementsByClassName("_email");
+
+            for (var i = 0; i < x.length; i++) {
+                var str=(x[i].innerText);
+                var vt = str.indexOf('@');
+                var str2=str.substr(0,vt-3);
+                str=str.replace(str2,'xxx');
+                (x[i].innerText)=str;
+
+            }
+            if(f1==0){
+                $("._email").show();
+                f1=1;
+            }
+
+        })
+
+        function start() {
+            var x = document.getElementsByClassName("chuoi-thoi-gian");
+            for (var i = 0; i < x.length; i++) {
+                var n,h,p,g,t,l;
+                l=(x[i].innerText).length;
+
+                t = (x[i].innerText).substr(0, l-6);
+                n=parseInt(t/24);
+                h=t%24;
+
+                p = (x[i].innerText).substr(l-1-4, 2);
+                g = (x[i].innerText).substr(l-1-1, 2);
+                ns.push(n);
+                hs.push(h);
+                ps.push(p);
+                gs.push(g);
+            }
+            timer = setInterval(function() {
+                for (var i = 0; i < x.length; i++){
+                    gs[i]--;
+                    if(gs[i]<0 && ps[i]>0)
+                    {
+                        gs[i]=59;
+                        ps[i]--;
+                        if(ps[i]<0&&hs[i]>0){
+                            ps[i]=59;
+                            hs[i]--;
+                            if(hs[i]<0 && ns[i]>0){
+                                hs[i]=23;
+                                ns[i]--;
+                            }
+                        }
+                    }else{
+                        //dung hinh
+                    }
+
+                    (x[i].innerText)=(chuyenDoiThoiGian(ns[i],hs[i],ps[i],gs[i]));
+                    if(f==0){
+                        $(".chuoi-thoi-gian").show();
+                        f=1;
+                    }
+
+                }
+
+
+            }, 1000);
+
+        }
+        function chuyenDoiThoiGian(n,h,p,g) {
+
+            return n+' ngày '+h+':'+p+':'+g;
+        }
+    </script>
 {{/section}}
 <!--Form dùng để gửi id sản phẩm-->
 <form method="post" action="" id="frmProduceDetail">
@@ -71,6 +148,9 @@
     {{#each numBidTop }}
         <div class="col-sm-6 col-md-4">
             <div class="thumbnail">
+                <div class="ten-san-pham">
+                    <a>{{name}}</a>
+                </div>
                 <div class="row">
                     <div class="col-md-6">
                         <div class="contain-avatar-with-timer">
@@ -85,18 +165,21 @@
                     </div>
                     <div class="col-md-6" style="padding: 0">
                         <div class="caption">
-                            <div class="ten-san-pham">
-                                <a>{{name}}</a>
+                            <div class="product-info">
+                                <span class="sp_gia">Người giữ giá </span><p class="tien _email">{{email}}</p>
+                                <span class="sp_gia">Giá cao nhất </span><p class="tien">{{number_format highest_price}}</p>
+                                <span class="sp_gia">Giá mua ngay </span><p class="gia-tien">{{number_format purchase_price}}</p>
                             </div>
-                            <p class="tien">{{number_format highest_price}}</p>
-                            <p class="gia-tien">Giá mua ngay: {{number_format purchase_price}}</p>
-                            <a href="/produces/detail/{{pro_id}}" class="btn btn-primary " role="button">
-                                <span class="glyphicon glyphicon-fire " aria-hidden="true"></span>
-                                Đấu giá
-                            </a>
+                            <div class="button-submit">
+                                <a href="/produces/detail/{{pro_id}}" class="btn btn-primary " role="button">
+                                    <span class="glyphicon glyphicon-fire " aria-hidden="true"></span>
+                                    Đấu giá
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
+                <img class ="new-icon" src="/images/new__icon2.png" alt="">
             </div>
         </div>
     {{/each}}
@@ -106,6 +189,9 @@
     {{#each priceTop }}
         <div class="col-sm-6 col-md-4">
             <div class="thumbnail">
+                <div class="ten-san-pham">
+                    <a>{{name}}</a>
+                </div>
                 <div class="row">
                     <div class="col-md-6">
                         <div class="contain-avatar-with-timer">
@@ -119,18 +205,21 @@
                     </div>
                     <div class="col-md-6" style="padding: 0">
                         <div class="caption">
-                            <div class="ten-san-pham">
-                                <a>{{name}}</a>
+                            <div class="product-info">
+                                <span class="sp_gia">Người giữ giá </span><p class="tien _email">{{email}}</p>
+                                <span class="sp_gia">Giá cao nhất </span><p class="tien">{{number_format highest_price}}</p>
+                                <span class="sp_gia">Giá mua ngay </span><p class="gia-tien">{{number_format purchase_price}}</p>
                             </div>
-                            <p class="tien">{{number_format highest_price}}</p>
-                            <p class="gia-tien">Giá mua ngay: {{number_format purchase_price}}</p>
-                            <a href="/produces/detail/{{pro_id}}" class="btn btn-primary" role="button">
-                                <span class="glyphicon glyphicon-fire" aria-hidden="true"></span>
-                                Đấu giá
-                            </a>
+                            <div class="button-submit">
+                                <a href="/produces/detail/{{pro_id}}" class="btn btn-primary " role="button">
+                                    <span class="glyphicon glyphicon-fire " aria-hidden="true"></span>
+                                    Đấu giá
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
+                <img class ="new-icon" src="/images/new__icon2.png" alt="">
             </div>
         </div>
     {{/each}}
@@ -140,6 +229,9 @@
     {{#each poorTimeTop }}
         <div class="col-sm-6 col-md-4">
             <div class="thumbnail">
+                <div class="ten-san-pham">
+                    <a>{{name}}</a>
+                </div>
                 <div class="row">
                     <div class="col-md-6">
                         <div class="contain-avatar-with-timer">
@@ -153,20 +245,23 @@
                     </div>
                     <div class="col-md-6" style="padding: 0">
                         <div class="caption">
-                            <div class="ten-san-pham">
-                                <a>{{name}}</a>
+                            <div class="product-info">
+                                <span class="sp_gia">Người giữ giá </span><p class="tien _email">{{email}}</p>
+                                <span class="sp_gia">Giá cao nhất </span><p class="tien">{{number_format highest_price}}</p>
+                                <span class="sp_gia">Giá mua ngay </span><p class="gia-tien">{{number_format purchase_price}}</p>
                             </div>
-                            <p class="tien">{{number_format highest_price}}</p>
-                            <p class="gia-tien">Giá mua ngay: {{number_format purchase_price}}</p>
 
-                            <a href="/produces/detail/{{pro_id}}" class="btn btn-primary" role="button">
-                                <span class="glyphicon glyphicon-fire " aria-hidden="true"></span>
-                                Đấu giá
-                            </a>
+                            <div class="button-submit">
+                                <a href="/produces/detail/{{pro_id}}" class="btn btn-primary " role="button">
+                                    <span class="glyphicon glyphicon-fire " aria-hidden="true"></span>
+                                    Đấu giá
+                                </a>
+                            </div>
 
                         </div>
                     </div>
                 </div>
+                <img class ="new-icon" src="/images/new__icon2.png" alt="">
             </div>
         </div>
     {{/each}}

@@ -14,18 +14,31 @@ r.get('/',function (req,res) {
     ]).spread(function (topDesc_numBids, topDesc_price, topDesc_poorTime) {
 
         console.log(topDesc_numBids);
-        var now = new Date();
-        dateFormat(now, "HH:MM:ss");
-            var vm = {
-                numBidTop: topDesc_numBids,
-                priceTop: topDesc_price,
-                poorTimeTop: topDesc_poorTime,
-                layoutModels: res.locals.layoutModels
-            };
-            res.render('index',vm);
+        topDesc_numBids.forEach(function (item) {
+            console.log(xuLyThoiGian(item.total_time ))
+
+        })
+        var vm = {
+            numBidTop: topDesc_numBids,
+            priceTop: topDesc_price,
+            poorTimeTop: topDesc_poorTime,
+            layoutModels: res.locals.layoutModels
+        };
+        res.render('index',vm);
     })
 });
 
+function xuLyThoiGian(str_time) {
+    var l = str_time.length;
 
+    t = (str_time).substr(0, l-6);
+    n=parseInt(t/24);
+    h=t%24;
+
+    p = (str_time).substr(l-1-4, 2);
+    g = (str_time).substr(l-1-1, 2);
+
+    return n+' ngay '+g+':'+p+':'+g;
+}
 module.exports = r;
 

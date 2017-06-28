@@ -44,10 +44,10 @@
                 <div class="col-sm-6 col-md-3">
                     <div class="thoi-gian-con-lai">
                         <div id="1" class="chuoi-thoi-gian">
-                            <p class="clear-margin display-inline-block">{{days}} ngày</p>
-                            <p class="clear-margin display-inline-block">{{hours}} :</p>
-                            <p class="clear-margin display-inline-block">{{minutes}} :</p>
-                            <p class="clear-margin display-inline-block">{{seconds}}</p>
+                            <p id="p_ngay" class="clear-margin display-inline-block">{{days}}</p> <p class="clear-margin display-inline-block">ngày</p>
+                            <p id="p_gio" class="clear-margin display-inline-block">{{hours}}</p> <p class="clear-margin display-inline-block">:</p>
+                            <p id="p_phut" class="clear-margin display-inline-block">{{minutes}}</p><p class="clear-margin display-inline-block">:</p>
+                            <p id="p_giay" class="clear-margin display-inline-block">{{seconds}}</p>
                         </div>
                     </div>
                     <div class="thong-tin-sp">
@@ -61,17 +61,19 @@
                         </div>
                         <div class="info-inline">
                             <p class="clear-margin display-inline-block title-info">Giá hiện tại: </p>
-                            <p class="clear-margin display-inline-block value-info">{{highest_price}}</p>
+                            <p class="clear-margin display-inline-block value-info">{{number_format highest_price}}</p>
                         </div>
                         <div class="info-inline">
                             <p class="clear-margin display-inline-block title-info">Giá mua ngay: </p>
-                            <p class="clear-margin display-inline-block value-info">{{purchase_price}}</p>
+                            <p class="clear-margin display-inline-block value-info">{{number_format purchase_price}}</p>
                         </div>
                         <div class="info-inline">
                             <p class="clear-margin display-inline-block title-info">Người giữ giá:</p>
                             <p id="bidder_email" class="display-inline-block value-info" style="display: inline-block">{{bidder_email}}</p>
-                            <br>
-                            <a class="bidder_point display-inline-block">{{bidder_point}}</a>
+                        </div>
+                        <div class="info-inline">
+                            <p class="clear-margin display-inline-block title-info">Điểm đánh giá: </p>
+                            <p id="bidder_email" class="display-inline-block value-info" style="display: inline-block">{{bidder_point}}</p>
                         </div>
                         <p class="money-of-rival clear-margin"></p>
                         <form>
@@ -122,17 +124,20 @@
             {{/each}}
         </div>
         <div class="row">
-            <hr style="margin-top: 0;">
-            <p style="font-size: 25px">Thông tin sản phẩm</p>
-            <div class="product-info">
-                <p><strong>anh phu đẹp trai&nbsp;</strong></p>
-                <p><span style="background-color: #ff6600;"><strong>anh phu đẹp trai&nbsp;</strong></span></p>
-                <p style="text-align: center;"><strong>anh phu đẹp trai&nbsp;</strong></p>
-                <p><span style="color: #00ffff;">anh phu đẹp trai&nbsp;</span></p>
-                <p>anh phu đẹp trai&nbsp;</p>
-                <p style="text-align: right;">anh phu đẹp trai&nbsp;</p>
-                <p style="text-align: right;">anh phu đẹp trai&nbsp;</p>
+            <div class="col-md-1"></div>
+            <div class="col-md-10">
+                <div class="panel panel-info">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Mô tả sản phẩm</h3>
+                    </div>
+                    <div class="panel-body">
+                        Panel content
+                    </div>
+                </div>
             </div>
+            <div class="col-md-1"></div>
+
+
         </div>
 
     </div>

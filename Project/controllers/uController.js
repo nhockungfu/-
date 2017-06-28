@@ -1,9 +1,11 @@
 var express = require('express'),
     crypto = require('crypto'),
     emailExistence = require('email-existence'),
+    fs = require('fs'),
     userRepo = require('../models/userRepo'),
     restrict = require('../middle-wares/restrict'),
-    categoryRepo = require('../models/categoryRepo');
+    categoryRepo = require('../models/categoryRepo'),
+    produceRepo = require('../models/producesRepo');
 
 var r = express.Router();
 
@@ -75,7 +77,7 @@ r.post('/dangnhap',function (req,res) {
         email:email,
         pass:pass
     };
-
+    var f=false;
     userRepo.checkAccount(entity).then(function (user) {
         if (user == null) {
             console.log('dang nhap that bai')
@@ -85,9 +87,21 @@ r.post('/dangnhap',function (req,res) {
                 showError: true
             });
         } else {
+            console.log(user.sum);
+            console.log(user.point);
+            console.log(user.point/user.sum*100);
+                if(user.sum==0)
+                    f=true;
+                if(user.point/user.sum*100>=80){
+
+                    f=true;
+                }
+            console.log('isBid = '+f);
+
             console.log('dang nhap thanh cong')
             req.session.isLogged = true;
             req.session.user = user;
+            req.session.isBid=f;
 
             var url = '/home';
             if (req.query.retUrl) {
@@ -103,11 +117,9 @@ r.post('/dangnhap',function (req,res) {
 
 r.post('/dangxuat', restrict, function(req, res) {
     req.session.isLogged = false;
+    req.session.isBid = false;
     req.session.user = null;
     req.session.cookie.expires = new Date(Date.now() - 1000);
     res.redirect(req.headers.referer);
 });
-r.get('/a',function (req,res) {
-    res.render('user/dangKyThanhCong',{layout:false})
-})
 module.exports = r;

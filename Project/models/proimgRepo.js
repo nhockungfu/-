@@ -8,7 +8,7 @@ exports.insert = function (entity) {
     var sql = mustache.render(
         'insert into produce_imgs ' +
         '(pro_id,img_path) values ' +
-        '("{{pro_id}}","{{img_path}}")',entity
+        '("{{pro_id}}","{{{img_path}}}")',entity
     );
     db.insert(sql).then(function() {
         d.resolve(1);
