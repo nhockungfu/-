@@ -136,7 +136,7 @@ exports.update = function (entity) {
 
         var sql =
             mustache.render(
-                'UPDATE user SET name = "{{name}}",email = "{{email}}",phone = "{{sdt}}",address = "{{diaChi}}" WHERE user_id = "{{user_id}}"', entity
+                'UPDATE user SET avt_path = "{{{avt}}}", name = "{{name}}",phone = "{{sdt}}",address = "{{{diaChi}}}" WHERE user_id = "{{user_id}}"', entity
             );
 
         db.update(sql).then(function (changedRows) {
@@ -155,6 +155,5 @@ exports.checkAccountUpdate = function (entity) {
     db.load(sql).then(function (rows) {
         d.resolve(rows[0]);
     });
-
     return d.promise;
 }

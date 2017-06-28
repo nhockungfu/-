@@ -3,7 +3,7 @@ var mysql = require('mysql'),
 
 var _HOST = '127.0.0.1',
     _USER = 'root',
-    _PWD = '1234',
+    _PWD = '',
     _DB = 'bid_management';
 
 exports.load = function(sql) {

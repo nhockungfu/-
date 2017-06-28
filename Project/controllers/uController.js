@@ -2,6 +2,8 @@ var express = require('express'),
     crypto = require('crypto'),
     emailExistence = require('email-existence'),
     fs = require('fs'),
+    multer = require('multer'),
+    path = require('path'),
     userRepo = require('../models/userRepo'),
     restrict = require('../middle-wares/restrict'),
     categoryRepo = require('../models/categoryRepo'),
@@ -234,9 +236,6 @@ r.get('/reset-pass/:user_email', function (req, res) {
     // });
 });
 
-
-
-
 r.get('/chinhsua', function (req,res) {
     if (req.session.isLogged === true) {
         res.render('user/suaThongTinCaNhan', {layout: 'main', layoutModels: res.locals.layoutModels}) ;
@@ -246,21 +245,49 @@ r.get('/chinhsua', function (req,res) {
 
 });
 
-r.post('/chinhsua', function(req, res) {
+var temp;
+var storage = multer.diskStorage({
+    //duong dan luu file
+    destination: function (req, file, cb) {
+        try {
+            fs.mkdirSync('./data/users/temp');
+        } catch (err) {
+            if (err.code == 'EEXIST') {
+                console.log('thu muc da ton tai');
+            } else {
+                console.log('Loi.....');
+            }
+        }
+        cb(null, './data/users/temp')
+    },
+    //ten file luu
+    filename: function (req, file, cb) {
+        cb(null, 'avatar.jpg');
+        temp = 'avatar.jpg';
+    }
+});
+
+r.post('/chinhsua', multer({storage: storage}).single("avatar"), function (req, res, next) {
     var pass = crypto.createHash('md5').update(req.body.txt_password).digest('hex'),
-        email = req.body.txt_email,
-        mailGoc = res.locals.layoutModels.curUser.email,
         user_id = res.locals.layoutModels.curUser.user_id,
         diaChi = req.body.txt_diaChi,
-        sdt = req.body.txt_sdt;
+        sdt = req.body.txt_sdt,
+        avt = '/users/' + user_id + '/avatar.jpg';
     var entity = {
-        email: req.body.txt_email,
         name: req.body.txt_hoTen,
         password: pass,
         user_id: user_id,
         diaChi: diaChi,
-        sdt: sdt
+        sdt: sdt,
+        avt: avt
     };
+
+    if( fs.existsSync('./data/users/temp/'+ temp)){
+        var readStream = fs.createReadStream('./data/users/temp/'+ temp);
+        var writeStream = fs.createWriteStream('./data/users/' + user_id + '/' + temp);
+        readStream.pipe(writeStream);
+        fs.unlinkSync('./data/users/temp/'+ temp);
+    }
 
     var _res=res;
     var layoutModels= res.locals.layoutModels;
@@ -272,30 +299,12 @@ r.post('/chinhsua', function(req, res) {
                 showError: true
             });
         } else {
-            emailExistence.check(email, function(err,res){
-                if(res){
-                    userRepo.loadDetail2(email).then(function (rows) {
-                        if(rows != null && email != mailGoc){
-                            _res.render('user/suaThongTinCaNhan',
-                                {layoutModels: layoutModels,
-                                    layout:'main',
-                                    showError2: true});
-                        } else {
-                                userRepo.update(entity).then(function (changedRows) {
-                                _res.render('user/suaThongTinCaNhan',
-                                {layoutModels: layoutModels,
-                                layout:'main',
-                                showSuccess: true});
-                                })
-                        }
-                    })
-                } else {
-                    _res.render('user/suaThongTinCaNhan',
-                        {layoutModels: layoutModels,
-                            layout:'main',
-                            showError4: true});
-                }
-            });
+            userRepo.update(entity).then(function (changedRows) {
+                _res.render('user/suaThongTinCaNhan',
+                    {layoutModels: layoutModels,
+                        layout:'main',
+                        showSuccess: true});
+            })
         }
     }).fail(function(err) {
         console.log(err);
