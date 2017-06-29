@@ -23,6 +23,10 @@ body{
 .slogan-header{
 	display: inline-table;
 }
+.slogan-header:hover{
+	transition: 0.5s;
+	color: #00ff79;
+}
 .navbar-nav{
 	margin-right: 0;
 }
@@ -40,23 +44,34 @@ body{
 	text-decoration: none;
 }
 #my-nav-header ul a{
-	color: #1D414D;
+	color: #000000;
 	font-weight: bold;
+	font-size: 12px;
 	padding-bottom: 15px;
+	padding: 3px 10px 0px 10px;
 }
 #my-nav-header ul a:hover{
-	color: #eeeeee;
+	transition: 0.2s;
+	color: #eee;
+}
+.navbar-default .navbar-nav>.open>a{
+	transition: 0.2s !important;
+	color: #f8ff11 !important;
+	background-color: #ff990e !important;
 }
 #logo-header{
-	height: 40px;
-	padding-top: 5px;
-	padding-right: 10px;
+	height: 60px;
 }
 .slogan-header{
-	color: #ffffff;
+	color: #f0f0f0;
+	font-size: 16px;
 }
 #my-search-header{
 	margin: 0 20px;
+}
+#txt_timKiem{
+	width: 470px !important;
+	height: 40px !important;
 }
 .header .navbar-default{
 	margin: 0px;
@@ -143,7 +158,7 @@ header{
 
 #search-box{
 	width: 380px;
-	height: 35px;
+	height: 40px;
 	border-radius: unset;
 	border: none;
 }
@@ -151,10 +166,14 @@ header{
 #search-button{
 	border-radius: unset;
 	border: none;
-	height: 35px;
-	width: 35px;
+	height: 40px;
+	width: 40px;
 }
 
 .form-inline .form-group{
 	margin-left: 50px;
+}
+
+.dropdown-menu a:hover{
+	color: red !important;
 }

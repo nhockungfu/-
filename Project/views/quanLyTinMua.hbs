@@ -1,44 +1,17 @@
-
 {{#section 'css'}}
-    <link rel="stylesheet" type="text/css" href="../public/assests/css/signIn.css">
-    <link rel="stylesheet" type="text/css" href="../public/assests/css/thongTinCaNhan.css">
-    <link rel="stylesheet" type="text/css" href="../public/assests/css/quanLyTinMua.css">
+    <link rel="stylesheet" type="text/css" href="/assests/css/signIn.css">
+    <link rel="stylesheet" type="text/css" href="/assests/css/thongTinCaNhan.css">
+    <link rel="stylesheet" type="text/css" href="/assests/css/quanLyTinMua.css">
 {{/section}}
-
-
 
 {{#section 'js'}}
     <script type="text/javascript" src="/assests/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="../public/assests/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
-    <script type="text/javascript">
-        //    var f = false;
-        $("ul.nav-tabs a").click(function (e) {
-            e.preventDefault();
-            $(this).tab('show');
-        });
-        //    $('#myModal2').on('hidden.bs.modal', function () {
-        //        f = true;
-        //        $('#myAlert').alert('close');
-        //        $('#nav--header__utility').css('background-color', '#75BD4F');
-        //    });
-        //    $('#btn_quanLyBan').hover(function () {
-        //        if (f == false) {
-        //            $('#btn_quanLyBan').tooltip('show');
-        //        }
-        //        else {
-        //            $('#btn_quanLyBan').tooltip('destroy');
-        //        }
-        //    });
-        //    $('#btn_quanLyBan').click(function () {
-        //        if (f)
-        //            $('#set2').show();
-        //    });
-    </script>
+    <script type="text/javascript" src="/assests/js/quanLyTinMua.js"></script>
 {{/section}}
 
+
 <div class="row">
-    <div class="col-md-1"></div>
-    <div class="col-md-7">
+    <div class="col-md-8">
         <div class="panel panel-default">
             <div class="panel-heading">
                 <div class="bs-example bs-example-standalone" data-example-id="dismissible-alert-js">
@@ -47,7 +20,8 @@
                             <span aria-hidden="true">×</span>
                         </button>
                         <h4>Bạn biết chưa?</h4>
-                        <p>Để có thể đăng tin đấu giá bạn cần xây dựng độ tin cậy cho tài khoản của bạn để đạt điểm trên 80% và xin phép admin để được bán.</p>
+                        <p>Để có thể đăng tin đấu giá bạn cần xây dựng độ tin cậy cho tài khoản của bạn để đạt điểm trên
+                            80% và xin phép admin để được bán.</p>
                         <p>
                             <button id="btn_dangBan" class="btn btn-danger">Đăng bán ngay</button>
                             <button id="btn_timHieuThem" class="btn btn-default">Tìm hiểu thêm</button>
@@ -60,10 +34,10 @@
             <div class="panel-body">
                 <div class="row">
                     <div class="col-md-2">
-                        <img id="avt-img" src="../public/images/avatar.png" style="width: 80px;height: 80px;">
+                        <img id="avt-img" src="{{layoutModels.curUser.avt_path}}" style="width: 80px;height: 80px;">
                     </div>
                     <div class="col-md-10" style="margin-top: 10px;">
-                        <div><h4>Tên của bạn</h4></div>
+                        <div><h4>{{layoutModels.curUser.name}}</h4></div>
                         <div><a href="thongTinCaNhan.html">Xem trang cá nhân của bạn</a></div>
                     </div>
                 </div><!--row 1-->
@@ -75,215 +49,179 @@
                                 <a href="#set1">Quản lý mua</a>
                             </li>
                             <li>
-                                <a id="btn_quanLyBan" href="#set2" data-toggle="tooltip" data-placement="top"
-                                   title="Bạn chưa được bán">Quản lý bán</a>
+                                <a id="btn_quanLyBan" href="#set2" data-toggle="tooltip" data-placement="top" title="Bạn chưa được bán">Quản lý bán</a>
                             </li>
                         </ul>
                         <div class="tab-content">
                             <div class="tab-pane fade active in" id="set1">
                                 <div class="tabbable">
                                     <ul class="nav nav-tabs">
-                                        <li class="active"><a href="#sub11">Đang đấu giá</a>
+                                        <li class="active">
+                                            <a href="#sub11">
+                                                <span class="glyphicon glyphicon-hourglass" aria-hidden="true"></span>
+                                                Đang đấu giá
+                                            </a>
                                         </li>
-                                        <li><a href="#sub12">Sản phẩm yêu thích</a>
+                                        <li>
+                                            <a href="#sub12">
+                                                <span class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span>
+                                                Sản phẩm yêu thích
+                                            </a>
                                         </li>
-                                        <li><a href="#sub13">Lịch sử</a>
+                                        <li>
+                                            <a href="#sub13">
+                                                <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                                                Lịch sử
+                                            </a>
                                         </li>
                                     </ul>
                                     <div class="tab-content">
-                                        <div class="tab-pane fade active in">
-                                            <!--dòng này tượng trưng cho bảng đang đấu giá 1-1-->
-                                            <table class="table table-hover">
+                                        <div class="tab-pane fade active in" id="sub11">
+                                            <table class="table table-hover bidding-table">
                                                 <thead>
                                                 <tr>
                                                     <th>Mã SP</th>
                                                     <th>Sản phẩm</th>
-                                                    <th>Giá mua ngay (VNĐ)</th>
-                                                    <th>Giá cao nhất (VNĐ)</th>
-                                                    <th>Người đấu giá</th>
+                                                    <th>Giá mua ngay</th>
+                                                    <th>Giá cao nhất</th>
+                                                    <th>Người giữ giá</th>
+                                                    <th>N01</th>
                                                 </tr>
                                                 </thead>
                                                 <tbody>
-                                                <tr class="dong-ThongTin">
-                                                    <th scope="row"><a href="#">1</a></th>
-                                                    <td><a href="produceDetail.html">IPhone 6s</a></td>
-                                                    <td>9.000.000</td>
-                                                    <td>7.000.000</td>
-                                                    <td><a href="#">akira@gmail.com</a></td>
-                                                </tr>
-                                                <tr class="dong-ThongTin">
-                                                    <th scope="row"><a href="#">2</a></th>
-                                                    <td><a href="produceDetail.html">Tivi Sony 32inch</a></td>
-                                                    <td>24.000.000</td>
-                                                    <td>11.500.000</td>
-                                                    <td><a href="#">tonystack@gmail.com</a></td>
-                                                </tr>
-                                                <tr class="dong-ThongTin">
-                                                    <th scope="row"><a href="#">3</a></th>
-                                                    <td><a href="produceDetail.html">OPPO F3</a></td>
-                                                    <td>7.000.000</td>
-                                                    <td>5.000.000</td>
-                                                    <td><a href="#">Bạn</a></td>
-                                                </tr>
+                                                <!--danh sách đang đấu giá-->
+                                                {{#each bidding_list}}
+                                                    <tr class="tr-bidding-list">
+                                                        <th scope="row"><a href="#">{{pro_id}}</a></th>
+                                                        <td><a href="/produces/detail/{{pro_id}}">{{name}}</a></td>
+                                                        <td>{{number_format purchase_price}}</td>
+                                                        <td>{{number_format highest_price}}</td>
+                                                        <td><a href="#">{{bidder_email}}</a></td>
+                                                        <td class="bidding-td">
+                                                            <img class="{{msg}}" src="/images/top-one.png" alt="">
+                                                        </td>
+                                                    </tr>
+                                                {{/each}}
                                                 </tbody>
                                             </table>
                                         </div>
-                                        <div class="tab-pane fade" id="sub11">
-                                            <table class="table table-hover">
-                                                <thead>
-                                                <tr>
-                                                    <th>Mã SP</th>
-                                                    <th>Sản phẩm</th>
-                                                    <th>Giá mua ngay (VNĐ)</th>
-                                                    <th>Giá cao nhất (VNĐ)</th>
-                                                    <th>Người giữ giá</th>
-                                                </tr>
-                                                </thead>
-                                                <tbody>
-                                                <tr>
-                                                    <th scope="row"><a href="#">3</a></th>
-                                                    <td><a href="#">OPPO F3</a></td>
-                                                    <td>9.000.000</td>
-                                                    <td>44.000.000</td>
-                                                    <td><a href="#">sdfldo@yahoo.com</a></td>
-                                                </tr>
-                                                </tbody>
-                                            </table>
-                                        </div><!--sub12-->
+                                        <!--danh sách sản phẩm yêu thích-->
                                         <div class="tab-pane fade" id="sub12">
                                             <table class="table table-hover">
                                                 <thead>
                                                 <tr>
                                                     <th>Mã SP</th>
                                                     <th>Sản phẩm</th>
-                                                    <th>Giá mua ngay (VNĐ)</th>
-                                                    <th>Giá cao nhất (VNĐ)</th>
+                                                    <th>Giá mua ngay</th>
+                                                    <th>Giá cao nhất</th>
                                                     <th>Người giữ giá</th>
                                                 </tr>
                                                 </thead>
                                                 <tbody>
-                                                <tr>
-                                                    <th scope="row"><a href="#">3</a></th>
-                                                    <td><a href="#">OPPO F3</a></td>
-                                                    <td>7.000.000</td>
-                                                    <td>5.000.000</td>
-                                                    <td><a href="#">ronaldo@yahoo.com</a></td>
-                                                </tr>
+                                                {{#each favorite_list}}
+                                                    <tr>
+                                                        <th scope="row"><a href="#">{{pro_id}}</a></th>
+                                                        <td><a href="/produces/detail/{{pro_id}}">{{name}}</a></td>
+                                                        <td>{{number_format purchase_price}}</td>
+                                                        <td>{{number_format highest_price}}</td>
+                                                        <td><a href="#">{{bidder_email}}</a></td>
+                                                    </tr>
+                                                {{/each}}
                                                 </tbody>
                                             </table>
-                                        </div><!--sub12-->
+                                        </div>
+                                        <!--danh sách lịch sử đấu giá-->
                                         <div class="tab-pane fade" id="sub13">
-                                            <table class="table table-hover">
+                                            <table class="table table-hover won-list-table">
                                                 <thead>
                                                 <tr>
                                                     <th>Mã SP</th>
                                                     <th>Sản phẩm</th>
-                                                    <th>Giá mua ngay (VNĐ)</th>
-                                                    <th>Đấu giá (VNĐ)</th>
-                                                    <th>Kết quả đấu giá</th>
+                                                    <th>Giá khởi điểm</th>
+                                                    <th>Giá đã đặt</th>
+                                                    <th>Đánh giá người bán</th>
                                                 </tr>
                                                 </thead>
                                                 <tbody>
-                                                <tr>
-                                                    <th scope="row"><a href="#">3</a></th>
-                                                    <td><a href="#">OPPO F3</a></td>
-                                                    <td>2.000.000</td>
-                                                    <td>8.000.000</td>
-                                                    <td>Thành công</td>
-                                                </tr>
+                                                {{#each history_list}}
+                                                    <tr>
+                                                        <th scope="row"><a href="#">{{pro_id}}</a></th>
+                                                        <td><a href="#">{{name}}</a></td>
+                                                        <td>{{number_format start_price}}</td>
+                                                        <td>{{number_format highest_price}}</td>
+                                                        <td class="td-check-mark-seller text-center">{{check_mark}}</td>
+                                                    </tr>
+                                                {{/each}}
                                                 </tbody>
                                             </table>
-                                        </div><!--sub13-->
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="tab-pane fade in" id="set2">
+                            <div class="tab-pane fade" id="set2">
                                 <div class="tabbable">
                                     <ul class="nav nav-tabs">
-                                        <li class="active"><a href="#sub21">Đang bán</a>
+                                        <li class="active">
+                                            <a href="#sub21">
+                                                <span class="glyphicon glyphicon-flash" aria-hidden="true"></span>
+                                                Sản phẩm đang bán
+                                            </a>
                                         </li>
-                                        <li><a href="#sub22">Lịch sử đăng bán</a>
+                                        <li>
+                                            <a href="#sub22">
+                                                <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                                                Sản phẩm đã có người mua
+                                            </a>
                                         </li>
                                     </ul>
+                                    <!--các sản phẩm đang được bán, còn đấu giá được-->
                                     <div class="tab-content">
-                                        <div class="tab-pane fade active in">
-                                            <!--dòng này tượng trưng cho bảng đang đấu giá 1-1-->
+                                        <div class="tab-pane fade active in" id="sub21">
                                             <table class="table table-hover">
                                                 <thead>
                                                 <tr>
                                                     <th>Mã SP</th>
                                                     <th>Sản phẩm</th>
-                                                    <th>Giá mua ngay (VNĐ)</th>
-                                                    <th>Giá cao nhất (VNĐ)</th>
-                                                    <th>Người đấu giá</th>
-                                                </tr>
-                                                </thead>
-                                                <tbody>
-                                                <tr class="dong-ThongTin">
-                                                    <th scope="row"><a href="#">1</a></th>
-                                                    <td><a href="produceDetail.html">IPhone 6s</a></td>
-                                                    <td>9.000.000</td>
-                                                    <td>7.000.000</td>
-                                                    <td><a href="#">akira@gmail.com</a></td>
-                                                </tr>
-                                                <tr class="dong-ThongTin">
-                                                    <th scope="row"><a href="#">2</a></th>
-                                                    <td><a href="produceDetail.html">Tivi Sony 32inch</a></td>
-                                                    <td>24.000.000</td>
-                                                    <td>11.500.000</td>
-                                                    <td><a href="#">tonystack@gmail.com</a></td>
-                                                </tr>
-                                                <tr class="dong-ThongTin">
-                                                    <th scope="row"><a href="#">3</a></th>
-                                                    <td><a href="produceDetail.html">OPPO F3</a></td>
-                                                    <td>7.000.000</td>
-                                                    <td>5.000.000</td>
-                                                    <td><a href="#">Bạn</a></td>
-                                                </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                        <div class="tab-pane fade" id="sub21">
-                                            <table class="table table-hover">
-                                                <thead>
-                                                <tr>
-                                                    <th>Mã SP</th>
-                                                    <th>Sản phẩm</th>
-                                                    <th>Giá khởi điểm (VNĐ)</th>
-                                                    <th>Giá cao nhất (VNĐ)</th>
+                                                    <th>Giá khởi điểm</th>
+                                                    <th>Giá cao nhất</th>
                                                     <th>Người giữ giá</th>
                                                 </tr>
                                                 </thead>
                                                 <tbody>
-                                                <tr>
-                                                    <th scope="row"><a href="#">3</a></th>
-                                                    <td><a href="#">OPPO F3</a></td>
-                                                    <td>9.000.000</td>
-                                                    <td>44.000.000</td>
-                                                    <td><a href="#">sdfldo@yahoo.com</a></td>
-                                                </tr>
+                                                {{#each selling_list}}
+                                                    <tr>
+                                                        <th scope="row"><a href="#">{{pro_id}}</a></th>
+                                                        <td><a href="#">{{name}}</a></td>
+                                                        <td>{{number_format start_price}}</td>
+                                                        <td>{{number_format highest_price}}</td>
+                                                        <td><a href="#">{{email}}</a></td>
+                                                    </tr>
+                                                {{/each}}
                                                 </tbody>
                                             </table>
                                         </div>
+                                        <!--danh sách sản phẩm đã được mua-->
                                         <div class="tab-pane fade" id="sub22">
-                                            <table class="table table-hover">
+                                            <table class="table table-hover bidded-list-table">
                                                 <thead>
                                                 <tr>
                                                     <th>Mã SP</th>
                                                     <th>Sản phẩm</th>
-                                                    <th>Giá khởi điểm (VNĐ)</th>
-                                                    <th>Giá cao nhất (VNĐ)</th>
+                                                    <th>Giá được mua</th>
                                                     <th>Người mua</th>
+                                                    <th>Đánh giá người mua</th>
                                                 </tr>
                                                 </thead>
                                                 <tbody>
-                                                <tr>
-                                                    <th scope="row"><a href="#">3</a></th>
-                                                    <td><a href="#">OPPO F3</a></td>
-                                                    <td>7.000.000</td>
-                                                    <td>5.000.000</td>
-                                                    <td><a href="#">ronaldo@yahoo.com</a></td>
-                                                </tr>
+                                                {{#each selled_list}}
+                                                    <tr>
+                                                        <th scope="row"><a href="#">{{pro_id}}</a></th>
+                                                        <td><a href="#">{{name}}</a></td>
+                                                        <td>{{number_format highest_price}}</td>
+                                                        <td><a href="#">{{email}}</a></td>
+                                                        <td class="td-check-mark-bidder text-center">{{check_mark}}</td>
+                                                    </tr>
+                                                {{/each}}
                                                 </tbody>
                                             </table>
                                         </div>
@@ -298,11 +236,11 @@
         </div>
     </div><!--panel thong tin ca nhan-->
     <!--start: panel nạp khoản-->
-    <div class="col-md-3">
+    <div class="col-md-4">
         <div class="panel panel-default">
             <div class="panel-heading">
                 <div class="col-md-4">
-                    <img id="vcoin-img" src="../public/images/vcoin.png">
+                    <img id="vcoin-img" src="/images/vcoin.png">
                 </div>
                 <div class="rol-md-8">
                     <div><h4>Tài khoản VCOIN</h4></div>
@@ -333,9 +271,8 @@
                         <td>20</td>
                     </tr>
                 </table>
-                <a id="btn_napNgay" href="napThe.html" class="btn btn-warning">Nạp ngay</a>
+                <a id="btn_napNgay" href="#" class="btn btn-warning">Nạp ngay</a>
             </div>
         </div>
     </div>
-    <div class="col-md-1"></div>
 </div>

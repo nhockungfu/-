@@ -2,58 +2,62 @@
     <div class="row">
         <nav class="navbar navbar-default" >
             <div id="my-nav-header" style="width: 100%;">
-                <a href="/home">
-                    <img id="logo-header" src="/images/logo.png">
-                    <p class="slogan-header">
-                        <i>Nơi bạn có thể mua hàng với giá rẻ nhất</i>
-                    </p>
-                </a>
-                <form class="form-inline"
-                      style="display: inline-table;" action="/category/timkiem" method="post" >
-                    <div class="form-group ">
-                        <input name="txt_timKiem" id="txt_timKiem" type="text" class="form-control" placeholder="Search" style="width: 380px; height: 35px; border-radius: unset;">
-                        <button type="submit" id="search-button" class="btn btn-default">
-                            <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-                        </button>
-                    </div>
-                </form>
-                <ul class="nav navbar-nav navbar-right" id="my-menu-in-header">
-                    <li>
-                        <a href="#" data-toggle="modal" data-target="#myModal">Liên hệ chúng tôi</a>
-                    </li>
-                    {{#if layoutModels.isLogged }}
-                        {{#if layoutModels.isBid}}
-                            <li><a href="/produces/add">Đăng bán</a></li>
-                        {{else}}
-                            <li><a href="#">Đăng bán</a></li>
-                        {{/if}}
+                <div class="row" style="margin: 0; padding: 0;">
+                    <ul class="nav navbar-nav navbar-right" id="my-menu-in-header">
+                        <li>
+                            <a href="#" data-toggle="modal" data-target="#myModal">Liên hệ chúng tôi</a>
+                        </li>
+                        {{#if layoutModels.isLogged }}
+                            {{#if layoutModels.isBid}}
+                                <li><a href="/produces/add">Đăng bán</a></li>
+                            {{else}}
+                                <li><a href="#">Đăng bán</a></li>
+                            {{/if}}
 
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                                Quản lý<span class="caret"></span>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a href="/account/profile">SP đang đấu giá</a></li>
-                                <li><a href="/account/profile">SP yêu thích</a></li>
-                                <li><a href="javascript:;">SP đấu giá thành công</a></li>
-                            </ul>
-                        </li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                                Hi,&nbsp; <b>{{ layoutModels.curUser.name }}</b> <span class="caret"></span>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a href="/account/profile">Thông tin cá nhân</a></li>
-                                <li><a href="/account/profile">Đổi mật khẩu</a></li>
-                                <li role="separator" class="divider"></li>
-                                <li><a id="logoutLink" href="javascript:;">Đăng xuất</a></li>
-                            </ul>
-                        </li>
-                    {{else}}
-                        <li><a href="/user/dangnhap">Đăng nhập</a></li>
-                        <li><a href="/user/dangky">Đăng ký</a></li>
-                    {{/if}}
-                </ul>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                    Quản lý<span class="caret"></span>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="/account/profile">SP đang đấu giá</a></li>
+                                    <li><a href="/account/profile">SP yêu thích</a></li>
+                                    <li><a href="javascript:;">SP đấu giá thành công</a></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                    Hi,&nbsp; <b>{{ layoutModels.curUser.name }}</b> <span class="caret"></span>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="/account/profile">Thông tin cá nhân</a></li>
+                                    <li><a href="/account/profile">Đổi mật khẩu</a></li>
+                                    <li role="separator" class="divider"></li>
+                                    <li><a id="logoutLink" href="javascript:;">Đăng xuất</a></li>
+                                </ul>
+                            </li>
+                        {{else}}
+                            <li><a href="/user/dangnhap">Đăng nhập</a></li>
+                            <li><a href="/user/dangky">Đăng ký</a></li>
+                        {{/if}}
+                    </ul>
+                </div>
+                <div class="row" style="margin: 0; padding: 0; height: 68px; line-height: 68px;">
+                    <a href="/home">
+                        <img id="logo-header" src="/images/logo.png">
+                        <p class="slogan-header">
+                            <i>Nơi bạn có thể mua hàng với giá rẻ nhất!</i>
+                        </p>
+                    </a>
+                    <form class="form-inline"
+                          style="display: inline-table;" action="/category/timkiem" method="post" >
+                        <div class="form-group ">
+                            <input name="txt_timKiem" id="txt_timKiem" type="text" class="form-control" placeholder="Tìm kiếm sản phẩm" style="width: 380px; height: 35px; border-radius: unset;">
+                            <button type="submit" id="search-button" class="btn btn-default">
+                                <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </nav>
     </div>

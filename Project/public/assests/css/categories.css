@@ -11,7 +11,7 @@
     border-right: none;
     border-color: #ddd;
     background-color: #fff;
-    color: #000;
+    color: #585858;
     text-align: left;
     height: 55px;
     line-height: 35px;
@@ -67,4 +67,8 @@ a.list-group-item{
 .panel-categories{
     margin-left: 25px;
     border:none;
+}
+
+.panel.panel-default{
+    margin-left: 0 !important;
 }

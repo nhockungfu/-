@@ -32,7 +32,7 @@ app.engine('hbs', handlebars({
             var nf = wnumb({
                 thousand: ','
             });
-            return nf.to(n);
+            return nf.to(n)+' đ';
         },
     }
 }));
@@ -57,7 +57,7 @@ app.use(session({
         host: '127.0.0.1',
         port: 3306,
         user: 'root',
-        password: '',
+        password: '1234',
         database: 'bid_management',
         createDatabaseTable: true,
         schema: {

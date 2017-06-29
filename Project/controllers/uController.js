@@ -10,101 +10,109 @@ var express = require('express'),
     produceRepo = require('../models/producesRepo');
     nodemailer = require('nodemailer'),
     categoryRepo = require('../models/categoryRepo'),
+    q = require('q'),
     randomstring = require("randomstring");
 
 var r = express.Router();
 
-r.get('/dangky',function (req,res) {
-    res.render('user/dangKy',{layout:'main',layoutModels: res.locals.layoutModels,showError:false});
+r.get('/dangky', function (req, res) {
+    res.render('user/dangKy', {layout: 'main', layoutModels: res.locals.layoutModels, showError: false});
 });
 
-r.post('/dangky',function (req,res) {
+r.post('/dangky', function (req, res) {
     var email = req.body.txtEmail,
         pass = crypto.createHash('md5').update(req.body.txtPassWord).digest('hex');
-    var user={
+    var user = {
         email: email,
         pass: pass,
-        point:0
+        point: 0
     }
-    var _res=res;
+    var _res = res;
     var layoutModels = res.locals.layoutModels;
-    emailExistence.check(email, function(err,res){
-        if(res){
+    emailExistence.check(email, function (err, res) {
+        if (res) {
             userRepo.loadDetail2(email).then(function (rows) {
-                if(rows != null){
+                if (rows != null) {
                     console.log('co trong csdl roi')
                     _res.render('user/dangKy',
-                        {layoutModels: layoutModels,
-                            layout:'main',
-                            showError:true});
-                }else{
+                        {
+                            layoutModels: layoutModels,
+                            layout: 'main',
+                            showError: true
+                        });
+                } else {
                     console.log('chua co trong csdl')
                     userRepo.insert(user).then(function (insertId) {
                         _res.render('user/dangKyThanhCong',
-                                {layoutModels: layoutModels,
-                                email:email,
-                                layout:false});
+                            {
+                                layoutModels: layoutModels,
+                                email: email,
+                                layout: false
+                            });
                         console.log('them thanh cong ' + insertId);
-                    }).fail(function(err) {
-                        console.log(err);;
+                    }).fail(function (err) {
+                        console.log(err);
+                        ;
                         res.end('fail');
                     });
                 }
             })
             console.log('co thuc');
-        }else{
+        } else {
             console.log('Khong co thuc');
             _res.render('user/dangKy',
-                {layoutModels: layoutModels,
-                    layout:'main',
-                    showError:true});
+                {
+                    layoutModels: layoutModels,
+                    layout: 'main',
+                    showError: true
+                });
         }
     });
 });
 
-r.get('/dangnhap',function (req,res) {
+r.get('/dangnhap', function (req, res) {
     if (req.session.isLogged === true) {
         res.redirect('/home');
     } else {
         res.render('user/dangNhap2', {
-            layout:'main',
+            layout: 'main',
             layoutModels: res.locals.layoutModels,
             showError: false,
         });
     }
 });
 
-r.post('/dangnhap',function (req,res) {
+r.post('/dangnhap', function (req, res) {
     var email = req.body.txt_email,
         pass = crypto.createHash('md5').update(req.body.txt_pass).digest('hex');
-console.log(pass)
+    console.log(pass)
 
-    var entity={
-        email:email,
-        pass:pass
+    var entity = {
+        email: email,
+        pass: pass
     };
-    var f=false;
+    var f = false;
     userRepo.checkAccount(entity).then(function (user) {
 
         if (user.email == null) {
             console.log('dang nhap that bai')
             res.render('user/dangNhap2', {
                 layoutModels: res.locals.layoutModels,
-                layout:'main',
+                layout: 'main',
                 showError: true
             });
         } else {
-                if(user.sum==0)
-                    f=true;
-                if(user.point/user.sum*100>=80){
+            if (user.sum == 0)
+                f = true;
+            if (user.point / user.sum * 100 >= 80) {
 
-                    f=true;
-                }
+                f = true;
+            }
 
             console.log('dang nhap thanh cong')
             req.session.isLogged = true;
             req.session.user = user;
-            req.session.isBid=f;
+            req.session.isBid = f;
 
             var url = '/home';
             if (req.query.retUrl) {
@@ -112,13 +120,14 @@ console.log(pass)
             }
             res.redirect(url);
         }
-    }).fail(function(err) {
-        console.log(err);;
+    }).fail(function (err) {
+        console.log(err);
+        ;
         res.end('fail');
     });
 });
 
-r.post('/dangxuat', restrict, function(req, res) {
+r.post('/dangxuat', restrict, function (req, res) {
     req.session.isLogged = false;
     req.session.isBid = false;
     req.session.user = null;
@@ -126,8 +135,8 @@ r.post('/dangxuat', restrict, function(req, res) {
     res.redirect(req.headers.referer);
 });
 
-r.get('/a',function (req,res) {
-    res.render('user/dangKyThanhCong',{layout:false})
+r.get('/a', function (req, res) {
+    res.render('user/dangKyThanhCong', {layout: false})
 })
 
 r.get('/reset-pass/:user_email', function (req, res) {
@@ -136,21 +145,21 @@ r.get('/reset-pass/:user_email', function (req, res) {
         res.redirect('Thao tác không hợp lệ!');
     }
 
-    userRepo.checkForWaitingChangePass(email).then(function(result){
+    userRepo.checkForWaitingChangePass(email).then(function (result) {
         var is_wait = result.waiting_for_change_pass;
 
         var bit_false = new Buffer([0x00]);
         var bit_true = new Buffer([0x01]);
 
         //nếu csdl không có lưu vấn đề chờ reset mật khẩu
-        if(is_wait[0] == bit_false[0]){
+        if (is_wait[0] == bit_false[0]) {
             res.end('OOOP: Invalid operation!');
         }
 
         //nếu csdl đánh dấu: đang chờ reset khẩu -> mật khẩu sẽ bị đổi bằng chuỗi random và được gửi về mail người dùng.
-        if(is_wait[0] == bit_true[0]){
+        if (is_wait[0] == bit_true[0]) {
             var rand_pass = randomstring.generate(10);
-            userRepo.changeUserPass(email,rand_pass).then(function(){
+            userRepo.changeUserPass(email, rand_pass).then(function () {
 
                 var transporter = nodemailer.createTransport({ //cấu hình mail server
                     service: 'Gmail',
@@ -234,9 +243,9 @@ r.get('/reset-pass/:user_email', function (req, res) {
     // });
 });
 
-r.get('/chinhsua', function (req,res) {
+r.get('/chinhsua', function (req, res) {
     if (req.session.isLogged === true) {
-        res.render('user/suaThongTinCaNhan', {layout: 'main', layoutModels: res.locals.layoutModels}) ;
+        res.render('user/suaThongTinCaNhan', {layout: 'main', layoutModels: res.locals.layoutModels});
     } else {
         res.redirect('/user/dangnhap')
     }
@@ -280,45 +289,47 @@ r.post('/chinhsua', multer({storage: storage}).single("avatar"), function (req, 
         avt: avt
     };
 
-    if( fs.existsSync('./data/users/temp/'+ temp)){
-        var readStream = fs.createReadStream('./data/users/temp/'+ temp);
+    if (fs.existsSync('./data/users/temp/' + temp)) {
+        var readStream = fs.createReadStream('./data/users/temp/' + temp);
         var writeStream = fs.createWriteStream('./data/users/' + user_id + '/' + temp);
         readStream.pipe(writeStream);
-        fs.unlinkSync('./data/users/temp/'+ temp);
+        fs.unlinkSync('./data/users/temp/' + temp);
     }
 
-    var _res=res;
-    var layoutModels= res.locals.layoutModels;
+    var _res = res;
+    var layoutModels = res.locals.layoutModels;
     userRepo.checkAccountUpdate(entity).then(function (user) {
-        if(user == null){
+        if (user == null) {
             _res.render('user/suaThongTinCaNhan', {
                 layoutModels: layoutModels,
-                layout:'main',
+                layout: 'main',
                 showError: true
             });
         } else {
             userRepo.update(entity).then(function (changedRows) {
                 _res.render('user/suaThongTinCaNhan',
-                    {layoutModels: layoutModels,
-                        layout:'main',
-                        showSuccess: true});
+                    {
+                        layoutModels: layoutModels,
+                        layout: 'main',
+                        showSuccess: true
+                    });
             })
         }
-    }).fail(function(err) {
+    }).fail(function (err) {
         console.log(err);
         res.end('fail');
     });
 });
 
-r.get('/doimatkhau', function (req,res) {
+r.get('/doimatkhau', function (req, res) {
     if (req.session.isLogged === true) {
-        res.render('user/doiMatKhau', {layout: 'main', layoutModels: res.locals.layoutModels}) ;
+        res.render('user/doiMatKhau', {layout: 'main', layoutModels: res.locals.layoutModels});
     } else {
         res.redirect('/user/dangnhap')
     }
 });
 
-r.post('/doimatkhau', function (req,res) {
+r.post('/doimatkhau', function (req, res) {
     var pass = crypto.createHash('md5').update(req.body.txt_password).digest('hex'),
         user_id = res.locals.layoutModels.curUser.user_id,
         passNew = crypto.createHash('md5').update(req.body.txt_passwordNew).digest('hex');
@@ -328,65 +339,72 @@ r.post('/doimatkhau', function (req,res) {
         user_id: user_id
     };
 
-    var _res=res;
-    var layoutModels= res.locals.layoutModels;
+    var _res = res;
+    var layoutModels = res.locals.layoutModels;
     userRepo.checkAccountUpdate(entity).then(function (user) {
-        if(user == null){
+        if (user == null) {
             _res.render('user/doimatkhau', {
                 layoutModels: layoutModels,
-                layout:'main',
+                layout: 'main',
                 showError: true
             });
         } else {
             userRepo.updatePass(entity).then(function (changedRows) {
                 _res.render('user/doimatkhau',
-                    {layoutModels: layoutModels,
-                        layout:'main',
-                        showSuccess: true});
+                    {
+                        layoutModels: layoutModels,
+                        layout: 'main',
+                        showSuccess: true
+                    });
             })
         }
-    }).fail(function(err) {
+    }).fail(function (err) {
         console.log(err);
         res.end('fail');
     });
 });
 
 // Vào quản lý tin mua (đối tượng người mua)
-r.get('/quan-ly-tin-mua',function (req,res) {
+r.get('/quan-ly-tin-mua', function (req, res) {
 
     var user_id = res.locals.layoutModels.curUser.user_id;
     var user_email = res.locals.layoutModels.curUser.email;
 
-    console.log('user id: ' + user_id  + 'email: '+ user_email);
+    q.all([
+        userRepo.getBiddingListForUser(user_id),
+        userRepo.getFavoriteListForUser(user_id),
+        userRepo.getWonListForUser(user_id, user_email),
+        userRepo.getProductSellingList(user_id),
+        userRepo.getProductSelledList(user_id)
+    ]).spread(function (r_bidding_list, r_favorite_list, r_history_list, r_selling_list, r_selled_list) {
+        var vm = {
+            layout: 'main',
+            layoutModels: res.locals.layoutModels,
+            bidding_list: r_bidding_list,
+            favorite_list: r_favorite_list,
+            history_list: r_history_list,
+            selling_list: r_selling_list,
+            selled_list: r_selled_list
+        };
 
-    // q.all([
-    //     userRepo.getBiddingListForUser(user_id, user_email),
-    //     userRepo.loadTopNDesc('highest_price', 3),
-    //     userRepo.loadTopNDesc('poor_time', 3)
-    // ]).spread(function (topDesc_numBids, topDesc_price, topDesc_poorTime) {
-    //
-    //     console.log(topDesc_numBids);
-    //     topDesc_numBids.forEach(function (item) {
-    //         console.log(xuLyThoiGian(item.total_time ))
-    //
-    //     })
-    //     var vm = {
-    //         numBidTop: topDesc_numBids,
-    //         priceTop: topDesc_price,
-    //         poorTimeTop: topDesc_poorTime,
-    //         layoutModels: res.locals.layoutModels
-    //     };
-    //     res.render('index',vm);
-    // })
+        res.render('quanLyTinMua', vm);
+    }) //q.all
 
-
-    var vm = {
-        layout: 'main'
-    }
-
-    res.render('quanLyTinMua', vm);
 });
 
+// Vào quản lý tin mua (đối tượng người mua)
+r.get('/mark', function (req, res) {
+
+    // var user_id = res.locals.layoutModels.curUser.user_id;
+    // var user_email = res.locals.layoutModels.curUser.email;
+
+    var vm = {
+        layout: 'main',
+    };
+
+    res.render('userMark', vm);
+
+});
 
 
 module.exports = r;
