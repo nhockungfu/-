@@ -58,8 +58,9 @@ exports.checkAccount = function (entity) {
     var sql = mustache.render(
         'select u.user_id,u.email,u.pass,u.name,u.phone,u.address,u.avt_path,u.point,u.sell_time,count(u.user_id) as sum ' +
         'from user u, voted_list vt ' +
-        'where u.email = "{{email}}" and u.pass="{{pass}}" and u.user_id = vt.user_id',entity
+        'where u.email = "{{{email}}}" and u.pass="{{{pass}}}" and u.user_id = vt.user_id',entity
     );
+    console.log(sql);
     db.load(sql).then(function (rows) {
         d.resolve(rows[0]);
     });

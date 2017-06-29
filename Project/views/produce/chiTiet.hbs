@@ -1,12 +1,34 @@
 {{#section 'css'}}
     <link rel="stylesheet" type="text/css" href="/assests/css/produceDetail.css">
     <script type="text/javascript" src="/assests/js/chitiet.js"></script>
+    <style>
+        #mceu_22,#mceu_20,#mceu_17,#mceu_15,#mceu_14,#mceu_13,#mceu_41-body,.mce-branding-powered-by{
+            display: none; !important;
+        }
+        #txt_des{
+            position: relative;
+        }
+        #btn_des{
+            position: absolute;
+            bottom: 0;
+            right: 0;
+        }
+        .scrollable{
+            margin-top: 0;
+            height: 60vh;
+            overflow: scroll;
+            overflow-y: scroll;
+            overflow-x: hidden;
+        }
+        table {
+            border-collapse:collapse;
+            table-layout:fixed;
+            width:100%;
+        }
+    </style>
 {{/section}}
 
-{{#section 'js'}}
-    <script type="text/javascript" src="/assests/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="/assests/js/chitiet.js"></script>
-{{/section}}
+
 
 {{#section 'a'}}
     <span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>
@@ -15,14 +37,17 @@
 
 <div class="row">
     <div class="container">
+
         <div class="row">
-            {{#each product}}
+            <form method="post" action="/produces/detail">
+                {{#with product}}
                 <div class="col-md-12" id="product_name" style="display: inline-block">
                     <p style="display: inline-block; margin-bottom: 0;">Sản phẩm: </p>
                     {{pro_name}}
                     <br>
                     <p style="display: inline-block; font-size: 14px;">Người đăng: </p>
                     <p id="seller_email">{{seller_email}} | <a class="seller_point" >Điểm đánh giá: {{seller_point}}</a></p>
+                    <button type="button" class="btn btn-default"><3</button>
                     <hr style="margin-top: 5px">
                 </div>
                 <div class="col-sm-6 col-md-4">
@@ -41,6 +66,7 @@
                         </div>
                     </div>
                 </div>
+
                 <div class="col-sm-6 col-md-3">
                     <div class="thoi-gian-con-lai">
                         <div id="1" class="chuoi-thoi-gian">
@@ -76,71 +102,121 @@
                             <p id="bidder_email" class="display-inline-block value-info" style="display: inline-block">{{bidder_point}}</p>
                         </div>
                         <p class="money-of-rival clear-margin"></p>
-                        <form>
+
                             <div>
                                 <label class="sr-only" for="exampleInputAmount">Amount (in dollars)</label>
                                 <div class="input-group cus-input-money-text">
-                                    <input type="text" class="form-control" id="exampleInputAmount"
+                                    <input type="text" class="form-control" id="txt_gia" name="txt_gia"
                                            placeholder="Nhập giá mua">
-                                    <div class="input-group-addon">đồng</div>
                                 </div>
+                                <input type="text" class="form-control" id="txt_pro_id" name="txt_pro_id" style="display: none" value="{{pro_id}}">
+                            </div>
+                            <div class="btn_daugia">
+                                <button id="btn_dg" name="btn_dg" value="btn_dg" type="submit" class="btn btn-primary cus-button-bid">
+                                    <span class="glyphicon glyphicon-fire" aria-hidden="true"></span> Đặt giá
+                                </button>
+                                <button id="btn_dgtudong"  name="btn_dg" value="btn_dgtudong" type="submit" class="btn btn-primary cus-button-bid">
+                                    <span class="glyphicon glyphicon-fire" aria-hidden="true"></span> Đấu giá tự động
+                                </button>
                             </div>
 
-                            <button type="submit" class="btn btn-primary cus-button-bid">
-                                <span class="glyphicon glyphicon-fire" aria-hidden="true"></span> Đặt giá
-                            </button>
-                        </form>
+
                     </div>
                 </div>
-
+                {{/with}}
                 <div class="col-sm-6 col-md-5">
-                    <table class="table table-bordered" style="margin-bottom: 0;">
-                        <thead>
-                        <tr class="cus-header-table">
-                            <td style="width:121px; height: 20px;">Số tiền</td>
-                            <td style="width:100px;">Thời gian</td>
-                            <td>Người đặt</td>
-                        </tr>
-                        </thead>
-                    </table>
-                    <table class="table table-hover table-bordered cus-bid-table">
-                        <tr class="cus-row-table">
-                            <td style="width:120px;">100.000.000.000đ</td>
-                            <td style="width:100px;">07:05:00</td>
-                            <td style="width:217px; max-width:217px;"><a href="#">thanhthientai@gmail.com</a></td>
-                        </tr>
-                        <tr class="cus-row-table">
-                            <td>60.000đ</td>
-                            <td>05:05:00</td>
-                            <td><a href="#">bidhero@gmail.com</a></td>
-                        </tr>
-                        <tr class="cus-row-table">
-                            <td>100.000đ</td>
-                            <td>04:30:00</td>
-                            <td><a href="#">emxinthua@gmail.com</a></td>
-                        </tr>
-                    </table>
+                    <div class="scrollable category-list">
+                        <table class="table table-bordered text-center table-hover">
+                            <thead>
+                            <tr class="tr-cate-table">
+                                <td>Số tiền</td>
+                                <td>Thời gian</td>
+                                <td>Người đấu giá</td>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {{#each detail_bid}}
+                                <tr>
+                                    <td id="gia1">
+                                        {{price}}
+                                    </td>
+                                    <td>{{time}}</td>
+
+                                    <td>
+                                        <div class="showBtn">{{user_email}}
+                                            <a href="#" class="btn btn-warning">Kích</a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            {{/each}}
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
-            {{/each}}
+            </form>
         </div>
+        <br>
+        <hr>
         <div class="row">
-            <div class="col-md-1"></div>
-            <div class="col-md-10">
+            <!--<div class="col-md-1"></div>-->
+            <div class="col-md-8">
+                {{#with product}}
                 <div class="panel panel-info">
                     <div class="panel-heading">
                         <h3 class="panel-title">Mô tả sản phẩm</h3>
                     </div>
                     <div class="panel-body">
-                        Panel content
+                        <div style="padding: 30px;">
+                            {{{describe}}}
+                        </div>
+                        <div id="div_des">
+                            <textarea name="txt_moTa" id="txt_moTa" class="tinymce">
+                            </textarea>
+                            <button id="btn_des" type="button" class="btn btn-default">Thêm mô tả</button>
+
+                        </div>
+
+                    </div>
+                </div>
+                {{/with}}
+            </div>
+            <div class="col-md-4">
+                <div class="panel panel-info" style="padding: 15px;">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Mua bán an toàn</h3>
+                    </div>
+                    <div class="panel-body" style="font-size: 18px;>
+                        <ul class="text-justify _22YJzAZrpSieJeBT7zGVEY">
+                            <li><em>KH&Ocirc;NG trả tiền trước khi nhận h&agrave;ng.</em></li>
+                            <li><em>Kiểm tra h&agrave;ng cẩn thận, đặc biệt với h&agrave;ng đắt tiền.</em></li>
+                            <li><em>Hẹn gặp ở nơi c&ocirc;ng cộng.</em></li>
+                            <li><em>Nếu bạn mua h&agrave;ng hiệu, h&atilde;y gặp mặt tại cửa h&agrave;ng để nhờ x&aacute;c minh, tr&aacute;nh mua phải h&agrave;ng giả.</em></li>
+                        </ul>
                     </div>
                 </div>
             </div>
-            <div class="col-md-1"></div>
-
-
         </div>
-
     </div>
 </div>
+{{#section 'js'}}
+    <script type="text/javascript" src="/assests/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/assests/js/chitiet.js"></script>
+    <script type="text/javascript" src="/assests/plugin/tinymce/tinymce.min.js"></script>
+    <script type="text/javascript" src="/assests/plugin/tinymce/init-tinymce2.js"></script>
+    <script>
+        $("#btn_dg").click(function () {
 
+            if (confirm('Bạn muốn đặt mức giá '+$('#txt_gia').val()+'cho sản phẩm ?')) {
+            } else {
+                return false;
+            }
+        });
+        $("#btn_dgtudong").click(function () {
+            if (confirm('Bạn muốn đặt TỰ ĐỘNG mức giá '+$('#txt_gia').val()+'cho sản phẩm ?')) {
+            } else {
+                return false;
+            }
+        });
+    </script>
+{{/section}}
 

@@ -172,20 +172,20 @@ exports.getProInfoById = function(id){
 
     var sql = mustache.render(
         'select p.pro_id as pro_id,'+
-        'p.name as pro_name,'+
-        'seller.user_id as seller_id,'+
-        'seller.email as seller_email,'+
-        'seller.point as seller_point,'+
-        'DATE_FORMAT(p.start_time, \'%d/%m/%Y %h:%m %p\') as start_time,'+
-        'DATE_FORMAT(p.end_time, \'%d/%m/%Y %h:%m %p\') as end_time,'+
-        'p.highest_price,'+
-        'p.purchase_price,'+
-        'bidder.user_id as bidder_id,'+
-        'bidder.email as bidder_email,'+
-        'bidder.point as bidder_point,'+
-        'pi.img_path,'+
-        'p.describe_path,'+
-        'TIMESTAMPDIFF(SECOND,NOW(), p.end_time) AS total_time '+
+                'p.name as pro_name,'+
+                'seller.user_id as seller_id,'+
+                'seller.email as seller_email,'+
+                'seller.point as seller_point,'+
+                'DATE_FORMAT(p.start_time, \'%d/%m/%Y %h:%m\') as start_time,'+
+                'DATE_FORMAT(p.end_time, \'%d/%m/%Y %h:%m\') as end_time,'+
+                'p.highest_price,'+
+                'p.purchase_price,'+
+                'bidder.user_id as bidder_id,'+
+                'bidder.email as bidder_email,'+
+                'bidder.point as bidder_point,'+
+                'pi.img_path,'+
+                'p.describe_path,'+
+                'TIMESTAMPDIFF(SECOND,NOW(), p.end_time) AS total_time '+
         'from produces p, produce_imgs pi, user seller, user bidder '+
         'where p.pro_id = pi.pro_id and p.pro_id = {{pro_id}} and p.seller_id = seller.user_id and p.user_highest_price = bidder.user_id '
         , entity);
@@ -196,5 +196,7 @@ exports.getProInfoById = function(id){
 
 return d.promise;
 }
+
+
 
 

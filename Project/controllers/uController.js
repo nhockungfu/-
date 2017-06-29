@@ -75,6 +75,7 @@ r.get('/dangnhap',function (req,res) {
 r.post('/dangnhap',function (req,res) {
     var email = req.body.txt_email,
         pass = crypto.createHash('md5').update(req.body.txt_pass).digest('hex');
+console.log(pass)
 
     var entity={
         email:email,
@@ -82,7 +83,8 @@ r.post('/dangnhap',function (req,res) {
     };
     var f=false;
     userRepo.checkAccount(entity).then(function (user) {
-        if (user == null) {
+
+        if (user.email == null) {
             console.log('dang nhap that bai')
             res.render('user/dangNhap2', {
                 layoutModels: res.locals.layoutModels,
@@ -90,16 +92,12 @@ r.post('/dangnhap',function (req,res) {
                 showError: true
             });
         } else {
-            console.log(user.sum);
-            console.log(user.point);
-            console.log(user.point/user.sum*100);
                 if(user.sum==0)
                     f=true;
                 if(user.point/user.sum*100>=80){
 
                     f=true;
                 }
-            console.log('isBid = '+f);
 
             console.log('dang nhap thanh cong')
             req.session.isLogged = true;
