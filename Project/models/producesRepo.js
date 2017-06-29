@@ -179,7 +179,7 @@ exports.getProInfoById = function(id){
                 'DATE_FORMAT(p.start_time, \'%d/%m/%Y %h:%m\') as start_time,'+
                 'DATE_FORMAT(p.end_time, \'%d/%m/%Y %h:%m\') as end_time,'+
                 'p.highest_price,'+
-                'p.purchase_price,'+
+                'p.purchase_price, p.price_step,'+
                 'bidder.user_id as bidder_id,'+
                 'bidder.email as bidder_email,'+
                 'bidder.point as bidder_point,'+
@@ -196,6 +196,9 @@ exports.getProInfoById = function(id){
 
 return d.promise;
 }
+
+
+
 
 
 

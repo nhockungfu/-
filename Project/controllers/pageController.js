@@ -7,6 +7,10 @@ var dateFormat = require('dateformat');
 var r = express.Router();
 
 r.get('/',function (req,res) {
+    var date = new Date();
+
+    var hour = date.getHours();
+
     q.all([
         producesRepo.loadTopNDesc('num_bid', 3),
         producesRepo.loadTopNDesc('highest_price', 3),

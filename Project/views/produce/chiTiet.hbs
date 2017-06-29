@@ -2,7 +2,7 @@
     <link rel="stylesheet" type="text/css" href="/assests/css/produceDetail.css">
     <script type="text/javascript" src="/assests/js/chitiet.js"></script>
     <style>
-        #mceu_22,#mceu_20,#mceu_17,#mceu_15,#mceu_14,#mceu_13,#mceu_41-body,.mce-branding-powered-by{
+        #mceu_22,#mceu_1,#mceu_0,#mceu_20,#mceu_17,#mceu_15,#mceu_14,#mceu_13,#mceu_41-body,.mce-branding-powered-by{
             display: none; !important;
         }
         #txt_des{
@@ -39,7 +39,7 @@
     <div class="container">
 
         <div class="row">
-            <form method="post" action="/produces/detail">
+            <form method="post" id="frm_daugia" action="/produces/detail">
                 {{#with product}}
                 <div class="col-md-12" id="product_name" style="display: inline-block">
                     <p style="display: inline-block; margin-bottom: 0;">Sản phẩm: </p>
@@ -47,7 +47,12 @@
                     <br>
                     <p style="display: inline-block; font-size: 14px;">Người đăng: </p>
                     <p id="seller_email">{{seller_email}} | <a class="seller_point" >Điểm đánh giá: {{seller_point}}</a></p>
-                    <button type="button" class="btn btn-default"><3</button>
+
+                    <button id="btn_yeuthich"  name="btn_dg" value="btn_yeuthich" type="submit" class="btn btn-default">
+                        <span class="glyphicon glyphicon-fire" aria-hidden="true"></span>
+                    </button>
+
+
                     <hr style="margin-top: 5px">
                 </div>
                 <div class="col-sm-6 col-md-4">
@@ -110,6 +115,9 @@
                                            placeholder="Nhập giá mua">
                                 </div>
                                 <input type="text" class="form-control" id="txt_pro_id" name="txt_pro_id" style="display: none" value="{{pro_id}}">
+                                <input type="text" class="form-control" id="txt_pro_name" name="txt_pro_name" style="display: none" value="{{pro_name}}">
+                                <input type="text" class="form-control" id="txt_hprice" name="txt_hprice" style="display: none" value="{{highest_price}}">
+                                <input type="text" class="form-control" id="txt_sprice" name="txt_sprice" style="display: none" value="{{sprice}}">
                             </div>
                             <div class="btn_daugia">
                                 <button id="btn_dg" name="btn_dg" value="btn_dg" type="submit" class="btn btn-primary cus-button-bid">
@@ -119,8 +127,6 @@
                                     <span class="glyphicon glyphicon-fire" aria-hidden="true"></span> Đấu giá tự động
                                 </button>
                             </div>
-
-
                     </div>
                 </div>
                 {{/with}}
@@ -138,7 +144,7 @@
                             {{#each detail_bid}}
                                 <tr>
                                     <td id="gia1">
-                                        {{price}}
+                                        {{number_format price}}đ
                                     </td>
                                     <td>{{time}}</td>
 
@@ -185,7 +191,7 @@
                     <div class="panel-heading">
                         <h3 class="panel-title">Mua bán an toàn</h3>
                     </div>
-                    <div class="panel-body" style="font-size: 18px;>
+                    <div class="panel-body" style="font-size: 18px;">
                         <ul class="text-justify _22YJzAZrpSieJeBT7zGVEY">
                             <li><em>KH&Ocirc;NG trả tiền trước khi nhận h&agrave;ng.</em></li>
                             <li><em>Kiểm tra h&agrave;ng cẩn thận, đặc biệt với h&agrave;ng đắt tiền.</em></li>
@@ -200,23 +206,66 @@
 </div>
 {{#section 'js'}}
     <script type="text/javascript" src="/assests/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="/assests/js/chitiet.js"></script>
+
     <script type="text/javascript" src="/assests/plugin/tinymce/tinymce.min.js"></script>
     <script type="text/javascript" src="/assests/plugin/tinymce/init-tinymce2.js"></script>
+    <script type="text/javascript" src="/assests/jquery.validate.min.js"></script>
+    <script type="text/javascript" src="/assests/js/chitiet.js"></script>
     <script>
+        $(function (){
+           $('#txt_gia').val({{hprice}}+{{sprice}});
+           if({{f_fav}}){
+               $('#btn_yeuthich').css('background-color','#ff0000');
+           }
+        });
+        $('#frm_daugia').validate({
+            rules:{
+                txt_gia:{
+                    required:true,
+                    min:function () {
+                        return {{hprice}}+{{sprice}};
+                    }
+                }
+            },
+            messages:{
+                txt_gia:{
+                    required:'Bạn chưa nhập giá đấu',
+                    min:function () {
+                        return'Mức giá phải từ ' +({{hprice}}+{{sprice}}).toString()+'đ trở lên';
+                    }
+                }
+            },
+            errorElement: 'span',
+            errorClass: 'help-block',
+
+            highlight: function (element) {
+                $(element)
+                        .closest('.form-group')
+                        .addClass('has-error');
+            },
+
+            success: function (label) {
+                $(label)
+                        .closest('.form-group')
+                        .removeClass('has-error');
+
+                label.remove();
+            }
+        })
         $("#btn_dg").click(function () {
 
-            if (confirm('Bạn muốn đặt mức giá '+$('#txt_gia').val()+'cho sản phẩm ?')) {
+            if (confirm('Bạn muốn đặt mức giá '+$('#txt_gia').val()+'đ cho sản phẩm ?')) {
             } else {
                 return false;
             }
         });
         $("#btn_dgtudong").click(function () {
-            if (confirm('Bạn muốn đặt TỰ ĐỘNG mức giá '+$('#txt_gia').val()+'cho sản phẩm ?')) {
+            if (confirm('Bạn muốn đặt TỰ ĐỘNG mức giá '+$('#txt_gia').val()+'đ cho sản phẩm ?')) {
             } else {
                 return false;
             }
         });
+
     </script>
 {{/section}}
 
