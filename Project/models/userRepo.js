@@ -59,7 +59,9 @@ exports.checkAccount = function (entity) {
         'select u.user_id,u.email,u.pass,u.name,u.phone,u.address,u.avt_path,u.point,u.sell_time,count(u.user_id) as sum ' +
         'from user u, voted_list vt ' +
         'where u.email = "{{email}}" and u.pass="{{pass}}" and u.user_id = vt.user_id', entity
-    );
+    )
+    ;
+    console.log(sql);
     db.load(sql).then(function (rows) {
         d.resolve(rows[0]);
     });
@@ -111,23 +113,6 @@ exports.setNoneWaitingChangePass = function (user_email) {
     var sql = mustache.render('UPDATE `user` SET waiting_for_change_pass = 0 where email = \'{{user_email}}\'', entity);
 
     d.resolve(db.load(sql));
-
-    exports.updateFull = function (entity) {
-        if (entity) {
-            var d = q.defer();
-
-            var sql =
-                mustache.render(
-                    'UPDATE user SET pass = "{{passwordNew}}",name = "{{name}}",email = "{{email}}" WHERE user_id = "{{user_id}}"', entity
-                );
-
-            db.update(sql).then(function (changedRows) {
-                d.resolve(changedRows);
-            });
-            return d.promise;
-        }
-        return false;
-    }
 }
 
 exports.update = function (entity) {
@@ -136,7 +121,24 @@ exports.update = function (entity) {
 
         var sql =
             mustache.render(
-                'UPDATE user SET name = "{{name}}",email = "{{email}}",phone = "{{sdt}}",address = "{{diaChi}}" WHERE user_id = "{{user_id}}"', entity
+                'UPDATE user SET avt_path = "{{{avt}}}", name = "{{name}}",phone = "{{sdt}}",address = "{{{diaChi}}}" WHERE user_id = "{{user_id}}"', entity
+            );
+
+        db.update(sql).then(function (changedRows) {
+            d.resolve(changedRows);
+        });
+        return d.promise;
+    }
+    return false;
+}
+
+exports.updatePass = function (entity) {
+    if (entity) {
+        var d = q.defer();
+
+        var sql =
+            mustache.render(
+                'UPDATE user SET pass = "{{passNew}}" WHERE user_id = "{{user_id}}"', entity
             );
 
         db.update(sql).then(function (changedRows) {
@@ -155,7 +157,6 @@ exports.checkAccountUpdate = function (entity) {
     db.load(sql).then(function (rows) {
         d.resolve(rows[0]);
     });
-
     return d.promise;
 }
 

@@ -8,7 +8,8 @@ var express = require('express'),
     path = require('path'),
     producesRepo = require('../models/producesRepo'),
     proimgRepo = require('../models/proimgRepo'),
-    categoryRepo = require('../models/categoryRepo');
+    categoryRepo = require('../models/categoryRepo'),
+    detail_bidRepo=require('../models/detail_bidRebo');
 
 
 var r = express.Router();
@@ -33,52 +34,55 @@ r.get('/detail/:id', function (req, res) {
     if (!proId) {
         res.redirect('Lỗi không có dữ liệu');
     }
-    producesRepo.getProInfoById(proId)
-        .then(function (rows) {
-            console.log(rows);
-            var data = {
-                dataInView: {
-                    pro_id: rows[0].pro_id,
-                    pro_name: rows[0].pro_name,
-                    seller_id: rows[0].seller_id,
-                    seller_email: (rows[0].seller_email),
-                    seller_point: rows[0].seller_point,
-                    start_time: rows[0].start_time,
-                    end_time: rows[0].end_time,
-                    highest_price: rows[0].highest_price,
-                    purchase_price: rows[0].purchase_price,
-                    bidder_id: rows[0].bidder_id,
-                    bidder_email: function () {
-                        return rows[0].bidder_email==rows[0].seller_email?'':maHoaEmail(rows[0].bidder_email);
-                    },
-                    bidder_point: function () {
-                        return rows[0].bidder_email==rows[0].seller_email?'':rows[0].bidder_point;
-                    },
-                    days: tinhThoiGian(rows[0].total_time, 'd'),
-                    hours: tinhThoiGian(rows[0].total_time, 'h'),
-                    minutes: tinhThoiGian(rows[0].total_time, 'm'),
-                    seconds: tinhThoiGian(rows[0].total_time, 's'),
-                    img01: rows[0].img_path,
-                    img02: rows[1].img_path,
-                    img03: rows[2].img_path,
-                }
-            }
-            var vm = {
-                layoutModels: res.locals.layoutModels,
-                layout:'main',
-                product: data,
-                status_name: 'Chi tiết sản phẩm'
-            };
+    q.all([producesRepo.getProInfoById(proId),detail_bidRepo.loadAll(proId)]).spread(function (rows, detail_bid){
+        var data = {
+                pro_id: rows[0].pro_id,
+                pro_name: rows[0].pro_name,
+                seller_id: rows[0].seller_id,
+                seller_email: (rows[0].seller_email),
+                seller_point: rows[0].seller_point,
+                start_time: rows[0].start_time,
+                end_time: rows[0].end_time,
+                highest_price: rows[0].highest_price,
+                purchase_price: rows[0].purchase_price,
+                bidder_id: rows[0].bidder_id,
+                describe:fs.readFileSync(rows[0].describe_path,'utf8'),
+                bidder_email: function () {
+                    return rows[0].bidder_email==rows[0].seller_email?'':maHoaEmail(rows[0].bidder_email);
+                },
+                bidder_point: function () {
+                    return rows[0].bidder_email==rows[0].seller_email?'':rows[0].bidder_point;
+                },
+                days: tinhThoiGian(rows[0].total_time, 'd'),
+                hours: tinhThoiGian(rows[0].total_time, 'h'),
+                minutes: tinhThoiGian(rows[0].total_time, 'm'),
+                seconds: tinhThoiGian(rows[0].total_time, 's'),
+                img01: rows[0].img_path,
+                img02: rows[1].img_path,
+                img03: rows[2].img_path
+        }
+        var vm = {
+            layoutModels: res.locals.layoutModels,
+            layout:'main',
+            product: data,
+            detail_bid:detail_bid,
+            status_name: 'Chi tiết sản phẩm'
+        };
+        res.render('produce/chiTiet', vm);
+    })
 
-            res.render('produce/chiTiet', vm);
-
-        }).fail(function (err) {
-        console.log(err);
-        res.end('fail');
-    });
 });
-
-
+r.post('/detail',function (req,res) {
+    if(req.body.btn_dg=='btn_dg'){
+        var proId = req.body.txt_pro_id;
+        if (!proId) {
+            res.redirect('Lỗi không có dữ liệu');
+        }
+    }
+    if(req.body.btn_dg=='btn_dgtudong'){
+        res.send('dau gia tu dong');
+    }
+})
 tinhThoiGian = function (sum_s, type){
 
     // 1 ngày = 86400 giây
@@ -155,59 +159,66 @@ var storage = multer.diskStorage({
         }
     }
 });
-
+var sizef=0;
 r.post('/add', multer({storage: storage}).any(), function (req, res, next) {
-    console.log(req.body);
-    var files = req.files;
 
-    var entity = {
-        name: req.body.txt_tenSp,
-        start_price: req.body.txt_giaKd,
-        purchase_price: req.body.txt_giaMn,
-        highest_price: req.body.txt_giaKd,
-        user_highest_price:res.locals.layoutModels.curUser.user_id,
-        price_step: req.body.txt_bg,
-        start_time: moment(req.body.txt_tgbd, 'D/M/YYYY').format('YYYY-MM-DDTHH:mm'),
-        end_time: moment(req.body.txt_tgkt, 'D/M/YYYY').format('YYYY-MM-DDTHH:mm'),
-        cate_id: req.body.cbb_select,
-        seller_id: res.locals.layoutModels.curUser.user_id,
-        num_bid: '0',
-        auto: req.body.cb_tdgh ? 1 : 0
-    }
-    // fs.readFile('./data/produces/1/b.txt','utf8', function (err,data) {
-    //     if (err) throw err;
-    //     console.log(data);
-    // });
-    producesRepo.insert(entity).then(function (insertId) {
-        if (fs.existsSync('./data/produces/' + proId)) {// kiem tra folder co ton tai hay khong
-            fs.rename('./data/produces/' + proId, './data/produces/' + insertId, function (err) {
-                console.log('Doi ten thanh cong');
-            });
-        } else {
-            console.log('Folder khong ton tai');
-            fs.mkdirSync('./data/produces/' + insertId);
+    var files = req.files;
+    files.forEach(function () {
+        sizef++;
+    });
+    if(sizef<3){
+        sizef=0;
+        res.send('chua chon du 3 anh');
+    }else{
+        sizef=0;
+        var entity = {
+            name: req.body.txt_tenSp,
+            start_price: req.body.txt_giaKd,
+            purchase_price: req.body.txt_giaMn,
+            highest_price: req.body.txt_giaKd,
+            user_highest_price:res.locals.layoutModels.curUser.user_id,
+            price_step: req.body.txt_bg,
+            start_time: moment(req.body.txt_tgbd, 'D/M/YYYY').format('YYYY-MM-DDTHH:mm'),
+            end_time: moment(req.body.txt_tgkt, 'D/M/YYYY').format('YYYY-MM-DDTHH:mm'),
+            cate_id: req.body.cbb_select,
+            seller_id: res.locals.layoutModels.curUser.user_id,
+            num_bid: '0',
+            auto: req.body.cb_tdgh ? 1 : 0
         }
 
-        //thuc hien dong thoi: them 3 file+cap nhat pro + them path img vao pro_img
-        q.all([
-            createMuiltyFile(insertId, req.body.txt_moTa),
-            addMuiltyDataToProImg(files, insertId),
-            producesRepo.updatePath({
-                pro_id: insertId,
-                describe_path: "./data/produces/" + insertId + "/desctibe.txt",
-                bid_detail_path: './data/produces/' + insertId + '/bid_detail.txt',
-                cmt_pro_path: './data/produces/' + insertId + '/cmt.txt'
-            })
-        ]).spread(function (rs1, rs2, rs3) {
-            if (rs1 == 1 && rs2 == 1 && rs3 == 1)
+        producesRepo.insert(entity).then(function (insertId) {
+            if (fs.existsSync('./data/produces/' + proId)) {// kiem tra folder co ton tai hay khong
+                fs.rename('./data/produces/' + proId, './data/produces/' + insertId, function (err) {
+                    console.log('Doi ten thanh cong');
+                });
+            } else {
+                console.log('Folder khong ton tai');
+                fs.mkdirSync('./data/produces/' + insertId);
+            }
+
+            //thuc hien dong thoi: them 3 file+cap nhat pro + them path img vao pro_img
+
+            q.all([
+                createMuiltyFile(insertId, req.body.txt_moTa),
+                addMuiltyDataToProImg(files, insertId),
+                producesRepo.updatePath({
+                    pro_id: insertId,
+                    describe_path: "./data/produces/" + insertId + "/desctibe.txt",
+                    bid_detail_path: './data/produces/' + insertId + '/bid_detail.txt',
+                    cmt_pro_path: './data/produces/' + insertId + '/cmt.txt'
+                })
+            ]).spread(function (rs1, rs2, rs3) {
+                if (rs1 == 1 && rs2 == 1 && rs3 == 1)
                 //res.render('welcome', {username: req.body.unm, password: req.body.pwd});
-                res.redirect(mustache.render('/produces/detail/{{insertId}}',{insertId:insertId}));
-        })
-    }).fail(function (err) {
-        console.log(err);
-        ;
-        res.end('fail');
-    });
+                    res.redirect(mustache.render('/produces/detail/{{insertId}}',{insertId:insertId}));
+            })
+        }).fail(function (err) {
+            console.log(err);
+            ;
+            res.end('fail');
+        });
+    }
+
 
 })
 
@@ -217,12 +228,12 @@ function createMuiltyFile(insertId, str) {
         fs.writeFile('./data/produces/' + insertId + '/desctibe.txt', str, 'utf8', function (err, data) {
             if (err) throw err;
         });
-        fs.writeFile('./data/produces/' + insertId + '/bid_detail.txt', '', 'utf8', function (err, data) {
-            if (err) throw err;
-        });
-        fs.writeFile('./data/produces/' + insertId + '/cmt.txt', '', 'utf8', function (err, data) {
-            if (err) throw err;
-        });
+        // fs.writeFile('./data/produces/' + insertId + '/bid_detail.txt', '', 'utf8', function (err, data) {
+        //     if (err) throw err;
+        // });
+        // fs.writeFile('./data/produces/' + insertId + '/cmt.txt', '', 'utf8', function (err, data) {
+        //     if (err) throw err;
+        // });
         d.resolve(1);
     return d.promise;
 }
