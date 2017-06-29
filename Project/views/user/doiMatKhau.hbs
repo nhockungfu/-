@@ -1,0 +1,57 @@
+{{#section 'css'}}
+    <link rel="stylesheet" type="text/css" href="/assests/css/signUp.css">
+{{/section}}
+
+<div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-6" style="margin-top: 20px;">
+        <div class="panel panel-success">
+            <div class="panel-heading" >
+                <form id="changePass-form" method="post" action="/user/doimatkhau" class="form-horizontal" style="padding: 20px 20px 40px 20px;">
+                    <h2 style="text-align: center; margin-bottom: 30px">Chỉnh sửa mật khẩu</h2>
+                    <div class="form-group">
+                        <label for="txt_password" class="col-sm-4 control-label">Mật khẩu cũ: </label>
+                        <div class="col-sm-6">
+                            <input id="txt_password" name="txt_password" type="password" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="txt_passwordNew" class="col-sm-4 control-label">Mật khẩu mới: </label>
+                        <div class="col-sm-6">
+                            <input id="txt_passwordNew" name="txt_passwordNew" type="password" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="txt_passwordNew2" class="col-sm-4 control-label">Xác nhận mật khẩu mới: </label>
+                        <div class="col-sm-6">
+                            <input id="txt_passwordNew2" name="txt_passwordNew2" type="password" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-1"></div>
+                        <div class="col-sm-10">
+                            {{#if showError }}
+                                <span id="err" style="color: #ff0000;">Mật khẩu không chính xác</span>
+                            {{/if}}
+                            {{#if showSuccess }}
+                                <span id="err" style="color: #00acd6;">Thay đổi mật khẩu thành công. Đăng nhập lại để hoàn tất thay đổi.</span>
+                            {{/if}}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-4"></div>
+                        <div class="col-sm-6">
+                            <button type="submit" class="btn btn-primary" style="width: 100%;">Lưu thay đổi</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div><!--panel-->
+    </div>
+    <div class="col-md-4"></div>
+</div>
+
+{{#section 'js'}}
+    <script src="/assests/jquery.validate.min.js"></script>
+    <script src="/assests/validation.js"></script>
+{{/section}}
