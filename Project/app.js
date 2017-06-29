@@ -79,6 +79,7 @@ app.use('/home', pageController);
 app.use('/detail', produceDetailController);
 app.use('/tuan', tController);
 app.use('/admin', adminController);
+app.use('/quanly', adminController);
 
 app.listen(3000,function () {
     console.log('server running...');

@@ -58,7 +58,7 @@ exports.checkAccount = function (entity) {
     var sql = mustache.render(
         'select u.user_id,u.email,u.pass,u.name,u.phone,u.address,u.avt_path,u.point,u.sell_time,count(u.user_id) as sum ' +
         'from user u, voted_list vt ' +
-        'where u.email = "{{email}}" and u.pass="{{pass}}" and u.user_id = vt.user_id',entity
+        'where u.email = "{{email}}" and u.pass="{{pass}}" and u.user_id = vt.user_id', entity
     );
     db.load(sql).then(function (rows) {
         d.resolve(rows[0]);
@@ -155,6 +155,55 @@ exports.checkAccountUpdate = function (entity) {
     db.load(sql).then(function (rows) {
         d.resolve(rows[0]);
     });
+
+    return d.promise;
+}
+
+exports.getBiddingListForUser = function (user_id) {
+    var d = q.defer();
+
+    var entity = {
+        user_id: user_id
+    }
+
+    var sql = mustache.render(
+        'SELECT p.pro_id, p.`name`, p.purchase_price, p.highest_price, u2.email bidder_email FROM bidding_list bl,`user` u, produces p, `user` u2 WHERE bl.user_id = u.user_id and u.user_id = {{user_id}} and bl.pro_id = p.pro_id and p.user_highest_price = u2.user_id and TIMESTAMPDIFF(SECOND, NOW(), p.end_time) > 0', entity
+    );
+
+    d.resolve(db.load(sql));
+
+    return d.promise;
+}
+
+exports.getFavoriteListForUser = function (user_id) {
+    var d = q.defer();
+
+    var entity = {
+        user_id: user_id
+    }
+
+    var sql = mustache.render(
+        'SELECT p.pro_id, p.`name`, p.purchase_price, p.highest_price, u2.email AS bidder_email FROM favorite_list fl,`user` u, produces p, `user` u2 WHERE fl.user_id = u.user_id and u.user_id = {{user_id}} and fl.pro_id = p.pro_id and p.user_highest_price = u2.user_id', entity
+    );
+
+    d.resolve(db.load(sql));
+
+    return d.promise;
+}
+
+exports.getBidHistorForUser = function (user_id, user_email) {
+    var d = q.defer();
+
+    var entity = {
+        user_id: user_id,
+        user_mail: user_email
+    }
+
+    var sql = mustache.render(
+        'SELECT p.pro_id, p.`name`, p.purchase_price, p.highest_price,if(u2.email = \'{{user_mail}}\', \'Thành công\', \'Thất bại\') as result FROM bidding_list bl,`user` u, produces p, `user` u2 WHERE bl.user_id = u.user_id and u.user_id = {{user_id}} and bl.pro_id = p.pro_id and p.user_highest_price = u2.user_id', entity
+    );
+
+    d.resolve(db.load(sql));
 
     return d.promise;
 }

@@ -25,7 +25,7 @@ r.post('/dangky',function (req,res) {
         point:0
     }
     var _res=res;
-    var layoutModels= res.locals.layoutModels;
+    var layoutModels = res.locals.layoutModels;
     emailExistence.check(email, function(err,res){
         if(res){
             userRepo.loadDetail2(email).then(function (rows) {
@@ -234,9 +234,6 @@ r.get('/reset-pass/:user_email', function (req, res) {
     // });
 });
 
-
-
-
 r.get('/chinhsua', function (req,res) {
     if (req.session.isLogged === true) {
         res.render('user/suaThongTinCaNhan', {layout: 'main', layoutModels: res.locals.layoutModels}) ;
@@ -302,4 +299,43 @@ r.post('/chinhsua', function(req, res) {
         res.end('fail');
     });
 });
+
+// Vào quản lý tin mua (đối tượng người mua)
+r.get('/quan-ly-tin-mua',function (req,res) {
+
+    var user_id = res.locals.layoutModels.curUser.user_id;
+    var user_email = res.locals.layoutModels.curUser.email;
+
+    console.log('user id: ' + user_id  + 'email: '+ user_email);
+
+    // q.all([
+    //     userRepo.getBiddingListForUser(user_id, user_email),
+    //     userRepo.loadTopNDesc('highest_price', 3),
+    //     userRepo.loadTopNDesc('poor_time', 3)
+    // ]).spread(function (topDesc_numBids, topDesc_price, topDesc_poorTime) {
+    //
+    //     console.log(topDesc_numBids);
+    //     topDesc_numBids.forEach(function (item) {
+    //         console.log(xuLyThoiGian(item.total_time ))
+    //
+    //     })
+    //     var vm = {
+    //         numBidTop: topDesc_numBids,
+    //         priceTop: topDesc_price,
+    //         poorTimeTop: topDesc_poorTime,
+    //         layoutModels: res.locals.layoutModels
+    //     };
+    //     res.render('index',vm);
+    // })
+
+
+    var vm = {
+        layout: 'main'
+    }
+
+    res.render('quanLyTinMua', vm);
+});
+
+
+
 module.exports = r;
