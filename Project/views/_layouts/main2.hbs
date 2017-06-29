@@ -91,6 +91,9 @@
         $('#logoutLink').on('click', function () {
             $('#frmLogout').submit();
         });
+        $("#btn_a_dangban").click(function () {
+            alert('Bạn không thể đăng bán do điểm quá thấp hoặc bạn đã hết thời gian bán..');
+        });
     </script>
     {{{_sections.js}}}
 </body>
