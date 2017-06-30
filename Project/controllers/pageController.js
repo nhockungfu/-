@@ -29,7 +29,10 @@ r.get('/',function (req,res) {
             layoutModels: res.locals.layoutModels
         };
         res.render('index',vm);
-    })
+    }).fail(function(err) {
+        console.log(err);;
+        res.end('fail');
+    });
 });
 
 function xuLyThoiGian(str_time) {

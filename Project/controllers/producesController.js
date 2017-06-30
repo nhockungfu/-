@@ -19,26 +19,8 @@ var express = require('express'),
 
 var r = express.Router();
 
-r.get('/', function (req, res) {
-    producesRepo.loadAll()
-        .then(function (rows) {
-            var vm = {
-                layoutModels: res.locals.layoutModels,
-                produces: rows
-            };
-            res.render('index', vm);
-        }).fail(function (err) {
-        console.log(err);
-        res.end('fail');
-    });
-});
-
-
 r.get('/detail/:id', function (req, res) {
     var proId = req.params.id;
-    if (!proId) {
-        res.redirect('Lỗi không có dữ liệu');
-    }
     q.all([producesRepo.getProInfoById(proId),detail_bidRepo.loadAll(proId)]).spread(function (rows, detail_bid){
         var sprice=rows[0].price_step;
         var hprice= rows[0].highest_price;
@@ -53,6 +35,7 @@ r.get('/detail/:id', function (req, res) {
                 highest_price: rows[0].highest_price,
                 purchase_price: rows[0].purchase_price,
                 sprice:sprice,
+                des_path:rows[0].describe_path,
                 price_step:rows[0].price_step,
                 bidder_id: rows[0].bidder_id,
                 describe:fs.readFileSync(rows[0].describe_path,'utf8'),
@@ -70,25 +53,53 @@ r.get('/detail/:id', function (req, res) {
                 img02: rows[1].img_path,
                 img03: rows[2].img_path
         }
-        var f=false;
-        favoriteRebo.checkFav({pro_id:proId,user_id:res.locals.layoutModels.curUser.user_id}).then(function (num) {
-            f=num==0?false:true;
+        if(res.locals.layoutModels.isLogged){
+            var fv=false,fk=false,fss=false;
+            var ee={
+                pro_id:proId,
+                user_id:res.locals.layoutModels.curUser.user_id
+            }
+            q.all([favoriteRebo.checkFav(ee),kich_userRepo.checkKick(ee),producesRepo.checkPro(ee)]).spread(function (num1,num2,num3) {
+                fv=num1==0?false:true;
+                fk=num2==0?false:true;
+                fss=num3==0?false:true;
+                var vm = {
+                    layoutModels: res.locals.layoutModels,
+                    layout:'main',
+                    sprice:sprice,
+                    hprice:hprice,
+                    product: data,
+                    total_time:rows[0].total_time,
+                    f_fav:fv,
+                    f_kick:fk,
+                    f_sell:fss,
+                    detail_bid:detail_bid,
+                    status_name: 'Chi tiết sản phẩm',
+                };
+                res.render('produce/chiTiet', vm);
+            })
+        }else{
+            var fv=false,fk=false,fss=false;
             var vm = {
                 layoutModels: res.locals.layoutModels,
                 layout:'main',
                 sprice:sprice,
                 hprice:hprice,
                 product: data,
-                f_fav:f,
+                total_time:rows[0].total_time,
+                f_fav:fv,
+                f_kick:fk,
+                f_sell:fss,
                 detail_bid:detail_bid,
                 status_name: 'Chi tiết sản phẩm',
             };
             res.render('produce/chiTiet', vm);
-        })
+        }
 
-
-    })
-
+    }).fail(function(err) {
+        console.log(err);;
+        res.end('fail');
+    });
 });
 r.post('/detail',function (req,res) {
 
@@ -113,6 +124,7 @@ r.post('/detail',function (req,res) {
                     end_time: rows[0].end_time,
                     highest_price: rows[0].highest_price,
                     sprice:sprice,
+                    des_path:rows[0].describe_path,
                     purchase_price: rows[0].purchase_price,
                     price_step:rows[0].price_step,
                     bidder_id: rows[0].bidder_id,
@@ -131,24 +143,52 @@ r.post('/detail',function (req,res) {
                     img02: rows[1].img_path,
                     img03: rows[2].img_path
                 }
-                var f=false;
-                favoriteRebo.checkFav({pro_id:proId,user_id:res.locals.layoutModels.curUser.user_id}).then(function (num) {
-                    f=num==0?false:true;
+                if(res.locals.layoutModels.isLogged){
+                    var fv=false,fk=false,fss=false;
+                    var ee={
+                        pro_id:proId,
+                        user_id:res.locals.layoutModels.curUser.user_id
+                    }
+                    q.all([favoriteRebo.checkFav(ee),kich_userRepo.checkKick(ee),producesRepo.checkPro(ee)]).spread(function (num1,num2,num3) {
+                        fv=num1==0?false:true;
+                        fk=num2==0?false:true;
+                        fss=num3==0?false:true;
+                        var vm = {
+                            layoutModels: res.locals.layoutModels,
+                            layout:'main',
+                            sprice:sprice,
+                            hprice:hprice,
+                            product: data,
+                            total_time:rows[0].total_time,
+                            f_fav:fv,
+                            f_kick:fk,
+                            f_sell:fss,
+                            detail_bid:detail_bid,
+                            status_name: 'Chi tiết sản phẩm',
+                        };
+                        res.render('produce/chiTiet', vm);
+                    })
+                }else{
+                    var fv=false,fk=false,fss=false;
                     var vm = {
                         layoutModels: res.locals.layoutModels,
                         layout:'main',
                         sprice:sprice,
                         hprice:hprice,
                         product: data,
-                        f_fav:f,
+                        total_time:rows[0].total_time,
+                        f_fav:fv,
+                        f_kick:fk,
+                        f_sell:fss,
                         detail_bid:detail_bid,
                         status_name: 'Chi tiết sản phẩm',
                     };
                     res.render('produce/chiTiet', vm);
-                })
+                }
             })
         })
-    }else{
+    }
+    else{
 
         if(req.body.btn_dg=='btn_dg'){
             var proId = req.body.txt_pro_id;
@@ -184,6 +224,7 @@ r.post('/detail',function (req,res) {
                         end_time: rows[0].end_time,
                         highest_price: rows[0].highest_price,
                         sprice:sprice,
+                        des_path:rows[0].describe_path,
                         purchase_price: rows[0].purchase_price,
                         price_step:rows[0].price_step,
                         bidder_id: rows[0].bidder_id,
@@ -202,21 +243,48 @@ r.post('/detail',function (req,res) {
                         img02: rows[1].img_path,
                         img03: rows[2].img_path
                     }
-                    var f=false;
-                    favoriteRebo.checkFav({pro_id:proId,user_id:res.locals.layoutModels.curUser.user_id}).then(function (num) {
-                        f=num==0?false:true;
+                    if(res.locals.layoutModels.isLogged){
+                        var fv=false,fk=false,fss=false;
+                        var ee={
+                            pro_id:proId,
+                            user_id:res.locals.layoutModels.curUser.user_id
+                        }
+                        q.all([favoriteRebo.checkFav(ee),kich_userRepo.checkKick(ee),producesRepo.checkPro(ee)]).spread(function (num1,num2,num3) {
+                            fv=num1==0?false:true;
+                            fk=num2==0?false:true;
+                            fss=num3==0?false:true;
+                            var vm = {
+                                layoutModels: res.locals.layoutModels,
+                                layout:'main',
+                                sprice:sprice,
+                                hprice:hprice,
+                                product: data,
+                                total_time:rows[0].total_time,
+                                f_fav:fv,
+                                f_kick:fk,
+                                f_sell:fss,
+                                detail_bid:detail_bid,
+                                status_name: 'Chi tiết sản phẩm',
+                            };
+                            res.render('produce/chiTiet', vm);
+                        })
+                    }else{
+                        var fv=false,fk=false,fss=false;
                         var vm = {
                             layoutModels: res.locals.layoutModels,
                             layout:'main',
                             sprice:sprice,
                             hprice:hprice,
                             product: data,
-                            f_fav:f,
+                            total_time:rows[0].total_time,
+                            f_fav:fv,
+                            f_kick:fk,
+                            f_sell:fss,
                             detail_bid:detail_bid,
                             status_name: 'Chi tiết sản phẩm',
                         };
                         res.render('produce/chiTiet', vm);
-                    })
+                    }
                 })
             });
         }
@@ -252,6 +320,7 @@ r.post('/detail',function (req,res) {
                         end_time: rows[0].end_time,
                         highest_price: rows[0].highest_price,
                         sprice:sprice,
+                        des_path:rows[0].describe_path,
                         purchase_price: rows[0].purchase_price,
                         price_step:rows[0].price_step,
                         bidder_id: rows[0].bidder_id,
@@ -270,21 +339,48 @@ r.post('/detail',function (req,res) {
                         img02: rows[1].img_path,
                         img03: rows[2].img_path
                     }
-                    var f=false;
-                    favoriteRebo.checkFav({pro_id:proId,user_id:res.locals.layoutModels.curUser.user_id}).then(function (num) {
-                        f=num==0?false:true;
+                    if(res.locals.layoutModels.isLogged){
+                        var fv=false,fk=false,fss=false;
+                        var ee={
+                            pro_id:proId,
+                            user_id:res.locals.layoutModels.curUser.user_id
+                        }
+                        q.all([favoriteRebo.checkFav(ee),kich_userRepo.checkKick(ee),producesRepo.checkPro(ee)]).spread(function (num1,num2,num3) {
+                            fv=num1==0?false:true;
+                            fk=num2==0?false:true;
+                            fss=num3==0?false:true;
+                            var vm = {
+                                layoutModels: res.locals.layoutModels,
+                                layout:'main',
+                                sprice:sprice,
+                                hprice:hprice,
+                                product: data,
+                                total_time:rows[0].total_time,
+                                f_fav:fv,
+                                f_kick:fk,
+                                f_sell:fss,
+                                detail_bid:detail_bid,
+                                status_name: 'Chi tiết sản phẩm',
+                            };
+                            res.render('produce/chiTiet', vm);
+                        })
+                    }else{
+                        var fv=false,fk=false,fss=false;
                         var vm = {
                             layoutModels: res.locals.layoutModels,
                             layout:'main',
                             sprice:sprice,
                             hprice:hprice,
                             product: data,
-                            f_fav:f,
+                            total_time:rows[0].total_time,
+                            f_fav:fv,
+                            f_kick:fk,
+                            f_sell:fss,
                             detail_bid:detail_bid,
                             status_name: 'Chi tiết sản phẩm',
                         };
                         res.render('produce/chiTiet', vm);
-                    })
+                    }
                 })
             })
         }
@@ -313,6 +409,7 @@ r.post('/detail',function (req,res) {
                         end_time: rows[0].end_time,
                         highest_price: rows[0].highest_price,
                         sprice:sprice,
+                        des_path:rows[0].describe_path,
                         purchase_price: rows[0].purchase_price,
                         price_step:rows[0].price_step,
                         bidder_id: rows[0].bidder_id,
@@ -331,28 +428,138 @@ r.post('/detail',function (req,res) {
                         img02: rows[1].img_path,
                         img03: rows[2].img_path
                     }
-                    var f=false;
-                    favoriteRebo.checkFav({pro_id:proId,user_id:res.locals.layoutModels.curUser.user_id}).then(function (num) {
-                        f=num==0?false:true;
+                    if(res.locals.layoutModels.isLogged){
+                        var fv=false,fk=false,fss=false;
+                        var ee={
+                            pro_id:proId,
+                            user_id:res.locals.layoutModels.curUser.user_id
+                        }
+                        q.all([favoriteRebo.checkFav(ee),kich_userRepo.checkKick(ee),producesRepo.checkPro(ee)]).spread(function (num1,num2,num3) {
+                            fv=num1==0?false:true;
+                            fk=num2==0?false:true;
+                            fss=num3==0?false:true;
+                            var vm = {
+                                layoutModels: res.locals.layoutModels,
+                                layout:'main',
+                                sprice:sprice,
+                                hprice:hprice,
+                                product: data,
+                                total_time:rows[0].total_time,
+                                f_fav:fv,
+                                f_kick:fk,
+                                f_sell:fss,
+                                detail_bid:detail_bid,
+                                status_name: 'Chi tiết sản phẩm',
+                            };
+                            res.render('produce/chiTiet', vm);
+                        })
+                    }else{
+                        var fv=false,fk=false,fss=false;
                         var vm = {
                             layoutModels: res.locals.layoutModels,
                             layout:'main',
                             sprice:sprice,
                             hprice:hprice,
                             product: data,
-                            f_fav:f,
+                            total_time:rows[0].total_time,
+                            f_fav:fv,
+                            f_kick:fk,
+                            f_sell:fss,
                             detail_bid:detail_bid,
                             status_name: 'Chi tiết sản phẩm',
                         };
                         res.render('produce/chiTiet', vm);
-                    })
+                    }
                 })
             })
         }
     }
 
 })
+r.post('/addDes',function (req,res) {
+    var day= new  Date();
+    var str_day='<br><span style="color: #ff0000;background-color: #00ffff;">Cập nhật ('+day.getDate()+'/'+day.getMonth()+'/'+day.getFullYear()+' '+ day.getHours()+':'+day.getMinutes()+')</span><br>'+req.body.txt_moTa;
+    fs.appendFile(req.body.txt_des_path, str_day, function (err) {
+        if (err) throw err;
+        var proId = req.body.txt_des_pro;
+        q.all([producesRepo.getProInfoById(proId),detail_bidRepo.loadAll(proId)]).spread(function (rows, detail_bid){
+            var sprice=rows[0].price_step;
+            var hprice= rows[0].highest_price;
+            var data = {
+                pro_id: rows[0].pro_id,
+                pro_name: rows[0].pro_name,
+                seller_id: rows[0].seller_id,
+                seller_email: (rows[0].seller_email),
+                seller_point: rows[0].seller_point,
+                start_time: rows[0].start_time,
+                end_time: rows[0].end_time,
+                highest_price: rows[0].highest_price,
+                purchase_price: rows[0].purchase_price,
+                sprice:sprice,
+                des_path:rows[0].describe_path,
+                price_step:rows[0].price_step,
+                bidder_id: rows[0].bidder_id,
+                describe:fs.readFileSync(rows[0].describe_path,'utf8'),
+                bidder_email: function () {
+                    return rows[0].bidder_email==rows[0].seller_email?'':maHoaEmail(rows[0].bidder_email);
+                },
+                bidder_point: function () {
+                    return rows[0].bidder_email==rows[0].seller_email?'':rows[0].bidder_point;
+                },
+                days: tinhThoiGian(rows[0].total_time, 'd'),
+                hours: tinhThoiGian(rows[0].total_time, 'h'),
+                minutes: tinhThoiGian(rows[0].total_time, 'm'),
+                seconds: tinhThoiGian(rows[0].total_time, 's'),
+                img01: rows[0].img_path,
+                img02: rows[1].img_path,
+                img03: rows[2].img_path
+            }
+            if(res.locals.layoutModels.isLogged){
+                var fv=false,fk=false,fss=false;
+                var ee={
+                    pro_id:proId,
+                    user_id:res.locals.layoutModels.curUser.user_id
+                }
+                q.all([favoriteRebo.checkFav(ee),kich_userRepo.checkKick(ee),producesRepo.checkPro(ee)]).spread(function (num1,num2,num3) {
+                    fv=num1==0?false:true;
+                    fk=num2==0?false:true;
+                    fss=num3==0?false:true;
+                    var vm = {
+                        layoutModels: res.locals.layoutModels,
+                        layout:'main',
+                        sprice:sprice,
+                        hprice:hprice,
+                        product: data,
+                        total_time:rows[0].total_time,
+                        f_fav:fv,
+                        f_kick:fk,
+                        f_sell:fss,
+                        detail_bid:detail_bid,
+                        status_name: 'Chi tiết sản phẩm',
+                    };
+                    res.render('produce/chiTiet', vm);
+                })
+            }else{
+                var fv=false,fk=false,fss=false;
+                var vm = {
+                    layoutModels: res.locals.layoutModels,
+                    layout:'main',
+                    sprice:sprice,
+                    hprice:hprice,
+                    product: data,
+                    total_time:rows[0].total_time,
+                    f_fav:fv,
+                    f_kick:fk,
+                    f_sell:fss,
+                    detail_bid:detail_bid,
+                    status_name: 'Chi tiết sản phẩm',
+                };
+                res.render('produce/chiTiet', vm);
+            }
+        })
+    });
 
+})
 guiMail=function (email,noidung) {
     var transporter = nodemailer.createTransport({ //cấu hình mail server
         service: 'Gmail',
@@ -551,6 +758,8 @@ function addMuiltyDataToProImg(files, insertId) {
     d.resolve(1);
     return d.promise;
 }
+
+
 //----------------------------------------------------------------------------
 
 

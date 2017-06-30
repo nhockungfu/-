@@ -20,14 +20,25 @@ $(function(){
 });
 function start(n,h,p,g) {
     timer = setInterval(function() {
-        if(--g<0)
+        g--;
+        if(g<0 && p>=0)
         {
             g=59;
-            if(--p<0){
+            p--;
+            if(p<0&&h>=0){
                 p=59;
-                if(--h<0){
-                    if(n>0)
-                        n--;
+                h--;
+                if(h<0 && n>0){
+                    h=23;
+                    n--;
+                }else{
+                    clearInterval(timer);
+                    g=0;p=0;h=0;
+                    $('#p_hettg').show();
+                    $('#btn_dg').hide();
+                    $('#btn_dgtudong').hide();
+                    $('#txt_gia').hide();
+                    $('#p_kick').hide();
                 }
             }
         }
@@ -39,34 +50,3 @@ function start(n,h,p,g) {
 }
 
 
-// var d;
-// var h;
-// var m;
-// var s;
-// $(function(){
-//     DinhDangNgay(sum_s);;
-// });
-//
-// function DinhDangNgay(sum_s, type){
-//
-//     // 1 ngày = 86400 giây
-//     if(type = 'd'){
-//
-//     }else if(type = 'h'){
-//
-//     }else if(type = 'm'){
-//
-//     }else if(type = 's'){
-//
-//     }
-//     d = sum_s/86400;
-//     h = (sum_s % 86400)/3600;
-//     m = ((sum_s % 86400)%3600)/60;
-//     s = (((sum_s % 86400)%3600)%60);
-//
-//     d = checkTime(d);
-//     h = checkTime(h);
-//     m = checkTime(m);
-//     s = checkTime(s);
-// }
-//

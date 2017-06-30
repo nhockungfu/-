@@ -17,27 +17,19 @@ exports.loadAllByCate = function(cate_id,limit, offset,type) {
     promises.push(db.load(sqlCount));
     var sql;
     if(type == 0){
-        // sql = mustache.render('select *,(TIMESTAMPDIFF(SECOND,NOW(), produces.end_time)) AS total_time ' +
-        //     'from produces, produce_imgs ' +
-        //     'where produces.cate_id={{cate_id}} and produces.pro_id = produce_imgs.pro_id limit {{limit}} offset {{offset}}',view);
-        sql = mustache.render('select p.pro_id,p.name,p.highest_price,p.purchase_price,p.num_bid,u.email,pi.img_path,SEC_TO_TIME(TIMESTAMPDIFF(SECOND,NOW(), p.end_time)) AS total_time ' +
-            'from produces p, produce_imgs pi,user u ' +
-            'where p.cate_id={{cate_id}} and p.pro_id = pi.pro_id and p.user_highest_price=u.user_id group by p.pro_id limit {{limit}} offset {{offset}}',view);
+        sql = mustache.render('select p.pro_id,p.name,p.highest_price,p.purchase_price,p.num_bid,u.email as email,u2.email as email_sell,pi.img_path,SEC_TO_TIME(TIMESTAMPDIFF(SECOND,NOW(), p.end_time)) AS total_time ,TIMESTAMPDIFF(SECOND, p.start_time,NOW()) as ttime ' +
+            'from produces p, produce_imgs pi,user u,user u2 ' +
+            'where p.cate_id={{cate_id}} and p.seller_id=u2.user_id and p.pro_id = pi.pro_id and p.user_highest_price=u.user_id and TIMESTAMPDIFF(SECOND,NOW(), p.end_time)>0 group by p.pro_id limit {{limit}} offset {{offset}}',view);
     }else{
         if(type == 1){
-            // sql = mustache.render('select *,(TIMESTAMPDIFF(SECOND,NOW(), produces.end_time)) AS total_time ' +
-            //     'from produces, produce_imgs ' +
-            //     'where produces.cate_id={{cate_id}} and produces.pro_id = produce_imgs.pro_id ORDER BY produces.highest_price ASC limit {{limit}} offset {{offset}}',view);
-            sql = mustache.render('select p.pro_id,p.name,p.highest_price,p.purchase_price,p.num_bid,u.email,pi.img_path,SEC_TO_TIME(TIMESTAMPDIFF(SECOND,NOW(), p.end_time)) AS total_time ' +
-                'from produces p, produce_imgs pi,user u ' +
-                'where p.cate_id={{cate_id}} and p.pro_id = pi.pro_id and p.user_highest_price=u.user_id group by p.pro_id ORDER BY p.highest_price ASC limit {{limit}} offset {{offset}}',view);
+            sql = mustache.render('select p.pro_id,p.name,p.highest_price,p.purchase_price,p.num_bid,u.email as email,u2.email as email_sell,pi.img_path,SEC_TO_TIME(TIMESTAMPDIFF(SECOND,NOW(), p.end_time)) AS total_time ,TIMESTAMPDIFF(SECOND, p.start_time,NOW()) as ttime ' +
+                'from produces p, produce_imgs pi,user u,user u2 ' +
+                'where p.cate_id={{cate_id}} and p.seller_id=u2.user_id and p.pro_id = pi.pro_id and p.user_highest_price=u.user_id and TIMESTAMPDIFF(SECOND,NOW(), p.end_time)>0 group by p.pro_id ORDER BY p.highest_price ASC limit {{limit}} offset {{offset}}',view);
         }else{
-            // sql = mustache.render('select *,(TIMESTAMPDIFF(SECOND,NOW(), produces.end_time)) AS total_time ' +
-            //     'from produces, produce_imgs ' +
-            //     'where produces.cate_id={{cate_id}} and produces.pro_id = produce_imgs.pro_id ORDER BY (TIMESTAMPDIFF(SECOND,NOW(), produces.end_time)) DESC limit {{limit}} offset {{offset}}',view);
-            sql = mustache.render('select p.pro_id,p.name,p.highest_price,p.purchase_price,p.num_bid,u.email,pi.img_path,SEC_TO_TIME(TIMESTAMPDIFF(SECOND,NOW(), p.end_time)) AS total_time ' +
-                'from produces p, produce_imgs pi,user u ' +
-                'where p.cate_id={{cate_id}} and p.pro_id = pi.pro_id and p.user_highest_price=u.user_id group by p.pro_id ORDER BY (TIMESTAMPDIFF(SECOND,NOW(), p.end_time)) DESC limit {{limit}} offset {{offset}}',view);
+
+            sql = mustache.render('select p.pro_id,p.name,p.highest_price,p.purchase_price,p.num_bid,u.email as email,u2.email as email_sell,pi.img_path,SEC_TO_TIME(TIMESTAMPDIFF(SECOND,NOW(), p.end_time)) AS total_time ,TIMESTAMPDIFF(SECOND, p.start_time,NOW()) as ttime ' +
+                'from produces p, produce_imgs pi,user u,user u2 ' +
+                'where p.cate_id={{cate_id}} and p.seller_id=u2.user_id and p.pro_id = pi.pro_id and p.user_highest_price=u.user_id and TIMESTAMPDIFF(SECOND,NOW(), p.end_time)>0 group by p.pro_id ORDER BY (TIMESTAMPDIFF(SECOND,NOW(), p.end_time)) DESC limit {{limit}} offset {{offset}}',view);
         }
 
     }
@@ -69,19 +61,19 @@ exports.searchPro = function(name,limit, offset,type) {
     promises.push(db.load(sqlCount));
     var sql;
     if(type == 0){
-        sql = mustache.render('select p.pro_id,p.name,p.highest_price,p.purchase_price,p.num_bid,u.email,pi.img_path,SEC_TO_TIME(TIMESTAMPDIFF(SECOND,NOW(), p.end_time)) AS total_time ' +
-            'from produces p, produce_imgs pi,user u ' +
-            'where p.name like \'%{{{name}}}%\' and p.pro_id = pi.pro_id and p.user_highest_price = u.user_id group by p.pro_id limit {{limit}} offset {{offset}}',view);
+        sql = mustache.render('select p.pro_id,p.name,p.highest_price,p.purchase_price,p.num_bid,u.email as email,u2.email as email_sell,pi.img_path,SEC_TO_TIME(TIMESTAMPDIFF(SECOND,NOW(), p.end_time)) AS total_time ,TIMESTAMPDIFF(SECOND, p.start_time,NOW()) as ttime ' +
+            'from produces p, produce_imgs pi,user u,user u2 ' +
+            'where p.name like \'%{{{name}}}%\' and p.pro_id = pi.pro_id and p.seller_id=u2.user_id and p.user_highest_price = u.user_id and TIMESTAMPDIFF(SECOND,NOW(), p.end_time)>0 group by p.pro_id limit {{limit}} offset {{offset}}',view);
     }else{
         if(type == 1){
-            sql = mustache.render('select p.pro_id,p.name,p.highest_price,p.purchase_price,p.num_bid,u.email,pi.img_path,SEC_TO_TIME(TIMESTAMPDIFF(SECOND,NOW(), p.end_time)) AS total_time ' +
-                'from produces p, produce_imgs pi,user u ' +
-                'where p.name like \'%{{{name}}}%\' and p.pro_id = pi.pro_id and p.user_highest_price = u.user_id group by p.pro_id ORDER BY p.highest_price ASC limit {{limit}} offset {{offset}}',view);
+            sql = mustache.render('select p.pro_id,p.name,p.highest_price,p.purchase_price,p.num_bid,u.email as email,u2.email as email_sell,pi.img_path,SEC_TO_TIME(TIMESTAMPDIFF(SECOND,NOW(), p.end_time)) AS total_time ,TIMESTAMPDIFF(SECOND, p.start_time,NOW()) as ttime ' +
+                'from produces p, produce_imgs pi,user u,user u2 ' +
+                'where p.name like \'%{{{name}}}%\' and p.pro_id = pi.pro_id and p.seller_id=u2.user_id and p.user_highest_price = u.user_id and TIMESTAMPDIFF(SECOND,NOW(), p.end_time)>0 group by p.pro_id ORDER BY p.highest_price ASC limit {{limit}} offset {{offset}}',view);
         }
         else{
-            sql = mustache.render('select p.pro_id,p.name,p.highest_price,p.purchase_price,p.num_bid,u.email,pi.img_path,SEC_TO_TIME(TIMESTAMPDIFF(SECOND,NOW(), p.end_time)) AS total_time ' +
-                'from produces p, produce_imgs pi,user u ' +
-                'where p.name like \'%{{{name}}}%\' and p.pro_id = pi.pro_id and p.user_highest_price = u.user_id group by p.pro_id ORDER BY (TIMESTAMPDIFF(SECOND,NOW(), p.end_time)) DESC limit {{limit}} offset {{offset}}',view);
+            sql = mustache.render('select p.pro_id,p.name,p.highest_price,p.purchase_price,p.num_bid,u.email as email,u2.email as email_sell,pi.img_path,SEC_TO_TIME(TIMESTAMPDIFF(SECOND,NOW(), p.end_time)) AS total_time ,TIMESTAMPDIFF(SECOND, p.start_time,NOW()) as ttime ' +
+                'from produces p, produce_imgs pi,user u,user u2 ' +
+                'where p.name like \'%{{{name}}}%\' and p.pro_id = pi.pro_id and p.seller_id=u2.user_id and p.user_highest_price = u.user_id and TIMESTAMPDIFF(SECOND,NOW(), p.end_time)>0 group by p.pro_id ORDER BY (TIMESTAMPDIFF(SECOND,NOW(), p.end_time)) DESC limit {{limit}} offset {{offset}}',view);
         }
     }
     promises.push(db.load(sql));
@@ -106,19 +98,19 @@ exports.loadTopNDesc = function(assert, n) {
 
     var sql;
     if(assert == 'num_bid'){
-        sql = mustache.render('select p.pro_id,p.name,p.highest_price,p.purchase_price,p.num_bid,u.email,pi.img_path, SEC_TO_TIME(TIMESTAMPDIFF(SECOND,NOW(), p.end_time)) AS total_time from produces p, produce_imgs pi,user u where p.pro_id = pi.pro_id and p.user_highest_price=u.user_id and TIMESTAMPDIFF(SECOND,NOW(), p.end_time) > 0 GROUP BY p.pro_id ORDER BY {{As}} DESC LIMIT {{N}}', ref);
+        sql = mustache.render('select p.pro_id,p.name,p.highest_price,p.purchase_price,p.num_bid,u.email as email,u2.email as email_sell,pi.img_path, SEC_TO_TIME(TIMESTAMPDIFF(SECOND,NOW(), p.end_time)) AS total_time,TIMESTAMPDIFF(SECOND, p.start_time,NOW()) as ttime from produces p, produce_imgs pi,user u, user u2 where p.pro_id = pi.pro_id and p.seller_id=u2.user_id and p.user_highest_price=u.user_id and TIMESTAMPDIFF(SECOND,NOW(), p.end_time) > 0 GROUP BY p.pro_id ORDER BY {{As}} DESC LIMIT {{N}}', ref);
     }
     else{
         if(assert == 'highest_price'){
-            sql = mustache.render('select p.pro_id,p.name,p.highest_price,p.purchase_price,p.num_bid,u.email,pi.img_path, SEC_TO_TIME(TIMESTAMPDIFF(SECOND,NOW(), p.end_time)) AS total_time from produces p, produce_imgs pi,user u where p.pro_id = pi.pro_id and p.user_highest_price=u.user_id and TIMESTAMPDIFF(SECOND,NOW(), p.end_time) > 0 GROUP BY p.pro_id ORDER BY {{As}} DESC LIMIT {{N}}', ref);
+            sql = mustache.render('select p.pro_id,p.name,p.highest_price,p.purchase_price,p.num_bid,u.email as email,u2.email as email_sell,pi.img_path, SEC_TO_TIME(TIMESTAMPDIFF(SECOND,NOW(), p.end_time)) AS total_time,TIMESTAMPDIFF(SECOND, p.start_time,NOW()) as ttime from produces p, produce_imgs pi,user u,user u2 where p.pro_id = pi.pro_id and p.seller_id=u2.user_id and p.user_highest_price=u.user_id and TIMESTAMPDIFF(SECOND,NOW(), p.end_time) > 0 GROUP BY p.pro_id ORDER BY {{As}} DESC LIMIT {{N}}', ref);
 
         }
         else{
 
-            sql = mustache.render('select p.pro_id,p.name,p.highest_price,p.purchase_price,p.num_bid,u.email,pi.img_path, TIMESTAMPDIFF(SECOND,NOW(), p.end_time) AS secs, ' +
-                'SEC_TO_TIME(TIMESTAMPDIFF(SECOND,NOW(), p.end_time)) AS total_time ' +
-                'from produces p, produce_imgs pi,user u ' +
-                'where p.pro_id = pi.pro_id and p.user_highest_price=u.user_id and TIMESTAMPDIFF(SECOND,NOW(), p.end_time) > 0 ' +
+            sql = mustache.render('select p.pro_id,p.name,p.highest_price,p.purchase_price,p.num_bid,u.email as email,u2.email as email_sell,pi.img_path, TIMESTAMPDIFF(SECOND,NOW(), p.end_time) AS secs, ' +
+                'SEC_TO_TIME(TIMESTAMPDIFF(SECOND,NOW(), p.end_time)) AS total_time,TIMESTAMPDIFF(SECOND, p.start_time,NOW()) as ttime ' +
+                'from produces p, produce_imgs pi,user u,user u2 ' +
+                'where p.pro_id = pi.pro_id and p.seller_id=u2.user_id and p.user_highest_price=u.user_id and TIMESTAMPDIFF(SECOND,NOW(), p.end_time) > 0 ' +
                 'GROUP BY p.pro_id ' +
                 'ORDER BY secs ASC LIMIT {{N}}', ref);
 
@@ -176,8 +168,8 @@ exports.getProInfoById = function(id){
                 'seller.user_id as seller_id,'+
                 'seller.email as seller_email,'+
                 'seller.point as seller_point,'+
-                'DATE_FORMAT(p.start_time, \'%d/%m/%Y %h:%m\') as start_time,'+
-                'DATE_FORMAT(p.end_time, \'%d/%m/%Y %h:%m\') as end_time,'+
+                'DATE_FORMAT(p.start_time, \'%d/%m/%Y %H:%m\') as start_time,'+
+                'DATE_FORMAT(p.end_time, \'%d/%m/%Y %H:%m\') as end_time,'+
                 'p.highest_price,'+
                 'p.purchase_price, p.price_step,'+
                 'bidder.user_id as bidder_id,'+
@@ -189,12 +181,21 @@ exports.getProInfoById = function(id){
         'from produces p, produce_imgs pi, user seller, user bidder '+
         'where p.pro_id = pi.pro_id and p.pro_id = {{pro_id}} and p.seller_id = seller.user_id and p.user_highest_price = bidder.user_id '
         , entity);
-    console.log('Câu truy vấn (place: producesRepo.js):');
-    console.log(sql);
 
     d.resolve(db.load(sql));
 
 return d.promise;
+}
+
+exports.checkPro=function (entity) {
+    var d = q.defer();
+
+    var sql = mustache.render('select count(pro_id) as num from produces WHERE pro_id="{{pro_id}}" and seller_id="{{user_id}}"',entity);
+    db.load(sql).then(function (rows) {
+        d.resolve(rows[0].num);
+    })
+
+    return d.promise;
 }
 
 

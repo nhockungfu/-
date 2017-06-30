@@ -77,7 +77,6 @@ r.get('/dangnhap',function (req,res) {
 r.post('/dangnhap',function (req,res) {
     var email = req.body.txt_email,
         pass = crypto.createHash('md5').update(req.body.txt_pass).digest('hex');
-console.log(pass)
 
     var entity={
         email:email,
@@ -96,7 +95,7 @@ console.log(pass)
         } else {
                 if(user.sum==0)
                     f=true;
-                if(user.point/user.sum*100>=80){
+                if(parseInt(user.point)/parseInt(user.sum)*100>=80){
 
                     f=true;
                 }
@@ -105,7 +104,6 @@ console.log(pass)
             req.session.isLogged = true;
             req.session.user = user;
             req.session.isBid=f;
-
             var url = '/home';
             if (req.query.retUrl) {
                 url = req.query.retUrl;

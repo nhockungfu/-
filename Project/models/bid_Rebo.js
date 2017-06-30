@@ -6,6 +6,8 @@ exports.insert = function (entity) {
     var d = q.defer();
 
     var sql=mustache.render('select price,user_id,count(pro_id) as sum from autobid_list where pro_id="{{pro_id}}"',entity);
+    console.log(sql);
+
     db.load(sql).then(function (rows) {
         console.log('tong sum:')
         console.log(rows[0].sum);

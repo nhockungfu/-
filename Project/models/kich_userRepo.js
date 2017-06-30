@@ -38,3 +38,12 @@ exports.insert = function (entity) {
     })
     return d.promise;
 }
+
+exports.checkKick = function(entity){
+    var d = q.defer();
+    var sql = mustache.render('select count(pro_id) as num from kick_list WHERE user_id="{{user_id}}" and pro_id="{{pro_id}}"',entity);
+    db.load(sql).then(function (rows) {
+        d.resolve(rows[0].num);
+    })
+    return d.promise;
+}
