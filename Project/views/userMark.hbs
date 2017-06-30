@@ -1,0 +1,71 @@
+{{#section 'css'}}
+    <link rel="stylesheet" type="text/css" href="/assests/css/signIn.css">
+    <link rel="stylesheet" type="text/css" href="/assests/css/thongTinCaNhan.css">
+    <link rel="stylesheet" type="text/css" href="/assests/css/userMark.css">
+{{/section}}
+
+{{#section 'js'}}
+    <script type="text/javascript" src="/assests/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+
+
+        var point = 0;
+        $('.img-pick').click(function(){
+            if($(this).attr('id') == 0){
+                $('#0').css('background-color', 'green');
+                $('#1').css('background-color', '#fff');
+                $('#1').css('opacity', '0.3');
+                $('#0').css('opacity', '1');
+                point = 1;
+            }else{
+                $('#0').css('background-color', '#fff');
+                $('#1').css('background-color', 'green');
+                $('#1').css('opacity', '1');
+                $('#0').css('opacity', '0.3');
+                point = -1;
+            }
+        })
+
+        $('#btnMark').click(function(){
+            if ($("#0").css('background-color')=="#fff"
+                    && $("#1").css('background-color')=="#fff")
+                alert("matched");
+        })
+
+    </script>
+{{/section}}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <div class="panel panel-default">
+                <div class="panel-heading text-center">
+                    <h3>Đánh giá: <b>sayphu1308@gmail.com</b></h3>
+                </div>
+                <div class="panel-body">
+                    <div class="container-img text-center">
+                        <img src="/images/angry.png" alt="" class="img-pick" id="0" data-placement="left" data-toggle="tooltip"
+                             title="Chất lượng như mong đợi!">
+                        <img src="/images/smile.png" alt="" class="img-pick" id="1" data-placement="right"
+                             data-toggle="tooltip" title="Thất vọng!">
+                    </div>
+                    <div class="form-summit text-center">
+                        <form>
+                            <div class="form-group">
+                                <label for="txtComment"> </label>
+                                <input type="hidden" class="form-control" id="txtPoint">
+                                <input type="text" class="form-control" id="txtComment"
+                                       placeholder="Vui lòng cho nhận xét...">
+                            </div>
+                            <button type="submit" class="btn btn-success" id="btnMark">Xác nhận đánh giá</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

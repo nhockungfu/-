@@ -113,6 +113,7 @@ exports.setNoneWaitingChangePass = function (user_email) {
     var sql = mustache.render('UPDATE `user` SET waiting_for_change_pass = 0 where email = \'{{user_email}}\'', entity);
 
     d.resolve(db.load(sql));
+    return d.promise;
 }
 
 exports.update = function (entity) {
@@ -168,8 +169,10 @@ exports.getBiddingListForUser = function (user_id) {
     }
 
     var sql = mustache.render(
-        'SELECT p.pro_id, p.`name`, p.purchase_price, p.highest_price, u2.email bidder_email FROM bidding_list bl,`user` u, produces p, `user` u2 WHERE bl.user_id = u.user_id and u.user_id = {{user_id}} and bl.pro_id = p.pro_id and p.user_highest_price = u2.user_id and TIMESTAMPDIFF(SECOND, NOW(), p.end_time) > 0', entity
+        'SELECT p.pro_id, p.`name`, p.purchase_price, p.highest_price, u2.email AS bidder_email, IF(u.user_id = p.user_highest_price,\'you_highest\',\'not_you\') AS msg FROM bidding_list bl,`user` u, produces p, `user` u2 WHERE bl.user_id = u.user_id and u.user_id = {{user_id}} and bl.pro_id = p.pro_id and p.user_highest_price = u2.user_id and TIMESTAMPDIFF(SECOND, NOW(), p.end_time) > 0', entity
     );
+
+    console.log(sql);
 
     d.resolve(db.load(sql));
 
@@ -186,13 +189,14 @@ exports.getFavoriteListForUser = function (user_id) {
     var sql = mustache.render(
         'SELECT p.pro_id, p.`name`, p.purchase_price, p.highest_price, u2.email AS bidder_email FROM favorite_list fl,`user` u, produces p, `user` u2 WHERE fl.user_id = u.user_id and u.user_id = {{user_id}} and fl.pro_id = p.pro_id and p.user_highest_price = u2.user_id', entity
     );
+    console.log(sql);
 
     d.resolve(db.load(sql));
 
     return d.promise;
 }
 
-exports.getBidHistorForUser = function (user_id, user_email) {
+exports.getWonListForUser = function (user_id, user_email) {
     var d = q.defer();
 
     var entity = {
@@ -201,10 +205,49 @@ exports.getBidHistorForUser = function (user_id, user_email) {
     }
 
     var sql = mustache.render(
-        'SELECT p.pro_id, p.`name`, p.purchase_price, p.highest_price,if(u2.email = \'{{user_mail}}\', \'Thành công\', \'Thất bại\') as result FROM bidding_list bl,`user` u, produces p, `user` u2 WHERE bl.user_id = u.user_id and u.user_id = {{user_id}} and bl.pro_id = p.pro_id and p.user_highest_price = u2.user_id', entity
+        'SELECT p.pro_id, p.`name`, p.start_price, p.purchase_price, p.highest_price , if((SELECT COUNT(*) FROM voted_list v WHERE v.user_id = p.seller_id and v.pro_id = p.pro_id and v.marker = {{user_id}}) > 0, \'marked\',\'not yet mark\') AS check_mark FROM won_list w, produces p WHERE w.user_id = {{user_id}} and w.pro_id = p.pro_id ORDER BY p.end_time DESC', entity
     );
+    console.log(sql);
 
     d.resolve(db.load(sql));
 
     return d.promise;
 }
+
+exports.getProductSellingList = function (user_id) {
+    var d = q.defer();
+
+    var entity = {
+        user_id: user_id,
+    }
+
+    var sql = mustache.render(
+        'SELECT p.pro_id, p.`name`, p.start_price, p.highest_price, u2.email FROM produces p, `user` u2 WHERE p.seller_id = {{user_id}} and u2.user_id = p.user_highest_price and TIMESTAMPDIFF(SECOND, NOW(), p.end_time) > 0 ORDER BY p.end_time ASC', entity
+    );
+    console.log(sql);
+
+    d.resolve(db.load(sql));
+
+    return d.promise;
+}
+
+exports.getProductSelledList = function (user_id) {
+    var d = q.defer();
+
+    var entity = {
+        user_id: user_id,
+    }
+
+    var sql = mustache.render(
+        'SELECT p.pro_id, p.`name`, p.highest_price, u.email, IF((SELECT COUNT(*) FROM voted_list v WHERE v.user_id = p.user_highest_price and v.pro_id = p.pro_id and v.marker = 27) > 0, \'marked\',\'not yet mark\') AS check_mark  FROM produces p, `user` u WHERE p.seller_id = {{user_id}} and p.user_highest_price <> {{user_id}} and u.user_id = p.user_highest_price and TIMESTAMPDIFF(SECOND, NOW(), p.end_time) < 0 ORDER BY p.end_time DESC', entity
+    );
+    console.log(sql);
+
+    d.resolve(db.load(sql));
+
+    return d.promise;
+}
+
+
+
+

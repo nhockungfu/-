@@ -1,0 +1,24 @@
+.panel-body{
+    height: 300px;
+}
+.img-pick{
+    width: 150px;
+    margin: 0 15px;
+}
+.form-summit{
+
+}
+#txtComment{
+    height: 50px;
+    width: 400px;
+    margin: 0 auto;
+}
+.img-pick:hover{
+    cursor: pointer;
+    background-color: green;
+}
+.panel.panel-default{
+    width: 700px;
+    margin: 0 auto !important;
+    padding: 0 auto !important;
+}

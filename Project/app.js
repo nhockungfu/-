@@ -32,7 +32,7 @@ app.engine('hbs', handlebars({
             var nf = wnumb({
                 thousand: ','
             });
-            return nf.to(n);
+            return nf.to(n)+' đ';
         },
     }
 }));
