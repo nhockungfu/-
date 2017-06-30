@@ -375,8 +375,9 @@ r.get('/quan-ly-tin-mua', function (req, res) {
         userRepo.getFavoriteListForUser(user_id),
         userRepo.getWonListForUser(user_id, user_email),
         userRepo.getProductSellingList(user_id),
-        userRepo.getProductSelledList(user_id)
-    ]).spread(function (r_bidding_list, r_favorite_list, r_history_list, r_selling_list, r_selled_list) {
+        userRepo.getProductSelledList(user_id),
+        userRepo.getMarkListForUser(user_id)
+    ]).spread(function (r_bidding_list, r_favorite_list, r_history_list, r_selling_list, r_selled_list, r_mark_list) {
         var vm = {
             layout: 'main',
             layoutModels: res.locals.layoutModels,
@@ -384,7 +385,8 @@ r.get('/quan-ly-tin-mua', function (req, res) {
             favorite_list: r_favorite_list,
             history_list: r_history_list,
             selling_list: r_selling_list,
-            selled_list: r_selled_list
+            selled_list: r_selled_list,
+            mark_list: r_mark_list
         };
 
         res.render('quanLyTinMua', vm);
@@ -392,17 +394,142 @@ r.get('/quan-ly-tin-mua', function (req, res) {
 
 });
 
-// Vào quản lý tin mua (đối tượng người mua)
-r.get('/mark', function (req, res) {
+// Vào quản lý tin mua (đánh giá người bán)
+r.get('/mark-seller/:id', function (req, res) {
 
-    // var user_id = res.locals.layoutModels.curUser.user_id;
-    // var user_email = res.locals.layoutModels.curUser.email;
+    //lấy id người dùng
+    var curUser = res.locals.layoutModels.curUser.user_id;
 
-    var vm = {
-        layout: 'main',
+    //tách id người bán và id sản phẩm
+    var value = req.params.id; // sellerId + proId;
+    var index_of_At = value.toString().indexOf("+");
+    var sellerId = value.substring(0, index_of_At);
+    var proId = value.substring(index_of_At+1);
+
+    if(curUser == undefined){
+        res.send('Bạn chưa đăng nhập, thao tác không hợp lệ!');
+    }else{
+        userRepo.checkQuanHeMuaVaBan(proId, curUser, sellerId).then(function(checkVal){
+            if(checkVal.result == 0){
+                res.send('Lỗi đánh giá: Thao tác không hợp lệ!');
+            }else{
+                console.log('Vào trang đánh giá!')
+                userRepo.getMailByUserId(sellerId, proId).then(function(value){
+                    userRepo.getProNameById(proId).then(function(r_pro_name){
+                        var vm = {
+                            layout: 'main',
+                            layoutModels: res.locals.layoutModels,
+                            bi_danh_gia_id: sellerId,
+                            bi_danh_gia_mail: value.email,
+                            pro_id: proId,
+                            pro_name: r_pro_name.name,
+                            user_type: 'seller'
+                        };
+
+                        console.log('check pro name:');
+                        console.log(vm);
+
+                        res.render('userMark', vm);
+                    })
+
+                })
+            }
+        })
+    }
+});
+
+// Vào quản lý tin mua (đánh giá người mua)
+r.get('/mark-bidder/:id', function (req, res) {
+
+    //lấy id người dùng
+    var curUser = res.locals.layoutModels.curUser.user_id;
+
+    //tách id người bán và id sản phẩm
+    var value = req.params.id; // sellerId + proId;
+    var index_of_At = value.toString().indexOf("+");
+    var bidderId = value.substring(0, index_of_At);
+    var proId = value.substring(index_of_At+1);
+
+    if(curUser == undefined){
+        res.send('Bạn chưa đăng nhập, thao tác không hợp lệ!');
+    }else{
+        userRepo.checkQuanHeMuaVaBan(proId, bidderId, curUser).then(function(checkVal){
+            if(checkVal.result == 0){
+                res.send('Lỗi đánh giá: Thao tác không hợp lệ!');
+            }else{
+                console.log('Vào trang đánh giá!')
+                userRepo.getMailByUserId(bidderId).then(function(value){
+                    userRepo.getProNameById(proId).then(function(r_pro_name){
+                        var vm = {
+                            layout: 'main',
+                            layoutModels: res.locals.layoutModels,
+                            bi_danh_gia_id: bidderId,
+                            bi_danh_gia_mail: value.email,
+                            pro_id: proId,
+                            pro_name: r_pro_name.name,
+                            user_type: 'bidder'
+                        };
+
+                        console.log('check pro name:');
+                        console.log(vm);
+
+                        res.render('userMark', vm);
+                    })
+                })
+            }
+        })
+    }
+});
+
+r.post('/user-marking', function (req, res) {
+
+
+    var user_brand; //0 or 1
+    var user_type = req.body.txtUserType;
+    if(user_type == 'bidder'){
+        user_brand = 0;
+    }else{ //seller
+        user_brand = 1;
+    }
+
+    var entity = {
+        user_id: req.body.txtUserId,
+        user_brand: user_brand,
+        marker_id: req.body.txtMarkerId,
+        pro_id: req.body.txtProId,
+        point: req.body.txtPoint,
+        comment: req.body.txtComment,
     };
 
-    res.render('userMark', vm);
+    console.log('kiểm tra đánh giá người mua:');
+    console.log(entity);
+
+    userRepo.insertValueInVoteTable(entity).then(function(){
+        var user_id = res.locals.layoutModels.curUser.user_id;
+        var user_email = res.locals.layoutModels.curUser.email;
+
+        q.all([
+            userRepo.getBiddingListForUser(user_id),
+            userRepo.getFavoriteListForUser(user_id),
+            userRepo.getWonListForUser(user_id, user_email),
+            userRepo.getProductSellingList(user_id),
+            userRepo.getProductSelledList(user_id),
+            userRepo.getMarkListForUser(user_id)
+        ]).spread(function (r_bidding_list, r_favorite_list, r_history_list, r_selling_list, r_selled_list, r_mark_list) {
+            var vm = {
+                layout: 'main',
+                layoutModels: res.locals.layoutModels,
+                bidding_list: r_bidding_list,
+                favorite_list: r_favorite_list,
+                history_list: r_history_list,
+                selling_list: r_selling_list,
+                selled_list: r_selled_list,
+                mark_list: r_mark_list
+            };
+
+            res.render('quanLyTinMua', vm);
+        }) //q.all
+    })
 
 });
 

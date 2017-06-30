@@ -43,3 +43,15 @@ tr.bidding-td{
 textarea {
     resize: none;
 }
+#vcoin-img{
+    width: 73px;
+    height: 73px;
+    margin: 0;
+}
+
+.scrollable{
+    margin-top: 0;
+    height: 400px;
+    overflow: scroll;
+    overflow-y: scroll;
+}

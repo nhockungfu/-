@@ -30,9 +30,24 @@
         })
 
         $('#btnMark').click(function(){
-            if ($("#0").css('background-color')=="#fff"
-                    && $("#1").css('background-color')=="#fff")
-                alert("matched");
+            if (point == 0)
+            {
+                alert("Bạn chưa click vào hình bình chọn!");
+                return false;
+            }else {
+
+                $('#txtUserType').val($('#id-user-type').attr('class'));
+                $('#txtUserId').val($('#id-bi_danh_gia').attr('class'));
+                $('#txtMarkerId').val($('#id-marker').attr('class'));
+                $('#txtProId').val($('#id-pro').attr('class'));
+
+                console.log($('#id-bi_danh_gia').attr('class'));
+                console.log($('#id-marker').attr('class'));
+                console.log($('#id-pro').attr('class'));
+
+                $('#txtPoint').val(point);
+                $('#form-marking').submit();
+            }
         })
 
     </script>
@@ -42,8 +57,9 @@
     <div class="row">
         <div class="col-md-12 text-center">
             <div class="panel panel-default">
-                <div class="panel-heading text-center">
-                    <h3>Đánh giá: <b>sayphu1308@gmail.com</b></h3>
+                <div class="panel-heading text-left">
+                    <h3 style="color: #888 !important;">Sản phẩm: <b>{{pro_name}}</b></h3>
+                    <h4 style="color: #555 !important;">Đánh giá tài khoản: <b style="color: red;">{{bi_danh_gia_mail}}</b></h4>
                 </div>
                 <div class="panel-body">
                     <div class="container-img text-center">
@@ -53,14 +69,21 @@
                              data-toggle="tooltip" title="Thất vọng!">
                     </div>
                     <div class="form-summit text-center">
-                        <form>
+                        <form method="post" action="/user/user-marking" id="form-marking">
+                            <div id="id-user-type" class="{{user_type}}"> </div>
+                            <div id="id-bi_danh_gia" class="{{bi_danh_gia_id}}"> </div>
+                            <div id="id-pro" class="{{pro_id}}"> </div>
+                            <div id="id-marker" class="{{layoutModels.curUser.user_id}}"> </div>
                             <div class="form-group">
-                                <label for="txtComment"> </label>
-                                <input type="hidden" class="form-control" id="txtPoint">
-                                <input type="text" class="form-control" id="txtComment"
-                                       placeholder="Vui lòng cho nhận xét...">
+                                <label for="hold-id-user" id="{{layoutModels.curUser.user_id}}"> </label>
+                                <input type="hidden" class="form-control" id="txtUserType" name="txtUserType">
+                                <input type="hidden" class="form-control" id="txtUserId" name="txtUserId">
+                                <input type="hidden" class="form-control" id="txtMarkerId" name="txtMarkerId">
+                                <input type="hidden" class="form-control" id="txtProId" name="txtProId">
+                                <input type="hidden" class="form-control" id="txtPoint" name="txtPoint">
+                                <input type="text" class="form-control" id="txtComment" name="txtComment" placeholder="Vui lòng cho nhận xét...">
                             </div>
-                            <button type="submit" class="btn btn-success" id="btnMark">Xác nhận đánh giá</button>
+                            <button class="btn btn-success" id="btnMark">Xác nhận đánh giá</button>
                         </form>
                     </div>
                 </div>

@@ -36,9 +36,13 @@ r.get('/', function (req, res) {
 
 r.get('/detail/:id', function (req, res) {
     var proId = req.params.id;
+
+    console.log(proId);
+
     if (!proId) {
         res.redirect('Lỗi không có dữ liệu');
     }
+
     q.all([producesRepo.getProInfoById(proId),detail_bidRepo.loadAll(proId)]).spread(function (rows, detail_bid){
         var sprice=rows[0].price_step;
         var hprice= rows[0].highest_price;
@@ -85,7 +89,6 @@ r.get('/detail/:id', function (req, res) {
             };
             res.render('produce/chiTiet', vm);
         })
-
 
     })
 

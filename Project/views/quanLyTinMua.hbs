@@ -49,7 +49,8 @@
                                 <a href="#set1">Quản lý mua</a>
                             </li>
                             <li>
-                                <a id="btn_quanLyBan" href="#set2" data-toggle="tooltip" data-placement="top" title="Bạn chưa được bán">Quản lý bán</a>
+                                <a id="btn_quanLyBan" href="#set2" data-toggle="tooltip" data-placement="top"
+                                   title="Bạn chưa được bán">Quản lý bán</a>
                             </li>
                         </ul>
                         <div class="tab-content">
@@ -149,7 +150,8 @@
                                                         <td><a href="#">{{name}}</a></td>
                                                         <td>{{number_format start_price}}</td>
                                                         <td>{{number_format highest_price}}</td>
-                                                        <td class="td-check-mark-seller text-center">{{check_mark}}</td>
+                                                        <td class="td-check-mark-seller text-center"
+                                                            id="{{seller_id}}">{{check_mark}}</td>
                                                     </tr>
                                                 {{/each}}
                                                 </tbody>
@@ -219,7 +221,8 @@
                                                         <td><a href="#">{{name}}</a></td>
                                                         <td>{{number_format highest_price}}</td>
                                                         <td><a href="#">{{email}}</a></td>
-                                                        <td class="td-check-mark-bidder text-center">{{check_mark}}</td>
+                                                        <td class="td-check-mark-bidder text-center"
+                                                            id="{{user_highest_price}}">{{check_mark}}</td>
                                                     </tr>
                                                 {{/each}}
                                                 </tbody>
@@ -240,38 +243,40 @@
         <div class="panel panel-default">
             <div class="panel-heading">
                 <div class="col-md-4">
-                    <img id="vcoin-img" src="/images/vcoin.png">
+                    <img id="vcoin-img" src="/images/mark-icon.png">
                 </div>
                 <div class="rol-md-8">
-                    <div><h4>Tài khoản VCOIN</h4></div>
-                    <div><h3>0</h3></div>
+                    <div><h4>Các lượt đánh giá</h4></div>
+                    <div><h3 id="num-mark" style="font-size: 13px;"></h3></div>
                 </div>
             </div>
             <div class="panel-body" id="panel-2">
-                <div style="margin-bottom: 5px;">Các gói nạp</div>
-                <table class="table table-hover table-bordered">
-                    <tr>
-                        <td>500.000</td>
-                        <td>500</td>
-                    </tr>
-                    <tr>
-                        <td>200.000</td>
-                        <td>200</td>
-                    </tr>
-                    <tr>
-                        <td>100.000</td>
-                        <td>100</td>
-                    </tr>
-                    <tr>
-                        <td>50.000</td>
-                        <td>50</td>
-                    </tr>
-                    <tr>
-                        <td>200.000</td>
-                        <td>20</td>
-                    </tr>
-                </table>
-                <a id="btn_napNgay" href="#" class="btn btn-warning">Nạp ngay</a>
+                <div style="margin-bottom: 10px;">
+                    <span style="font-size: 18px;" class="glyphicon glyphicon-sunglasses" aria-hidden="true"></span>
+                    <b>Các lượt nhận xét</b>
+                </div>
+                <div class="scrollable">
+                    <table class="table table-bordered mark-table">
+                        {{#each mark_list}}
+                            <tr>
+                                <td>
+                                    <p>
+                                        <b style="color: red;">{{check_time}}</b>
+                                    </p>
+                                    <p>
+                                        <b>Vai trò: </b>{{marker_brand}}
+                                    </p>
+                                    <p>
+                                        <b>Người đánh giá: </b>{{marker_email}}
+                                    </p>
+                                    <p>
+                                        <b>Nhận xét: </b>{{comment}}
+                                    </p>
+                                </td>
+                            </tr>
+                        {{/each}}
+                    </table>
+                </div>
             </div>
         </div>
     </div>

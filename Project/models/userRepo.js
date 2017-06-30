@@ -172,8 +172,6 @@ exports.getBiddingListForUser = function (user_id) {
         'SELECT p.pro_id, p.`name`, p.purchase_price, p.highest_price, u2.email AS bidder_email, IF(u.user_id = p.user_highest_price,\'you_highest\',\'not_you\') AS msg FROM bidding_list bl,`user` u, produces p, `user` u2 WHERE bl.user_id = u.user_id and u.user_id = {{user_id}} and bl.pro_id = p.pro_id and p.user_highest_price = u2.user_id and TIMESTAMPDIFF(SECOND, NOW(), p.end_time) > 0', entity
     );
 
-    console.log(sql);
-
     d.resolve(db.load(sql));
 
     return d.promise;
@@ -189,7 +187,6 @@ exports.getFavoriteListForUser = function (user_id) {
     var sql = mustache.render(
         'SELECT p.pro_id, p.`name`, p.purchase_price, p.highest_price, u2.email AS bidder_email FROM favorite_list fl,`user` u, produces p, `user` u2 WHERE fl.user_id = u.user_id and u.user_id = {{user_id}} and fl.pro_id = p.pro_id and p.user_highest_price = u2.user_id', entity
     );
-    console.log(sql);
 
     d.resolve(db.load(sql));
 
@@ -205,9 +202,8 @@ exports.getWonListForUser = function (user_id, user_email) {
     }
 
     var sql = mustache.render(
-        'SELECT p.pro_id, p.`name`, p.start_price, p.purchase_price, p.highest_price , if((SELECT COUNT(*) FROM voted_list v WHERE v.user_id = p.seller_id and v.pro_id = p.pro_id and v.marker = {{user_id}}) > 0, \'marked\',\'not yet mark\') AS check_mark FROM won_list w, produces p WHERE w.user_id = {{user_id}} and w.pro_id = p.pro_id ORDER BY p.end_time DESC', entity
+        'SELECT p.pro_id, p.`name`, p.start_price, p.purchase_price, p.highest_price, p.seller_id, if((SELECT COUNT(*) FROM voted_list v WHERE v.user_id = p.seller_id and v.pro_id = p.pro_id and v.marker = {{user_id}}) > 0, \'marked\',\'not yet mark\') AS check_mark FROM won_list w, produces p WHERE w.user_id = {{user_id}} and w.pro_id = p.pro_id ORDER BY p.end_time DESC', entity
     );
-    console.log(sql);
 
     d.resolve(db.load(sql));
 
@@ -224,7 +220,6 @@ exports.getProductSellingList = function (user_id) {
     var sql = mustache.render(
         'SELECT p.pro_id, p.`name`, p.start_price, p.highest_price, u2.email FROM produces p, `user` u2 WHERE p.seller_id = {{user_id}} and u2.user_id = p.user_highest_price and TIMESTAMPDIFF(SECOND, NOW(), p.end_time) > 0 ORDER BY p.end_time ASC', entity
     );
-    console.log(sql);
 
     d.resolve(db.load(sql));
 
@@ -239,7 +234,62 @@ exports.getProductSelledList = function (user_id) {
     }
 
     var sql = mustache.render(
-        'SELECT p.pro_id, p.`name`, p.highest_price, u.email, IF((SELECT COUNT(*) FROM voted_list v WHERE v.user_id = p.user_highest_price and v.pro_id = p.pro_id and v.marker = 27) > 0, \'marked\',\'not yet mark\') AS check_mark  FROM produces p, `user` u WHERE p.seller_id = {{user_id}} and p.user_highest_price <> {{user_id}} and u.user_id = p.user_highest_price and TIMESTAMPDIFF(SECOND, NOW(), p.end_time) < 0 ORDER BY p.end_time DESC', entity
+        'SELECT p.pro_id, p.`name`, p.highest_price, u.email, p.user_highest_price,IF((SELECT COUNT(*) FROM voted_list v WHERE v.user_id = p.user_highest_price and v.pro_id = p.pro_id and v.marker = 27) > 0, \'marked\',\'not yet mark\') AS check_mark  FROM produces p, `user` u WHERE p.seller_id = {{user_id}} and p.user_highest_price <> {{user_id}} and u.user_id = p.user_highest_price and TIMESTAMPDIFF(SECOND, NOW(), p.end_time) < 0 ORDER BY p.end_time DESC', entity
+    );
+
+    d.resolve(db.load(sql));
+
+    return d.promise;
+}
+
+exports.getMailByUserId = function (user_id) {
+    var d = q.defer();
+
+    var entity = {
+        user_id: user_id,
+    }
+
+    var sql = mustache.render(
+        'SELECT email FROM `user` WHERE user_id = {{user_id}}', entity
+    );
+    console.log(sql);
+
+    db.load(sql).then(function(rows){
+        d.resolve(rows[0]);
+    })
+
+    return d.promise;
+}
+
+
+exports.checkQuanHeMuaVaBan = function (proId, bidderId, sellerId) {
+    var d = q.defer();
+
+    var entity = {
+        pro_id: proId,
+        bidder_id: bidderId,
+        seller_id: sellerId
+    }
+
+    var sql = mustache.render(
+        'SELECT COUNT(*) AS result FROM produces p WHERE p.pro_id = {{pro_id}} and p.user_highest_price = {{bidder_id}} and p.seller_id = {{seller_id}}', entity
+    );
+    console.log(sql);
+
+    db.load(sql).then(function(rows){
+        d.resolve(rows[0]);
+    })
+
+    return d.promise;
+}
+
+exports.insertValueInVoteTable = function (entity) {
+    var d = q.defer();
+
+
+
+    var sql = mustache.render(
+        'INSERT INTO voted_list (pro_id, user_id, user_brand, marker, comment, point, check_time) VALUES ({{pro_id}},{{user_id}}, {{user_brand}}, {{marker_id}}, \'{{comment}}\', {{point}},NOW())', entity
     );
     console.log(sql);
 
@@ -248,6 +298,39 @@ exports.getProductSelledList = function (user_id) {
     return d.promise;
 }
 
+exports.getMarkListForUser = function (user_id) {
+    var d = q.defer();
 
+    var entity = {
+        user_id: user_id
+    }
 
+    var sql = mustache.render(
+        'SELECT vote.user_id, vote.marker AS marker_id, u.email AS marker_email, if(vote.user_brand = 0, \'Người bán\', \'Người mua\') AS marker_brand, vote.comment, DATE_FORMAT(vote.check_time, \'%d/%m/%Y\') AS check_time FROM voted_list vote, `user` u WHERE vote.user_id = {{user_id}} and vote.marker = u.user_id GROUP BY vote.marker ORDER BY vote.check_time DESC', entity
+    );
 
+    console.log(sql);
+
+    d.resolve(db.load(sql));
+
+    return d.promise;
+}
+
+exports.getProNameById = function (proId) {
+    var d = q.defer();
+
+    var entity = {
+        pro_id: proId,
+    }
+
+    var sql = mustache.render(
+        'SELECT `name` FROM produces where pro_id = {{pro_id}}', entity
+    );
+    console.log(sql);
+
+    db.load(sql).then(function(rows){
+        d.resolve(rows[0]);
+    })
+
+    return d.promise;
+}
