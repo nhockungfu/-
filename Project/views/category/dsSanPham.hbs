@@ -44,7 +44,8 @@
                     <div class="col-md-6" style="padding: 0">
                         <div class="caption">
                             <div class="product-info">
-                                <span class="sp_gia">Người giữ giá </span><p class="tien _email">{{email}}</p>
+                                <span class="sp_gia">Người giữ giá </span><p class="tien _email">{{email}}%{{email_sell}}</p>
+                                <p class="tien _hien_new" style="display: none">>{{ttime}}</p>
                                 <span class="sp_gia">Giá cao nhất </span><p class="tien">{{number_format highest_price}}</p>
                                 <span class="sp_gia">Giá mua ngay </span><p class="gia-tien">{{number_format purchase_price}}</p>
                             </div>
@@ -57,7 +58,7 @@
                         </div>
                     </div>
                 </div>
-                <img class ="new-icon" src="/images/new__icon2.png" alt="">
+                <img class ="new-icon" src="/images/new__icon2.png" alt="" style="display: none">
             </div>
         </div>
     {{/each}}
@@ -109,16 +110,32 @@
             var x = document.getElementsByClassName("_email");
 
             for (var i = 0; i < x.length; i++) {
-                var str=(x[i].innerText);
-                var vt = str.indexOf('@');
-                var str2=str.substr(0,vt-3);
-                str=str.replace(str2,'xxx');
-                (x[i].innerText)=str;
+                var str = (x[i].innerText);
+                var st = str.substr(0,str.indexOf('%'));
+                str=str.substr(str.indexOf('%')+1,str.length-str.indexOf('%')-1);
+                if(str==st){
+                    (x[i].innerText)='----------------';
+                }
+                else{
+                    var vt = str.indexOf('@');
+                    var str2 = str.substr(0, vt - 3);
+                    str = str.replace(str2, 'xxx');
+                    (x[i].innerText) = str;
+                }
 
             }
             if(f1==0){
                 $("._email").show();
                 f1=1;
+            }
+            var y = document.getElementsByClassName("_hien_new");
+            var yy = document.getElementsByClassName("new-icon");
+            var j=0;
+            for(;j<y.length;j++){
+                var so = parseInt((y[j].innerText));
+                if(so<=300){
+                    yy[j].style.display='block';
+                }
             }
         })
         $('#cbb_sx').change(function () {
@@ -174,16 +191,19 @@
             timer = setInterval(function() {
                 for (var i = 0; i < x.length; i++){
                     gs[i]--;
-                    if(gs[i]<0 && ps[i]>0)
+                    if(gs[i]<0 && ps[i]>=0)
                     {
                         gs[i]=59;
                         ps[i]--;
-                        if(ps[i]<0&&hs[i]>0){
+                        if(ps[i]<0&&hs[i]>=0){
                             ps[i]=59;
                             hs[i]--;
                             if(hs[i]<0 && ns[i]>0){
                                 hs[i]=23;
                                 ns[i]--;
+                            }else{
+                                clearInterval(timer);
+                                gs[i]=0;ps[i]=0;hs[i]=0;
                             }
                         }
                     }else{

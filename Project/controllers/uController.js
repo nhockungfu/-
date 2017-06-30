@@ -85,6 +85,7 @@ r.get('/dangnhap', function (req, res) {
 r.post('/dangnhap', function (req, res) {
     var email = req.body.txt_email,
         pass = crypto.createHash('md5').update(req.body.txt_pass).digest('hex');
+
     console.log(pass)
 
     var entity = {
@@ -102,6 +103,9 @@ r.post('/dangnhap', function (req, res) {
                 showError: true
             });
         } else {
+                if(user.sum==0)
+                    f=true;
+                if(parseInt(user.point)/parseInt(user.sum)*100>=80){
             if (user.sum == 0)
                 f = true;
             if (user.point / user.sum * 100 >= 80) {
@@ -112,6 +116,7 @@ r.post('/dangnhap', function (req, res) {
             console.log('dang nhap thanh cong')
             req.session.isLogged = true;
             req.session.user = user;
+            req.session.isBid=f;
             req.session.isBid = f;
 
             var url = '/home';
@@ -120,9 +125,9 @@ r.post('/dangnhap', function (req, res) {
             }
             res.redirect(url);
         }
-    }).fail(function (err) {
+    }}).fail(function (err) {
         console.log(err);
-        ;
+
         res.end('fail');
     });
 });

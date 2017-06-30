@@ -9,103 +9,118 @@ var express = require('express'),
     producesRepo = require('../models/producesRepo'),
     proimgRepo = require('../models/proimgRepo'),
     categoryRepo = require('../models/categoryRepo'),
-    detail_bidRepo=require('../models/detail_bidRebo'),
-    auto_listRepo=require('../models/autobid_listRepo'),
-    bid_Repo=require('../models/bid_Rebo'),
-    favoriteRebo=require('../models/favoriteRepo'),
+    detail_bidRepo = require('../models/detail_bidRebo'),
+    auto_listRepo = require('../models/autobid_listRepo'),
+    bid_Repo = require('../models/bid_Rebo'),
+    favoriteRebo = require('../models/favoriteRepo'),
     nodemailer = require('nodemailer'),
-    kich_userRepo=require('../models/kich_userRepo');
+    kich_userRepo = require('../models/kich_userRepo');
 
 
 var r = express.Router();
 
-r.get('/', function (req, res) {
-    producesRepo.loadAll()
-        .then(function (rows) {
-            var vm = {
-                layoutModels: res.locals.layoutModels,
-                produces: rows
-            };
-            res.render('index', vm);
-        }).fail(function (err) {
-        console.log(err);
-        res.end('fail');
-    });
-});
-
-
 r.get('/detail/:id', function (req, res) {
     var proId = req.params.id;
-
-    console.log(proId);
 
     if (!proId) {
         res.redirect('Lỗi không có dữ liệu');
     }
 
-    q.all([producesRepo.getProInfoById(proId),detail_bidRepo.loadAll(proId)]).spread(function (rows, detail_bid){
-        var sprice=rows[0].price_step;
-        var hprice= rows[0].highest_price;
+    q.all([producesRepo.getProInfoById(proId), detail_bidRepo.loadAll(proId)]).spread(function (rows, detail_bid) {
+        var sprice = rows[0].price_step;
+        var hprice = rows[0].highest_price;
         var data = {
-                pro_id: rows[0].pro_id,
-                pro_name: rows[0].pro_name,
-                seller_id: rows[0].seller_id,
-                seller_email: (rows[0].seller_email),
-                seller_point: rows[0].seller_point,
-                start_time: rows[0].start_time,
-                end_time: rows[0].end_time,
-                highest_price: rows[0].highest_price,
-                purchase_price: rows[0].purchase_price,
-                sprice:sprice,
-                price_step:rows[0].price_step,
-                bidder_id: rows[0].bidder_id,
-                describe:fs.readFileSync(rows[0].describe_path,'utf8'),
-                bidder_email: function () {
-                    return rows[0].bidder_email==rows[0].seller_email?'':maHoaEmail(rows[0].bidder_email);
-                },
-                bidder_point: function () {
-                    return rows[0].bidder_email==rows[0].seller_email?'':rows[0].bidder_point;
-                },
-                days: tinhThoiGian(rows[0].total_time, 'd'),
-                hours: tinhThoiGian(rows[0].total_time, 'h'),
-                minutes: tinhThoiGian(rows[0].total_time, 'm'),
-                seconds: tinhThoiGian(rows[0].total_time, 's'),
-                img01: rows[0].img_path,
-                img02: rows[1].img_path,
-                img03: rows[2].img_path
-        }
-        var f=false;
-        favoriteRebo.checkFav({pro_id:proId,user_id:res.locals.layoutModels.curUser.user_id}).then(function (num) {
-            f=num==0?false:true;
+            pro_id: rows[0].pro_id,
+            pro_name: rows[0].pro_name,
+            seller_id: rows[0].seller_id,
+            seller_email: (rows[0].seller_email),
+            seller_point: rows[0].seller_point,
+            start_time: rows[0].start_time,
+            end_time: rows[0].end_time,
+            highest_price: rows[0].highest_price,
+            purchase_price: rows[0].purchase_price,
+            sprice: sprice,
+            des_path: rows[0].describe_path,
+            price_step: rows[0].price_step,
+            bidder_id: rows[0].bidder_id,
+            describe: fs.readFileSync(rows[0].describe_path, 'utf8'),
+            bidder_email: function () {
+                return rows[0].bidder_email == rows[0].seller_email ? '' : maHoaEmail(rows[0].bidder_email);
+            },
+            bidder_point: function () {
+                return rows[0].bidder_email == rows[0].seller_email ? '' : rows[0].bidder_point;
+            },
+            days: tinhThoiGian(rows[0].total_time, 'd'),
+            hours: tinhThoiGian(rows[0].total_time, 'h'),
+            minutes: tinhThoiGian(rows[0].total_time, 'm'),
+            seconds: tinhThoiGian(rows[0].total_time, 's'),
+            img01: rows[0].img_path,
+            img02: rows[1].img_path,
+            img03: rows[2].img_path
+        };
+
+        if (res.locals.layoutModels.isLogged) {
+            var fv = false, fk = false, fss = false;
+            var ee = {
+                pro_id: proId,
+                user_id: res.locals.layoutModels.curUser.user_id
+            }
+            q.all([favoriteRebo.checkFav(ee), kich_userRepo.checkKick(ee), producesRepo.checkPro(ee)]).spread(function (num1, num2, num3) {
+                fv = num1 == 0 ? false : true;
+                fk = num2 == 0 ? false : true;
+                fss = num3 == 0 ? false : true;
+                var vm = {
+                    layoutModels: res.locals.layoutModels,
+                    layout: 'main',
+                    sprice: sprice,
+                    hprice: hprice,
+                    product: data,
+                    total_time: rows[0].total_time,
+                    f_fav: fv,
+                    f_kick: fk,
+                    f_sell: fss,
+                    detail_bid: detail_bid,
+                    status_name: 'Chi tiết sản phẩm',
+                };
+                res.render('produce/chiTiet', vm);
+            })
+        } else {
+            var fv = false, fk = false, fss = false;
             var vm = {
                 layoutModels: res.locals.layoutModels,
-                layout:'main',
-                sprice:sprice,
-                hprice:hprice,
+                layout: 'main',
+                sprice: sprice,
+                hprice: hprice,
                 product: data,
-                f_fav:f,
-                detail_bid:detail_bid,
+                total_time: rows[0].total_time,
+                f_fav: fv,
+                f_kick: fk,
+                f_sell: fss,
+                detail_bid: detail_bid,
                 status_name: 'Chi tiết sản phẩm',
             };
             res.render('produce/chiTiet', vm);
-        })
+        }
+    });
 
-    })
-
+}).fail(function (err) {
+    console.log(err);
+    res.end('fail');
 });
-r.post('/detail',function (req,res) {
 
-    var kich_user=req.body.txt_kich_user_id;
-    if(kich_user!=''){
-        var proId=req.body.txt_pro_id;
-        var entity={
-            user_id:kich_user,
-            pro_id:proId,
+r.post('/detail', function (req, res) {
+
+    var kich_user = req.body.txt_kich_user_id;
+    if (kich_user != '') {
+        var proId = req.body.txt_pro_id;
+        var entity = {
+            user_id: kich_user,
+            pro_id: proId,
         }
         kich_userRepo.insert(entity).then(function (result) {
-            q.all([producesRepo.getProInfoById(proId),detail_bidRepo.loadAll(proId)]).spread(function (rows, detail_bid){
-                var hprice=rows[0].highest_price;
-                var sprice=rows[0].price_step;
+            q.all([producesRepo.getProInfoById(proId), detail_bidRepo.loadAll(proId)]).spread(function (rows, detail_bid) {
+                var hprice = rows[0].highest_price;
+                var sprice = rows[0].price_step;
                 var data = {
                     pro_id: rows[0].pro_id,
                     pro_name: rows[0].pro_name,
@@ -115,16 +130,17 @@ r.post('/detail',function (req,res) {
                     start_time: rows[0].start_time,
                     end_time: rows[0].end_time,
                     highest_price: rows[0].highest_price,
-                    sprice:sprice,
+                    sprice: sprice,
+                    des_path: rows[0].describe_path,
                     purchase_price: rows[0].purchase_price,
-                    price_step:rows[0].price_step,
+                    price_step: rows[0].price_step,
                     bidder_id: rows[0].bidder_id,
-                    describe:fs.readFileSync(rows[0].describe_path,'utf8'),
+                    describe: fs.readFileSync(rows[0].describe_path, 'utf8'),
                     bidder_email: function () {
-                        return rows[0].bidder_email==rows[0].seller_email?'':maHoaEmail(rows[0].bidder_email);
+                        return rows[0].bidder_email == rows[0].seller_email ? '' : maHoaEmail(rows[0].bidder_email);
                     },
                     bidder_point: function () {
-                        return rows[0].bidder_email==rows[0].seller_email?'':rows[0].bidder_point;
+                        return rows[0].bidder_email == rows[0].seller_email ? '' : rows[0].bidder_point;
                     },
                     days: tinhThoiGian(rows[0].total_time, 'd'),
                     hours: tinhThoiGian(rows[0].total_time, 'h'),
@@ -134,49 +150,77 @@ r.post('/detail',function (req,res) {
                     img02: rows[1].img_path,
                     img03: rows[2].img_path
                 }
-                var f=false;
-                favoriteRebo.checkFav({pro_id:proId,user_id:res.locals.layoutModels.curUser.user_id}).then(function (num) {
-                    f=num==0?false:true;
+                if (res.locals.layoutModels.isLogged) {
+                    var fv = false, fk = false, fss = false;
+                    var ee = {
+                        pro_id: proId,
+                        user_id: res.locals.layoutModels.curUser.user_id
+                    }
+                    q.all([favoriteRebo.checkFav(ee), kich_userRepo.checkKick(ee), producesRepo.checkPro(ee)]).spread(function (num1, num2, num3) {
+                        fv = num1 == 0 ? false : true;
+                        fk = num2 == 0 ? false : true;
+                        fss = num3 == 0 ? false : true;
+                        var vm = {
+                            layoutModels: res.locals.layoutModels,
+                            layout: 'main',
+                            sprice: sprice,
+                            hprice: hprice,
+                            product: data,
+                            total_time: rows[0].total_time,
+                            f_fav: fv,
+                            f_kick: fk,
+                            f_sell: fss,
+                            detail_bid: detail_bid,
+                            status_name: 'Chi tiết sản phẩm',
+                        };
+                        res.render('produce/chiTiet', vm);
+                    })
+                } else {
+                    var fv = false, fk = false, fss = false;
                     var vm = {
                         layoutModels: res.locals.layoutModels,
-                        layout:'main',
-                        sprice:sprice,
-                        hprice:hprice,
+                        layout: 'main',
+                        sprice: sprice,
+                        hprice: hprice,
                         product: data,
-                        f_fav:f,
-                        detail_bid:detail_bid,
+                        total_time: rows[0].total_time,
+                        f_fav: fv,
+                        f_kick: fk,
+                        f_sell: fss,
+                        detail_bid: detail_bid,
                         status_name: 'Chi tiết sản phẩm',
                     };
                     res.render('produce/chiTiet', vm);
-                })
+                }
             })
         })
-    }else{
+    }
+    else {
 
-        if(req.body.btn_dg=='btn_dg'){
+        if (req.body.btn_dg == 'btn_dg') {
             var proId = req.body.txt_pro_id;
-            var entity={
-                pro_id:proId,
-                user_id:res.locals.layoutModels.curUser.user_id,
-                user_email:maHoaEmail(res.locals.layoutModels.curUser.email),
-                price:req.body.txt_gia,
-                sprice:parseInt(req.body.txt_sprice,10),
-                time:taoChuoiNgay(),
+            var entity = {
+                pro_id: proId,
+                user_id: res.locals.layoutModels.curUser.user_id,
+                user_email: maHoaEmail(res.locals.layoutModels.curUser.email),
+                price: req.body.txt_gia,
+                sprice: parseInt(req.body.txt_sprice, 10),
+                time: taoChuoiNgay(),
             }
 
-            bid_Repo.insert(entity).then(function(result){
+            bid_Repo.insert(entity).then(function (result) {
 
-                if(result==0 || result==1){//chua co auto or gia cao hon auto
-                    guiMail(res.locals.layoutModels.curUser.email,'Chúc mừng bạn đã đặt giá thành công mức giá '
-                        +req.body.txt_gia+'đ cho sản phẩm '+req.body.txt_pro_name+'. Hãy tiếp tục theo dõi đấu giá...');
-
-                }
-                if(result==2 ||result==3){
+                if (result == 0 || result == 1) {//chua co auto or gia cao hon auto
+                    guiMail(res.locals.layoutModels.curUser.email, 'Chúc mừng bạn đã đặt giá thành công mức giá '
+                        + req.body.txt_gia + 'đ cho sản phẩm ' + req.body.txt_pro_name + '. Hãy tiếp tục theo dõi đấu giá...');
 
                 }
-                q.all([producesRepo.getProInfoById(proId),detail_bidRepo.loadAll(proId)]).spread(function (rows, detail_bid){
-                    var sprice=rows[0].price_step;
-                    var hprice= rows[0].highest_price;
+                if (result == 2 || result == 3) {
+
+                }
+                q.all([producesRepo.getProInfoById(proId), detail_bidRepo.loadAll(proId)]).spread(function (rows, detail_bid) {
+                    var sprice = rows[0].price_step;
+                    var hprice = rows[0].highest_price;
                     var data = {
                         pro_id: rows[0].pro_id,
                         pro_name: rows[0].pro_name,
@@ -186,16 +230,17 @@ r.post('/detail',function (req,res) {
                         start_time: rows[0].start_time,
                         end_time: rows[0].end_time,
                         highest_price: rows[0].highest_price,
-                        sprice:sprice,
+                        sprice: sprice,
+                        des_path: rows[0].describe_path,
                         purchase_price: rows[0].purchase_price,
-                        price_step:rows[0].price_step,
+                        price_step: rows[0].price_step,
                         bidder_id: rows[0].bidder_id,
-                        describe:fs.readFileSync(rows[0].describe_path,'utf8'),
+                        describe: fs.readFileSync(rows[0].describe_path, 'utf8'),
                         bidder_email: function () {
-                            return rows[0].bidder_email==rows[0].seller_email?'':maHoaEmail(rows[0].bidder_email);
+                            return rows[0].bidder_email == rows[0].seller_email ? '' : maHoaEmail(rows[0].bidder_email);
                         },
                         bidder_point: function () {
-                            return rows[0].bidder_email==rows[0].seller_email?'':rows[0].bidder_point;
+                            return rows[0].bidder_email == rows[0].seller_email ? '' : rows[0].bidder_point;
                         },
                         days: tinhThoiGian(rows[0].total_time, 'd'),
                         hours: tinhThoiGian(rows[0].total_time, 'h'),
@@ -205,46 +250,73 @@ r.post('/detail',function (req,res) {
                         img02: rows[1].img_path,
                         img03: rows[2].img_path
                     }
-                    var f=false;
-                    favoriteRebo.checkFav({pro_id:proId,user_id:res.locals.layoutModels.curUser.user_id}).then(function (num) {
-                        f=num==0?false:true;
+                    if (res.locals.layoutModels.isLogged) {
+                        var fv = false, fk = false, fss = false;
+                        var ee = {
+                            pro_id: proId,
+                            user_id: res.locals.layoutModels.curUser.user_id
+                        }
+                        q.all([favoriteRebo.checkFav(ee), kich_userRepo.checkKick(ee), producesRepo.checkPro(ee)]).spread(function (num1, num2, num3) {
+                            fv = num1 == 0 ? false : true;
+                            fk = num2 == 0 ? false : true;
+                            fss = num3 == 0 ? false : true;
+                            var vm = {
+                                layoutModels: res.locals.layoutModels,
+                                layout: 'main',
+                                sprice: sprice,
+                                hprice: hprice,
+                                product: data,
+                                total_time: rows[0].total_time,
+                                f_fav: fv,
+                                f_kick: fk,
+                                f_sell: fss,
+                                detail_bid: detail_bid,
+                                status_name: 'Chi tiết sản phẩm',
+                            };
+                            res.render('produce/chiTiet', vm);
+                        })
+                    } else {
+                        var fv = false, fk = false, fss = false;
                         var vm = {
                             layoutModels: res.locals.layoutModels,
-                            layout:'main',
-                            sprice:sprice,
-                            hprice:hprice,
+                            layout: 'main',
+                            sprice: sprice,
+                            hprice: hprice,
                             product: data,
-                            f_fav:f,
-                            detail_bid:detail_bid,
+                            total_time: rows[0].total_time,
+                            f_fav: fv,
+                            f_kick: fk,
+                            f_sell: fss,
+                            detail_bid: detail_bid,
                             status_name: 'Chi tiết sản phẩm',
                         };
                         res.render('produce/chiTiet', vm);
-                    })
+                    }
                 })
             });
         }
-        if(req.body.btn_dg=='btn_dgtudong'){
+        if (req.body.btn_dg == 'btn_dgtudong') {
             var proId = req.body.txt_pro_id;
-            var entity={
-                pro_id:proId,
-                user_id:res.locals.layoutModels.curUser.user_id,
-                user_email:maHoaEmail(res.locals.layoutModels.curUser.email),
-                price:req.body.txt_gia,
-                hprice:parseInt(req.body.txt_hprice,10)+parseInt(req.body.txt_sprice,10),
-                sprice:parseInt(req.body.txt_sprice,10),
-                time:taoChuoiNgay(),
+            var entity = {
+                pro_id: proId,
+                user_id: res.locals.layoutModels.curUser.user_id,
+                user_email: maHoaEmail(res.locals.layoutModels.curUser.email),
+                price: req.body.txt_gia,
+                hprice: parseInt(req.body.txt_hprice, 10) + parseInt(req.body.txt_sprice, 10),
+                sprice: parseInt(req.body.txt_sprice, 10),
+                time: taoChuoiNgay(),
             }
             auto_listRepo.insert(entity).then(function (result) {
-                if(result==3 || result==4){//chua co auto or gia cao hon auto
-                    guiMail(res.locals.layoutModels.curUser.email,'Chúc mừng bạn đã đặt giá Tự động thành công mức giá '
-                        +req.body.txt_gia+'đ cho sản phẩm '+req.body.txt_pro_name+'. Hãy tiếp tục theo dõi đấu giá...');
+                if (result == 3 || result == 4) {//chua co auto or gia cao hon auto
+                    guiMail(res.locals.layoutModels.curUser.email, 'Chúc mừng bạn đã đặt giá Tự động thành công mức giá '
+                        + req.body.txt_gia + 'đ cho sản phẩm ' + req.body.txt_pro_name + '. Hãy tiếp tục theo dõi đấu giá...');
                 }
-                if(result==0||result==1||result==2){
+                if (result == 0 || result == 1 || result == 2) {
 
                 }
-                q.all([producesRepo.getProInfoById(proId),detail_bidRepo.loadAll(proId)]).spread(function (rows, detail_bid){
-                    var hprice=rows[0].highest_price;
-                    var sprice=rows[0].price_step;
+                q.all([producesRepo.getProInfoById(proId), detail_bidRepo.loadAll(proId)]).spread(function (rows, detail_bid) {
+                    var hprice = rows[0].highest_price;
+                    var sprice = rows[0].price_step;
                     var data = {
                         pro_id: rows[0].pro_id,
                         pro_name: rows[0].pro_name,
@@ -254,16 +326,17 @@ r.post('/detail',function (req,res) {
                         start_time: rows[0].start_time,
                         end_time: rows[0].end_time,
                         highest_price: rows[0].highest_price,
-                        sprice:sprice,
+                        sprice: sprice,
+                        des_path: rows[0].describe_path,
                         purchase_price: rows[0].purchase_price,
-                        price_step:rows[0].price_step,
+                        price_step: rows[0].price_step,
                         bidder_id: rows[0].bidder_id,
-                        describe:fs.readFileSync(rows[0].describe_path,'utf8'),
+                        describe: fs.readFileSync(rows[0].describe_path, 'utf8'),
                         bidder_email: function () {
-                            return rows[0].bidder_email==rows[0].seller_email?'':maHoaEmail(rows[0].bidder_email);
+                            return rows[0].bidder_email == rows[0].seller_email ? '' : maHoaEmail(rows[0].bidder_email);
                         },
                         bidder_point: function () {
-                            return rows[0].bidder_email==rows[0].seller_email?'':rows[0].bidder_point;
+                            return rows[0].bidder_email == rows[0].seller_email ? '' : rows[0].bidder_point;
                         },
                         days: tinhThoiGian(rows[0].total_time, 'd'),
                         hours: tinhThoiGian(rows[0].total_time, 'h'),
@@ -273,39 +346,66 @@ r.post('/detail',function (req,res) {
                         img02: rows[1].img_path,
                         img03: rows[2].img_path
                     }
-                    var f=false;
-                    favoriteRebo.checkFav({pro_id:proId,user_id:res.locals.layoutModels.curUser.user_id}).then(function (num) {
-                        f=num==0?false:true;
+                    if (res.locals.layoutModels.isLogged) {
+                        var fv = false, fk = false, fss = false;
+                        var ee = {
+                            pro_id: proId,
+                            user_id: res.locals.layoutModels.curUser.user_id
+                        }
+                        q.all([favoriteRebo.checkFav(ee), kich_userRepo.checkKick(ee), producesRepo.checkPro(ee)]).spread(function (num1, num2, num3) {
+                            fv = num1 == 0 ? false : true;
+                            fk = num2 == 0 ? false : true;
+                            fss = num3 == 0 ? false : true;
+                            var vm = {
+                                layoutModels: res.locals.layoutModels,
+                                layout: 'main',
+                                sprice: sprice,
+                                hprice: hprice,
+                                product: data,
+                                total_time: rows[0].total_time,
+                                f_fav: fv,
+                                f_kick: fk,
+                                f_sell: fss,
+                                detail_bid: detail_bid,
+                                status_name: 'Chi tiết sản phẩm',
+                            };
+                            res.render('produce/chiTiet', vm);
+                        })
+                    } else {
+                        var fv = false, fk = false, fss = false;
                         var vm = {
                             layoutModels: res.locals.layoutModels,
-                            layout:'main',
-                            sprice:sprice,
-                            hprice:hprice,
+                            layout: 'main',
+                            sprice: sprice,
+                            hprice: hprice,
                             product: data,
-                            f_fav:f,
-                            detail_bid:detail_bid,
+                            total_time: rows[0].total_time,
+                            f_fav: fv,
+                            f_kick: fk,
+                            f_sell: fss,
+                            detail_bid: detail_bid,
                             status_name: 'Chi tiết sản phẩm',
                         };
                         res.render('produce/chiTiet', vm);
-                    })
+                    }
                 })
             })
         }
-        if(req.body.btn_dg=='btn_yeuthich'){
-            var proId=req.body.txt_pro_id;
-            var entity={
-                user_id:res.locals.layoutModels.curUser.user_id,
-                pro_id:proId,
+        if (req.body.btn_dg == 'btn_yeuthich') {
+            var proId = req.body.txt_pro_id;
+            var entity = {
+                user_id: res.locals.layoutModels.curUser.user_id,
+                pro_id: proId,
             }
             favoriteRebo.insert(entity).then(function (result) {
-                if(result==0){//xoa yeu thich
+                if (result == 0) {//xoa yeu thich
                     console.log('xoa yeu thich')
-                }else{//them yeu thich
+                } else {//them yeu thich
                     console.log('them yeu thich')
                 }
-                q.all([producesRepo.getProInfoById(proId),detail_bidRepo.loadAll(proId)]).spread(function (rows, detail_bid){
-                    var hprice=rows[0].highest_price;
-                    var sprice=rows[0].price_step;
+                q.all([producesRepo.getProInfoById(proId), detail_bidRepo.loadAll(proId)]).spread(function (rows, detail_bid) {
+                    var hprice = rows[0].highest_price;
+                    var sprice = rows[0].price_step;
                     var data = {
                         pro_id: rows[0].pro_id,
                         pro_name: rows[0].pro_name,
@@ -315,16 +415,17 @@ r.post('/detail',function (req,res) {
                         start_time: rows[0].start_time,
                         end_time: rows[0].end_time,
                         highest_price: rows[0].highest_price,
-                        sprice:sprice,
+                        sprice: sprice,
+                        des_path: rows[0].describe_path,
                         purchase_price: rows[0].purchase_price,
-                        price_step:rows[0].price_step,
+                        price_step: rows[0].price_step,
                         bidder_id: rows[0].bidder_id,
-                        describe:fs.readFileSync(rows[0].describe_path,'utf8'),
+                        describe: fs.readFileSync(rows[0].describe_path, 'utf8'),
                         bidder_email: function () {
-                            return rows[0].bidder_email==rows[0].seller_email?'':maHoaEmail(rows[0].bidder_email);
+                            return rows[0].bidder_email == rows[0].seller_email ? '' : maHoaEmail(rows[0].bidder_email);
                         },
                         bidder_point: function () {
-                            return rows[0].bidder_email==rows[0].seller_email?'':rows[0].bidder_point;
+                            return rows[0].bidder_email == rows[0].seller_email ? '' : rows[0].bidder_point;
                         },
                         days: tinhThoiGian(rows[0].total_time, 'd'),
                         hours: tinhThoiGian(rows[0].total_time, 'h'),
@@ -334,21 +435,48 @@ r.post('/detail',function (req,res) {
                         img02: rows[1].img_path,
                         img03: rows[2].img_path
                     }
-                    var f=false;
-                    favoriteRebo.checkFav({pro_id:proId,user_id:res.locals.layoutModels.curUser.user_id}).then(function (num) {
-                        f=num==0?false:true;
+                    if (res.locals.layoutModels.isLogged) {
+                        var fv = false, fk = false, fss = false;
+                        var ee = {
+                            pro_id: proId,
+                            user_id: res.locals.layoutModels.curUser.user_id
+                        }
+                        q.all([favoriteRebo.checkFav(ee), kich_userRepo.checkKick(ee), producesRepo.checkPro(ee)]).spread(function (num1, num2, num3) {
+                            fv = num1 == 0 ? false : true;
+                            fk = num2 == 0 ? false : true;
+                            fss = num3 == 0 ? false : true;
+                            var vm = {
+                                layoutModels: res.locals.layoutModels,
+                                layout: 'main',
+                                sprice: sprice,
+                                hprice: hprice,
+                                product: data,
+                                total_time: rows[0].total_time,
+                                f_fav: fv,
+                                f_kick: fk,
+                                f_sell: fss,
+                                detail_bid: detail_bid,
+                                status_name: 'Chi tiết sản phẩm',
+                            };
+                            res.render('produce/chiTiet', vm);
+                        })
+                    } else {
+                        var fv = false, fk = false, fss = false;
                         var vm = {
                             layoutModels: res.locals.layoutModels,
-                            layout:'main',
-                            sprice:sprice,
-                            hprice:hprice,
+                            layout: 'main',
+                            sprice: sprice,
+                            hprice: hprice,
                             product: data,
-                            f_fav:f,
-                            detail_bid:detail_bid,
+                            total_time: rows[0].total_time,
+                            f_fav: fv,
+                            f_kick: fk,
+                            f_sell: fss,
+                            detail_bid: detail_bid,
                             status_name: 'Chi tiết sản phẩm',
                         };
                         res.render('produce/chiTiet', vm);
-                    })
+                    }
                 })
             })
         }
@@ -356,7 +484,91 @@ r.post('/detail',function (req,res) {
 
 })
 
-guiMail=function (email,noidung) {
+r.post('/addDes', function (req, res) {
+    var day = new Date();
+    var str_day = '<br><span style="color: #ff0000;background-color: #00ffff;">Cập nhật (' + day.getDate() + '/' + day.getMonth() + '/' + day.getFullYear() + ' ' + day.getHours() + ':' + day.getMinutes() + ')</span><br>' + req.body.txt_moTa;
+    fs.appendFile(req.body.txt_des_path, str_day, function (err) {
+        if (err) throw err;
+        var proId = req.body.txt_des_pro;
+        q.all([producesRepo.getProInfoById(proId), detail_bidRepo.loadAll(proId)]).spread(function (rows, detail_bid) {
+            var sprice = rows[0].price_step;
+            var hprice = rows[0].highest_price;
+            var data = {
+                pro_id: rows[0].pro_id,
+                pro_name: rows[0].pro_name,
+                seller_id: rows[0].seller_id,
+                seller_email: (rows[0].seller_email),
+                seller_point: rows[0].seller_point,
+                start_time: rows[0].start_time,
+                end_time: rows[0].end_time,
+                highest_price: rows[0].highest_price,
+                purchase_price: rows[0].purchase_price,
+                sprice: sprice,
+                des_path: rows[0].describe_path,
+                price_step: rows[0].price_step,
+                bidder_id: rows[0].bidder_id,
+                describe: fs.readFileSync(rows[0].describe_path, 'utf8'),
+                bidder_email: function () {
+                    return rows[0].bidder_email == rows[0].seller_email ? '' : maHoaEmail(rows[0].bidder_email);
+                },
+                bidder_point: function () {
+                    return rows[0].bidder_email == rows[0].seller_email ? '' : rows[0].bidder_point;
+                },
+                days: tinhThoiGian(rows[0].total_time, 'd'),
+                hours: tinhThoiGian(rows[0].total_time, 'h'),
+                minutes: tinhThoiGian(rows[0].total_time, 'm'),
+                seconds: tinhThoiGian(rows[0].total_time, 's'),
+                img01: rows[0].img_path,
+                img02: rows[1].img_path,
+                img03: rows[2].img_path
+            }
+            if (res.locals.layoutModels.isLogged) {
+                var fv = false, fk = false, fss = false;
+                var ee = {
+                    pro_id: proId,
+                    user_id: res.locals.layoutModels.curUser.user_id
+                }
+                q.all([favoriteRebo.checkFav(ee), kich_userRepo.checkKick(ee), producesRepo.checkPro(ee)]).spread(function (num1, num2, num3) {
+                    fv = num1 == 0 ? false : true;
+                    fk = num2 == 0 ? false : true;
+                    fss = num3 == 0 ? false : true;
+                    var vm = {
+                        layoutModels: res.locals.layoutModels,
+                        layout: 'main',
+                        sprice: sprice,
+                        hprice: hprice,
+                        product: data,
+                        total_time: rows[0].total_time,
+                        f_fav: fv,
+                        f_kick: fk,
+                        f_sell: fss,
+                        detail_bid: detail_bid,
+                        status_name: 'Chi tiết sản phẩm',
+                    };
+                    res.render('produce/chiTiet', vm);
+                })
+            } else {
+                var fv = false, fk = false, fss = false;
+                var vm = {
+                    layoutModels: res.locals.layoutModels,
+                    layout: 'main',
+                    sprice: sprice,
+                    hprice: hprice,
+                    product: data,
+                    total_time: rows[0].total_time,
+                    f_fav: fv,
+                    f_kick: fk,
+                    f_sell: fss,
+                    detail_bid: detail_bid,
+                    status_name: 'Chi tiết sản phẩm',
+                };
+                res.render('produce/chiTiet', vm);
+            }
+        })
+    });
+
+})
+guiMail = function (email, noidung) {
     var transporter = nodemailer.createTransport({ //cấu hình mail server
         service: 'Gmail',
         auth: {
@@ -382,11 +594,11 @@ guiMail=function (email,noidung) {
     });
 }
 taoChuoiNgay = function () {
-    var day= new  Date();
-    var str_day=day.getDate()+'/'+day.getMonth()+'/'+day.getFullYear()+' '+ day.getHours()+':'+day.getMinutes();
+    var day = new Date();
+    var str_day = day.getDate() + '/' + day.getMonth() + '/' + day.getFullYear() + ' ' + day.getHours() + ':' + day.getMinutes();
     return moment(str_day, 'D/M/YYYY hh:mm').format('YYYY-MM-DDTHH:mm');
 }
-tinhThoiGian = function (sum_s, type){
+tinhThoiGian = function (sum_s, type) {
 
     // 1 ngày = 86400 giây
     // 1 giờ = 3600 giây
@@ -394,20 +606,20 @@ tinhThoiGian = function (sum_s, type){
 
     var result = 0;
 
-    if(type == 'd'){
-        result = sum_s/86400;
-    }else if(type == 'h'){
-        result = (sum_s % 86400)/3600;
-    }else if(type == 'm'){
-        result = ((sum_s % 86400)%3600)/60;
-    }else if(type == 's'){
-        result = (((sum_s % 86400)%3600)%60);
+    if (type == 'd') {
+        result = sum_s / 86400;
+    } else if (type == 'h') {
+        result = (sum_s % 86400) / 3600;
+    } else if (type == 'm') {
+        result = ((sum_s % 86400) % 3600) / 60;
+    } else if (type == 's') {
+        result = (((sum_s % 86400) % 3600) % 60);
     }
 
     return checkTime(Math.floor(result));
 }
 
-checkTime = function (i){
+checkTime = function (i) {
     if (i < 10) {
         i = "0" + i;
     }
@@ -462,30 +674,30 @@ var storage = multer.diskStorage({
         }
     }
 });
-var sizef=0;
+var sizef = 0;
 r.post('/add', multer({storage: storage}).any(), function (req, res, next) {
 
     var files = req.files;
     files.forEach(function () {
         sizef++;
     });
-    if(sizef<3){
-        sizef=0;
+    if (sizef < 3) {
+        sizef = 0;
         res.send('chua chon du 3 anh');
-    }else{
-        sizef=0;
-        var day= new  Date();
+    } else {
+        sizef = 0;
+        var day = new Date();
 
-        var str_day=day.getHours()+':'+day.getMinutes();
+        var str_day = day.getHours() + ':' + day.getMinutes();
         var entity = {
             name: req.body.txt_tenSp,
             start_price: req.body.txt_giaKd,
             purchase_price: req.body.txt_giaMn,
             highest_price: req.body.txt_giaKd,
-            user_highest_price:res.locals.layoutModels.curUser.user_id,
+            user_highest_price: res.locals.layoutModels.curUser.user_id,
             price_step: req.body.txt_bg,
-            start_time: moment(req.body.txt_tgbd+' '+str_day, 'D/M/YYYY hh:mm').format('YYYY-MM-DDTHH:mm'),
-            end_time: moment(req.body.txt_tgkt+' '+str_day, 'D/M/YYYY hh:mm').format('YYYY-MM-DDTHH:mm'),
+            start_time: moment(req.body.txt_tgbd + ' ' + str_day, 'D/M/YYYY hh:mm').format('YYYY-MM-DDTHH:mm'),
+            end_time: moment(req.body.txt_tgkt + ' ' + str_day, 'D/M/YYYY hh:mm').format('YYYY-MM-DDTHH:mm'),
             cate_id: req.body.cbb_select,
             seller_id: res.locals.layoutModels.curUser.user_id,
             num_bid: '0',
@@ -516,7 +728,7 @@ r.post('/add', multer({storage: storage}).any(), function (req, res, next) {
             ]).spread(function (rs1, rs2, rs3) {
                 if (rs1 == 1 && rs2 == 1 && rs3 == 1)
                 //res.render('welcome', {username: req.body.unm, password: req.body.pwd});
-                    res.redirect(mustache.render('/produces/detail/{{insertId}}',{insertId:insertId}));
+                    res.redirect(mustache.render('/produces/detail/{{insertId}}', {insertId: insertId}));
             })
         }).fail(function (err) {
             console.log(err);
@@ -529,16 +741,16 @@ r.post('/add', multer({storage: storage}).any(), function (req, res, next) {
 //ham tao 3 file desctibe, bid_detail,cmt
 function createMuiltyFile(insertId, str) {
     var d = q.defer();
-        fs.writeFile('./data/produces/' + insertId + '/desctibe.txt', str, 'utf8', function (err, data) {
-            if (err) throw err;
-        });
-        // fs.writeFile('./data/produces/' + insertId + '/bid_detail.txt', '', 'utf8', function (err, data) {
-        //     if (err) throw err;
-        // });
-        // fs.writeFile('./data/produces/' + insertId + '/cmt.txt', '', 'utf8', function (err, data) {
-        //     if (err) throw err;
-        // });
-        d.resolve(1);
+    fs.writeFile('./data/produces/' + insertId + '/desctibe.txt', str, 'utf8', function (err, data) {
+        if (err) throw err;
+    });
+    // fs.writeFile('./data/produces/' + insertId + '/bid_detail.txt', '', 'utf8', function (err, data) {
+    //     if (err) throw err;
+    // });
+    // fs.writeFile('./data/produces/' + insertId + '/cmt.txt', '', 'utf8', function (err, data) {
+    //     if (err) throw err;
+    // });
+    d.resolve(1);
     return d.promise;
 }
 
@@ -554,6 +766,8 @@ function addMuiltyDataToProImg(files, insertId) {
     d.resolve(1);
     return d.promise;
 }
+
+
 //----------------------------------------------------------------------------
 
 

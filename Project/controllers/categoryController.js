@@ -11,9 +11,12 @@ r.get('/danhmuc/:id',function (req,res) {
     var offset = (curPage - 1) * rec_per_page;
     var name;
     categoryRepo.getName(req.params.id).then(function (row) {
-        console.log(row[0].name);
         name=row[0].name;
+    }).fail(function (err) {
+        console.log(err);
+        res.end('fai2');
     })
+
     producesRepo.loadAllByCate(req.params.id, rec_per_page, offset,0)
         .then(function(data) {
 
@@ -47,7 +50,10 @@ r.get('/danhmuc/:id',function (req,res) {
                 showPrevPage: curPage > 1,
                 showNextPage: curPage < number_of_pages - 1,
             });
-        });
+        }).fail(function (err) {
+        console.log(err);
+        res.end('fai3');
+    })
 
 })
 r.get('/danhmuc/sapxeptang/:id',function (req,res) {
@@ -84,6 +90,7 @@ r.get('/danhmuc/sapxeptang/:id',function (req,res) {
                 cateId:req.params.id,
                 cateName: name,
                 pages: pages,
+                //user_email:res.locals.layoutModels.curUser.email,
                 sx:2,
                 type:0,
                 curPage: curPage,
@@ -131,6 +138,7 @@ r.get('/danhmuc/sapxepgiam/:id',function (req,res) {
                 pages: pages,
                 sx:1,
                 type:0,
+                //user_email:res.locals.layoutModels.curUser.email,
                 curPage: curPage,
                 prevPage: curPage - 1,
                 nextPage: curPage + 1,
@@ -175,6 +183,7 @@ r.post('/timkiem',function (req,res) {
                 pages: pages,
                 sx:0,
                 type:1,
+                //user_email:res.locals.layoutModels.curUser.email,
                 curPage: curPage,
                 prevPage: curPage - 1,
                 nextPage: curPage + 1,
@@ -217,6 +226,7 @@ r.get('/timkiem',function (req,res) {
                 pages: pages,
                 sx:0,
                 type:1,
+                //user_email:res.locals.layoutModels.curUser.email,
                 curPage: curPage,
                 prevPage: curPage - 1,
                 nextPage: curPage + 1,
@@ -258,6 +268,7 @@ r.get('/timkiem/sapxeptang/:id',function (req,res) {
                 pages: pages,
                 sx:2,
                 type:1,
+                //user_email:res.locals.layoutModels.curUser.email,
                 curPage: curPage,
                 prevPage: curPage - 1,
                 nextPage: curPage + 1,
@@ -299,6 +310,7 @@ r.get('/timkiem/sapxepgiam/:id',function (req,res) {
                 pages: pages,
                 sx:1,
                 type:1,
+                //user_email:res.locals.layoutModels.curUser.email,
                 curPage: curPage,
                 prevPage: curPage - 1,
                 nextPage: curPage + 1,

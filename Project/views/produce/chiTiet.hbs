@@ -10,8 +10,8 @@
         }
         #btn_des{
             position: absolute;
-            bottom: 0;
-            right: 0;
+            bottom: 38px;
+            right: 30px;
         }
         .scrollable{
             margin-top: 0;
@@ -82,27 +82,27 @@
                         </div>
                     </div>
                     <div class="thong-tin-sp">
-                        <div class="info-inline">
+                        <div class="info-inline" style="margin-top: 30px;margin-left: 10px">
                             <p class="clear-margin display-inline-block title-info">Đăng lúc: </p>
                             <p class="clear-margin display-inline-block value-info">{{start_time}}</p>
                         </div>
-                        <div class="info-inline">
+                        <div class="info-inline" style="margin-left: 10px">
                             <p class="clear-margin display-inline-block title-info">Kết thúc vào: </p>
                             <p class="clear-margin display-inline-block value-info">{{end_time}}</p>
                         </div>
-                        <div class="info-inline">
+                        <div class="info-inline" style="margin-left: 10px">
                             <p class="clear-margin display-inline-block title-info">Giá hiện tại: </p>
                             <p class="clear-margin display-inline-block value-info">{{number_format highest_price}}</p>
                         </div>
-                        <div class="info-inline">
+                        <div class="info-inline" style="margin-left: 10px">
                             <p class="clear-margin display-inline-block title-info">Giá mua ngay: </p>
                             <p class="clear-margin display-inline-block value-info">{{number_format purchase_price}}</p>
                         </div>
-                        <div class="info-inline">
+                        <div class="info-inline" style="margin-left: 10px">
                             <p class="clear-margin display-inline-block title-info">Người giữ giá:</p>
                             <p id="bidder_email" class="display-inline-block value-info" style="display: inline-block">{{bidder_email}}</p>
                         </div>
-                        <div class="info-inline">
+                        <div class="info-inline" style="margin-left: 10px">
                             <p class="clear-margin display-inline-block title-info">Điểm đánh giá: </p>
                             <p id="bidder_email" class="display-inline-block value-info" style="display: inline-block">{{bidder_point}}</p>
                         </div>
@@ -110,8 +110,8 @@
 
                             <div>
                                 <label class="sr-only" for="exampleInputAmount">Amount (in dollars)</label>
-                                <div class="input-group cus-input-money-text">
-                                    <input type="text" class="form-control" id="txt_gia" name="txt_gia"
+                                <div class="input-group cus-input-money-text" style="width: 100%;margin-top: 40px">
+                                    <input type="text" class="form-control" id="txt_gia" name="txt_gia" style="display: none"
                                            placeholder="Nhập giá mua">
                                 </div>
                                 <input type="text" class="form-control" id="txt_kich_user_id" name="txt_kich_user_id" style="display: none">
@@ -120,11 +120,13 @@
                                 <input type="text" class="form-control" id="txt_hprice" name="txt_hprice" style="display: none" value="{{highest_price}}">
                                 <input type="text" class="form-control" id="txt_sprice" name="txt_sprice" style="display: none" value="{{sprice}}">
                             </div>
-                            <div class="btn_daugia">
-                                <button id="btn_dg" name="btn_dg" value="btn_dg" type="submit" class="btn btn-primary cus-button-bid">
+                            <div class="btn_daugia" style="width: 100%">
+                                <p class="clear-margin display-inline-block title-info" id="p_kick" style="color: #ff0000;font-size: 14px; margin-top: 30px; display: none;margin-left: 10px">Bạn đã bị kick khỏi sản phẩm này</p>
+                                <p class="clear-margin display-inline-block title-info" id="p_hettg" style="color: #ff0000;font-size: 14px; margin-top: 30px; display: none;margin-left: 10px">Cuộc đấu giá đã kết thúc</p>
+                                <button id="btn_dg" name="btn_dg" value="btn_dg" type="submit" class="btn btn-primary cus-button-bid" style="display: none;width: 105px">
                                     <span class="glyphicon glyphicon-fire" aria-hidden="true"></span> Đặt giá
                                 </button>
-                                <button id="btn_dgtudong"  name="btn_dg" value="btn_dgtudong" type="submit" class="btn btn-primary cus-button-bid">
+                                <button id="btn_dgtudong"  name="btn_dg" value="btn_dgtudong" type="submit" class="btn btn-primary cus-button-bid" style="display: none">
                                     <span class="glyphicon glyphicon-fire" aria-hidden="true"></span> Đấu giá tự động
                                 </button>
                             </div>
@@ -151,7 +153,7 @@
 
                                     <td>
                                         <div class="showBtn">{{user_email}}
-                                            <a href="javascript:;" class="btn btn-warning btn_kich" data-id="{{user_id}}">Kích</a>
+                                            <a href="javascript:;" class="btn btn-warning btn_kich" style="display: none" data-id="{{user_id}}">Kích</a>
                                         </div>
                                     </td>
                                 </tr>
@@ -176,13 +178,17 @@
                         <div style="padding: 30px;">
                             {{{describe}}}
                         </div>
-                        <div id="div_des">
+                        <form action="/produces/addDes" method="post">
+                            <input type="text" class="form-control" id="txt_des_path" name="txt_des_path" style="display: none" value="{{des_path}}">
+                            <input type="text" class="form-control" id="txt_des_pro" name="txt_des_pro" style="display: none" value="{{pro_id}}">
+                            <div id="div_des" style="display: none">
                             <textarea name="txt_moTa" id="txt_moTa" class="tinymce">
                             </textarea>
-                            <button id="btn_des" type="button" class="btn btn-default">Thêm mô tả</button>
+                                <button id="btn_des"  type="submit" class="btn btn-default">Thêm mô tả</button>
 
-                        </div>
+                            </div>
 
+                        </form>
                     </div>
                 </div>
                 {{/with}}
@@ -218,6 +224,24 @@
            if({{f_fav}}){
                $('#btn_yeuthich').css('background-color','#ff0000');
            }
+           if(({{total_time}})>0){
+                if({{f_kick}}){
+                    $('#p_kick').show();
+                }else{
+                    $('#btn_dg').show();
+                    $('#btn_dgtudong').show();
+                    $('#txt_gia').show();
+                }
+            }else{
+                $('#p_hettg').show();
+                $('.btn_kich').show();
+            }
+            if({{f_sell}}){
+                $('#div_des').show();
+                $('.btn_kich').show()
+            }else{
+
+            }
         });
         $('.btn_kich').on('click', function() {
             var id = $(this).data('id');
@@ -260,17 +284,39 @@
         })
         $("#btn_dg").click(function () {
 
-            if (confirm('Bạn muốn đặt mức giá '+$('#txt_gia').val()+'đ cho sản phẩm ?')) {
-            } else {
+            if(({{layoutModels.isLogged}}) && ({{layoutModels.isBid}})){
+                if (confirm('Bạn muốn đặt mức giá '+$('#txt_gia').val()+'đ cho sản phẩm ?')) {
+                } else {
+                    return false;
+                }
+            }
+            else{
+                alert('Bạn không thể đấu giá, vui lòng kiểm tra lại...');
                 return false;
             }
+
         });
+
         $("#btn_dgtudong").click(function () {
-            if (confirm('Bạn muốn đặt TỰ ĐỘNG mức giá '+$('#txt_gia').val()+'đ cho sản phẩm ?')) {
-            } else {
+            if(({{layoutModels.isLogged}}) && ({{layoutModels.isBid}})){
+                if (confirm('Bạn muốn đặt TỰ ĐỘNG mức giá '+$('#txt_gia').val()+'đ cho sản phẩm ?')) {
+                } else {
+                    return false;
+                }
+            }else{
+                alert('Bạn không thể đấu giá, vui lòng kiểm tra lại...');
                 return false;
             }
         });
+
+        $('#btn_yeuthich').click(function () {
+            if(({{layoutModels.isLogged}})){
+            }
+            else{
+                alert('Vui lòng đăng nhập trước khi thực hiện thao tác này...');
+                return false;
+            }
+        })
 
     </script>
 {{/section}}

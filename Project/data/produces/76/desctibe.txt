@@ -1,6 +1,0 @@
-<p>M&aacute;y c&ograve;n mới lắm</p>
-<ul style="list-style-type: circle;">
-<li>độ ph&acirc;n giải cao</li>
-<li>Pin bền</li>
-<li>Chụp ảnh r&otilde; n&eacute;t</li>
-</ul>
