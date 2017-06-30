@@ -101,11 +101,11 @@ r.get('/detail/:id', function (req, res) {
             };
             res.render('produce/chiTiet', vm);
         }
-    });
 
-}).fail(function (err) {
-    console.log(err);
-    res.end('fail');
+    }).fail(function (err) {
+        console.log(err);
+        res.end('fail');
+    });
 });
 
 r.post('/detail', function (req, res) {
